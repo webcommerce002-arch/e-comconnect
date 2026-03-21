@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Infos client — E.com Connect</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  *{margin:0;padding:0;box-sizing:border-box}
+
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:#0a0a0a;
+    color:#f0f0f0;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  /* TOPNAV */
+  .topnav{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(10,10,10,0.95);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid #1a1a1a;
+    padding:0 60px;
+    display:flex;
+    align-items:center;
+    gap:32px;
+    height:52px;
+  }
+  .topnav-logo{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    text-decoration:none;
+    margin-right:8px;
+  }
+  .topnav-logo-icon{
+    width:28px;height:28px;
+    background:#84cc16;
+    border-radius:6px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .topnav-logo-icon svg{stroke:#0a0a0a;fill:none}
+  .topnav-logo-name{font-size:14px;font-weight:700;color:#e5e5e5}
+  .topnav-logo-name span{color:#84cc16}
+  .topnav a{font-size:13px;font-weight:500;color:#737373;text-decoration:none;transition:color .2s}
+  .topnav a:hover{color:#e5e5e5}
+  .topnav a.active{color:#84cc16;font-weight:700}
+  .topnav-sep{flex:1}
+  .topnav-back{
+    color:#84cc16 !important;
+    border:1px solid rgba(132,204,22,0.3);
+    border-radius:20px;
+    padding:4px 14px;
+    font-size:12px !important;
+  }
+  .topnav-back:hover{background:rgba(132,204,22,0.08) !important}
+
+  /* HERO */
+  .page-hero{
+    padding:64px 60px 48px;
+    background:radial-gradient(ellipse 70% 50% at 60% 0%, rgba(132,204,22,0.1) 0%, transparent 70%), #0a0a0a;
+    border-bottom:1px solid #1a1a1a;
+  }
+  .page-hero-label{
+    font-size:11px;
+    color:#84cc16;
+    font-weight:700;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    margin-bottom:12px;
+  }
+  .page-hero h1{
+    font-size:clamp(32px,4vw,52px);
+    font-weight:900;
+    letter-spacing:-2px;
+    color:#e5e5e5;
+    margin-bottom:16px;
+    line-height:1.1;
+  }
+  .page-hero h1 span{color:#84cc16}
+  .page-hero-sub{
+    font-size:15px;
+    color:#737373;
+    max-width:600px;
+    line-height:1.7;
+  }
+  .page-hero-meta{
+    display:flex;
+    gap:24px;
+    margin-top:28px;
+    flex-wrap:wrap;
+  }
+  .meta-pill{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:12px;
+    color:#a3a3a3;
+    background:#111;
+    border:1px solid #1f1f1f;
+    padding:6px 14px;
+    border-radius:20px;
+  }
+  .meta-pill .dot{width:6px;height:6px;border-radius:50%;background:#84cc16}
+
+  /* LAYOUT */
+  .page-content{
+    max-width:1100px;
+    margin:0 auto;
+    padding:56px 60px;
+  }
+
+  /* SECTION */
+  .info-section{
+    margin-bottom:56px;
+  }
+  .section-header{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:24px;
+    padding-bottom:16px;
+    border-bottom:1px solid #1a1a1a;
+  }
+  .section-icon{
+    width:40px;height:40px;
+    background:rgba(132,204,22,0.1);
+    border:1px solid rgba(132,204,22,0.2);
+    border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+    color:#84cc16;
+    font-size:18px;
+  }
+  .section-num{
+    font-size:11px;
+    color:#84cc16;
+    font-weight:700;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    margin-bottom:2px;
+  }
+  .section-title{
+    font-size:18px;
+    font-weight:800;
+    color:#e5e5e5;
+  }
+  .section-desc{
+    font-size:13px;
+    color:#525252;
+    margin-top:2px;
+  }
+
+  /* CARDS GRID */
+  .cards-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+    gap:14px;
+  }
+  .info-card{
+    background:#111;
+    border:1px solid #1f1f1f;
+    border-radius:12px;
+    padding:20px;
+    transition:border-color .2s;
+    position:relative;
+  }
+  .info-card:hover{border-color:rgba(132,204,22,0.25)}
+  .info-card.required::before{
+    content:'Obligatoire';
+    position:absolute;
+    top:14px;right:14px;
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:#84cc16;
+    background:rgba(132,204,22,0.1);
+    padding:2px 8px;
+    border-radius:10px;
+  }
+  .info-card.optional::before{
+    content:'Optionnel';
+    position:absolute;
+    top:14px;right:14px;
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:#525252;
+    background:#1a1a1a;
+    padding:2px 8px;
+    border-radius:10px;
+  }
+  .card-label{
+    font-size:13px;
+    font-weight:700;
+    color:#e5e5e5;
+    margin-bottom:6px;
+    padding-right:70px;
+  }
+  .card-desc{
+    font-size:12px;
+    color:#737373;
+    line-height:1.6;
+  }
+  .card-examples{
+    margin-top:10px;
+    padding-top:10px;
+    border-top:1px solid #1a1a1a;
+  }
+  .card-examples-label{
+    font-size:10px;
+    color:#525252;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    margin-bottom:5px;
+  }
+  .card-example{
+    font-size:11px;
+    color:#737373;
+    display:flex;
+    align-items:flex-start;
+    gap:6px;
+    margin-bottom:3px;
+  }
+  .card-example::before{content:'→';color:#84cc16;flex-shrink:0}
+
+  /* TIPS */
+  .tip-box{
+    background:rgba(132,204,22,0.05);
+    border:1px solid rgba(132,204,22,0.15);
+    border-radius:12px;
+    padding:18px 22px;
+    margin-top:16px;
+    display:flex;
+    gap:12px;
+    align-items:flex-start;
+  }
+  .tip-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+  .tip-text{font-size:13px;color:#a3a3a3;line-height:1.6}
+  .tip-text strong{color:#84cc16}
+
+  /* TIMELINE */
+  .timeline{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+  }
+  .timeline-item{
+    display:flex;
+    gap:20px;
+    position:relative;
+  }
+  .timeline-item:not(:last-child)::after{
+    content:'';
+    position:absolute;
+    left:19px;
+    top:40px;
+    bottom:0;
+    width:1px;
+    background:#1f1f1f;
+  }
+  .timeline-dot{
+    width:40px;height:40px;
+    background:#111;
+    border:1px solid #1f1f1f;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+    font-size:13px;
+    font-weight:800;
+    color:#84cc16;
+    position:relative;
+    z-index:1;
+  }
+  .timeline-body{
+    padding-bottom:28px;
+    flex:1;
+  }
+  .timeline-title{
+    font-size:14px;
+    font-weight:700;
+    color:#e5e5e5;
+    margin-bottom:4px;
+    padding-top:10px;
+  }
+  .timeline-text{
+    font-size:12px;
+    color:#737373;
+    line-height:1.6;
+  }
+
+  /* FORMAT TABLE */
+  .format-table{
+    background:#111;
+    border:1px solid #1f1f1f;
+    border-radius:12px;
+    overflow:hidden;
+  }
+  .format-row{
+    display:grid;
+    grid-template-columns:200px 1fr 120px;
+    gap:0;
+    border-bottom:1px solid #1a1a1a;
+    align-items:center;
+  }
+  .format-row:last-child{border-bottom:none}
+  .format-row.header{background:#161616}
+  .format-cell{
+    padding:12px 16px;
+    font-size:12px;
+    color:#737373;
+    border-right:1px solid #1a1a1a;
+  }
+  .format-cell:last-child{border-right:none}
+  .format-row.header .format-cell{
+    font-size:10px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:#525252;
+  }
+  .format-cell strong{color:#e5e5e5;font-weight:600}
+  .badge-ok{
+    display:inline-block;
+    background:rgba(132,204,22,0.1);
+    color:#84cc16;
+    font-size:10px;font-weight:700;
+    padding:2px 8px;border-radius:10px;
+  }
+  .badge-warn{
+    display:inline-block;
+    background:rgba(245,158,11,0.1);
+    color:#f59e0b;
+    font-size:10px;font-weight:700;
+    padding:2px 8px;border-radius:10px;
+  }
+  .badge-no{
+    display:inline-block;
+    background:rgba(239,68,68,0.1);
+    color:#f87171;
+    font-size:10px;font-weight:700;
+    padding:2px 8px;border-radius:10px;
+  }
+
+  /* FAQ */
+  .faq-item{
+    background:#111;
+    border:1px solid #1f1f1f;
+    border-radius:12px;
+    overflow:hidden;
+    transition:border-color .2s;
+  }
+  .faq-item:hover{border-color:rgba(132,204,22,0.2)}
+  .faq-question{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 22px;
+    cursor:pointer;
+    user-select:none;
+    gap:16px;
+  }
+  .faq-question-text{
+    font-size:14px;
+    font-weight:600;
+    color:#e5e5e5;
+  }
+  .faq-icon{
+    width:24px;height:24px;
+    border-radius:50%;
+    background:#1a1a1a;
+    border:1px solid #2a2a2a;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+    color:#737373;
+    font-size:16px;
+    transition:all .3s;
+    line-height:1;
+  }
+  .faq-item.open .faq-icon{
+    background:rgba(132,204,22,0.1);
+    border-color:rgba(132,204,22,0.3);
+    color:#84cc16;
+    transform:rotate(45deg);
+  }
+  .faq-answer{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .35s cubic-bezier(.4,0,.2,1);
+  }
+  .faq-answer-inner{
+    padding:0 22px 18px;
+    font-size:13px;
+    color:#737373;
+    line-height:1.7;
+    border-top:1px solid #1a1a1a;
+    padding-top:14px;
+  }
+  .faq-answer-inner strong{color:#a3a3a3}
+  .faq-answer-inner .green{color:#84cc16;font-weight:600}
+
+  /* CTA FINAL */
+  .cta-box{
+    background:#111;
+    border:1px solid rgba(132,204,22,0.2);
+    border-radius:16px;
+    padding:40px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+    margin-top:16px;
+  }
+  .cta-box::before{
+    content:'';
+    position:absolute;
+    top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,transparent,#84cc16,transparent);
+  }
+  .cta-box h2{
+    font-size:24px;font-weight:800;color:#e5e5e5;
+    letter-spacing:-0.5px;margin-bottom:10px;
+  }
+  .cta-box p{font-size:14px;color:#737373;margin-bottom:24px}
+  .cta-btn{
+    display:inline-flex;align-items:center;gap:8px;
+    background:#84cc16;color:#0a0a0a;
+    font-size:14px;font-weight:700;
+    padding:12px 28px;border-radius:8px;
+    text-decoration:none;
+    transition:background .2s,transform .2s;
+  }
+  .cta-btn:hover{background:#a3e635;transform:translateY(-1px)}
+
+  /* SCROLL REVEAL */
+  .reveal{
+    opacity:0;
+    transform:translateY(30px);
+    transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1);
+  }
+  .reveal.visible{opacity:1;transform:translateY(0)}
+
+  @media(min-width:769px){
+    .page-content{zoom:1.1}
+  }
+
+  @media(max-width:768px){
+    .topnav{padding:0 20px;gap:20px}
+    .page-hero,.page-content{padding-left:24px;padding-right:24px}
+    .cards-grid{grid-template-columns:1fr}
+    .format-row{grid-template-columns:140px 1fr 90px}
+  }
+</style>
+</head>
+<body>
+
+<!-- TOPNAV -->
+<nav class="topnav">
+  <a href="Ecomm-Connect-Presentation.html" class="topnav-logo">
+    <img src="logo-ecomconnect.png" alt="E.com connect" style="height:36px;width:auto;object-fit:contain">
+  </a>
+  <a href="Ecomm-Connect-Presentation.html">Accueil</a>
+  <a href="Ecomm-Connect-Presentation.html#section-services">Prestations</a>
+  <a href="Ecomm-Connect-Presentation.html#section-tarifs">Tarifs</a>
+  <a href="Ecomm-Connect-Presentation.html#section-options">Options</a>
+  <a href="checklist-client.html" class="active">Infos client</a>
+  <div class="topnav-sep"></div>
+  <a href="mailto:contact@ecomm-connect.fr" class="topnav-back">Devis gratuit →</a>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <div class="page-hero-label">Guide client</div>
+  <h1>Ce dont j'ai besoin<br><span>pour créer votre site</span></h1>
+  <p class="page-hero-sub">Avant de démarrer votre projet, voici toutes les informations à me transmettre. Plus vous êtes précis, plus vite je livre — et mieux c'est.</p>
+  <div class="page-hero-meta">
+    <div class="meta-pill"><span class="dot"></span>Envoi par email ou WhatsApp</div>
+    <div class="meta-pill"><span class="dot"></span>Pas besoin d'être technique</div>
+    <div class="meta-pill"><span class="dot"></span>Je vous guide si besoin</div>
+  </div>
+</div>
+
+<div class="page-content">
+
+  <!-- 1. IDENTITÉ -->
+  <div class="info-section reveal">
+    <div class="section-header">
+      <div class="section-icon">🏢</div>
+      <div>
+        <div class="section-num">01 — Obligatoire</div>
+        <div class="section-title">Identité de votre entreprise</div>
+        <div class="section-desc">Les infos de base pour construire votre site sur des bases solides.</div>
+      </div>
+    </div>
+    <div class="cards-grid">
+      <div class="info-card required">
+        <div class="card-label">Nom de l'entreprise</div>
+        <div class="card-desc">Le nom exact tel qu'il apparaîtra sur le site. Vérifiez l'orthographe et les majuscules.</div>
+        <div class="card-examples">
+          <div class="card-examples-label">Exemples</div>
+          <div class="card-example">Garage Dupont & Fils</div>
+          <div class="card-example">Cabinet Médical du Centre</div>
+        </div>
+      </div>
+      <div class="info-card required">
+        <div class="card-label">Slogan / accroche</div>
+        <div class="card-desc">Une phrase courte qui résume ce que vous faites. Si vous n'en avez pas, je peux en proposer une.</div>
+        <div class="card-examples">
+          <div class="card-examples-label">Exemples</div>
+          <div class="card-example">Votre santé, notre priorité</div>
+          <div class="card-example">Carrosserie rapide, prix honnête</div>
+        </div>
+      </div>
+      <div class="info-card required">
+        <div class="card-label">Secteur d'activité</div>
+        <div class="card-desc">Ce que vous faites concrètement. Soyez précis : "plombier chauffagiste" plutôt que "artisan".</div>
+      </div>
+      <div class="info-card required">
+        <div class="card-label">Zone géographique</div>
+        <div class="card-desc">Ville(s) ou département(s) où vous travaillez. Important pour le référencement local Google.</div>
+        <div class="card-examples">
+          <div class="card-examples-label">Exemples</div>
+          <div class="card-example">Lens et agglomération (62)</div>
+          <div class="card-example">Toute la France (en ligne)</div>
+        </div>
+      </div>
+      <div class="info-card optional">
+        <div class="card-label">Logo</div>
+        <div class="card-desc">En PNG fond transparent ou SVG. Si vous n'en avez pas, je peux en créer un simple inclus dans votre forfait.</div>
+      </div>
+      <div class="info-card optional">
+        <div class="card-label">Couleurs de marque</div>
+        <div class="card-desc">Vos couleurs officielles si vous en avez. Code HEX, Pantone, ou simplement "bleu marine + doré".</div>
+      </div>
+    </div>
+    <div class="tip-box">
+      <span class="tip-icon">💡</span>
+      <div class="tip-text">Pas de logo ? Pas de problème. <strong>Je crée un logotype simple inclus</strong> dans votre forfait si vous démarrez de zéro.</div>
+    </div>
+  </div>
+
+  <!-- 2. COORDONNÉES -->
+  <div class="info-section reveal">
+    <div class="section-header">
+      <div class="section-icon">📍</div>
+      <div>
+        <div class="section-num">02 — Obligatoire</div>
+        <div class="section-title">Coordonnées & contact</div>
+        <div class="section-desc">Pour que vos visiteurs puissent vous joindre facilement.</div>
+      </div>
+    </div>
+    <div class="cards-grid">
+      <div class="info-card required">
+        <div class="card-label">Adresse complète</div>
+        <div class="card-desc">Numéro, rue, code postal, ville. Sera utilisée pour Google Maps et la page Contact.</div>
+      </div>
+      <div class="info-card required">
+        <div class="card-label">Numéro de téléphone</div>
+        <div class="card-desc">Le numéro principal sur lequel vos clients peuvent vous appeler. Format : 06 XX XX XX XX.</div>
+      </div>
+      <div class="info-card required">
+        <div class="card-label">Adresse email</div>
+        <div class="card-desc">L'email que vous souhaitez afficher et où recevrez les messages du formulaire de contact.</div>
+      </div>
+      <div class="info-card optional">
+        <div class="card-label">Horaires d'ouverture</div>
+        <div class="card-desc">Jours et heures d'ouverture. Affiché sur la page Contact et dans votre fiche Google.</div>
+        <div class="card-examples">
+          <div class="card-examples-label">Exemple</div>
+          <div class="card-example">Lun–Ven 8h–18h, Sam 9h–12h</div>
+        </div>
+      </div>
+      <div class="info-card optional">
+        <div class="card-label">Réseaux sociaux</div>
+        <div class="card-desc">Liens vers vos pages Facebook, Instagram, LinkedIn... Je les intègre dans le footer et la page Contact.</div>
+      </div>
+      <div class="info-card optional">
+        <div class="card-label">Numéro WhatsApp</div>
+        <div class="card-desc">Si vous souhaitez le bouton WhatsApp flottant (option payante), précisez le numéro dédié.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. CONTENU TEXTE -->
+  <div class="info-section reveal">
+    <div class="section-header">
+      <div class="section-icon">✍️</div>
+      <div>
+        <div class="section-num">03 — Important</div>
+        <div class="section-title">Contenu texte</div>
+        <div class="section-desc">Ce que vous voulez dire à vos visiteurs. Je peux vous aider à le rédiger si nécessaire.</div>
+      </div>
+    </div>
+    <div class="cards-grid">
+      <div class="info-card required">
+        <div class="card-label">Présentation de l'activité</div>
+        <div class="card-desc">Quelques lignes sur qui vous êtes, ce que vous faites, depuis combien de temps, ce qui vous distingue.</div>
+      </div>
+      <div class="info-card required">
+        <div class="card-label">Vos services / prestations</div>
+        <div class="card-desc">Liste de tout ce que vous proposez avec une courte description pour chaque. Un service = 2 à 5 lignes.</div>
+        <div class="card-examples">
+          <div class="card-examples-label">Exemple</div>
+          <div class="card-example">Vidange moteur — Changement pneus — Climatisation</div>
+        </div>
+      </div>
+      <div class="info-card optional">
+        <div class="card-label">Tarifs à afficher</div>
+        <div class="card-desc">Si vous souhaitez afficher vos prix publiquement. Sinon, formulaire de contact uniquement.</div>
+      </div>
+      <div class="info-card optional">
+        <div class="card-label">Témoignages clients</div>
+        <div class="card-desc">2 à 5 avis clients que vous souhaitez mettre en avant. Prénom, ville, et le texte de l'avis.</div>
+      </div>
+      <div class="info-card optional">
+        <div class="card-label">Mentions légales</div>
+        <div class="card-desc">SIRET, forme juridique (auto-entrepreneur, SARL...), nom du responsable. Obligatoire légalement sur tout site.</div>
+      </div>
+      <div class="info-card optional">
+        <div class="card-label">Questions fréquentes (FAQ)</div>
+        <div class="card-desc">Les questions que vos clients posent souvent avec les réponses. 5 à 10 questions idéalement.</div>
+      </div>
+    </div>
+    <div class="tip-box">
+      <span class="tip-icon">✍️</span>
+      <div class="tip-text">Pas le temps de rédiger ? <strong>Je prends en charge la rédaction</strong> à partir de vos notes ou d'un appel de 20 minutes. Inclus dans le forfait Pro, en option sur Starter.</div>
+    </div>
+  </div>
+
+  <!-- 4. PHOTOS & VISUELS -->
+  <div class="info-section reveal">
+    <div class="section-header">
+      <div class="section-icon">📸</div>
+      <div>
+        <div class="section-num">04 — Recommandé</div>
+        <div class="section-title">Photos & visuels</div>
+        <div class="section-desc">Les photos personnelles font toujours meilleure impression que les images génériques.</div>
+      </div>
+    </div>
+    <div class="cards-grid">
+      <div class="info-card optional">
+        <div class="card-label">Photo de vous / l'équipe</div>
+        <div class="card-desc">Une photo pro ou naturelle de vous ou de vos collaborateurs. Renforce la confiance et l'authenticité.</div>
+      </div>
+      <div class="info-card optional">
+        <div class="card-label">Photos de vos réalisations</div>
+        <div class="card-desc">Photos de chantiers, produits, plats, véhicules... Tout ce qui montre votre travail concrètement.</div>
+      </div>
+      <div class="info-card optional">
+        <div class="card-label">Photo de votre local / vitrine</div>
+        <div class="card-desc">L'extérieur ou l'intérieur de votre établissement si vous recevez des clients.</div>
+      </div>
+      <div class="info-card optional">
+        <div class="card-label">Vidéo de présentation</div>
+        <div class="card-desc">Une courte vidéo (30s à 2 min) si vous en avez une. Je l'intègre en hero ou en section dédiée.</div>
+      </div>
+    </div>
+
+    <!-- FORMAT TABLE -->
+    <div style="margin-top:20px">
+      <div style="font-size:12px;font-weight:600;color:#525252;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px">Formats acceptés</div>
+      <div class="format-table">
+        <div class="format-row header">
+          <div class="format-cell">Format</div>
+          <div class="format-cell">Usage recommandé</div>
+          <div class="format-cell">Compatibilité</div>
+        </div>
+        <div class="format-row">
+          <div class="format-cell"><strong>JPG / JPEG</strong></div>
+          <div class="format-cell">Photos, réalisations, équipe</div>
+          <div class="format-cell"><span class="badge-ok">✓ Parfait</span></div>
+        </div>
+        <div class="format-row">
+          <div class="format-cell"><strong>PNG</strong></div>
+          <div class="format-cell">Logo, icônes (fond transparent)</div>
+          <div class="format-cell"><span class="badge-ok">✓ Parfait</span></div>
+        </div>
+        <div class="format-row">
+          <div class="format-cell"><strong>WebP</strong></div>
+          <div class="format-cell">Images optimisées web</div>
+          <div class="format-cell"><span class="badge-ok">✓ Parfait</span></div>
+        </div>
+        <div class="format-row">
+          <div class="format-cell"><strong>SVG</strong></div>
+          <div class="format-cell">Logo vectoriel</div>
+          <div class="format-cell"><span class="badge-ok">✓ Idéal</span></div>
+        </div>
+        <div class="format-row">
+          <div class="format-cell"><strong>HEIC (iPhone)</strong></div>
+          <div class="format-cell">Photos iPhone brutes</div>
+          <div class="format-cell"><span class="badge-warn">⚠ Converti</span></div>
+        </div>
+        <div class="format-row">
+          <div class="format-cell"><strong>PDF</strong></div>
+          <div class="format-cell">Documents à télécharger</div>
+          <div class="format-cell"><span class="badge-ok">✓ OK</span></div>
+        </div>
+        <div class="format-row">
+          <div class="format-cell"><strong>BMP / TIFF</strong></div>
+          <div class="format-cell">—</div>
+          <div class="format-cell"><span class="badge-no">✗ Éviter</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <span class="tip-icon">📸</span>
+      <div class="tip-text">Pas de photos ? <strong>J'intègre des visuels libres de droits</strong> cohérents avec votre secteur. Et si vous avez un iPhone, vos photos suffisent — je les optimise pour le web.</div>
+    </div>
+  </div>
+
+  <!-- 5. TECHNIQUE -->
+  <div class="info-section reveal">
+    <div class="section-header">
+      <div class="section-icon">⚙️</div>
+      <div>
+        <div class="section-num">05 — Si vous en avez déjà</div>
+        <div class="section-title">Éléments techniques existants</div>
+        <div class="section-desc">Ce que vous possédez éventuellement déjà. Je gère tout si vous n'avez rien.</div>
+      </div>
+    </div>
+    <div class="cards-grid">
+      <div class="info-card optional">
+        <div class="card-label">Nom de domaine</div>
+        <div class="card-desc">Votre adresse web (ex: monentreprise.fr). Précisez où il est enregistré (OVH, Ionos, Namecheap...) et donnez-moi accès.</div>
+      </div>
+      <div class="info-card optional">
+        <div class="card-label">Hébergement actuel</div>
+        <div class="card-desc">Si vous avez déjà un hébergeur. Pour les nouveaux sites, j'utilise Netlify (gratuit et rapide).</div>
+      </div>
+      <div class="info-card optional">
+        <div class="card-label">Ancien site à reprendre</div>
+        <div class="card-desc">Si vous avez un site existant à refondre, l'URL suffit. Je l'analyse et récupère ce qui est utile.</div>
+      </div>
+      <div class="info-card optional">
+        <div class="card-label">Email professionnel</div>
+        <div class="card-desc">Si vous voulez une adresse en @votre-domaine.fr. Je vous guide pour la création si besoin.</div>
+      </div>
+    </div>
+    <div class="tip-box">
+      <span class="tip-icon">⚙️</span>
+      <div class="tip-text">Vous n'avez <strong>rien de tout ça ? C'est normal</strong> pour un premier site. Je m'occupe du domaine, de l'hébergement et de la mise en ligne — tout compris.</div>
+    </div>
+  </div>
+
+  <!-- 6. PRÉFÉRENCES DESIGN -->
+  <div class="info-section reveal">
+    <div class="section-header">
+      <div class="section-icon">🎨</div>
+      <div>
+        <div class="section-num">06 — Utile</div>
+        <div class="section-title">Préférences design</div>
+        <div class="section-desc">Pour que le résultat vous ressemble. Aucune compétence graphique requise.</div>
+      </div>
+    </div>
+    <div class="cards-grid">
+      <div class="info-card optional">
+        <div class="card-label">Sites que vous aimez</div>
+        <div class="card-desc">2 ou 3 URLs de sites dont vous aimez le style. Pas forcément dans votre secteur — juste ce qui vous plaît visuellement.</div>
+      </div>
+      <div class="info-card optional">
+        <div class="card-label">Ambiance souhaitée</div>
+        <div class="card-desc">Décrivez l'impression que vous voulez donner à vos visiteurs.</div>
+        <div class="card-examples">
+          <div class="card-examples-label">Exemples</div>
+          <div class="card-example">Professionnel et sobre</div>
+          <div class="card-example">Chaleureux et local</div>
+          <div class="card-example">Moderne et technologique</div>
+          <div class="card-example">Luxe et haut de gamme</div>
+        </div>
+      </div>
+      <div class="info-card optional">
+        <div class="card-label">Ce que vous ne voulez pas</div>
+        <div class="card-desc">Des couleurs, styles ou éléments à éviter absolument. Aussi utile que ce que vous aimez.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROCESSUS DE LIVRAISON -->
+  <div class="info-section reveal">
+    <div class="section-header">
+      <div class="section-icon">🚀</div>
+      <div>
+        <div class="section-num">Après envoi</div>
+        <div class="section-title">Comment ça se passe ensuite</div>
+        <div class="section-desc">Une fois que vous m'avez transmis tout ça, voici les étapes.</div>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot">1</div>
+        <div class="timeline-body">
+          <div class="timeline-title">Appel de lancement (30 min)</div>
+          <div class="timeline-text">On fait le point ensemble sur votre projet, vos objectifs et vos préférences. Je réponds à toutes vos questions avant de démarrer.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">2</div>
+        <div class="timeline-body">
+          <div class="timeline-title">Maquette de la page d'accueil</div>
+          <div class="timeline-text">Je vous envoie une première version visuelle de votre page principale pour validation avant de coder le reste.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">3</div>
+        <div class="timeline-body">
+          <div class="timeline-title">Développement complet</div>
+          <div class="timeline-text">Je code l'ensemble du site — rapide, responsive, optimisé. Vous avez accès à une URL de prévisualisation en temps réel.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">4</div>
+        <div class="timeline-body">
+          <div class="timeline-title">Retours & ajustements</div>
+          <div class="timeline-text">Vous avez 2 allers-retours de corrections inclus. On affine jusqu'à ce que le site vous convienne parfaitement.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot">5</div>
+        <div class="timeline-body">
+          <div class="timeline-title">Mise en ligne</div>
+          <div class="timeline-text">Je connecte votre domaine, configure le HTTPS et mets le site en ligne. Vous recevez un guide de prise en main.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="info-section reveal">
+    <div class="section-header">
+      <div class="section-icon">❓</div>
+      <div>
+        <div class="section-num">Questions fréquentes</div>
+        <div class="section-title">Ce que mes clients demandent toujours</div>
+        <div class="section-desc">Les réponses aux questions les plus courantes avant de se lancer.</div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span class="faq-question-text">Je n'ai pas de logo ni de contenu prêt — est-ce que je peux quand même commander un site ?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Oui, sans problème. <strong>La majorité de mes clients partent de zéro.</strong> Je crée un logotype simple inclus dans votre forfait, je rédige les textes à partir d'un court échange, et j'intègre des visuels libres de droits si vous n'avez pas de photos. Vous n'avez pas besoin d'être prêt à 100% pour démarrer.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span class="faq-question-text">Combien de temps pour livrer mon site ?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">En général <span class="green">5 à 10 jours ouvrés</span> pour un site Starter, <span class="green">10 à 15 jours</span> pour un site Pro — une fois que j'ai tous les éléments en main. Le délai dépend surtout de la rapidité à laquelle vous me transmettez les informations et validez les étapes.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span class="faq-question-text">Est-ce que je pourrai modifier le site moi-même après livraison ?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Le site est en code pur (HTML/CSS/JS), pas sur WordPress. <strong>Vous ne pourrez pas le modifier vous-même sans notions techniques.</strong> En revanche, pour toute modification de contenu (texte, photo, tarif...), je le fais rapidement — souvent sous 24h. Vous pouvez aussi opter pour la <span class="green">maintenance mensuelle à 40€/mois</span> pour un suivi régulier.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span class="faq-question-text">Pourquoi pas WordPress ? Tout le monde utilise ça.</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">WordPress est pratique mais lourd : plugins, mises à jour, failles de sécurité, hébergement payant, lenteur... Un site en code pur est <span class="green">3 fois plus rapide</span>, zéro maintenance obligatoire, hébergé gratuitement sur Netlify et bien plus sécurisé. Google privilégie les sites rapides dans ses résultats — c'est un avantage SEO direct pour vous.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span class="faq-question-text">L'hébergement est vraiment gratuit ? Il n'y a pas de frais cachés ?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">L'hébergement via Netlify est <span class="green">100% gratuit</span> pour les sites vitrines. Le seul coût récurrent est votre <strong>nom de domaine</strong> (votre-site.fr), environ <strong>10 à 15€/an</strong> selon l'extension. C'est tout. Pas d'abonnement hébergeur, pas de frais mensuels cachés.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span class="faq-question-text">Mon site sera-t-il visible sur Google ?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Tous mes sites incluent les bases du référencement : balises title et meta, sitemap XML, structure sémantique, Google Search Console. <strong>Pour un référencement local renforcé</strong> (apparaître sur "plombier Lens" par exemple), le <span class="green">Pack SEO à 190€</span> ajoute la fiche Google Business Profile, les mots-clés ciblés et un rapport de positionnement.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span class="faq-question-text">Est-ce que le site s'affiche bien sur mobile ?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Oui, <span class="green">tous mes sites sont responsive</span> — ils s'adaptent automatiquement aux smartphones, tablettes et ordinateurs. En 2026, plus de 60% des visites viennent du mobile. Je teste chaque site sur plusieurs tailles d'écran avant livraison.</div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span class="faq-question-text">Comment se passe le paiement ?</span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner"><strong>50% à la commande</strong> pour démarrer le projet, <strong>50% à la livraison</strong> une fois le site validé. Paiement par virement bancaire ou PayPal. Un devis détaillé vous est envoyé avant tout engagement.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CTA FINAL -->
+  <div class="reveal">
+    <div class="cta-box">
+      <h2>Prêt à démarrer ?</h2>
+      <p>Envoyez-moi ce que vous avez par email ou WhatsApp — je vous recontacte sous 24h.</p>
+      <a href="mailto:contact@ecomm-connect.fr" class="cta-btn">
+        Envoyer mes infos →
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer style="padding:36px 60px 24px;border-top:1px solid #1a1a1a;margin-top:40px">
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:20px">
+    <div style="font-size:13px;font-weight:700;color:#e5e5e5">E<span style="color:#84cc16">.com</span> connect</div>
+    <div style="display:flex;gap:24px;flex-wrap:wrap">
+      <a href="mentions-legales.html" style="font-size:11px;color:#525252;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#84cc16'" onmouseout="this.style.color='#525252'">Mentions légales</a>
+      <a href="politique-confidentialite.html" style="font-size:11px;color:#525252;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#84cc16'" onmouseout="this.style.color='#525252'">Politique de confidentialité</a>
+      <a href="cgv.html" style="font-size:11px;color:#525252;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#84cc16'" onmouseout="this.style.color='#525252'">CGV</a>
+    </div>
+    <div style="font-size:11px;color:#333">© 2026 E.com connect · Tous droits réservés</div>
+  </div>
+  <div style="font-size:10px;color:#2a2a2a;line-height:1.6;border-top:1px solid #1a1a1a;padding-top:16px">
+    E.com connect — Entrepreneur individuel · SIRET 501 061 840 00044 · TVA FR06501061840 · 60 rue François Ier, 75008 Paris
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible')
+        observer.unobserve(entry.target)
+      }
+    })
+  }, { threshold: 0.08 })
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el))
+
+  // FAQ accordéon
+  document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.closest('.faq-item')
+      const answer = item.querySelector('.faq-answer')
+      const isOpen = item.classList.contains('open')
+
+      // Ferme tous
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open')
+        i.querySelector('.faq-answer').style.maxHeight = '0'
+      })
+
+      // Ouvre celui cliqué si était fermé
+      if (!isOpen) {
+        item.classList.add('open')
+        answer.style.maxHeight = answer.scrollHeight + 'px'
+      }
+    })
+  })
+</script>
+</body>
+</html>
