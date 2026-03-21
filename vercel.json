@@ -1,5 +1,5 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/Ecomm-Connect-Presentation.html" }
+    { "source": "/", "destination": "/e-comconnect.html" }
   ]
 }
