@@ -1151,30 +1151,24 @@
   }
   @media(max-width:1024px){
     .securite-badges{
+      grid-template-columns:1fr;
+      gap:10px;
+    }
+    .sec-badge{
       display:flex;
       flex-direction:row;
-      overflow-x:auto;
-      gap:12px;
-      padding-bottom:12px;
-      scroll-snap-type:x mandatory;
-      -webkit-overflow-scrolling:touch;
-      scrollbar-width:none;
+      align-items:center;
+      gap:16px;
+      padding:16px 20px;
+      text-align:left;
     }
-    .securite-badges::-webkit-scrollbar{ display:none }
-    .sec-badge{
-      flex:0 0 200px;
-      scroll-snap-align:start;
-      padding:18px 16px;
+    .sec-badge-icon{
+      font-size:26px;
+      margin-bottom:0;
+      flex-shrink:0;
     }
-    .sec-badge-icon{ font-size:24px; margin-bottom:10px }
-    .sec-badge-title{ font-size:13px }
-    .sec-badge-desc{ font-size:11px }
-  }
-  @media(max-width:480px){
-    .sec-badge{ flex:0 0 160px; padding:14px 12px }
-    .sec-badge-icon{ font-size:22px; margin-bottom:8px }
-    .sec-badge-title{ font-size:12px }
-    .sec-badge-desc{ font-size:10px; line-height:1.5 }
+    .sec-badge-title{ font-size:14px; margin-bottom:4px }
+    .sec-badge-desc{ font-size:12px }
   }
 
   /* ── MOCKUP MACBOOK ── */
