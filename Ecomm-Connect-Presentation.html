@@ -1096,7 +1096,7 @@
   /* ── GRILLE SERVICES CENTRÉE ── */
   .services-grid{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:repeat(5,1fr);
     gap:16px;
     justify-items:center;
   }
@@ -1107,8 +1107,11 @@
   @media(max-width:1024px){
     .services-grid{ grid-template-columns:repeat(2,1fr) }
   }
-  @media(max-width:480px){
-    .services-grid{ grid-template-columns:1fr }
+  @media(max-width:768px){
+    .services-grid{
+      grid-template-columns:repeat(2,1fr);
+      margin-left:0;
+    }
   }
 
   /* ── SECTION SÉCURITÉ RESTYLÉE ── */
@@ -1147,10 +1150,31 @@
     line-height:1.6;
   }
   @media(max-width:1024px){
-    .securite-badges{ grid-template-columns:repeat(2,1fr) }
+    .securite-badges{
+      display:flex;
+      flex-direction:row;
+      overflow-x:auto;
+      gap:12px;
+      padding-bottom:12px;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+    }
+    .securite-badges::-webkit-scrollbar{ display:none }
+    .sec-badge{
+      flex:0 0 200px;
+      scroll-snap-align:start;
+      padding:18px 16px;
+    }
+    .sec-badge-icon{ font-size:24px; margin-bottom:10px }
+    .sec-badge-title{ font-size:13px }
+    .sec-badge-desc{ font-size:11px }
   }
   @media(max-width:480px){
-    .securite-badges{ grid-template-columns:1fr }
+    .sec-badge{ flex:0 0 160px; padding:14px 12px }
+    .sec-badge-icon{ font-size:22px; margin-bottom:8px }
+    .sec-badge-title{ font-size:12px }
+    .sec-badge-desc{ font-size:10px; line-height:1.5 }
   }
 
   /* ── MOCKUP MACBOOK ── */
@@ -1220,8 +1244,8 @@
   }
   @media(max-width:768px){
     .expl-block{ grid-template-columns:1fr !important; gap:32px !important }
-    .expl-block > div:first-child{ order:2 }
-    .expl-visual{ order:1 }
+    .expl-visual{ order:2 }
+    .expl-block > div:not(.expl-visual){ order:1 }
     .expl-img-placeholder{ height:200px }
   }
 
@@ -1382,8 +1406,8 @@
     }
     .hero-image-wrap{
       flex:0 0 auto;
-      width:90%;
-      max-width:340px;
+      width:99%;
+      max-width:374px;
       margin:0 auto -20px;
     }
     .hero-content{
@@ -1435,10 +1459,10 @@
       grid-template-columns:1fr 1fr;
     }
 
-    /* SERVICES HSCROLL */
-    .hscroll-section{ padding:48px 20px }
-    .hscroll-track-wrap{ margin:0 -20px }
-    .service-card{ min-width:260px; padding:20px }
+    /* SERVICES */
+    .hscroll-section{ padding:48px 16px }
+    .hscroll-track-wrap{ margin:0 -16px }
+    .service-card{ min-width:unset; width:100%; padding:18px }
 
     /* TARIFS */
     .pricing-section{ padding:48px 20px }
@@ -1502,7 +1526,7 @@
 
   /* ── RESPONSIVE PETIT MOBILE (max 480px) ── */
   @media(max-width:480px){
-    .hero-image-wrap{ width:100%; max-width:280px }
+    .hero-image-wrap{ width:100%; max-width:308px }
     h1{ font-size:clamp(20px,6vw,26px) }
     .hero-stats{ gap:12px }
     .stat-item{ flex:0 0 calc(50% - 8px) }
@@ -1591,23 +1615,23 @@
   <div class="hero-footer">
     <div class="hero-stats">
       <div class="stat-item">
-        <div class="num">100%</div>
+        <div class="num counter" data-target="100" data-suffix="%">0%</div>
         <div class="lbl">Code sur-mesure — aucun template</div>
       </div>
       <div class="stat-item">
-        <div class="num">3×</div>
+        <div class="num counter" data-target="3" data-suffix="×">0×</div>
         <div class="lbl">Plus rapide que WordPress en moyenne</div>
       </div>
       <div class="stat-item">
-        <div class="num">0 €</div>
+        <div class="num counter" data-target="0" data-suffix=" €">0 €</div>
         <div class="lbl">Hébergement Netlify inclus</div>
       </div>
       <div class="stat-item">
-        <div class="num">7j</div>
+        <div class="num counter" data-target="7" data-suffix="j">0j</div>
         <div class="lbl">Livrable dès 7 jours ouvrés</div>
       </div>
       <div class="stat-item">
-        <div class="num">5★</div>
+        <div class="num counter" data-target="5" data-suffix="★">0★</div>
         <div class="lbl">Satisfaction client garantie</div>
       </div>
     </div>
@@ -1695,6 +1719,14 @@
 
   <div style="padding:0 60px">
     <div class="services-grid">
+
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
+        </div>
+        <div class="service-name">Landing Page</div>
+        <div class="service-desc">Une page unique et percutante pour une première présence rapide. Design moderne, formulaire de contact, mise en ligne incluse. Idéal pour tester votre activité en ligne.</div>
+      </div>
 
       <div class="service-card">
         <div class="service-icon">
@@ -2395,6 +2427,33 @@
   document.querySelectorAll('a,button,input,textarea,select,label').forEach(el => {
     el.style.cursor = 'none'
   })
+
+  // ── COMPTEUR ANIMÉ stats ──
+  const counters = document.querySelectorAll('.counter')
+  if(counters.length){
+    const countObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(!entry.isIntersecting) return
+        const el = entry.target
+        const target = +el.dataset.target
+        const suffix = el.dataset.suffix || ''
+        const duration = 1400
+        const start = performance.now()
+        if(target === 0){ el.textContent = '0' + suffix; return }
+        const tick = (now) => {
+          const elapsed = now - start
+          const progress = Math.min(elapsed / duration, 1)
+          const eased = 1 - Math.pow(1 - progress, 3)
+          const current = Math.round(eased * target)
+          el.textContent = current + suffix
+          if(progress < 1) requestAnimationFrame(tick)
+        }
+        requestAnimationFrame(tick)
+        countObserver.unobserve(el)
+      })
+    }, { threshold: 0.5 })
+    counters.forEach(c => countObserver.observe(c))
+  }
 
   // ── TEXT SCRAMBLE sur le H1 ──
   const h1 = document.getElementById('scramble-h1')
