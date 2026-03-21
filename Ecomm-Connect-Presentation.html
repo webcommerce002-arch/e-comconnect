@@ -1401,6 +1401,13 @@
     #section-tarifs > div{ grid-template-columns:repeat(3,1fr) !important }
     /* Descriptions dans les cartes tarifs */
     .pricing-desc{ display:block }
+    /* Slide animations : remplacées par fade sur tablette/mobile pour éviter les flashs */
+    .slide-left, .slide-right{
+      transform:translateY(30px) !important;
+    }
+    .slide-left.visible, .slide-right.visible{
+      transform:translateY(0) !important;
+    }
     /* Options : 3 colonnes sur tablette */
     #section-options > div[style*="repeat(4"]{grid-template-columns:repeat(3,1fr) !important}
     .process-steps{ grid-template-columns:repeat(3,1fr) }
