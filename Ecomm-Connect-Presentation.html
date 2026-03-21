@@ -2496,45 +2496,6 @@
     counters.forEach(c => countObserver.observe(c))
   }
 
-  // ── TEXT SCRAMBLE sur le H1 (desktop uniquement) ──
-  const h1 = document.getElementById('scramble-h1')
-  if(h1 && window.innerWidth > 1024){
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
-    function scrambleNode(node, finalText){
-      let frame = 0
-      const totalFrames = 28
-      // Police monospace pendant l'animation pour éviter le secouement
-      h1.style.fontFamily = "'Courier New', monospace"
-      const interval = setInterval(() => {
-        const progress = frame / totalFrames
-        let out = ''
-        for(let i=0;i<finalText.length;i++){
-          if(finalText[i] === ' '){ out += ' '; continue }
-          if(i < Math.floor(progress * finalText.length)){
-            out += finalText[i]
-          } else {
-            out += chars[Math.floor(Math.random()*chars.length)]
-          }
-        }
-        node.textContent = out
-        frame++
-        if(frame > totalFrames){
-          node.textContent = finalText
-          clearInterval(interval)
-          // Retour à la police originale avec transition douce
-          h1.style.transition = 'font-family 0s'
-          h1.style.fontFamily = ''
-        }
-      }, 35)
-    }
-    setTimeout(() => {
-      h1.childNodes.forEach(node => {
-        if(node.nodeType === Node.TEXT_NODE && node.textContent.trim()){
-          scrambleNode(node, node.textContent)
-        }
-      })
-    }, 300)
-  }
 
   // ── TILT 3D sur les cartes tarifs ──
   document.querySelectorAll('.pricing-card').forEach(card => {
