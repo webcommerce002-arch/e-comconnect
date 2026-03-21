@@ -1401,13 +1401,10 @@
     #section-tarifs > div{ grid-template-columns:repeat(3,1fr) !important }
     /* Descriptions dans les cartes tarifs */
     .pricing-desc{ display:block }
-    /* Désactiver toutes les animations de scroll sur tablette/mobile */
-    .reveal, .reveal-left, .reveal-right,
-    .slide-left, .slide-right{
-      opacity:1 !important;
-      transform:none !important;
-      transition:none !important;
-    }
+    /* Slide pricing cards : remplace translateX(120vw) par translateY pour éviter l'overflow */
+    .slide-left{ transform:translateY(40px) !important }
+    .slide-right{ transform:translateY(40px) !important }
+    .slide-left.visible, .slide-right.visible{ transform:translateY(0) !important }
     /* Options : 3 colonnes sur tablette */
     #section-options > div[style*="repeat(4"]{grid-template-columns:repeat(3,1fr) !important}
     .process-steps{ grid-template-columns:repeat(3,1fr) }
@@ -2494,9 +2491,9 @@
     counters.forEach(c => countObserver.observe(c))
   }
 
-  // ── TEXT SCRAMBLE sur le H1 ──
+  // ── TEXT SCRAMBLE sur le H1 (desktop uniquement) ──
   const h1 = document.getElementById('scramble-h1')
-  if(h1){
+  if(h1 && window.innerWidth > 1024){
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&'
     // On travaille uniquement sur les noeuds texte directs du h1
     function scrambleNode(node, finalText, delay){
