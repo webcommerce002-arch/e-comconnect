@@ -1105,18 +1105,25 @@
     flex:unset;
   }
   @media(max-width:1024px){
-    .services-grid{ grid-template-columns:1fr; gap:10px }
+    .services-grid{ grid-template-columns:1fr; gap:8px }
     .service-card{
       display:flex;
       flex-direction:row;
       align-items:center;
-      gap:16px;
-      padding:16px 20px;
+      gap:14px;
+      padding:10px 16px;
       text-align:left;
+      border-radius:12px;
     }
-    .service-icon{ margin-bottom:0; flex-shrink:0 }
-    .service-name{ font-size:14px; margin-bottom:4px }
-    .service-desc{ font-size:12px }
+    .service-icon{
+      width:36px;height:36px;
+      border-radius:8px;
+      margin-bottom:0;
+      flex-shrink:0;
+    }
+    .service-icon svg{ width:18px;height:18px }
+    .service-name{ font-size:13px; font-weight:700; margin-bottom:2px }
+    .service-desc{ font-size:11px; line-height:1.4; margin-bottom:0 }
   }
 
   /* ── SECTION SÉCURITÉ RESTYLÉE ── */
