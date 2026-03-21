@@ -1401,12 +1401,12 @@
     #section-tarifs > div{ grid-template-columns:repeat(3,1fr) !important }
     /* Descriptions dans les cartes tarifs */
     .pricing-desc{ display:block }
-    /* Slide animations : remplacées par fade sur tablette/mobile pour éviter les flashs */
+    /* Désactiver toutes les animations de scroll sur tablette/mobile */
+    .reveal, .reveal-left, .reveal-right,
     .slide-left, .slide-right{
-      transform:translateY(30px) !important;
-    }
-    .slide-left.visible, .slide-right.visible{
-      transform:translateY(0) !important;
+      opacity:1 !important;
+      transform:none !important;
+      transition:none !important;
     }
     /* Options : 3 colonnes sur tablette */
     #section-options > div[style*="repeat(4"]{grid-template-columns:repeat(3,1fr) !important}
