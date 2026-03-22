@@ -2262,9 +2262,12 @@
 
     <!-- FORMULAIRE -->
     <div>
-      <form name="devis" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form">
-        <input type="hidden" name="form-name" value="devis">
-        <input type="hidden" name="bot-field" style="display:none">
+      <form action="https://api.web3forms.com/submit" method="POST" class="contact-form" id="devis-form">
+        <input type="hidden" name="access_key" value="e4b2c1d0-7f3a-4e8b-9c5d-2a1f6b8e3d7c">
+        <input type="hidden" name="subject" value="Nouvelle demande de devis — E.com connect">
+        <input type="hidden" name="from_name" value="Site E.com connect">
+        <input type="hidden" name="redirect" value="false">
+        <input type="checkbox" name="botcheck" style="display:none">
 
         <div class="form-group">
           <label class="form-label">Votre nom *</label>
@@ -2294,8 +2297,33 @@
           <label class="form-label">Votre message *</label>
           <textarea name="message" required placeholder="Décrivez votre projet en quelques lignes..." class="form-input form-textarea"></textarea>
         </div>
-        <button type="submit" class="form-btn">Envoyer ma demande →</button>
+        <button type="submit" class="form-btn" id="submit-btn">Envoyer ma demande →</button>
+        <div id="form-success" style="display:none;margin-top:16px;padding:14px 20px;background:#1a2e05;border:1px solid #84cc16;border-radius:10px;color:#84cc16;font-weight:600;text-align:center">✅ Message envoyé ! Je vous réponds sous 24h.</div>
+        <div id="form-error" style="display:none;margin-top:16px;padding:14px 20px;background:#2e0505;border:1px solid #ef4444;border-radius:10px;color:#ef4444;font-weight:600;text-align:center">❌ Erreur d'envoi. Contactez-moi directement sur WhatsApp.</div>
       </form>
+      <script>
+        document.getElementById('devis-form').addEventListener('submit', async function(e) {
+          e.preventDefault();
+          const btn = document.getElementById('submit-btn');
+          btn.textContent = 'Envoi en cours...';
+          btn.disabled = true;
+          const formData = new FormData(this);
+          try {
+            const res = await fetch('https://api.web3forms.com/submit', {method:'POST', body: formData});
+            const data = await res.json();
+            if (data.success) {
+              document.getElementById('form-success').style.display = 'block';
+              document.getElementById('form-error').style.display = 'none';
+              this.reset();
+            } else { throw new Error(); }
+          } catch {
+            document.getElementById('form-error').style.display = 'block';
+            document.getElementById('form-success').style.display = 'none';
+          }
+          btn.textContent = 'Envoyer ma demande →';
+          btn.disabled = false;
+        });
+      </script>
     </div>
 
     <!-- ALTERNATIVES CONTACT -->
