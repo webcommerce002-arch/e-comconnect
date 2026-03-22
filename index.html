@@ -303,11 +303,14 @@
     padding:14px 28px;
     border-radius:10px;
     text-decoration:none;
-    transition:background .2s, box-shadow .2s;
+    transition:background .2s, box-shadow .2s, outline .2s;
     will-change:transform;
+    outline:2px solid rgba(255,255,255,0.85);
+    outline-offset:3px;
+    box-shadow:0 0 12px rgba(255,255,255,0.25), 0 0 28px rgba(255,255,255,0.1);
   }
 
-  .hero-cta:hover{background:#a3e635;box-shadow:0 8px 32px rgba(132,204,22,0.35)}
+  .hero-cta:hover{background:#a3e635;box-shadow:0 8px 32px rgba(132,204,22,0.35), 0 0 16px rgba(255,255,255,0.35), 0 0 36px rgba(255,255,255,0.12)}
 
   /* ── HERO FOOTER ── */
   .hero-footer{
