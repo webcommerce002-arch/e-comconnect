@@ -468,8 +468,8 @@
   </a>
   <a href="Ecomm-Connect-Presentation.html">Accueil</a>
   <a href="Ecomm-Connect-Presentation.html#section-services">Prestations</a>
-  <a href="Ecomm-Connect-Presentation.html#section-tarifs">Tarifs</a>
-  <a href="Ecomm-Connect-Presentation.html#section-options">Options</a>
+  <a href="tarifs.html">Tarifs</a>
+  <a href="tarifs.html#section-options">Options</a>
   <a href="checklist-client.html" class="active">Infos client</a>
   <div class="topnav-sep"></div>
   <a href="mailto:contact@e-comconnect.com" class="topnav-back">Devis gratuit →</a>
@@ -987,6 +987,413 @@
       }
     })
   })
+</script>
+
+<!-- ═══════════════════════════════════════════
+     CHATBOT — Assistant E.com connect
+════════════════════════════════════════════ -->
+<style>
+#ec-bubble{
+  position:fixed;bottom:28px;right:28px;
+  width:58px;height:58px;
+  background:#84cc16;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;z-index:9000;
+  box-shadow:0 4px 28px rgba(132,204,22,0.45);
+  transition:transform .2s,box-shadow .2s;
+}
+#ec-bubble:hover{transform:scale(1.09);box-shadow:0 8px 36px rgba(132,204,22,0.55)}
+#ec-bubble svg{width:26px;height:26px;color:#0a0a0a;pointer-events:none}
+.ec-notif{
+  position:absolute;top:-3px;right:-3px;
+  width:19px;height:19px;background:#ef4444;
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:800;color:#fff;
+  border:2px solid #0a0a0a;
+  animation:ec-ping 2s ease-in-out infinite;
+}
+@keyframes ec-ping{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+
+#ec-window{
+  position:fixed;bottom:100px;right:28px;
+  width:365px;max-height:530px;
+  background:#111;
+  border:1px solid #222;
+  border-radius:22px;
+  box-shadow:0 28px 70px rgba(0,0,0,0.65),0 0 0 1px rgba(132,204,22,0.08);
+  z-index:8999;
+  display:flex;flex-direction:column;overflow:hidden;
+  opacity:0;transform:translateY(18px) scale(0.96);
+  transition:opacity .25s cubic-bezier(.4,0,.2,1),transform .25s cubic-bezier(.4,0,.2,1);
+  pointer-events:none;
+}
+#ec-window.open{opacity:1;transform:translateY(0) scale(1);pointer-events:all}
+
+.ec-header{
+  background:linear-gradient(135deg,#0d1500 0%,#0a0a0a 100%);
+  border-bottom:1px solid #1a1a1a;
+  padding:15px 18px;
+  display:flex;align-items:center;gap:12px;flex-shrink:0;
+}
+.ec-avatar{
+  width:40px;height:40px;background:#84cc16;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;
+}
+.ec-hinfo{flex:1;min-width:0}
+.ec-hname{font-size:13px;font-weight:700;color:#e5e5e5}
+.ec-hstatus{font-size:11px;color:#84cc16;display:flex;align-items:center;gap:5px;margin-top:2px}
+.ec-sdot{width:6px;height:6px;border-radius:50%;background:#84cc16;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.ec-xbtn{
+  width:28px;height:28px;background:#1a1a1a;border:none;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;color:#b8b8b8;font-size:14px;line-height:1;
+  transition:background .15s,color .15s;flex-shrink:0;
+}
+.ec-xbtn:hover{background:#2a2a2a;color:#e5e5e5}
+
+.ec-msgs{
+  flex:1;overflow-y:auto;
+  padding:14px 14px 8px;
+  display:flex;flex-direction:column;gap:8px;
+  scroll-behavior:smooth;
+}
+.ec-msgs::-webkit-scrollbar{width:3px}
+.ec-msgs::-webkit-scrollbar-thumb{background:#2a2a2a;border-radius:2px}
+
+.ec-msg{
+  max-width:88%;padding:10px 13px;
+  border-radius:15px;font-size:12.5px;line-height:1.6;
+}
+.ec-msg.bot{
+  background:#1a1a1a;color:#ccc;
+  border-bottom-left-radius:4px;align-self:flex-start;
+}
+.ec-msg.bot strong{color:#e5e5e5}
+.ec-msg.bot .g{color:#84cc16;font-weight:600}
+.ec-msg.user{
+  background:#84cc16;color:#0a0a0a;font-weight:700;
+  border-bottom-right-radius:4px;align-self:flex-end;
+  font-size:12px;
+}
+
+.ec-typing{
+  align-self:flex-start;background:#1a1a1a;
+  border-radius:15px;border-bottom-left-radius:4px;
+  padding:11px 15px;display:none;align-items:center;gap:4px;
+}
+.ec-typing.show{display:flex}
+.ec-tdot{
+  width:6px;height:6px;border-radius:50%;background:#444;
+  animation:ec-bounce .85s ease-in-out infinite;
+}
+.ec-tdot:nth-child(2){animation-delay:.18s}
+.ec-tdot:nth-child(3){animation-delay:.36s}
+@keyframes ec-bounce{0%,80%,100%{transform:scale(.8);opacity:.4}40%{transform:scale(1.1);opacity:1}}
+
+.ec-qr{
+  padding:6px 14px 10px;
+  display:flex;flex-wrap:wrap;gap:6px;flex-shrink:0;
+}
+.ec-qbtn{
+  background:#1a1a1a;border:1px solid #2a2a2a;border-radius:20px;
+  padding:5px 11px;font-size:11px;color:#d4d4d4;
+  cursor:pointer;transition:all .15s;white-space:nowrap;font-family:'Inter',sans-serif;
+}
+.ec-qbtn:hover{background:rgba(132,204,22,0.1);border-color:rgba(132,204,22,0.4);color:#84cc16}
+
+.ec-irow{
+  border-top:1px solid #1a1a1a;padding:10px 12px;
+  display:flex;gap:8px;align-items:center;flex-shrink:0;
+}
+.ec-inp{
+  flex:1;background:#1a1a1a;border:1px solid #252525;border-radius:20px;
+  padding:9px 15px;font-size:12.5px;color:#e5e5e5;
+  font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;
+}
+.ec-inp:focus{border-color:rgba(132,204,22,0.4)}
+.ec-inp::placeholder{color:#444}
+.ec-sbtn{
+  width:36px;height:36px;background:#84cc16;border:none;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:background .2s,transform .15s;flex-shrink:0;
+}
+.ec-sbtn:hover{background:#a3e635;transform:scale(1.06)}
+.ec-sbtn svg{width:15px;height:15px;color:#0a0a0a}
+
+@media(max-width:480px){
+  #ec-window{width:calc(100vw - 20px);right:10px;bottom:84px;max-height:480px}
+  #ec-bubble{bottom:18px;right:14px}
+}
+</style>
+
+<div id="ec-bubble" onclick="ecToggle()" aria-label="Assistant E.com connect">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+  </svg>
+  <div class="ec-notif" id="ec-notif">1</div>
+</div>
+
+<div id="ec-window" role="dialog" aria-label="Chat assistant">
+  <div class="ec-header">
+    <div class="ec-avatar">🤖</div>
+    <div class="ec-hinfo">
+      <div class="ec-hname">Assistant E.com connect</div>
+      <div class="ec-hstatus"><span class="ec-sdot"></span>En ligne — Réponse instantanée</div>
+    </div>
+    <button class="ec-xbtn" onclick="ecToggle()" aria-label="Fermer">✕</button>
+  </div>
+  <div class="ec-msgs" id="ec-msgs">
+    <div class="ec-typing" id="ec-typing">
+      <div class="ec-tdot"></div><div class="ec-tdot"></div><div class="ec-tdot"></div>
+    </div>
+  </div>
+  <div class="ec-qr" id="ec-qr"></div>
+  <div class="ec-irow">
+    <input class="ec-inp" id="ec-inp" placeholder="Posez votre question…" autocomplete="off"
+      onkeydown="if(event.key==='Enter')ecSend()">
+    <button class="ec-sbtn" onclick="ecSend()" aria-label="Envoyer">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+/* ── BASE DE CONNAISSANCES ── */
+const KB = [
+  {
+    id:'welcome',
+    keys:['bonjour','salut','hello','bonsoir','bjr','coucou','yo','hey','bj'],
+    text:`Bonjour ! 👋 Je suis l'assistant virtuel d'<strong>E.com connect</strong>.\n\nJe peux répondre à toutes vos questions sur nos services, tarifs, délais et options. Par où souhaitez-vous commencer ?`,
+    r:['📋 Les forfaits & prix','⚙️ Les options disponibles','⏱ Délais de livraison','💳 Le paiement','📞 Nous contacter']
+  },
+  {
+    id:'forfaits',
+    keys:['forfait','offre','formule','prix','tarif','coût','combien','€','euro','service','prestation'],
+    text:`Voici nos <strong>5 forfaits</strong> :\n\n<span class="g">● Landing Page — 349€</span>\nUne page percutante, idéale pour démarrer vite.\n\n<span class="g">● Starter — 649€</span>\n3 à 4 pages, responsive, SSL, accompagnement domaine.\n\n<span class="g">● Pro ✦ — 1 090€</span>\n5 à 7 pages + SEO complet, Analytics, WhatsApp, Maps, galerie, 1 option offerte.\n\n<span class="g">● Refonte Starter — 749€</span>\nVotre site existant entièrement modernisé (audit inclus).\n\n<span class="g">● Refonte Pro ✦ — 1 190€</span>\nTransformation A à Z, design premium (audit inclus).\n\n💳 Tous payables en <strong>2 fois</strong>, devis gratuit sous 24h.`,
+    r:['Détail Landing Page','Détail Starter','Détail Pro','Détail Refontes','Les options à la carte']
+  },
+  {
+    id:'landing',
+    keys:['landing','349','page unique','une page','premiere presence'],
+    text:`<strong>Landing Page — 349€</strong>\n\nParfaite pour une première présence rapide ou promouvoir une offre précise.\n\n✓ 1 page longue et complète\n✓ Design moderne adapté à votre activité\n✓ Formulaire de contact intégré\n✓ Responsive mobile & tablette\n✓ Mise en ligne incluse\n✓ Certificat SSL (HTTPS) inclus\n✓ Code source livré\n\n💳 Paiement en 2 fois : <span class="g">175€ + 174€</span>\n⏱ Livré en <span class="g">3 à 7 jours ouvrés</span>`,
+    r:['Voir le Starter','Les options','Demander un devis gratuit']
+  },
+  {
+    id:'starter',
+    keys:['starter','649','3 pages','4 pages','premiere presence','nouvelle presence'],
+    text:`<strong>Starter — 649€</strong>\n\nIdéal pour lancer votre présence professionnelle en ligne.\n\n✓ 3 à 4 pages (Accueil, Services, À propos, Contact)\n✓ Design moderne sur-mesure\n✓ Formulaire de contact\n✓ Responsive mobile & tablette\n✓ Mise en ligne incluse\n✓ Accompagnement pour votre domaine\n✓ Certificat SSL (HTTPS) inclus\n✓ Code source livré\n\n💳 Paiement en 2 fois : <span class="g">325€ + 324€</span>\n⏱ Livré en <span class="g">5 à 10 jours ouvrés</span>`,
+    r:['Voir le Pro','Les options','Demander un devis gratuit']
+  },
+  {
+    id:'pro',
+    keys:['pro','1099','1 099','premium','complet','whatsapp','maps','galerie','analytics'],
+    text:`<strong>Pro ✦ — 1 099€</strong>\n\nLe site le plus complet pour un impact professionnel maximum.\n\n✓ Tout le Starter inclus\n✓ 5 à 7 pages + animations au scroll\n✓ Pack SEO complet (balises, sitemap, Search Console)\n✓ Google Analytics intégré\n✓ Bouton WhatsApp flottant\n✓ Google Maps intégrée\n✓ FAQ interactive + Galerie lightbox\n✓ Compteurs animés\n✓ <span class="g">1 option à la carte offerte</span>\n✓ Code source livré\n\n💳 Paiement en 2 fois : <span class="g">550€ + 549€</span>\n⏱ Livré en <span class="g">10 à 15 jours ouvrés</span>`,
+    r:["C'est quoi les options ?","Qu'est-ce que le SEO inclus ?",'Demander un devis gratuit']
+  },
+  {
+    id:'refonte',
+    keys:['refonte','moderniser','renover','existant','ancien site','changer site','modifier site','749','1199','1 199'],
+    text:`Vous avez déjà un site ? On le transforme !\n\n<span class="g">● Refonte Starter — 749€</span>\n✓ Audit complet de votre site actuel\n✓ Nouveau design 3-4 pages\n✓ Migration de votre domaine existant\n✓ Récupération de votre contenu\n✓ Responsive + SSL + code livré\n⏱ 10 à 20 jours ouvrés\n\n<span class="g">● Refonte Pro ✦ — 1 199€</span>\n✓ Tout le Refonte Starter +\n✓ 5 à 7 pages + animations\n✓ Pack SEO complet\n✓ Analytics + Maps + WhatsApp\n✓ FAQ + Galerie + 1 option offerte\n⏱ 10 à 20 jours ouvrés\n\n💡 L'audit de votre site actuel est <strong>inclus</strong> dans les deux formules.`,
+    r:['Délais de livraison','Paiement','Demander un devis gratuit']
+  },
+  {
+    id:'options',
+    keys:['option','extra','supplement','complementaire','a la carte','ajouter','personnaliser','fonctionnalite'],
+    text:`Les options s'ajoutent à n'importe quel forfait :\n\n<strong>⚡ Interactivité</strong>\n• QCM / Quiz interactif — <span class="g">90€</span>\n• FAQ interactive — <span class="g">70€</span>\n• Compteurs animés — <span class="g">60€</span>\n• Slider / Carrousel — <span class="g">80€</span>\n\n<strong>💬 Communication</strong>\n• Bouton WhatsApp flottant — <span class="g">35€</span>\n• Chat en direct — <span class="g">50€</span>\n• Prise de RDV Calendly — <span class="g">60€</span>\n• QR Code personnalisé — <span class="g">35€</span>\n\n<strong>🎨 Visuels</strong>\n• Galerie photos lightbox — <span class="g">90€</span>\n• Carte Google Maps — <span class="g">45€</span>\n• Page supplémentaire — <span class="g">65€/page</span>\n• Popup / Message d'accueil — <span class="g">60€</span>\n\n<strong>🔧 Maintenance</strong>\n• Suivi mensuel — <span class="g">40€/mois</span>\n• Modification ponctuelle — <span class="g">50€/h</span>`,
+    r:['Comment choisir mon option ?','Voir les forfaits','Demander un devis']
+  },
+  {
+    id:'delais',
+    keys:['delai','livraison','duree','temps','quand','rapide','combien de temps','jours','semaine','long'],
+    text:`<strong>Délais de livraison :</strong>\n\n⏱ <span class="g">Landing Page</span> — 3 à 7 jours ouvrés\n⏱ <span class="g">Starter</span> — 5 à 10 jours ouvrés\n⏱ <span class="g">Pro</span> — 10 à 15 jours ouvrés\n⏱ <span class="g">Refonte Starter</span> — 10 à 20 jours ouvrés\n⏱ <span class="g">Refonte Pro</span> — 10 à 20 jours ouvrés\n\n📌 Ces délais démarrent après réception :\n→ De l'acompte (50%)\n→ De vos informations (textes, photos, couleurs souhaitées)\n\n💡 Plus vous êtes réactif dans les échanges, plus c'est rapide !`,
+    r:['Comment se passe la commande ?','Paiement','Demander un devis gratuit']
+  },
+  {
+    id:'paiement',
+    keys:['paiement','payer','virement','paypal','acompte','facture','en 2 fois','mensualite'],
+    text:`<strong>Modalités de paiement :</strong>\n\n💳 <span class="g">50% à la commande</span>\n→ Déclenchement immédiat des travaux\n\n💳 <span class="g">50% à la livraison</span>\n→ Une fois votre site validé et en ligne\n\n✓ Virement bancaire\n✓ PayPal\n\n📄 Un devis détaillé vous est envoyé <strong>avant tout engagement</strong>.\n\n🔒 Aucune mauvaise surprise — tout est contractualisé noir sur blanc.`,
+    r:['Délais de livraison','Demander un devis gratuit']
+  },
+  {
+    id:'seo',
+    keys:['seo','referencement','google','search','visible','rank','mots cles','positionnement','apparaitre','trouver'],
+    text:`<strong>Référencement Google :</strong>\n\n📌 <strong>Inclus dans TOUS les forfaits :</strong>\n✓ Balises title & meta description optimisées\n✓ Sitemap XML\n✓ Google Search Console configurée\n✓ Structure HTML propre (H1/H2/H3)\n✓ Images optimisées (poids + alt text)\n\n🚀 <strong>Pack SEO — 190€</strong> (recommandé pour apparaître localement) :\n✓ Fiche Google Business Profile\n✓ Mots-clés locaux ciblés (ex: "électricien Lens")\n✓ Données structurées (Rich Snippets)\n✓ Rapport de positionnement\n✓ Optimisation vitesse avancée\n\n💡 Le Pack SEO est <strong>inclus dans le forfait Pro</strong>.`,
+    r:["Différence SEO de base et SEO avancé ?",'Voir le forfait Pro','Demander un devis']
+  },
+  {
+    id:'devis',
+    keys:['devis','contact','commander','commencer','demarrer','projet','gratuit','renseignement','interessé','interesser'],
+    text:`<strong>Demandez votre devis gratuit ! 🚀</strong>\n\nRéponse garantie sous <span class="g">24h</span>, sans aucun engagement.\n\n📧 <strong>contact@e-comconnect.com</strong>\n📱 <strong>06 52 86 36 95</strong> (WhatsApp disponible)\n\nOu remplissez le <strong>formulaire sur la page d'accueil</strong> — c'est la façon la plus rapide de décrire votre projet !`,
+    r:['Comment se passe la commande ?','Les forfaits','Les options']
+  },
+  {
+    id:'contact',
+    keys:['telephone','appel','joindre','whatsapp','email','mail','numero','jonathan','appeler'],
+    text:`<strong>Contactez E.com connect :</strong>\n\n📱 <strong>06 52 86 36 95</strong>\n💬 WhatsApp disponible\n📧 <strong>contact@e-comconnect.com</strong>\n📍 Lens, Pas-de-Calais (62) — prestations 100% à distance\n\n🕐 Disponible du lundi au samedi\n⚡ Réponse garantie sous <span class="g">24h</span>`,
+    r:['Demander un devis','Les forfaits']
+  },
+  {
+    id:'logo',
+    keys:['logo','contenu','texte','photo','pas pret','rien','zero','partir de zero','aucun contenu','sans contenu'],
+    text:`Pas de panique ! 😊\n\n<strong>La majorité de mes clients partent de zéro.</strong>\n\nVoici ce qui est pris en charge si vous n'avez rien :\n✓ <span class="g">Logotype simple</span> créé pour vous (inclus dans le forfait)\n✓ <span class="g">Textes rédigés</span> à partir d'un court échange (questionnaire envoyé)\n✓ <span class="g">Visuels libres de droits</span> intégrés si vous n'avez pas de photos\n✓ Conseils sur les couleurs, le style et le positionnement\n\n💡 On s'adapte à votre situation — c'est notre rôle !`,
+    r:['Comment se passe la commande ?','Demander un devis']
+  },
+  {
+    id:'process',
+    keys:['comment','commande','fonctionne','etape','processus','se passe','deroule','methode','procedure'],
+    text:`<strong>Notre méthode en 5 étapes :</strong>\n\n<span class="g">1. Devis gratuit</span>\nOn échange sur votre projet, je vous envoie un devis sous 24h.\n\n<span class="g">2. Brief + acompte</span>\nUn questionnaire rapide + 50% pour démarrer les travaux.\n\n<span class="g">3. Maquette</span>\nJe vous présente le design avant de tout coder. Vous validez.\n\n<span class="g">4. Développement</span>\nJe code votre site en HTML/CSS/JS pur — rapide et optimisé.\n\n<span class="g">5. Livraison & mise en ligne</span>\nValidation finale → 50% restant → votre site est en ligne.\nCode source livré avec instructions.`,
+    r:['Délais de livraison','Paiement','Demander un devis']
+  },
+  {
+    id:'fallback',
+    keys:[],
+    text:`Bonne question ! Voici comment je peux vous aider :\n\n• <strong>Forfaits & tarifs</strong> — Landing Page, Starter, Pro, Refontes\n• <strong>Options à la carte</strong> — WhatsApp, Galerie, Maps, Calendly…\n• <strong>Délais de livraison</strong> — rapides et garantis\n• <strong>Paiement</strong> — en 2 fois, sans surprise\n• <strong>SEO & référencement</strong> Google\n• <strong>Coûts annuels</strong> — transparents et compétitifs\n• <strong>Pourquoi E.com connect</strong> vs WordPress / Wix\n\n💬 Et si vous préférez un échange direct : <span class="g">06 52 86 36 95</span> (WhatsApp disponible)`,
+    r:['📋 Les forfaits & prix','⚙️ Les options disponibles','📞 Nous contacter','Demander un devis']
+  }
+]
+
+/* ── ÉTAT ── */
+let isOpen = false
+let hasOpened = false
+
+/* ── TOGGLE ── */
+function ecToggle(){
+  const win = document.getElementById('ec-window')
+  const notif = document.getElementById('ec-notif')
+  isOpen = !isOpen
+  win.classList.toggle('open', isOpen)
+  if(isOpen && !hasOpened){
+    hasOpened = true
+    notif.style.display = 'none'
+    setTimeout(() => ecBot('welcome'), 450)
+  }
+  if(isOpen) setTimeout(() => document.getElementById('ec-inp').focus(), 300)
+}
+
+/* ── AFFICHER MESSAGE BOT ── */
+function ecBot(id){
+  const entry = KB.find(k => k.id === id) || KB.find(k => k.id === 'fallback')
+  const typing = document.getElementById('ec-typing')
+  const msgs = document.getElementById('ec-msgs')
+
+  typing.classList.add('show')
+  msgs.scrollTop = msgs.scrollHeight
+
+  const delay = 800 + Math.random() * 500
+  setTimeout(() => {
+    typing.classList.remove('show')
+    const div = document.createElement('div')
+    div.className = 'ec-msg bot'
+    div.innerHTML = entry.text.replace(/\n/g,'<br>')
+    msgs.insertBefore(div, typing)
+    msgs.scrollTop = msgs.scrollHeight
+    ecSetReplies(entry.r || [])
+  }, delay)
+}
+
+/* ── BOUTONS RÉPONSES RAPIDES ── */
+function ecSetReplies(list){
+  const el = document.getElementById('ec-qr')
+  el.innerHTML = ''
+  list.forEach(label => {
+    const btn = document.createElement('button')
+    btn.className = 'ec-qbtn'
+    btn.textContent = label
+    btn.onclick = () => ecUser(label)
+    el.appendChild(btn)
+  })
+}
+
+/* ── MESSAGE UTILISATEUR ── */
+function ecUser(text){
+  const msgs = document.getElementById('ec-msgs')
+  const typing = document.getElementById('ec-typing')
+  document.getElementById('ec-qr').innerHTML = ''
+  const div = document.createElement('div')
+  div.className = 'ec-msg user'
+  div.textContent = text
+  msgs.insertBefore(div, typing)
+  msgs.scrollTop = msgs.scrollHeight
+  ecMatch(text)
+}
+
+function ecSend(){
+  const inp = document.getElementById('ec-inp')
+  const v = inp.value.trim()
+  if(!v) return
+  inp.value = ''
+  ecUser(v)
+}
+
+/* ── MOTEUR DE CORRESPONDANCE PAR SCORE ── */
+function ecMatch(raw){
+  const t = raw.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[^a-z0-9\s€]/g,' ')
+
+  const rules = [
+    [['combien de temps','delai de livraison','livraison','delai','duree','semaines','jours ouvrés','jours ouvres'],'delais'],
+    [['landing page','page unique','349'],'landing'],
+    [['site starter','forfait starter','offre starter','starter 649','649'],'starter'],
+    [['site pro','forfait pro','offre pro','pro 1090','1 090','1090'],'pro'],
+    [['refonte pro','refonte starter','refonte du site','moderniser mon site','refaire mon site','1190','1 190','749'],'refonte'],
+    [['garantie','satisfait','remboursement','pas content','risque','confiance'],'process'],
+    [['boutique','e-commerce','ecommerce','vendre en ligne','shop','shopify','panier','paiement en ligne'],'forfaits'],
+    [['difference entre','starter ou pro','landing ou starter','quelle difference','lequel choisir','starter vs','landing vs','pro vs','comment choisir mon forfait'],'forfaits'],
+    [['option','extra','supplement','a la carte','fonctionnalite en plus','ajouter une fonction'],'options'],
+    [['quelle option','choisir option','conseil option','recommande','pour mon activite','laquelle choisir'],'options'],
+    [['mise en ligne','mettre en ligne','publier le site','hebergement','cout annuel','abonnement annuel','vercel','par an'],'devis'],
+    [['domaine','nom de domaine','.fr','.com','url','adresse web'],'devis'],
+    [['wordpress','wix','squarespace','jimdo','pourquoi pas wordpress'],'seo'],
+    [['referencement','seo','google','apparaitre sur google','visible sur google','mots cles'],'seo'],
+    [['securite','ssl','https','piratage','hacker','cadenas'],'seo'],
+    [['mobile','smartphone','tablette','responsive','iphone','android'],'forfaits'],
+    [['paiement','payer','virement','paypal','acompte','en 2 fois','deux fois'],'paiement'],
+    [['pas de logo','sans logo','pas de contenu','sans contenu','pas de photo','partir de zero','rien de pret'],'logo'],
+    [['code source','fichiers du site','je recois quoi'],'forfaits'],
+    [['comment ca se passe','comment fonctionne','etapes','processus','demarche','comment commander'],'process'],
+    [['telephone','numero','joindre jonathan','parler a quelquun','appeler','whatsapp de jonathan'],'contact'],
+    [['devis','demande de devis','obtenir un devis','je suis interesse','je veux commander','commencer mon projet'],'devis'],
+    [['bonjour','salut','hello','bonsoir','bjr','coucou','hey'],'welcome'],
+    [['prix','tarif','forfait','offre','formule','prestation','coute','combien coute','€','euro','budget'],'forfaits'],
+    [['starter'],'starter'],
+    [['pro'],'pro'],
+    [['refonte'],'refonte'],
+    [['landing'],'landing'],
+  ]
+
+  let bestId = null
+  let bestScore = 0
+
+  for(const [kws, id] of rules){
+    let score = 0
+    for(const kw of kws){
+      if(t.includes(kw)) score += kw.length
+    }
+    if(score > bestScore){ bestScore = score; bestId = id }
+  }
+
+  ecBot(bestId || 'fallback')
+}
+
+/* ── INIT : notification après 4s ── */
+setTimeout(() => {
+  if(!hasOpened){
+    document.getElementById('ec-notif').style.display = 'flex'
+  }
+}, 4000)
+
+/* ── EXPOSER FONCTIONS GLOBALES ── */
+window.ecToggle = ecToggle
+window.ecSend = ecSend
+window.ecUser = ecUser
+
+})();
 </script>
 </body>
 </html>

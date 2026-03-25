@@ -3,8 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S9H22PQ0QS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-S9H22PQ0QS');
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+@keyframes bolt-pulse{0%,100%{filter:drop-shadow(0 0 4px #84cc16);transform:scale(1)}50%{filter:drop-shadow(0 0 10px #84cc16) drop-shadow(0 0 20px #a3e635);transform:scale(1.12)}}
+@keyframes chat-bounce{0%,100%{transform:translateY(0)}40%{transform:translateY(-5px)}60%{transform:translateY(-2px)}}
+@keyframes star-spin{0%{transform:rotate(0deg) scale(1)}50%{transform:rotate(180deg) scale(1.1)}100%{transform:rotate(360deg) scale(1)}}
+@keyframes gear-turn{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.icon-bolt{animation:bolt-pulse 1.8s ease-in-out infinite;display:block}
+.icon-chat{animation:chat-bounce 1.5s ease-in-out infinite;display:block}
+.icon-star{animation:star-spin 3s linear infinite;display:block;transform-origin:center}
+.icon-gear{animation:gear-turn 4s linear infinite;display:block;transform-origin:center}
+</style>
 <title>E.com connect — Création de sites vitrines sur-mesure | Lens, Pas-de-Calais (62)</title>
 <meta name="description" content="Création de sites vitrines en code pur à Lens (62). Rapide, sécurisé, hébergé gratuitement. Spécialiste WordPress-free pour artisans, commerçants et pros du Nord. Devis gratuit sous 24h.">
 <meta name="robots" content="index, follow">
@@ -794,52 +812,77 @@
   .extra-price span{font-size:11px;font-weight:400;color:#b8b8b8}
 
   /* ── PROCESS ── */
+  .process-track{
+    position:relative;
+    margin-bottom:28px;
+    padding:0 60px;
+  }
+  .process-track-bg{
+    height:2px;
+    background:#1f1f1f;
+    border-radius:2px;
+    overflow:hidden;
+  }
+  .process-track-fill{
+    height:100%;
+    width:100%;
+    background:linear-gradient(90deg,#84cc16,#a3e635);
+    transform:scaleX(0);
+    transform-origin:left center;
+    border-radius:2px;
+  }
   .process-steps{
     display:grid;
     grid-template-columns:repeat(5,1fr);
     gap:12px;
   }
-
   .step{
     position:relative;
   }
-
-  .step:not(:last-child)::after{
-    content:'→';
-    position:absolute;
-    right:-10px;
-    top:20px;
-    color:#2a2a2a;
-    font-size:16px;
-  }
-
   .step-num{
     font-size:11px;
     font-weight:700;
     color:#84cc16;
     letter-spacing:0.1em;
     margin-bottom:12px;
+    opacity:0;
+    transform:scale(0.5);
+    display:inline-block;
   }
-
   .step-card{
     background:#111;
     border:1px solid #1f1f1f;
     border-radius:12px;
     padding:20px;
     height:100%;
+    opacity:0;
+    transform:translateY(40px);
+    transition:border-color .3s;
   }
-
+  .step-card:hover{
+    border-color:rgba(132,204,22,0.3);
+  }
   .step-title{
     font-size:14px;
     font-weight:700;
     margin-bottom:6px;
     color:#e5e5e5;
+    min-height:20px;
   }
-
+  .step-title::after{
+    content:'|';
+    color:#84cc16;
+    animation:blink .7s step-end infinite;
+    opacity:0;
+  }
+  .step-title.typing::after{ opacity:1; }
+  .step-title.done::after{ opacity:0; }
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
   .step-desc{
     font-size:12px;
     color:#b8b8b8;
     line-height:1.5;
+    opacity:0;
   }
 
   /* ── FAQ ── */
@@ -1562,6 +1605,7 @@
       gap:8px;
     }
     .step::after{ display:none }
+    .process-track{ display:none }
 
     /* FOOTER */
     footer{
@@ -1627,8 +1671,8 @@
 <nav class="topnav">
   <a href="#" class="active topnav-link">Accueil</a>
   <a href="#section-services" class="topnav-link">Prestations</a>
-  <a href="#section-tarifs" class="topnav-link">Tarifs</a>
-  <a href="#section-options" class="topnav-link">Options</a>
+  <a href="tarifs.html" class="topnav-link">Tarifs</a>
+  <a href="tarifs.html#section-options" class="topnav-link">Options</a>
   <a href="checklist-client.html" class="topnav-link" style="color:#84cc16;font-weight:700">Infos client</a>
   <div class="topnav-sep"></div>
   <a href="#section-contact" class="topnav-cta">Devis gratuit →</a>
@@ -1640,8 +1684,8 @@
 <!-- MENU MOBILE -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="#" onclick="closeMobileMenu()">Accueil</a>
-  <a href="#section-tarifs" onclick="closeMobileMenu()">Tarifs</a>
-  <a href="#section-options" onclick="closeMobileMenu()">Options</a>
+  <a href="tarifs.html">Tarifs</a>
+  <a href="tarifs.html#section-options">Options</a>
   <a href="checklist-client.html" onclick="closeMobileMenu()" style="color:#84cc16">Infos client</a>
   <a href="#section-contact" class="mobile-cta">Devis gratuit →</a>
 </div>
@@ -1830,303 +1874,6 @@
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- PRICING DÉTAILLÉ -->
-<section class="pricing-section" id="section-tarifs">
-  <div class="reveal">
-    <div class="section-label">Tarifs</div>
-    <h2 class="section-title">Transparent sur les prix</h2>
-    <p class="section-sub">Tout est détaillé avant de commencer. Paiement en 2 fois sur chaque forfait.</p>
-  </div>
-
-  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px">
-
-    <div class="pricing-card slide-left" style="transition-delay:0s">
-      <div class="pricing-name">Landing Page</div>
-      <div class="pricing-tagline">Première présence rapide</div>
-      <div class="pricing-desc">Une page unique et percutante pour une première présence rapide. Design moderne, formulaire de contact, mise en ligne incluse. Idéal pour tester votre activité en ligne.</div>
-      <div class="pricing-amount">
-        <span class="amount">349 €</span>
-        <span class="period">paiement en 2 fois</span>
-      </div>
-      <div class="pricing-features">
-        <div class="feature-row"><span class="check">✓</span> 1 page longue complète</div>
-        <div class="feature-row"><span class="check">✓</span> Design moderne adapté</div>
-        <div class="feature-row"><span class="check">✓</span> Formulaire de contact</div>
-        <div class="feature-row"><span class="check">✓</span> Responsive mobile</div>
-        <div class="feature-row"><span class="check">✓</span> Mise en ligne incluse</div>
-        <div class="feature-row"><span class="check">✓</span> Certificat SSL inclus</div>
-        <div class="feature-row"><span class="check">✓</span> Code source livré</div>
-      </div>
-    </div>
-
-    <div class="pricing-card slide-left" style="transition-delay:0.1s">
-      <div class="pricing-name">Starter</div>
-      <div class="pricing-tagline">Nouvelle présence en ligne</div>
-      <div class="pricing-desc">Idéal pour démarrer votre présence en ligne. Design moderne, rapide, adapté mobile. 3 à 4 pages, formulaire de contact, mise en ligne incluse.</div>
-      <div class="pricing-amount">
-        <span class="amount">649 €</span>
-        <span class="period">paiement en 2 fois</span>
-      </div>
-      <div class="pricing-features">
-        <div class="feature-row"><span class="check">✓</span> 3 à 4 pages</div>
-        <div class="feature-row"><span class="check">✓</span> Design moderne adapté</div>
-        <div class="feature-row"><span class="check">✓</span> Formulaire de contact</div>
-        <div class="feature-row"><span class="check">✓</span> Responsive mobile/tablette</div>
-        <div class="feature-row"><span class="check">✓</span> Mise en ligne incluse</div>
-        <div class="feature-row"><span class="check">✓</span> Accompagnement domaine</div>
-        <div class="feature-row"><span class="check">✓</span> Certificat SSL inclus</div>
-        <div class="feature-row"><span class="check">✓</span> Code source livré</div>
-      </div>
-    </div>
-
-    <div class="pricing-card slide-left" style="transition-delay:0.15s">
-      <div class="pricing-name">Pro ✦</div>
-      <div class="pricing-tagline">Site premium complet</div>
-      <div class="pricing-desc">Site premium avec SEO, animations, WhatsApp, Maps, galerie, FAQ. 5 à 7 pages, fonctionnalités interactives, design sur-mesure.</div>
-      <div class="pricing-amount">
-        <span class="amount">1 090 €</span>
-        <span class="period">paiement en 2 fois</span>
-      </div>
-      <div class="pricing-features">
-        <div class="feature-row"><span class="check">✓</span> Tout le Starter inclus</div>
-        <div class="feature-row"><span class="check">✓</span> 5 à 7 pages + animations</div>
-        <div class="feature-row"><span class="check">✓</span> Pack SEO complet</div>
-        <div class="feature-row"><span class="check">✓</span> Google Analytics</div>
-        <div class="feature-row"><span class="check">✓</span> Bouton WhatsApp flottant</div>
-        <div class="feature-row"><span class="check">✓</span> Google Maps intégrée</div>
-        <div class="feature-row"><span class="check">✓</span> FAQ + Galerie lightbox</div>
-        <div class="feature-row"><span class="check">✓</span> Compteurs animés</div>
-        <div class="feature-row"><span class="check">✓</span> 1 option au choix</div>
-        <div class="feature-row"><span class="check">✓</span> Code source livré</div>
-      </div>
-    </div>
-
-    <div class="pricing-card slide-right" style="transition-delay:0.15s">
-      <div class="pricing-name">Refonte Starter</div>
-      <div class="pricing-tagline">Moderniser l'existant</div>
-      <div class="pricing-desc">Vous avez déjà un site ? Je l'analyse et le modernise — nouveau design, nouveau code, migration domaine. Audit complet inclus.</div>
-      <div class="pricing-amount">
-        <span class="amount">749 €</span>
-        <span class="period">audit inclus</span>
-      </div>
-      <div class="pricing-features">
-        <div class="feature-row"><span class="check">✓</span> Audit complet inclus</div>
-        <div class="feature-row"><span class="check">✓</span> Nouveau site 3-4 pages</div>
-        <div class="feature-row"><span class="check">✓</span> Design entièrement repensé</div>
-        <div class="feature-row"><span class="check">✓</span> Migration nom de domaine</div>
-        <div class="feature-row"><span class="check">✓</span> Récupération du contenu</div>
-        <div class="feature-row"><span class="check">✓</span> Responsive mobile/tablette</div>
-        <div class="feature-row"><span class="check">✓</span> Certificat SSL inclus</div>
-        <div class="feature-row"><span class="check">✓</span> Code source livré</div>
-      </div>
-    </div>
-
-    <div class="pricing-card slide-right" style="transition-delay:0s">
-      <div class="pricing-name">Refonte Pro ✦</div>
-      <div class="pricing-tagline">Transformation complète</div>
-      <div class="pricing-desc">Votre site totalement transformé de A à Z. Design premium, animations, SEO, migration domaine. Le plus complet pour un impact maximal.</div>
-      <div class="pricing-amount">
-        <span class="amount">1 190 €</span>
-        <span class="period">audit inclus</span>
-      </div>
-      <div class="pricing-features">
-        <div class="feature-row"><span class="check">✓</span> Audit complet inclus</div>
-        <div class="feature-row"><span class="check">✓</span> Nouveau site 5-7 pages</div>
-        <div class="feature-row"><span class="check">✓</span> Design premium + animations</div>
-        <div class="feature-row"><span class="check">✓</span> Pack SEO complet</div>
-        <div class="feature-row"><span class="check">✓</span> Migration domaine</div>
-        <div class="feature-row"><span class="check">✓</span> Google Analytics + Maps</div>
-        <div class="feature-row"><span class="check">✓</span> FAQ + Galerie + WhatsApp</div>
-        <div class="feature-row"><span class="check">✓</span> 1 option au choix</div>
-        <div class="feature-row"><span class="check">✓</span> Code source livré</div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- EXTRAS -->
-<section id="section-options">
-  <div class="reveal">
-    <div class="section-label">Options</div>
-    <h2 class="section-title">Fonctionnalités à la carte</h2>
-    <p class="section-sub">Ajoutez ce dont vous avez besoin à n'importe quel forfait.</p>
-  </div>
-
-  <!-- PACK SEO FEATURED -->
-  <div class="seo-pack-card reveal">
-    <div>
-      <div class="seo-pack-badge">⚡ Offre recommandée</div>
-      <div class="seo-pack-title">Pack SEO de base</div>
-      <div class="seo-pack-desc">Optimisez votre visibilité sur Google dès le lancement. Votre site bien référencé, c'est des clients qui vous trouvent sans publicité payante.</div>
-      <div class="seo-pack-features">
-        <div class="seo-pack-feat"><span class="dot"></span>Balises title & meta optimisées</div>
-        <div class="seo-pack-feat"><span class="dot"></span>Fiche Google Business Profile</div>
-        <div class="seo-pack-feat"><span class="dot"></span>Sitemap XML</div>
-        <div class="seo-pack-feat"><span class="dot"></span>Mots-clés ciblés × 5 pages</div>
-        <div class="seo-pack-feat"><span class="dot"></span>Rapport de positionnement</div>
-        <div class="seo-pack-feat"><span class="dot"></span>Optimisation images & vitesse</div>
-      </div>
-    </div>
-    <div class="seo-pack-price-block">
-      <div class="seo-pack-price">190 <span>€</span></div>
-      <div class="seo-pack-note">Forfait unique · Compatible tous plans</div>
-    </div>
-  </div>
-
-  <!-- ACCORDÉONS OPTIONS -->
-  <div class="options-accordion">
-
-    <!-- Interactivité -->
-    <div class="acc-item open">
-      <div class="acc-header">
-        <div class="acc-left">
-          <span class="acc-icon">⚡</span>
-          <div>
-            <div class="acc-title">Interactivité</div>
-            <div class="acc-sub">4 options disponibles</div>
-          </div>
-        </div>
-        <div class="acc-right">
-          <span class="acc-range">60€ – 90€</span>
-          <svg class="acc-chevron" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-        </div>
-      </div>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-        <div class="extras-grid">
-          <div class="extra-card"><div class="extra-name">QCM / Quiz interactif</div><div class="extra-desc">Questionnaire à choix multiples avec score final intégré dans votre site.</div><div class="extra-price">90 <span>€</span></div></div>
-          <div class="extra-card"><div class="extra-name">FAQ interactive</div><div class="extra-desc">Questions / réponses qui s'ouvrent au clic. Réduit les demandes répétitives.</div><div class="extra-price">70 <span>€</span></div></div>
-          <div class="extra-card"><div class="extra-name">Compteurs animés</div><div class="extra-desc">Chiffres clés qui s'animent à l'écran — 200 clients, 5 ans d'expérience...</div><div class="extra-price">60 <span>€</span></div></div>
-          <div class="extra-card"><div class="extra-name">Slider / Carrousel</div><div class="extra-desc">Défilement de photos, témoignages ou services avec navigation.</div><div class="extra-price">80 <span>€</span></div></div>
-        </div>
-        </div>
-      </div>
-    </div>
-
-    <!--Communication -->
-    <div class="acc-item">
-      <div class="acc-header">
-        <div class="acc-left">
-          <span class="acc-icon">💬</span>
-          <div>
-            <div class="acc-title">Communication</div>
-            <div class="acc-sub">4 options disponibles</div>
-          </div>
-        </div>
-        <div class="acc-right">
-          <span class="acc-range">35€ – 60€</span>
-          <svg class="acc-chevron" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-        </div>
-      </div>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-        <div class="extras-grid">
-          <div class="extra-card"><div class="extra-name">Bouton WhatsApp flottant</div><div class="extra-desc">Visible sur toutes les pages — vos clients vous contactent en un clic.</div><div class="extra-price">35 <span>€</span></div></div>
-          <div class="extra-card"><div class="extra-name">Chat en direct</div><div class="extra-desc">Widget de messagerie pour répondre à vos visiteurs instantanément.</div><div class="extra-price">50 <span>€</span></div></div>
-          <div class="extra-card"><div class="extra-name">Prise de RDV (Calendly)</div><div class="extra-desc">Vos clients choisissent leur créneau en ligne, directement sur votre site.</div><div class="extra-price">60 <span>€</span></div></div>
-          <div class="extra-card"><div class="extra-name">QR Code personnalisé</div><div class="extra-desc">QR code intégré qui redirige vers un lien, PDF, réseau social ou page.</div><div class="extra-price">35 <span>€</span></div></div>
-        </div>
-        </div>
-      </div>
-    </div>
-
-    <!--Visuels -->
-    <div class="acc-item">
-      <div class="acc-header">
-        <div class="acc-left">
-          <span class="acc-icon">🎨</span>
-          <div>
-            <div class="acc-title">Visuels</div>
-            <div class="acc-sub">4 options disponibles</div>
-          </div>
-        </div>
-        <div class="acc-right">
-          <span class="acc-range">45€ – 90€</span>
-          <svg class="acc-chevron" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-        </div>
-      </div>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-        <div class="extras-grid">
-          <div class="extra-card"><div class="extra-name">Galerie photos lightbox</div><div class="extra-desc">Galerie visuelle responsive — clic sur une photo pour l'agrandir en plein écran.</div><div class="extra-price">90 <span>€</span></div></div>
-          <div class="extra-card"><div class="extra-name">Carte Google Maps</div><div class="extra-desc">Localisation interactive de votre établissement sur la page Contact.</div><div class="extra-price">45 <span>€</span></div></div>
-          <div class="extra-card"><div class="extra-name">Page supplémentaire</div><div class="extra-desc">Ajout d'une page au-delà du forfait initial, design cohérent avec le reste.</div><div class="extra-price">65 <span>€ / page</span></div></div>
-          <div class="extra-card"><div class="extra-name">Popup / Message d'accueil</div><div class="extra-desc">Fenêtre qui s'affiche à l'arrivée — promotion, annonce, information importante.</div><div class="extra-price">60 <span>€</span></div></div>
-        </div>
-        </div>
-      </div>
-    </div>
-
-    <!--Suivi & Maintenance -->
-    <div class="acc-item">
-      <div class="acc-header">
-        <div class="acc-left">
-          <span class="acc-icon">🔧</span>
-          <div>
-            <div class="acc-title">Suivi & Maintenance</div>
-            <div class="acc-sub">2 options disponibles</div>
-          </div>
-        </div>
-        <div class="acc-right">
-          <span class="acc-range">40€ – 50€</span>
-          <svg class="acc-chevron" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
-        </div>
-      </div>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-        <div class="extras-grid">
-          <div class="extra-card"><div class="extra-name">Maintenance mensuelle</div><div class="extra-desc">Mises à jour contenu, modifications et suivi de votre site chaque mois.</div><div class="extra-price">40 <span>€ / mois</span></div></div>
-          <div class="extra-card"><div class="extra-name">Modification après livraison</div><div class="extra-desc">Toute modification non prévue dans le devis initial.</div><div class="extra-price">50 <span>€ / h</span></div></div>
-        </div>
-      </div>
-    </div>
-    </div>
-
-  <!-- OPTION SUR MESURE -->
-  <div class="acc-item reveal" style="border:1px solid rgba(132,204,22,0.3);background:linear-gradient(135deg,rgba(132,204,22,0.04) 0%,#111 100%);position:relative;overflow:hidden">
-    <div style="position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(132,204,22,0.1) 0%,transparent 70%);pointer-events:none"></div>
-    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#84cc16,rgba(132,204,22,0.2))"></div>
-    <div class="acc-header" style="cursor:default">
-      <div class="acc-left">
-        <span class="acc-icon">✦</span>
-        <div>
-          <div class="acc-title" style="color:#84cc16">Option à la demande</div>
-          <div class="acc-sub">Votre besoin unique, notre solution sur-mesure</div>
-        </div>
-      </div>
-      <div class="acc-right">
-        <span class="acc-range" style="background:rgba(132,204,22,0.15);border-color:rgba(132,204,22,0.4)">Sur devis</span>
-      </div>
-    </div>
-    <div style="padding:0 24px 28px;border-top:1px solid rgba(132,204,22,0.1)">
-      <p style="font-size:13px;color:#d4d4d4;line-height:1.7;margin-bottom:20px;padding-top:20px">
-        Votre activité est unique — votre site doit l'être aussi. Si vous avez besoin d'une fonctionnalité qui ne figure pas dans notre catalogue, <strong style="color:#e5e5e5">parlez-nous de votre idée</strong>. Nous étudions chaque demande sérieusement et faisons notre maximum pour la réaliser.
-      </p>
-      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px">
-        <span style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:6px;padding:4px 10px;font-size:11px;color:#c8c8c8">Calculateur de devis</span>
-        <span style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:6px;padding:4px 10px;font-size:11px;color:#c8c8c8">Fil Instagram intégré</span>
-        <span style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:6px;padding:4px 10px;font-size:11px;color:#c8c8c8">Compteur de stock</span>
-        <span style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:6px;padding:4px 10px;font-size:11px;color:#c8c8c8">Téléchargement de fichiers</span>
-        <span style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:6px;padding:4px 10px;font-size:11px;color:#c8c8c8">Intégration outil tiers</span>
-        <span style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:6px;padding:4px 10px;font-size:11px;color:#c8c8c8">Et bien d'autres…</span>
-      </div>
-      <span class="magnet-wrap"><a href="https://wa.me/33652863695?text=Bonjour%2C%20j%27ai%20une%20demande%20d%27option%20personnalis%C3%A9e%20pour%20mon%20site." target="_blank" class="magnet-btn" style="display:inline-flex;align-items:center;gap:10px;background:#84cc16;color:#0a0a0a;font-weight:700;font-size:13px;padding:12px 22px;border-radius:10px;text-decoration:none;transition:background .2s,box-shadow .2s;outline:2px solid rgba(255,255,255,0.85);outline-offset:3px;box-shadow:0 0 12px rgba(255,255,255,0.25),0 0 28px rgba(255,255,255,0.1)" onmouseover="this.style.background='#a3e635';this.style.boxShadow='0 8px 32px rgba(132,204,22,0.35),0 0 16px rgba(255,255,255,0.35)'" onmouseout="this.style.background='#84cc16';this.style.boxShadow='0 0 12px rgba(255,255,255,0.25),0 0 28px rgba(255,255,255,0.1)'">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.556 4.118 1.527 5.845L.057 23.571l5.858-1.536A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.84 0-3.576-.47-5.09-1.295l-.364-.215-3.477.912.927-3.388-.236-.38A9.956 9.956 0 012 12C2 6.478 6.478 2 12 2s10 4.478 10 10-4.478 10-10 10z"/></svg>
-        Parlez-nous de votre idée
-      </a></span>
-    </div>
-  </div>
-
-  </div>
-
-</section>
-
-<div class="divider"></div>
 
 <!-- PROCESS -->
 <section style="position:relative;overflow:hidden">
@@ -2137,44 +1884,50 @@
     <p class="section-sub">Simple, rapide et transparent du début à la fin.</p>
   </div>
 
+  <div class="process-track">
+    <div class="process-track-bg">
+      <div class="process-track-fill" id="process-fill"></div>
+    </div>
+  </div>
+
   <div class="process-steps">
 
-    <div class="step reveal reveal-delay-1">
+    <div class="step" id="step-1">
       <div class="step-num">01</div>
       <div class="step-card">
-        <div class="step-title">Devis gratuit</div>
+        <div class="step-title" data-title="Devis gratuit"></div>
         <div class="step-desc">On discute de votre projet, je vous envoie un devis détaillé sous 24h.</div>
       </div>
     </div>
 
-    <div class="step reveal reveal-delay-2">
+    <div class="step" id="step-2">
       <div class="step-num">02</div>
       <div class="step-card">
-        <div class="step-title">Acompte 50%</div>
+        <div class="step-title" data-title="Acompte 50%"></div>
         <div class="step-desc">Validation du devis + acompte de 50% pour lancer le projet.</div>
       </div>
     </div>
 
-    <div class="step reveal reveal-delay-3">
+    <div class="step" id="step-3">
       <div class="step-num">03</div>
       <div class="step-card">
-        <div class="step-title">Création</div>
+        <div class="step-title" data-title="Création"></div>
         <div class="step-desc">Je crée votre site avec vos textes et photos. Vous validez chaque étape.</div>
       </div>
     </div>
 
-    <div class="step reveal reveal-delay-4">
+    <div class="step" id="step-4">
       <div class="step-num">04</div>
       <div class="step-card">
-        <div class="step-title">Validation</div>
+        <div class="step-title" data-title="Validation"></div>
         <div class="step-desc">Vous approuvez le résultat final. Ajustements inclus jusqu'à satisfaction.</div>
       </div>
     </div>
 
-    <div class="step reveal reveal-delay-5">
+    <div class="step" id="step-5">
       <div class="step-num">05</div>
       <div class="step-card">
-        <div class="step-title">Livraison</div>
+        <div class="step-title" data-title="Livraison"></div>
         <div class="step-desc">Site en ligne + code source livré + solde de 50%. Vous êtes propriétaire.</div>
       </div>
     </div>
@@ -2237,7 +1990,7 @@
         <span class="faq-icon">+</span>
       </div>
       <div class="faq-answer">
-        <div class="faq-answer-inner">Tous mes sites incluent les bases du référencement : balises title/meta, sitemap XML, Google Search Console. Pour un référencement local renforcé (apparaître sur "plombier Lens"), le <span class="green">Pack SEO à 190€</span> ajoute la fiche Google Business, les mots-clés ciblés et un rapport de positionnement.</div>
+        <div class="faq-answer-inner">Tous mes sites incluent les bases du référencement : balises title/meta, sitemap XML, Google Search Console. Pour un référencement local renforcé (apparaître sur "plombier Lens"), le <span class="green">Pack SEO à 190€ TTC</span> ajoute la fiche Google Business, les mots-clés ciblés et un rapport de positionnement.</div>
       </div>
     </div>
 
@@ -2833,6 +2586,18 @@ const KB = [
     r:['Voir le Starter','Les options','Demander un devis gratuit']
   },
   {
+    id:'page-unique',
+    keys:['1 page longue','une page complete','page unique complète','c est quoi une page longue','landing une page'],
+    text:`<strong>1 page longue complète — c'est quoi ?</strong>\n\nPlutôt que d'avoir plusieurs pages (Accueil, Services, Contact…), une <strong>Landing Page</strong> met tout sur une seule page que le visiteur fait défiler de haut en bas.\n\nConcrètement, elle contient :\n✓ Une accroche percutante en haut\n✓ Vos services ou offres\n✓ Vos arguments / points forts\n✓ Des photos ou visuels\n✓ Un formulaire de contact en bas\n\n<span class="g">Avantages :</span>\n→ Livré en 3 à 7 jours\n→ Coût réduit (349€ TTC)\n→ Parfait pour tester votre activité en ligne\n→ Le visiteur a toutes les infos sans navigation\n\n💡 Idéal pour les artisans, prestataires avec une seule offre, ou pour promouvoir une promotion précise.`,
+    r:['Voir la Landing Page','Différence avec le Starter ?','Demander un devis']
+  },
+  {
+    id:'nb-pages',
+    keys:['3 a 4 pages','3 pages','4 pages','5 pages','7 pages','5 a 7 pages','nombre de pages','combien de pages','c est quoi les pages','page accueil','page contact','page services'],
+    text:`<strong>3 à 4 pages / 5 à 7 pages — c'est quoi ?</strong>\n\nUn site multi-pages est organisé en sections distinctes accessibles via la navigation.\n\n<span class="g">Starter — 3 à 4 pages typiques :</span>\n→ Accueil (présentation)\n→ Services / Prestations\n→ À propos\n→ Contact\n\n<span class="g">Pro ✦ — 5 à 7 pages typiques :</span>\n→ Accueil + animations\n→ Services détaillés\n→ Galerie réalisations\n→ FAQ\n→ Témoignages\n→ À propos\n→ Contact\n\n💡 Le nombre de pages est adapté à votre activité. On choisit ensemble ce qui est pertinent pour vous lors du devis.`,
+    r:['Voir le Starter','Voir le Pro ✦','Demander un devis']
+  },
+  {
     id:'starter',
     keys:['starter','649','3 pages','4 pages','premiere presence','nouvelle presence'],
     text:`<strong>Starter — 649€</strong>\n\nIdéal pour lancer votre présence professionnelle en ligne.\n\n✓ 3 à 4 pages (Accueil, Services, À propos, Contact)\n✓ Design moderne sur-mesure\n✓ Formulaire de contact\n✓ Responsive mobile & tablette\n✓ Mise en ligne incluse\n✓ Accompagnement pour votre domaine\n✓ Certificat SSL (HTTPS) inclus\n✓ Code source livré\n\n💳 Paiement en 2 fois : <span class="g">325€ + 324€</span>\n⏱ Livré en <span class="g">5 à 10 jours ouvrés</span>`,
@@ -2840,14 +2605,14 @@ const KB = [
   },
   {
     id:'pro',
-    keys:['pro','1090','1 090','premium','complet','whatsapp','maps','galerie','analytics'],
-    text:`<strong>Pro ✦ — 1 090€</strong>\n\nLe site le plus complet pour un impact professionnel maximum.\n\n✓ Tout le Starter inclus\n✓ 5 à 7 pages + animations au scroll\n✓ Pack SEO complet (balises, sitemap, Search Console)\n✓ Google Analytics intégré\n✓ Bouton WhatsApp flottant\n✓ Google Maps intégrée\n✓ FAQ interactive + Galerie lightbox\n✓ Compteurs animés\n✓ <span class="g">1 option à la carte offerte</span>\n✓ Code source livré\n\n💳 Paiement en 2 fois : <span class="g">545€ + 545€</span>\n⏱ Livré en <span class="g">10 à 15 jours ouvrés</span>`,
+    keys:['pro','1099','1 099','premium','complet','whatsapp','maps','galerie','analytics'],
+    text:`<strong>Pro ✦ — 1 099€</strong>\n\nLe site le plus complet pour un impact professionnel maximum.\n\n✓ Tout le Starter inclus\n✓ 5 à 7 pages + animations au scroll\n✓ Pack SEO complet (balises, sitemap, Search Console)\n✓ Google Analytics intégré\n✓ Bouton WhatsApp flottant\n✓ Google Maps intégrée\n✓ FAQ interactive + Galerie lightbox\n✓ Compteurs animés\n✓ <span class="g">1 option à la carte offerte</span>\n✓ Code source livré\n\n💳 Paiement en 2 fois : <span class="g">550€ + 549€</span>\n⏱ Livré en <span class="g">10 à 15 jours ouvrés</span>`,
     r:["C'est quoi les options ?","Qu'est-ce que le SEO inclus ?",'Demander un devis gratuit']
   },
   {
     id:'refonte',
-    keys:['refonte','moderniser','renover','existant','ancien site','changer site','modifier site','749','1190','1 190'],
-    text:`Vous avez déjà un site ? On le transforme !\n\n<span class="g">● Refonte Starter — 749€</span>\n✓ Audit complet de votre site actuel\n✓ Nouveau design 3-4 pages\n✓ Migration de votre domaine existant\n✓ Récupération de votre contenu\n✓ Responsive + SSL + code livré\n⏱ 10 à 20 jours ouvrés\n\n<span class="g">● Refonte Pro ✦ — 1 190€</span>\n✓ Tout le Refonte Starter +\n✓ 5 à 7 pages + animations\n✓ Pack SEO complet\n✓ Analytics + Maps + WhatsApp\n✓ FAQ + Galerie + 1 option offerte\n⏱ 10 à 20 jours ouvrés\n\n💡 L'audit de votre site actuel est <strong>inclus</strong> dans les deux formules.`,
+    keys:['refonte','moderniser','renover','existant','ancien site','changer site','modifier site','749','1199','1 199'],
+    text:`Vous avez déjà un site ? On le transforme !\n\n<span class="g">● Refonte Starter — 749€</span>\n✓ Audit complet de votre site actuel\n✓ Nouveau design 3-4 pages\n✓ Migration de votre domaine existant\n✓ Récupération de votre contenu\n✓ Responsive + SSL + code livré\n⏱ 10 à 20 jours ouvrés\n\n<span class="g">● Refonte Pro ✦ — 1 199€</span>\n✓ Tout le Refonte Starter +\n✓ 5 à 7 pages + animations\n✓ Pack SEO complet\n✓ Analytics + Maps + WhatsApp\n✓ FAQ + Galerie + 1 option offerte\n⏱ 10 à 20 jours ouvrés\n\n💡 L'audit de votre site actuel est <strong>inclus</strong> dans les deux formules.`,
     r:['Délais de livraison','Paiement','Demander un devis gratuit']
   },
   {
@@ -2866,13 +2631,67 @@ const KB = [
     id:'seo',
     keys:['seo','referencement','google','search','visible','rank','mots cles','positionnement','apparaitre','trouver'],
     text:`<strong>Référencement Google :</strong>\n\n📌 <strong>Inclus dans TOUS les forfaits :</strong>\n✓ Balises title & meta description optimisées\n✓ Sitemap XML\n✓ Google Search Console configurée\n✓ Structure HTML propre (H1/H2/H3)\n✓ Images optimisées (poids + alt text)\n\n🚀 <strong>Pack SEO — 190€</strong> (recommandé pour apparaître localement) :\n✓ Fiche Google Business Profile\n✓ Mots-clés locaux ciblés (ex: "électricien Lens")\n✓ Données structurées (Rich Snippets)\n✓ Rapport de positionnement\n✓ Optimisation vitesse avancée\n\n💡 Le Pack SEO est <strong>inclus dans le forfait Pro</strong>.`,
-    r:['Voir le forfait Pro','Délais de livraison','Demander un devis']
+    r:["Différence SEO de base et SEO avancé ?",'Voir le forfait Pro','Demander un devis']
+  },
+  {
+    id:'seo-comparaison',
+    keys:['difference seo','seo de base','seo avance','seo starter','seo pro','seo inclus','c est quoi le seo inclus','difference entre seo','seo basique'],
+    text:`<strong>SEO de base vs SEO avancé — quelle différence ?</strong>\n\n📌 <strong>SEO de base — inclus dans le Starter :</strong>\n✓ Balises <code>title</code> & <code>meta description</code> optimisées\n✓ Structure H1/H2/H3 correcte\n✓ Attributs <code>alt</code> sur toutes les images\n✓ Site responsive (critère de classement Google)\n✓ URL propres et lisibles\n✓ Sitemap XML basique\n→ Votre site est <span class="g">techniquement propre</span> pour Google.\n\n🚀 <strong>Pack SEO complet — inclus dans le Pro ✦ :</strong>\n✓ Tout le SEO de base +\n✓ Données structurées JSON-LD (résultats enrichis Google)\n✓ Open Graph & Twitter Cards (partage réseaux sociaux)\n✓ Google Analytics 4 intégré\n✓ Google Search Console configurée + sitemap soumis\n✓ <code>robots.txt</code> optimisé\n✓ Balises canoniques\n✓ Core Web Vitals optimisés (vitesse, LCP, CLS)\n✓ Compression images + lazy loading\n✓ Maillage interne entre les pages\n→ Votre site est <span class="g">visible dans les résultats enrichis</span>, trackable et indexé rapidement.\n\n💡 En résumé : le Starter est propre techniquement, le Pro vous permet d'<strong>apparaître plus haut et plus vite</strong> sur Google.`,
+    r:['Voir le forfait Pro','Voir le forfait Starter','Demander un devis gratuit']
+  },
+  {
+    id:'ttc',
+    keys:['ttc','tva','toutes taxes','hors taxe','ht','prix ttc','taxe','impot','charges'],
+    text:`<strong>Nos prix sont affichés TTC — Toutes Taxes Comprises.</strong>\n\nCela signifie qu'il n'y a <span class="g">aucune surprise à la facturation</span> : le prix affiché est exactement ce que vous payez.\n\n💡 En tant que micro-entrepreneur, E.com connect est <strong>non assujetti à la TVA</strong> (article 293B du CGI).\nConcrètement : pas de TVA à reverser = <span class="g">vous ne payez pas 20% de plus</span>.\n\nLe prix TTC = le prix HT dans notre cas. C'est un avantage direct pour vous.`,
+    r:['Voir les forfaits & prix','Paiement en 2 fois ?','Demander un devis gratuit']
+  },
+  {
+    id:'design-moderne',
+    keys:['design','design moderne','beau','esthetique','apparence','style','look','maquette','template','modele','couleurs','graphisme'],
+    text:`<strong>Design moderne adapté — qu'est-ce que ça inclut ?</strong>\n\nOn ne part pas d'un template générique. Chaque site est <strong>designé sur-mesure</strong> selon votre activité.\n\nConcrètement :\n✓ Couleurs adaptées à votre secteur et votre image\n✓ Typographies professionnelles (Google Fonts)\n✓ Mise en page claire et aérée\n✓ Photos valorisantes (conseils inclus)\n✓ Design épuré qui inspire confiance\n✓ Cohérence visuelle sur toutes les pages\n\n🎨 Pour le Pro : on ajoute des <span class="g">animations au scroll</span>, des effets visuels, des compteurs animés — pour un rendu premium qui se distingue de la concurrence.`,
+    r:['C\'est quoi les animations ?','Voir le forfait Pro','Demander un devis']
+  },
+  {
+    id:'option-offerte',
+    keys:['option offerte','1 option','option au choix','option gratuite','offerte','quelle option choisir','bonus'],
+    text:`<strong>1 option à la carte offerte — comment ça marche ?</strong>\n\nLe forfait <strong>Pro ✦</strong> et <strong>Refonte Pro ✦</strong> incluent une option de votre choix, <span class="g">sans frais supplémentaires</span>.\n\nVous pouvez choisir parmi :\n• QCM / Quiz interactif (valeur 90€)\n• FAQ interactive (valeur 70€)\n• Compteurs animés (valeur 60€)\n• Slider / Carrousel (valeur 80€)\n• Bouton WhatsApp flottant (valeur 35€)\n• Chat en direct (valeur 50€)\n• Prise de RDV Calendly (valeur 60€)\n• QR Code personnalisé (valeur 35€)\n• Galerie photos lightbox (valeur 90€)\n• Carte Google Maps (valeur 45€)\n• Page supplémentaire (valeur 65€)\n• Popup / Message d'accueil (valeur 60€)\n\n💡 On vous conseille selon votre activité pour choisir l'option la plus utile pour vous.`,
+    r:['Voir toutes les options','Voir le forfait Pro','Demander un devis']
+  },
+  {
+    id:'audit-site',
+    keys:['audit','analyse site','audit complet','diagnostic','bilan site','expertise','evaluation','que vaut mon site','probleme site'],
+    text:`<strong>Audit complet inclus — c'est quoi ?</strong>\n\nL'audit est inclus dans les formules <strong>Refonte Starter</strong> et <strong>Refonte Pro</strong>.\n\nOn analyse votre site actuel sur :\n✓ <span class="g">Vitesse de chargement</span> — est-il rapide ?\n✓ <span class="g">SEO</span> — est-il bien référencé sur Google ?\n✓ <span class="g">Mobile</span> — s'affiche-t-il correctement sur téléphone ?\n✓ <span class="g">Sécurité</span> — SSL, certificats, failles ?\n✓ <span class="g">Design</span> — donne-t-il confiance ?\n✓ <span class="g">Conversion</span> — pousse-t-il le visiteur à vous contacter ?\n\nOn vous présente le rapport avant de commencer — vous savez exactement pourquoi une refonte est nécessaire.`,
+    r:['Voir la Refonte Starter','Voir la Refonte Pro','Demander un devis']
+  },
+  {
+    id:'migration-domaine',
+    keys:['migration','migrer','transfert domaine','changer hebergeur','garder domaine','recuperer domaine','conserver adresse'],
+    text:`<strong>Migration nom de domaine — comment ça se passe ?</strong>\n\nVous avez déjà un nom de domaine (<code>mon-site.fr</code>) et vous voulez garder la même adresse avec votre nouveau site.\n\nOn s'occupe de :\n✓ Récupérer votre domaine actuel (OVH, GoDaddy, Ionos…)\n✓ Le faire pointer vers votre nouveau site\n✓ Configurer les emails associés si besoin\n✓ Éviter toute interruption de service\n✓ Gérer la transition en douceur\n\n<span class="g">Aucune interruption visible</span> pour vos clients pendant la migration.\n\n💡 Inclus dans les forfaits Refonte Starter et Refonte Pro.`,
+    r:['Récupération du contenu ?','Voir les Refontes','Demander un devis']
+  },
+  {
+    id:'recuperation-contenu',
+    keys:['recuperation','recuperer contenu','textes','photos existantes','contenu actuel','garder mes textes','garder mes photos','reprendre contenu'],
+    text:`<strong>Récupération du contenu — qu'est-ce qu'on récupère ?</strong>\n\nAvant de créer votre nouveau site, on récupère tout ce qui existe sur votre site actuel :\n\n✓ <span class="g">Vos textes</span> — descriptions, pages, mentions légales\n✓ <span class="g">Vos photos</span> — photos de vos locaux, équipe, réalisations\n✓ <span class="g">Vos informations</span> — horaires, adresse, numéro de téléphone\n✓ <span class="g">Vos avis clients</span> — si récupérables\n\nOn réutilise ce qui est bon, on améliore ce qui peut l'être, et on repart sur une base propre.\n\n💡 Vous n'avez rien à préparer — on s'occupe de tout récupérer sur votre site actuel.`,
+    r:['Migration domaine ?','Voir les Refontes','Demander un devis']
+  },
+  {
+    id:'google-analytics',
+    keys:['analytics','google analytics','statistiques','visites','trafic','visiteurs','suivi','données','combien de visites','qui visite'],
+    text:`<strong>Google Analytics — c'est quoi et à quoi ça sert ?</strong>\n\nGoogle Analytics est un outil <strong>gratuit de Google</strong> qui vous permet de suivre les visites de votre site.\n\nVous pouvez voir :\n✓ <span class="g">Combien de personnes</span> visitent votre site chaque jour\n✓ <span class="g">D'où ils viennent</span> — Google, réseaux sociaux, bouche-à-oreille…\n✓ <span class="g">Quelles pages</span> sont les plus vues\n✓ <span class="g">Combien de temps</span> ils restent sur votre site\n✓ <span class="g">Sur quel appareil</span> — mobile ou ordinateur\n\n<span class="g">Pourquoi c'est utile ?</span>\n→ Savoir si votre site attire des visiteurs\n→ Mesurer l'impact d'une pub ou d'un post Instagram\n→ Comprendre ce qui fonctionne et ce qui fonctionne moins\n\n💡 Inclus dans le forfait Pro ✦ et Refonte Pro ✦.`,
+    r:['C\'est quoi le Pack SEO complet ?','Voir le forfait Pro','Demander un devis']
+  },
+  {
+    id:'animations',
+    keys:['animation','animé','effet','scroll','transition','dynamique','vivant','mouvement','interactif','effet visuel'],
+    text:`<strong>Animations — c'est quoi exactement ?</strong>\n\nLes animations, c'est ce qui donne vie à votre site et le distingue d'un site basique.\n\nConcrètement dans le Pro ✦ :\n✓ <span class="g">Apparition au scroll</span> — les sections s'affichent en fondu quand vous descendez\n✓ <span class="g">Compteurs animés</span> — les chiffres s'incrémentent\n✓ <span class="g">Effets de survol</span> — les boutons réagissent à la souris\n✓ <span class="g">Transitions fluides</span> — entre les sections\n✓ <span class="g">Galerie lightbox</span> — zoom photos en douceur\n\n<span class="g">Pourquoi ça compte ?</span>\n→ Un visiteur reste plus longtemps sur un site animé\n→ Donne une image moderne et professionnelle\n→ Se démarque des concurrents qui ont des sites statiques et vieillissants`,
+    r:['Voir le forfait Pro','Compteurs animés ?','Demander un devis']
   },
   {
     id:'hebergement',
-    keys:['hebergement','heberger','netlify','vercel','gratuit','serveur','hosting','mensuel','abonnement'],
-    text:`<strong>Un investissement annuel très compétitif ✓</strong>\n\nUne fois votre site livré, le coût de possession est <span class="g">imbattable</span> :\n\n🌐 Nom de domaine + hébergement = <span class="g">environ 35€/an</span> seulement\n\n💡 Pour comparaison, un site WordPress revient à :\n❌ Hébergement : 60 à 300€/an\n❌ Plugins premium : 50 à 200€/an\n❌ Maintenance & mises à jour : du temps ou de l'argent\n→ Facilement <strong>300 à 600€/an</strong> pour un WordPress basique\n\n<span class="g">Avec E.com connect</span> :\n✓ ~35€/an tout compris (domaine + hébergement)\n✓ Certificat SSL inclus\n✓ Chargement ultra-rapide (CDN mondial)\n✓ Clé en main forcée\n✓ Vous économisez <strong>plusieurs centaines d'euros chaque année</strong>`,
-    r:["C'est quoi un nom de domaine ?",'Pourquoi pas WordPress ?','Demander un devis']
+    keys:['hebergement','heberger','mise en ligne','vercel','gratuit','serveur','hosting','mensuel','abonnement','mettre en ligne','publier','accessible sur internet'],
+    text:`<strong>Mise en ligne incluse — qu'est-ce que ça veut dire ?</strong>\n\nOn s'occupe de <strong>tout le côté technique</strong> pour que votre site soit visible sur internet.\n\nConcrètement, on gère pour vous :\n✓ L'hébergement du site (serveur rapide, disponible 24h/24)\n✓ La configuration du nom de domaine\n✓ L'activation du certificat SSL (https://)\n✓ Les tests avant lancement\n✓ La mise en production finale\n\n<span class="g">Vous n'avez rien à faire côté technique.</span>\n\n💰 <strong>Coût après livraison :</strong>\n→ Hébergement : <span class="g">gratuit à vie</span> via Vercel\n→ Nom de domaine : <span class="g">~10€/an</span> seulement (votre seul coût récurrent)\n\nPour comparaison, un WordPress coûte 300 à 600€/an en hébergement + plugins. Avec nous, <strong>35€/an max</strong>.`,
+    r:["C'est quoi le SSL ?","Accompagnement domaine ?",'Demander un devis']
   },
   {
     id:'domaine',
@@ -2912,15 +2731,15 @@ const KB = [
   },
   {
     id:'mobile',
-    keys:['mobile','smartphone','tablette','responsive','telephone','ecran','affiche','iphone','android'],
-    text:`<strong>Oui, tous les sites sont responsive !</strong> 📱\n\nChaque site s'adapte parfaitement à :\n✓ Smartphones (iOS et Android)\n✓ Tablettes (toutes tailles)\n✓ Ordinateurs (de 1024px à 4K)\n\nJe teste chaque site sur <strong>plusieurs appareils réels</strong> avant livraison pour garantir un affichage parfait.\n\n💡 Plus de <strong>60% des visites</strong> viennent du mobile — c'est notre priorité numéro 1.`,
-    r:['Voir les forfaits','Demander un devis']
+    keys:['mobile','smartphone','tablette','responsive','telephone','ecran','affiche','iphone','android','portable','adapte mobile','s adapte'],
+    text:`<strong>Responsive — C'est quoi exactement ?</strong>\n\nUn site responsive s'<strong>adapte automatiquement</strong> à la taille de l'écran de votre visiteur.\n\n📱 Sur téléphone → texte lisible, boutons cliquables, pas de scroll horizontal\n💻 Sur ordinateur → mise en page complète, design soigné\n📲 Sur tablette → affichage optimisé entre les deux\n\n<span class="g">Pourquoi c'est crucial ?</span>\n✓ Plus de 65% du trafic web vient du mobile en France\n✓ Google pénalise les sites non-mobile dans son classement\n✓ Un visiteur qui galère sur mobile = client perdu\n\nTous nos forfaits incluent le responsive — votre site sera parfait sur tous les appareils, garanti.`,
+    r:['Voir les forfaits','C\'est quoi le SSL ?','Demander un devis']
   },
   {
     id:'securite',
-    keys:['securite','securise','ssl','https','hacker','piratage','virus','protection','cadenas'],
-    text:`<strong>Sécurité maximale ✓</strong>\n\n✓ <span class="g">Certificat SSL inclus</span> dans tous les forfaits (cadenas HTTPS)\n✓ <span class="g">Zéro plugin</span> vulnérable (contrairement à WordPress)\n✓ <span class="g">Code pur</span> — pas de CMS exposé à mettre à jour\n✓ Hébergement sur infrastructure sécurisée (Netlify/Vercel)\n✓ Aucune base de données exposée au public\n\n💡 Les sites WordPress représentent <strong>90% des sites piratés</strong> (plugins non mis à jour). En code pur, la surface d'attaque est quasi nulle.`,
-    r:['Pourquoi pas WordPress ?','Demander un devis']
+    keys:['securite','securise','ssl','https','hacker','piratage','virus','protection','cadenas','certificat','chiffrement','confiance'],
+    text:`<strong>Certificat SSL — C'est quoi ?</strong>\n\nLe SSL, c'est le <strong>cadenas 🔒</strong> dans la barre d'adresse de votre navigateur.\n\nConcrètement :\n✓ Votre site passe de <code>http://</code> à <code>https://</code>\n✓ Les données (formulaire, coordonnées) sont <span class="g">chiffrées et sécurisées</span>\n✓ Les visiteurs voient que votre site est fiable\n✓ Google favorise les sites HTTPS dans son classement\n\n⚠️ Sans SSL, Chrome affiche "<strong>Site non sécurisé</strong>" — ce qui fait fuir les visiteurs.\n\n💡 SSL inclus <span class="g">gratuitement</span> dans tous nos forfaits. Aucun coût supplémentaire.\n\n🛡️ En plus : zéro plugin vulnérable (contrairement à WordPress) — les sites WordPress représentent 90% des sites piratés.`,
+    r:['Mise en ligne incluse ?','Pourquoi pas WordPress ?','Demander un devis']
   },
   {
     id:'devis',
@@ -2936,9 +2755,9 @@ const KB = [
   },
   {
     id:'code_source',
-    keys:['code source','fichier','acces','propriete','recuperer','avoir le code','livraison fichier'],
-    text:`<strong>Oui, le code source vous appartient à 100% !</strong>\n\nÀ la livraison finale vous recevez :\n✓ Le(s) fichier(s) HTML/CSS/JS de votre site\n✓ Tous les assets (images, icônes, polices…)\n✓ Instructions de mise en ligne\n\n🏆 <span class="g">Propriété totale garantie</span> — contrairement aux constructeurs de sites (Wix, Squarespace) qui gardent votre site prisonnier de leur plateforme.\n\nAvec E.com connect, votre site vous appartient vraiment. C'est une vraie différence.`,
-    r:['Les forfaits','Paiement','Demander un devis']
+    keys:['code source','code livre','fichier','acces','propriete','proprietaire','recuperer','avoir le code','livraison fichier','appartient','garder'],
+    text:`<strong>Code source livré — ce que ça change pour vous</strong>\n\nVous recevez l'<strong>intégralité du code</strong> de votre site à la livraison.\n\n✓ Vous êtes <span class="g">propriétaire à 100%</span>\n✓ Vous pouvez confier les fichiers à n'importe quel autre développeur\n✓ Pas de dépendance à E.com connect pour exister\n✓ Votre site ne disparaît pas si on ferme\n✓ Vous hébergez où vous voulez\n\n⚠️ Avec WordPress ou Wix, vous ne possédez pas votre code — vous louez un outil. Avec nous, <span class="g">vous possédez vraiment votre site</span>.`,
+    r:['Voir les forfaits','Mise en ligne incluse ?','Demander un devis']
   },
   {
     id:'calendly',
@@ -2966,9 +2785,9 @@ const KB = [
   },
   {
     id:'whatsapp_opt',
-    keys:['whatsapp flottant','bouton whatsapp','icone whatsapp'],
-    text:`<strong>Option Bouton WhatsApp flottant — 35€</strong>\n\nUn bouton WhatsApp visible sur <strong>toutes les pages</strong> de votre site.\n\n✓ Vos clients vous contactent en 1 seul clic\n✓ Visible sur mobile et desktop\n✓ Message pré-rempli personnalisable\n✓ Couleur et position ajustables\n\n💡 C'est l'option la plus populaire et la moins chère. Le ROI est immédiat — vos visiteurs passent à l'action sans réfléchir.`,
-    r:['Voir toutes les options','Demander un devis']
+    keys:['whatsapp flottant','bouton whatsapp','icone whatsapp','wa','chat whatsapp','contacter whatsapp','message whatsapp'],
+    text:`<strong>Bouton WhatsApp flottant — comment ça fonctionne ?</strong>\n\nC'est un <strong>bouton vert WhatsApp</strong> visible en permanence en bas de votre site.\n\nQuand un visiteur clique dessus :\n→ Il est redirigé directement vers votre WhatsApp\n→ Avec un message pré-rempli (ex: "Bonjour, je viens de votre site…")\n→ La conversation démarre immédiatement\n\n<span class="g">Pourquoi c'est efficace ?</span>\n✓ Contact instantané — pas d'email à attendre\n✓ Vos clients préfèrent WhatsApp aux appels\n✓ Taux de réponse 3× supérieur à l'email\n✓ Fonctionne sur mobile ET ordinateur\n\n💡 Inclus dans le Pro ✦. Disponible en option <span class="g">35€ TTC</span> sur Landing et Starter.`,
+    r:['Google Maps intégrée ?','Voir le forfait Pro','Demander un devis']
   },
   {
     id:'qr',
@@ -3038,9 +2857,9 @@ const KB = [
   },
   {
     id:'formulaire',
-    keys:['formulaire','contact form','recevoir les messages','ou vont les messages','email de contact','recevoir les demandes','formulaire de contact'],
-    text:`<strong>Comment fonctionne le formulaire de contact ?</strong>\n\n✓ Le visiteur remplit le formulaire sur votre site\n✓ Vous recevez <span class="g">instantanément un email</span> avec toutes ses informations\n✓ Vous répondez directement depuis votre messagerie\n\n📬 Inclus dans <strong>tous les forfaits</strong>, sans configuration de votre part.\n\n💡 On peut aussi ajouter un <strong>bouton WhatsApp</strong> (35€) pour que les visiteurs vous contactent encore plus facilement et rapidement.`,
-    r:['Option WhatsApp flottant','Voir les forfaits','Demander un devis']
+    keys:['formulaire','contact form','recevoir les messages','ou vont les messages','email de contact','recevoir les demandes','formulaire de contact','recevoir message','message client','prendre contact'],
+    text:`<strong>Formulaire de contact — à quoi ça sert ?</strong>\n\nC'est la façon la plus simple pour un visiteur de <strong>vous envoyer un message directement depuis votre site</strong>.\n\nVotre client remplit :\n✓ Son nom\n✓ Son email\n✓ Son message\n→ Vous recevez tout ça par <span class="g">email instantanément</span>\n\n💡 Pourquoi c'est important ?\n→ Un visiteur qui ne trouve pas comment vous contacter = client perdu\n→ Disponible 24h/24 — même quand vous dormez\n→ Pas besoin d'afficher votre email (anti-spam)\n\n📬 Inclus dans <strong>tous les forfaits</strong>, sans configuration de votre part.`,
+    r:['Bouton WhatsApp flottant ?','Voir les forfaits','Demander un devis']
   },
   {
     id:'pack_seo',
@@ -3068,9 +2887,9 @@ const KB = [
   },
   {
     id:'maps',
-    keys:['google maps','carte','localisation','adresse sur carte','plan','ou nous trouver','itineraire'],
-    text:`<strong>Option Carte Google Maps — 45€</strong>\n\nIntégrez votre localisation directement sur votre page Contact :\n\n✓ Carte interactive Google Maps intégrée\n✓ Vos clients voient exactement où vous êtes\n✓ Itinéraire en un clic depuis leur téléphone\n✓ Renforce votre crédibilité locale\n✓ Idéal pour les commerces, restaurants, cabinets…\n\n💡 Associée au <strong>Pack SEO</strong>, cette option renforce votre référencement local — Google sait précisément où vous êtes et vous affiche dans les résultats "près de moi".`,
-    r:['Voir toutes les options','Pack SEO','Demander un devis']
+    keys:['google maps','maps','carte','localisation','adresse sur carte','plan','ou nous trouver','itineraire','geolocalisation'],
+    text:`<strong>Google Maps intégrée — à quoi ça sert ?</strong>\n\nOn intègre une <strong>carte Google Maps interactive</strong> directement dans votre site.\n\nVos visiteurs peuvent :\n✓ Voir votre emplacement sans quitter votre site\n✓ Lancer un itinéraire d'un seul clic depuis leur téléphone\n✓ Voir vos avis Google à côté\n\n<span class="g">Qui en a besoin ?</span>\n→ Tous les pros avec une adresse physique : garage, salon, restaurant, cabinet, boutique…\n→ Si vos clients doivent se déplacer chez vous = Maps indispensable\n\n💡 Inclus dans le Pro ✦. Disponible en option (45€ TTC) sur les autres forfaits.\n\n🔍 Associée au Pack SEO, Google sait précisément où vous êtes et vous affiche dans les résultats "près de moi".`,
+    r:['Bouton WhatsApp flottant ?','Pack SEO local ?','Demander un devis']
   },
   {
     id:'faq_interactive',
@@ -3080,7 +2899,7 @@ const KB = [
   },
   {
     id:'compteurs',
-    keys:['compteur','chiffre anime','statistique','nombre client','annee experience','projet realise','compteur anime'],
+    keys:['compteur','compteurs','chiffre anime','statistique','nombre client','annee experience','projet realise','compteur anime','chiffre cle','stats'],
     text:`<strong>Option Compteurs animés — 60€</strong>\n\nVos chiffres clés qui s'animent au scroll :\n\n✓ "200 clients satisfaits", "10 ans d'expérience", "500 projets réalisés"…\n✓ Animation fluide au défilement de la page\n✓ Fort impact visuel — capte l'attention\n✓ Renforce immédiatement la crédibilité\n✓ Entièrement personnalisable\n\n💡 Cette option est <strong>incluse dans le forfait Pro</strong>. Pour les autres forfaits, c'est une addition percutante pour un budget minimal.`,
     r:['Voir toutes les options','Voir le forfait Pro','Demander un devis']
   },
@@ -3233,6 +3052,15 @@ function ecMatch(raw){
     [['quel age','vie privee','vie personnelle','marie','celibataire','enfant','famille','habite','loisir','hobby','passion','sport','vacances','revenus','salaire','vous gagnez','riche','nationalite','origine','religion','politique'],'personnel'],
     [['prise de rdv','calendly','reservation en ligne','agenda en ligne','rendez vous en ligne'],'calendly'],
     [['galerie photo','galerie lightbox','lightbox','photos du site'],'galerie'],
+    [['ttc','tva','toutes taxes','hors taxe','ht','prix ttc','taxe impot'],'ttc'],
+    [['seo de base','seo avance','difference seo','seo inclus','seo starter','seo pro'],'seo-comparaison'],
+    [['design moderne','maquette','template','couleurs du site','graphisme','beau site','esthetique','apparence du site'],'design-moderne'],
+    [['option offerte','1 option','option au choix','option gratuite','option incluse','bonus pro'],'option-offerte'],
+    [['audit complet','analyse mon site','diagnostic site','bilan site','que vaut mon site'],'audit-site'],
+    [['migration domaine','migrer mon domaine','transfert domaine','garder mon domaine','conserver mon adresse'],'migration-domaine'],
+    [['recuperer mon contenu','garder mes textes','garder mes photos','recuperation contenu','reprendre contenu'],'recuperation-contenu'],
+    [['google analytics','statistiques du site','visites du site','trafic du site','combien de visites','qui visite'],'google-analytics'],
+    [['animations','effets scroll','effets visuels','site anime','site vivant','site dynamique','apparition scroll'],'animations'],
     [['google maps','carte interactive','localisation sur le site','plan','itineraire','ou nous trouver'],'maps'],
     [['faq interactive','questions reponses','questions frequentes','reduire les appels'],'faq_interactive'],
     [['compteur anime','chiffre anime','annee experience','nombre de clients','statistique animee'],'compteurs'],
@@ -3244,9 +3072,15 @@ function ecMatch(raw){
     [['maintenance mensuelle','apres livraison','modification apres','mise a jour du site'],'maintenance'],
     [['option','extra','supplement','a la carte','fonctionnalite en plus','ajouter une fonction'],'options'],
     [['quelle option','choisir option','conseil option','recommande','pour mon activite','laquelle choisir'],'choisir'],
-    // Hébergement / domaine
-    [['nom de domaine','adresse web','.fr','.com','acheter un domaine'],'domaine'],
-    [['hebergement','cout annuel','abonnement annuel','frais annuels','netlify','vercel','combien par an','par an','annee'],'hebergement'],
+    // Hébergement / domaine / mise en ligne
+    [['mise en ligne','mettre en ligne','publier le site','lancement du site','en ligne comment','site accessible','deployer'],'hebergement'],
+    [['accompagnement domaine','aide pour le domaine','vous m aidez domaine','achat domaine','choisir un domaine','nom de domaine','adresse web','.fr','.com','acheter un domaine'],'domaine'],
+    [['hebergement','cout annuel','abonnement annuel','frais annuels','vercel','combien par an','par an','annee'],'hebergement'],
+    // Nombre de pages
+    [['1 page longue','page unique complete','une page longue','landing une page'],'page-unique'],
+    [['3 a 4 pages','5 a 7 pages','nombre de pages','combien de pages','les pages','page accueil','page contact','page services'],'nb-pages'],
+    // Tout le starter inclus
+    [['tout le starter','starter inclus','ce qui est dans le starter','que comprend le starter'],'starter'],
     // WordPress
     [['wordpress','wix','squarespace','jimdo','pourquoi pas wordpress','difference avec wordpress','comparaison'],'wordpress'],
     // SEO
@@ -3303,6 +3137,102 @@ window.ecToggle = ecToggle
 window.ecSend = ecSend
 window.ecUser = ecUser
 
+})();
+</script>
+
+<!-- GSAP + ScrollTrigger -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* Refresh on mobile viewport resize (address bar show/hide) */
+  ScrollTrigger.config({ ignoreMobileResize: true });
+
+  const isMobile = window.innerWidth <= 768;
+  const isTablet = window.innerWidth > 768 && window.innerWidth <= 1024;
+
+  /* ── Progress bar scrub (desktop + tablet only) ── */
+  if(!isMobile){
+    gsap.to('#process-fill', {
+      scaleX: 1,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.process-steps',
+        start: 'top 80%',
+        end: 'bottom 60%',
+        scrub: 0.6,
+        invalidateOnRefresh: true
+      }
+    });
+  }
+
+  /* ── Per-step animations ── */
+  [1,2,3,4,5].forEach((n, i) => {
+    const el    = document.getElementById('step-' + n);
+    const num   = el.querySelector('.step-num');
+    const card  = el.querySelector('.step-card');
+    const title = el.querySelector('.step-title');
+    const desc  = el.querySelector('.step-desc');
+    const fullTitle = title.dataset.title || '';
+
+    /* On mobile each card triggers independently (no cascade delay) */
+    const cascadeDelay = isMobile ? 0 : i * 0.12;
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 88%',
+        toggleActions: 'play none none none',
+        invalidateOnRefresh: true
+      },
+      delay: cascadeDelay
+    });
+
+    /* 1 — spring pop on step number */
+    tl.to(num, {
+      opacity: 1,
+      scale: 1,
+      duration: 0.45,
+      ease: 'back.out(2)'
+    });
+
+    /* 2 — card slides up */
+    tl.to(card, {
+      opacity: 1,
+      y: 0,
+      duration: 0.5,
+      ease: 'power3.out'
+    }, '-=0.2');
+
+    /* 3 — typewriter on title */
+    tl.add(() => {
+      title.classList.add('typing');
+      let idx = 0;
+      title.textContent = '';
+      const charDelay = isMobile ? 45 : 55;
+      const interval = setInterval(() => {
+        title.textContent += fullTitle[idx];
+        idx++;
+        if(idx >= fullTitle.length){
+          clearInterval(interval);
+          title.classList.remove('typing');
+          title.classList.add('done');
+        }
+      }, charDelay);
+    }, '-=0.1');
+
+    /* 4 — description fades in */
+    tl.to(desc, {
+      opacity: 1,
+      duration: 0.45,
+      ease: 'power2.out'
+    }, '+=0.25');
+  });
+
+  /* Refresh after fonts/images loaded */
+  window.addEventListener('load', () => ScrollTrigger.refresh());
 })();
 </script>
 </body>

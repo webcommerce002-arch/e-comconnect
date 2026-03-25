@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-S9H22PQ0QS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-S9H22PQ0QS');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<style>
+@keyframes bolt-pulse{0%,100%{filter:drop-shadow(0 0 4px #84cc16);transform:scale(1)}50%{filter:drop-shadow(0 0 10px #84cc16) drop-shadow(0 0 20px #a3e635);transform:scale(1.12)}}
+@keyframes chat-bounce{0%,100%{transform:translateY(0)}40%{transform:translateY(-5px)}60%{transform:translateY(-2px)}}
+@keyframes star-spin{0%{transform:rotate(0deg) scale(1)}50%{transform:rotate(180deg) scale(1.1)}100%{transform:rotate(360deg) scale(1)}}
+@keyframes gear-turn{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.icon-bolt{animation:bolt-pulse 1.8s ease-in-out infinite;display:block}
+.icon-chat{animation:chat-bounce 1.5s ease-in-out infinite;display:block}
+.icon-star{animation:star-spin 3s linear infinite;display:block;transform-origin:center}
+.icon-gear{animation:gear-turn 4s linear infinite;display:block;transform-origin:center}
+</style>
+<title>Tarifs &amp; Options — E.com connect | Création sites vitrines</title>
+<meta name="description" content="Découvrez tous nos forfaits et options pour la création de votre site vitrine. Landing Page dès 349€, Starter 649€, Pro 1099€. Paiement en 2 fois.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Jonathan Besdinier — E.com connect">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+
+<!-- Open Graph -->
+<meta property="og:title" content="E.com connect — Sites vitrines sur-mesure | Lens (62)">
+<meta property="og:description" content="Création de sites vitrines en code pur. 3× plus rapide que WordPress. Hébergement inclus. Devis gratuit sous 24h.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:url" content="https://e-comconnect.com">
+<meta property="og:image" content="https://e-comconnect.com/banniere-hero.png">
+<meta property="og:site_name" content="E.com connect">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="E.com connect — Sites vitrines sur-mesure | Lens (62)">
+<meta name="twitter:description" content="Création de sites vitrines en code pur. Rapide, sécurisé, devis gratuit sous 24h.">
+<link rel="canonical" href="https://e-comconnect.com/tarifs.html">
+
+<!-- JSON-LD LocalBusiness -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "E.com connect",
+  "description": "Création de sites vitrines sur-mesure en code pur pour artisans, commerçants et professionnels. Prestations 100% à distance.",
+  "url": "https://e-comconnect.com",
+  "telephone": "+33652863695",
+  "email": "contact@e-comconnect.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Lens",
+    "postalCode": "62300",
+    "addressRegion": "Pas-de-Calais",
+    "addressCountry": "FR"
+  },
+  "areaServed": ["Lens", "Liévin", "Béthune", "Arras", "Pas-de-Calais", "Nord", "France"],
+  "priceRange": "€€",
+  "sameAs": []
+}
+</script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  *{margin:0;padding:0;box-sizing:border-box}
+
+  html{
+    overflow-x:hidden;
+  }
+
+  body{
+    font-family:'Inter',system-ui,sans-serif;
+    background:#0a0a0a;
+    overflow-x:hidden;
+    color:#f0f0f0;
+    line-height:1.6;
+  }
+
+  /* ── SECTION ── */
+  section{
+    padding:80px 60px;
+  }
+
+  .section-label{
+    font-size:11px;
+    color:#84cc16;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    font-weight:600;
+    margin-bottom:12px;
+  }
+
+  .section-title{
+    font-size:clamp(28px,3vw,40px);
+    font-weight:800;
+    letter-spacing:-1px;
+    margin-bottom:8px;
+  }
+
+  .section-sub{
+    font-size:15px;
+    color:#c8c8c8;
+    margin-bottom:48px;
+  }
+
+  /* ── PRICING TABLE ── */
+  .pricing-section{
+    background:#0d0d0d;
+    border-top:1px solid #1a1a1a;
+    border-bottom:1px solid #1a1a1a;
+  }
+
+  .pricing-card{
+    background:#111;
+    border:1px solid #1f1f1f;
+    border-radius:16px;
+    padding:28px;
+    transition:all .2s;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+  .pricing-card::before{
+    content:'';
+    position:absolute;
+    top:0;left:0;right:0;
+    height:2px;
+    background:transparent;
+    transition:background .2s;
+  }
+
+  .pricing-card:hover{border-color:#2a2a2a}
+  .pricing-card{transform-style:preserve-3d;will-change:transform;overflow:hidden}
+  .pricing-card .tilt-glare{
+    position:absolute;top:0;left:0;width:100%;height:100%;
+    pointer-events:none;border-radius:inherit;
+    background:radial-gradient(circle at 50% 50%, rgba(255,255,255,0.12) 0%, transparent 70%);
+    opacity:0;transition:opacity .2s;
+  }
+  .pricing-card:hover .tilt-glare{opacity:1}
+  .pricing-card:hover::before{background:#84cc16}
+
+  .pricing-name{
+    font-size:16px;
+    font-weight:700;
+    color:#f0f0f0;
+    margin-bottom:4px;
+  }
+
+  .pricing-tagline{
+    font-size:12px;
+    color:#b8b8b8;
+    margin-bottom:12px;
+  }
+
+  .pricing-desc{
+    font-size:12px;
+    color:#c8c8c8;
+    line-height:1.6;
+    margin-bottom:16px;
+  }
+
+  .pricing-amount .amount{
+    font-size:28px;
+    font-weight:800;
+    color:#84cc16;
+    letter-spacing:-1px;
+    margin-bottom:4px;
+    display:block;
+  }
+
+  .pricing-amount .period{
+    font-size:11px;
+    color:#b8b8b8;
+    margin-bottom:20px;
+    display:block;
+  }
+
+  .pricing-features{
+    flex:1;
+    border-top:1px solid #1a1a1a;
+    padding-top:16px;
+    margin-top:4px;
+  }
+
+  .feature-row{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:5px 0;
+    font-size:12px;
+    color:#d4d4d4;
+  }
+
+  .feature-row .check{
+    width:16px;height:16px;
+    background:rgba(132,204,22,0.1);
+    border-radius:3px;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+    color:#84cc16;
+    font-size:9px;
+  }
+
+  /* ── EXTRAS ── */
+  .extras-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+  }
+  @media(max-width:1100px){.extras-grid{grid-template-columns:repeat(3,1fr)}}
+
+  /* Section options */
+  #section-options{ background:#0a0a0a; }
+  .cat-label{ color:#84cc16; }
+
+  /* ── ACCORDÉONS OPTIONS ── */
+  .options-accordion{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .acc-item{
+    background:#111;
+    border:1px solid #1f1f1f;
+    border-radius:14px;
+    overflow:hidden;
+    transition:border-color .2s;
+  }
+  .acc-item:hover{ border-color:rgba(132,204,22,0.2) }
+  .acc-item.open{ border-color:rgba(132,204,22,0.3) }
+  .acc-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 24px;
+    cursor:pointer;
+    user-select:none;
+    gap:16px;
+  }
+  .acc-left{
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .acc-icon{
+    font-size:20px;
+    width:40px;height:40px;
+    background:rgba(132,204,22,0.08);
+    border:1px solid rgba(132,204,22,0.15);
+    border-radius:10px;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .acc-title{
+    font-size:15px;
+    font-weight:700;
+    color:#e5e5e5;
+  }
+  .acc-sub{
+    font-size:11px;
+    color:#b8b8b8;
+    margin-top:2px;
+  }
+  .acc-right{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    flex-shrink:0;
+  }
+  .acc-range{
+    font-size:12px;
+    font-weight:600;
+    color:#84cc16;
+    background:rgba(132,204,22,0.08);
+    border:1px solid rgba(132,204,22,0.15);
+    padding:3px 10px;
+    border-radius:20px;
+  }
+  .acc-chevron{
+    color:#b8b8b8;
+    transition:transform .3s cubic-bezier(.4,0,.2,1);
+    flex-shrink:0;
+  }
+  .acc-item.open .acc-chevron{ transform:rotate(180deg); color:#84cc16 }
+  .acc-body{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .4s cubic-bezier(.4,0,.2,1);
+  }
+  .acc-body-inner{
+    padding:0 24px 24px;
+    border-top:1px solid #1a1a1a;
+    padding-top:20px;
+  }
+  .acc-item.open .acc-body{ max-height:600px }
+
+  @media(max-width:768px){
+    .extras-grid{ grid-template-columns:1fr 1fr !important }
+    .acc-header{ padding:14px 16px }
+    .acc-range{ display:none }
+  }
+  @media(max-width:480px){
+    .extras-grid{ grid-template-columns:1fr !important }
+  }
+
+  /* Pack SEO featured card */
+  .seo-pack-card{
+    background:#111;
+    border:1px solid rgba(132,204,22,0.25);
+    border-radius:16px;
+    padding:32px 36px;
+    margin-bottom:36px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:24px;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+    transition:all .2s;
+  }
+  .seo-pack-card::before{
+    content:'';
+    position:absolute;
+    top:0;left:0;right:0;
+    height:2px;
+    background:linear-gradient(90deg,#84cc16,rgba(132,204,22,0.3));
+  }
+  .seo-pack-card::after{
+    content:'';
+    position:absolute;
+    top:-60px;right:-60px;
+    width:200px;height:200px;
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(132,204,22,0.08) 0%,transparent 70%);
+    pointer-events:none;
+  }
+  .seo-pack-card:hover{
+    border-color:rgba(132,204,22,0.4);
+    transform:translateY(-2px);
+  }
+  .seo-pack-badge{
+    display:inline-block;
+    background:rgba(132,204,22,0.12);
+    color:#84cc16;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    padding:3px 10px;
+    border-radius:20px;
+    margin-bottom:10px;
+  }
+  .seo-pack-title{
+    font-size:20px;
+    font-weight:800;
+    color:#e5e5e5;
+    margin-bottom:6px;
+  }
+  .seo-pack-desc{
+    font-size:13px;
+    color:#c8c8c8;
+    line-height:1.6;
+    margin-bottom:16px;
+  }
+  .seo-pack-features{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .seo-pack-feat{
+    display:flex;
+    align-items:center;
+    gap:5px;
+    font-size:11px;
+    color:#d4d4d4;
+    background:#1a1a1a;
+    padding:4px 10px;
+    border-radius:20px;
+  }
+  .seo-pack-feat .dot{
+    width:5px;height:5px;
+    border-radius:50%;
+    background:#84cc16;
+    flex-shrink:0;
+  }
+  .seo-pack-price-block{
+    text-align:center;
+    flex-shrink:0;
+  }
+  .seo-pack-price{
+    font-size:42px;
+    font-weight:900;
+    color:#84cc16;
+    letter-spacing:-2px;
+    line-height:1;
+  }
+  .seo-pack-price span{
+    font-size:14px;
+    font-weight:400;
+    color:#b8b8b8;
+    letter-spacing:0;
+  }
+  .seo-pack-note{
+    font-size:10px;
+    color:#b8b8b8;
+    margin-top:6px;
+  }
+
+  .extra-card{
+    background:#111;
+    border:1px solid #1f1f1f;
+    border-radius:12px;
+    padding:20px;
+    transition:all .2s;
+  }
+  .extra-card:hover{
+    border-color:rgba(132,204,22,0.3);
+    transform:translateY(-2px);
+  }
+
+  .extra-name{
+    font-size:13px;
+    font-weight:600;
+    color:#e5e5e5;
+    margin-bottom:4px;
+  }
+
+  .extra-desc{
+    font-size:11px;
+    color:#b8b8b8;
+    margin-bottom:12px;
+    line-height:1.5;
+  }
+
+  .extra-price{
+    font-size:20px;
+    font-weight:800;
+    color:#84cc16;
+    letter-spacing:-0.5px;
+  }
+
+  .extra-price span{font-size:11px;font-weight:400;color:#b8b8b8}
+
+  /* ── ANIMATIONS AU SCROLL ── */
+  .reveal{
+    opacity:0;
+    transform:translateY(40px);
+    transition:opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1);
+  }
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  .reveal-left{opacity:0;transform:translateX(-60px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1)}
+  .reveal-left.visible{opacity:1;transform:translateX(0)}
+  .reveal-right{opacity:0;transform:translateX(60px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1)}
+  .reveal-right.visible{opacity:1;transform:translateX(0)}
+  .reveal-delay-1{transition-delay:.1s}
+  .reveal-delay-2{transition-delay:.2s}
+  .reveal-delay-3{transition-delay:.3s}
+  .reveal-delay-4{transition-delay:.4s}
+  .reveal-delay-5{transition-delay:.5s}
+
+  /* ── SLIDE DEPUIS HORS ÉCRAN (section tarifs) ── */
+  .slide-left{
+    opacity:0;
+    transform:translateX(-120vw);
+    transition:opacity 1s cubic-bezier(.25,.46,.45,.94), transform 1s cubic-bezier(.25,.46,.45,.94);
+    will-change:transform,opacity;
+  }
+  .slide-left.visible{opacity:1 !important;transform:translateX(0) !important}
+  .slide-right{
+    opacity:0;
+    transform:translateX(120vw);
+    transition:opacity 1s cubic-bezier(.25,.46,.45,.94), transform 1s cubic-bezier(.25,.46,.45,.94);
+    will-change:transform,opacity;
+  }
+  .slide-right.visible{opacity:1 !important;transform:translateX(0) !important}
+
+  /* ── BURGER ── */
+  .burger{
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    gap:5px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding:4px;
+    width:32px;height:32px;
+  }
+  .burger span{
+    display:block;
+    width:22px;height:2px;
+    background:#e5e5e5;
+    border-radius:2px;
+    transition:all .3s;
+  }
+  .burger.open span:nth-child(1){ transform:translateY(7px) rotate(45deg) }
+  .burger.open span:nth-child(2){ opacity:0 }
+  .burger.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg) }
+
+  /* ── MENU MOBILE ── */
+  .mobile-menu{
+    display:none;
+    position:fixed;
+    top:52px;left:0;right:0;
+    background:rgba(10,10,10,0.98);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border-bottom:1px solid #1a1a1a;
+    flex-direction:column;
+    padding:16px 24px 24px;
+    gap:4px;
+    z-index:99;
+    transform:translateY(-10px);
+    opacity:0;
+    transition:opacity .25s, transform .25s;
+  }
+  .mobile-menu.open{
+    display:flex;
+    opacity:1;
+    transform:translateY(0);
+  }
+  .mobile-menu a{
+    font-size:15px;
+    font-weight:500;
+    color:#d4d4d4;
+    text-decoration:none;
+    padding:12px 0;
+    border-bottom:1px solid #1a1a1a;
+    transition:color .2s;
+  }
+  .mobile-menu a:hover{ color:#e5e5e5 }
+  .mobile-menu a:last-child{ border-bottom:none }
+  .mobile-menu .mobile-cta{
+    margin-top:12px;
+    background:#84cc16;
+    color:#0a0a0a !important;
+    font-weight:700 !important;
+    border-radius:8px;
+    padding:12px 20px !important;
+    text-align:center;
+    border:none !important;
+  }
+
+  /* ── TOPNAV ── */
+  .topnav{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(10,10,10,0.92);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border-bottom:1px solid #1a1a1a;
+    padding:0 60px;
+    display:flex;
+    align-items:center;
+    gap:40px;
+    height:52px;
+  }
+  .topnav a{
+    font-size:13px;
+    font-weight:500;
+    color:#c8c8c8;
+    text-decoration:none;
+    transition:color .2s;
+    white-space:nowrap;
+  }
+  .topnav a:hover{color:#f0f0f0}
+  .topnav a.active{color:#84cc16;font-weight:700}
+  .topnav-sep{flex:1}
+  .topnav-cta{
+    font-size:12px !important;
+    font-weight:600 !important;
+    color:#84cc16 !important;
+    border:1px solid rgba(132,204,22,0.3) !important;
+    padding:5px 14px;
+    border-radius:20px;
+    transition:all .2s !important;
+  }
+  .topnav-cta:hover{background:rgba(132,204,22,0.1) !important;color:#a3e635 !important}
+
+  /* ── DIVIDER ── */
+  .divider{
+    height:1px;
+    background:linear-gradient(90deg,transparent,#1f1f1f 20%,#1f1f1f 80%,transparent);
+    margin:0 60px;
+  }
+
+  /* ── RESPONSIVE TABLETTE (max 1024px) ── */
+  @media(max-width:1024px){
+    section{ padding:60px 32px }
+    .divider{ margin:0 32px }
+    .topnav{ padding:0 32px; gap:24px }
+    /* Tarifs : 3 colonnes sur tablette */
+    #section-tarifs > div{ grid-template-columns:repeat(3,1fr) !important }
+    /* Descriptions dans les cartes tarifs */
+    .pricing-desc{ display:block }
+    /* Options : 3 colonnes sur tablette */
+    #section-options > div[style*="repeat(4"]{grid-template-columns:repeat(3,1fr) !important}
+  }
+
+  /* ── RESPONSIVE MOBILE (max 768px) ── */
+  @media(max-width:768px){
+
+    /* TOPNAV */
+    .topnav{
+      padding:0 16px;
+      gap:0;
+      justify-content:space-between;
+      height:48px;
+    }
+    .topnav-link{ display:none !important }
+    .topnav-sep{ display:none }
+    .topnav-cta{ display:none !important }
+    .burger{ display:flex }
+
+    /* SECTIONS */
+    section{ padding:48px 20px }
+    .section-title{ font-size:clamp(22px,5vw,30px) }
+    .section-sub{ font-size:13px; margin-bottom:32px }
+
+    /* TARIFS */
+    .pricing-section{ padding:48px 20px }
+    #section-tarifs > div{
+      grid-template-columns:1fr !important;
+      gap:14px;
+    }
+    .pricing-card{ padding:20px }
+    .pricing-amount .amount{ font-size:24px }
+
+    /* OPTIONS */
+    #section-options{ padding:48px 20px }
+    .seo-pack-card{
+      grid-template-columns:1fr !important;
+      gap:16px;
+      padding:20px;
+    }
+    .seo-pack-price{ font-size:32px }
+    #section-options > div[style]{
+      grid-template-columns:repeat(2,1fr) !important;
+    }
+
+    .divider{ margin:0 20px }
+
+    [style*="grid-template-columns:repeat(4"]{
+      grid-template-columns:repeat(2,1fr) !important;
+    }
+    [style*="grid-template-columns:repeat(5"]{
+      grid-template-columns:repeat(2,1fr) !important;
+    }
+  }
+
+  /* ── RESPONSIVE PETIT MOBILE (max 480px) ── */
+  @media(max-width:480px){
+    .topnav-cta{ display:none !important }
+    .pricing-section, section{ padding:36px 16px }
+    #section-options > div[style]{
+      grid-template-columns:1fr !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOPNAV -->
+<nav class="topnav">
+  <a href="index.html">
+    <img src="logo-ecomconnect.png" alt="E.com connect" style="height:36px;width:auto;object-fit:contain">
+  </a>
+  <a href="index.html" class="topnav-link">Accueil</a>
+  <a href="index.html#section-services" class="topnav-link">Prestations</a>
+  <a href="#section-tarifs" class="active topnav-link">Tarifs</a>
+  <a href="#section-options" class="topnav-link">Options</a>
+  <a href="checklist-client.html" class="topnav-link" style="color:#84cc16;font-weight:700">Infos client</a>
+  <div class="topnav-sep"></div>
+  <a href="index.html#section-contact" class="topnav-cta">Devis gratuit →</a>
+  <button class="burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MENU MOBILE -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMobileMenu()">Accueil</a>
+  <a href="#section-tarifs">Tarifs</a>
+  <a href="#section-options">Options</a>
+  <a href="checklist-client.html" onclick="closeMobileMenu()" style="color:#84cc16">Infos client</a>
+  <a href="index.html#section-contact" class="mobile-cta">Devis gratuit →</a>
+</div>
+
+<!-- PRICING DÉTAILLÉ -->
+<section class="pricing-section" id="section-tarifs">
+  <div class="reveal">
+    <div class="section-label">Tarifs</div>
+    <h2 class="section-title">Transparent sur les prix</h2>
+    <p class="section-sub">Tout est détaillé avant de commencer. Paiement en 2 fois sur chaque forfait.</p>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px">
+
+    <div class="pricing-card slide-left" style="transition-delay:0s">
+      <div class="pricing-name">Landing Page</div>
+      <div class="pricing-tagline">Première présence rapide</div>
+      <div class="pricing-desc">Une page unique et percutante pour une première présence rapide. Design moderne, formulaire de contact, mise en ligne incluse. Idéal pour tester votre activité en ligne.</div>
+      <div class="pricing-amount">
+        <span class="amount">349 € <small style="font-size:0.45em;font-weight:500;opacity:0.7">TTC</small></span>
+        <span class="period">paiement en 2 fois</span>
+      </div>
+      <div class="pricing-features">
+        <div class="feature-row"><span class="check">✓</span> 1 page longue complète</div>
+        <div class="feature-row"><span class="check">✓</span> Design moderne adapté</div>
+        <div class="feature-row"><span class="check">✓</span> Formulaire de contact</div>
+        <div class="feature-row"><span class="check">✓</span> Responsive mobile</div>
+        <div class="feature-row"><span class="check">✓</span> Mise en ligne incluse</div>
+        <div class="feature-row"><span class="check">✓</span> Certificat SSL inclus</div>
+        <div class="feature-row"><span class="check">✓</span> Code source livré</div>
+      </div>
+    </div>
+
+    <div class="pricing-card slide-left" style="transition-delay:0.1s">
+      <div class="pricing-name">Starter</div>
+      <div class="pricing-tagline">Nouvelle présence en ligne</div>
+      <div class="pricing-desc">Idéal pour démarrer votre présence en ligne. Design moderne, rapide, adapté mobile. 3 à 4 pages, formulaire de contact, mise en ligne incluse.</div>
+      <div class="pricing-amount">
+        <span class="amount">649 € <small style="font-size:0.45em;font-weight:500;opacity:0.7">TTC</small></span>
+        <span class="period">paiement en 2 fois</span>
+      </div>
+      <div class="pricing-features">
+        <div class="feature-row"><span class="check">✓</span> 3 à 4 pages</div>
+        <div class="feature-row"><span class="check">✓</span> Design moderne adapté</div>
+        <div class="feature-row"><span class="check">✓</span> Formulaire de contact</div>
+        <div class="feature-row"><span class="check">✓</span> Responsive mobile/tablette</div>
+        <div class="feature-row"><span class="check">✓</span> Mise en ligne incluse</div>
+        <div class="feature-row"><span class="check">✓</span> Accompagnement domaine</div>
+        <div class="feature-row"><span class="check">✓</span> Certificat SSL inclus</div>
+        <div class="feature-row"><span class="check">✓</span> Code source livré</div>
+      </div>
+    </div>
+
+    <div class="pricing-card slide-left" style="transition-delay:0.15s">
+      <div class="pricing-name">Pro ✦</div>
+      <div class="pricing-tagline">Site premium complet</div>
+      <div class="pricing-desc">Site premium avec SEO, animations, WhatsApp, Maps, galerie, FAQ. 5 à 7 pages, fonctionnalités interactives, design sur-mesure.</div>
+      <div class="pricing-amount">
+        <span class="amount">1 099 € <small style="font-size:0.45em;font-weight:500;opacity:0.7">TTC</small></span>
+        <span class="period">paiement en 2 fois</span>
+      </div>
+      <div class="pricing-features">
+        <div class="feature-row"><span class="check">✓</span> Tout le Starter inclus</div>
+        <div class="feature-row"><span class="check">✓</span> 5 à 7 pages + animations</div>
+        <div class="feature-row"><span class="check">✓</span> Pack SEO complet</div>
+        <div class="feature-row"><span class="check">✓</span> Google Analytics</div>
+        <div class="feature-row"><span class="check">✓</span> Bouton WhatsApp flottant</div>
+        <div class="feature-row"><span class="check">✓</span> Google Maps intégrée</div>
+        <div class="feature-row"><span class="check">✓</span> FAQ + Galerie lightbox</div>
+        <div class="feature-row"><span class="check">✓</span> Compteurs animés</div>
+        <div class="feature-row"><span class="check">✓</span> 1 option au choix</div>
+        <div class="feature-row"><span class="check">✓</span> Code source livré</div>
+      </div>
+    </div>
+
+    <div class="pricing-card slide-right" style="transition-delay:0.15s">
+      <div class="pricing-name">Refonte Starter</div>
+      <div class="pricing-tagline">Moderniser l'existant</div>
+      <div class="pricing-desc">Vous avez déjà un site ? Je l'analyse et le modernise — nouveau design, nouveau code, migration domaine. Audit complet inclus.</div>
+      <div class="pricing-amount">
+        <span class="amount">749 € <small style="font-size:0.45em;font-weight:500;opacity:0.7">TTC</small></span>
+        <span class="period">audit inclus</span>
+      </div>
+      <div class="pricing-features">
+        <div class="feature-row"><span class="check">✓</span> Audit complet inclus</div>
+        <div class="feature-row"><span class="check">✓</span> Nouveau site 3-4 pages</div>
+        <div class="feature-row"><span class="check">✓</span> Design entièrement repensé</div>
+        <div class="feature-row"><span class="check">✓</span> Migration nom de domaine</div>
+        <div class="feature-row"><span class="check">✓</span> Récupération du contenu</div>
+        <div class="feature-row"><span class="check">✓</span> Responsive mobile/tablette</div>
+        <div class="feature-row"><span class="check">✓</span> Certificat SSL inclus</div>
+        <div class="feature-row"><span class="check">✓</span> Code source livré</div>
+      </div>
+    </div>
+
+    <div class="pricing-card slide-right" style="transition-delay:0s">
+      <div class="pricing-name">Refonte Pro ✦</div>
+      <div class="pricing-tagline">Transformation complète</div>
+      <div class="pricing-desc">Votre site totalement transformé de A à Z. Design premium, animations, SEO, migration domaine. Le plus complet pour un impact maximal.</div>
+      <div class="pricing-amount">
+        <span class="amount">1 199 € <small style="font-size:0.45em;font-weight:500;opacity:0.7">TTC</small></span>
+        <span class="period">audit inclus</span>
+      </div>
+      <div class="pricing-features">
+        <div class="feature-row"><span class="check">✓</span> Audit complet inclus</div>
+        <div class="feature-row"><span class="check">✓</span> Nouveau site 5-7 pages</div>
+        <div class="feature-row"><span class="check">✓</span> Design premium + animations</div>
+        <div class="feature-row"><span class="check">✓</span> Pack SEO complet</div>
+        <div class="feature-row"><span class="check">✓</span> Migration domaine</div>
+        <div class="feature-row"><span class="check">✓</span> Google Analytics + Maps</div>
+        <div class="feature-row"><span class="check">✓</span> FAQ + Galerie + WhatsApp</div>
+        <div class="feature-row"><span class="check">✓</span> 1 option au choix</div>
+        <div class="feature-row"><span class="check">✓</span> Code source livré</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXTRAS -->
+<section id="section-options">
+  <div class="reveal">
+    <div class="section-label">Options</div>
+    <h2 class="section-title">Fonctionnalités à la carte</h2>
+    <p class="section-sub">Ajoutez ce dont vous avez besoin à n'importe quel forfait.</p>
+  </div>
+
+  <!-- PACK SEO FEATURED -->
+  <div class="seo-pack-card reveal">
+    <div>
+      <div class="seo-pack-badge">⚡ Offre recommandée</div>
+      <div class="seo-pack-title">Pack SEO de base</div>
+      <div class="seo-pack-desc">Optimisez votre visibilité sur Google dès le lancement. Votre site bien référencé, c'est des clients qui vous trouvent sans publicité payante.</div>
+      <div class="seo-pack-features">
+        <div class="seo-pack-feat"><span class="dot"></span>Balises title & meta optimisées</div>
+        <div class="seo-pack-feat"><span class="dot"></span>Fiche Google Business Profile</div>
+        <div class="seo-pack-feat"><span class="dot"></span>Sitemap XML</div>
+        <div class="seo-pack-feat"><span class="dot"></span>Mots-clés ciblés × 5 pages</div>
+        <div class="seo-pack-feat"><span class="dot"></span>Rapport de positionnement</div>
+        <div class="seo-pack-feat"><span class="dot"></span>Optimisation images & vitesse</div>
+      </div>
+    </div>
+    <div class="seo-pack-price-block">
+      <div class="seo-pack-price">190 <span>€ TTC</span></div>
+      <div class="seo-pack-note">Forfait unique · Compatible tous plans</div>
+    </div>
+  </div>
+
+  <!-- ACCORDÉONS OPTIONS -->
+  <div class="options-accordion">
+
+    <!-- Interactivité -->
+    <div class="acc-item open">
+      <div class="acc-header">
+        <div class="acc-left">
+          <span class="acc-icon"><svg class="icon-bolt" width="22" height="22" viewBox="0 0 24 24" fill="#84cc16"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13L13 2Z"/></svg></span>
+          <div>
+            <div class="acc-title">Interactivité</div>
+            <div class="acc-sub">4 options disponibles</div>
+          </div>
+        </div>
+        <div class="acc-right">
+          <span class="acc-range">60€ – 90€ TTC</span>
+          <svg class="acc-chevron" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+        <div class="extras-grid">
+          <div class="extra-card"><div class="extra-name">QCM / Quiz interactif</div><div class="extra-desc">Questionnaire à choix multiples avec score final intégré dans votre site.</div><div class="extra-price">90 <span>€ TTC</span></div></div>
+          <div class="extra-card"><div class="extra-name">FAQ interactive</div><div class="extra-desc">Questions / réponses qui s'ouvrent au clic. Réduit les demandes répétitives.</div><div class="extra-price">70 <span>€ TTC</span></div></div>
+          <div class="extra-card"><div class="extra-name">Compteurs animés</div><div class="extra-desc">Chiffres clés qui s'animent à l'écran — 200 clients, 5 ans d'expérience...</div><div class="extra-price">60 <span>€ TTC</span></div></div>
+          <div class="extra-card"><div class="extra-name">Slider / Carrousel</div><div class="extra-desc">Défilement de photos, témoignages ou services avec navigation.</div><div class="extra-price">80 <span>€ TTC</span></div></div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Communication -->
+    <div class="acc-item">
+      <div class="acc-header">
+        <div class="acc-left">
+          <span class="acc-icon"><svg class="icon-chat" width="22" height="22" viewBox="0 0 24 24" fill="#84cc16"><path d="M2 4C2 2.9 2.9 2 4 2H20C21.1 2 22 2.9 22 4V16C22 17.1 21.1 18 20 18H7L3 22V4Z"/></svg></span>
+          <div>
+            <div class="acc-title">Communication</div>
+            <div class="acc-sub">4 options disponibles</div>
+          </div>
+        </div>
+        <div class="acc-right">
+          <span class="acc-range">35€ – 60€ TTC</span>
+          <svg class="acc-chevron" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+        <div class="extras-grid">
+          <div class="extra-card"><div class="extra-name">Bouton WhatsApp flottant</div><div class="extra-desc">Visible sur toutes les pages — vos clients vous contactent en un clic.</div><div class="extra-price">35 <span>€ TTC</span></div></div>
+          <div class="extra-card"><div class="extra-name">Chat en direct</div><div class="extra-desc">Widget de messagerie pour répondre à vos visiteurs instantanément.</div><div class="extra-price">50 <span>€ TTC</span></div></div>
+          <div class="extra-card"><div class="extra-name">Prise de RDV (Calendly)</div><div class="extra-desc">Vos clients choisissent leur créneau en ligne, directement sur votre site.</div><div class="extra-price">60 <span>€ TTC</span></div></div>
+          <div class="extra-card"><div class="extra-name">QR Code personnalisé</div><div class="extra-desc">QR code intégré qui redirige vers un lien, PDF, réseau social ou page.</div><div class="extra-price">35 <span>€ TTC</span></div></div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Visuels -->
+    <div class="acc-item">
+      <div class="acc-header">
+        <div class="acc-left">
+          <span class="acc-icon"><svg class="icon-star" width="22" height="22" viewBox="0 0 24 24" fill="#84cc16"><path d="M12 2L14.4 9.6H22.4L15.9 14.1L18.4 21.8L12 17.3L5.6 21.8L8.1 14.1L1.6 9.6H9.6L12 2Z"/></svg></span>
+          <div>
+            <div class="acc-title">Visuels</div>
+            <div class="acc-sub">4 options disponibles</div>
+          </div>
+        </div>
+        <div class="acc-right">
+          <span class="acc-range">45€ – 90€ TTC</span>
+          <svg class="acc-chevron" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+        <div class="extras-grid">
+          <div class="extra-card"><div class="extra-name">Galerie photos lightbox</div><div class="extra-desc">Galerie visuelle responsive — clic sur une photo pour l'agrandir en plein écran.</div><div class="extra-price">90 <span>€ TTC</span></div></div>
+          <div class="extra-card"><div class="extra-name">Carte Google Maps</div><div class="extra-desc">Localisation interactive de votre établissement sur la page Contact.</div><div class="extra-price">45 <span>€ TTC</span></div></div>
+          <div class="extra-card"><div class="extra-name">Page supplémentaire</div><div class="extra-desc">Ajout d'une page au-delà du forfait initial, design cohérent avec le reste.</div><div class="extra-price">65 <span>€ TTC / page</span></div></div>
+          <div class="extra-card"><div class="extra-name">Popup / Message d'accueil</div><div class="extra-desc">Fenêtre qui s'affiche à l'arrivée — promotion, annonce, information importante.</div><div class="extra-price">60 <span>€ TTC</span></div></div>
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Suivi & Maintenance -->
+    <div class="acc-item">
+      <div class="acc-header">
+        <div class="acc-left">
+          <span class="acc-icon"><svg class="icon-gear" width="22" height="22" viewBox="0 0 24 24" fill="#84cc16"><path d="M12 15.5A3.5 3.5 0 018.5 12 3.5 3.5 0 0112 8.5a3.5 3.5 0 013.5 3.5 3.5 3.5 0 01-3.5 3.5M19.43 12.97c.04-.32.07-.64.07-.97 0-.33-.03-.66-.07-1l2.16-1.63c.19-.15.24-.42.12-.64l-2.06-3.56c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65A.49.49 0 0014 2h-4a.49.49 0 00-.47.37l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22L2.3 9.78c-.12.22-.07.49.12.64l2.16 1.63c-.04.34-.07.67-.07 1s.03.65.07.97l-2.16 1.63c-.19.15-.24.42-.12.64l2.06 3.56c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.06.26.28.44.47.44h4c.25 0 .46-.18.5-.44l.38-2.65c.61-.25 1.17-.58 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2.06-3.56c.12-.22.07-.49-.12-.64l-2.16-1.63z"/></svg></span>
+          <div>
+            <div class="acc-title">Suivi & Maintenance</div>
+            <div class="acc-sub">2 options disponibles</div>
+          </div>
+        </div>
+        <div class="acc-right">
+          <span class="acc-range">40€ – 50€ TTC</span>
+          <svg class="acc-chevron" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+        <div class="extras-grid">
+          <div class="extra-card"><div class="extra-name">Maintenance mensuelle</div><div class="extra-desc">Mises à jour contenu, modifications et suivi de votre site chaque mois.</div><div class="extra-price">40 <span>€ TTC / mois</span></div></div>
+          <div class="extra-card"><div class="extra-name">Modification après livraison</div><div class="extra-desc">Toute modification non prévue dans le devis initial.</div><div class="extra-price">50 <span>€ TTC / h</span></div></div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+  <!-- OPTION SUR MESURE -->
+  <div class="acc-item reveal" style="border:1px solid rgba(132,204,22,0.3);background:linear-gradient(135deg,rgba(132,204,22,0.04) 0%,#111 100%);position:relative;overflow:hidden">
+    <div style="position:absolute;top:-40px;right:-40px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(132,204,22,0.1) 0%,transparent 70%);pointer-events:none"></div>
+    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#84cc16,rgba(132,204,22,0.2))"></div>
+    <div class="acc-header" style="cursor:default">
+      <div class="acc-left">
+        <span class="acc-icon">✦</span>
+        <div>
+          <div class="acc-title" style="color:#84cc16">Option à la demande</div>
+          <div class="acc-sub">Votre besoin unique, notre solution sur-mesure</div>
+        </div>
+      </div>
+      <div class="acc-right">
+        <span class="acc-range" style="background:rgba(132,204,22,0.15);border-color:rgba(132,204,22,0.4)">Sur devis</span>
+      </div>
+    </div>
+    <div style="padding:0 24px 28px;border-top:1px solid rgba(132,204,22,0.1)">
+      <p style="font-size:13px;color:#d4d4d4;line-height:1.7;margin-bottom:20px;padding-top:20px">
+        Votre activité est unique — votre site doit l'être aussi. Si vous avez besoin d'une fonctionnalité qui ne figure pas dans notre catalogue, <strong style="color:#e5e5e5">parlez-nous de votre idée</strong>. Nous étudions chaque demande sérieusement et faisons notre maximum pour la réaliser.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px">
+        <span style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:6px;padding:4px 10px;font-size:11px;color:#c8c8c8">Calculateur de devis</span>
+        <span style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:6px;padding:4px 10px;font-size:11px;color:#c8c8c8">Fil Instagram intégré</span>
+        <span style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:6px;padding:4px 10px;font-size:11px;color:#c8c8c8">Compteur de stock</span>
+        <span style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:6px;padding:4px 10px;font-size:11px;color:#c8c8c8">Téléchargement de fichiers</span>
+        <span style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:6px;padding:4px 10px;font-size:11px;color:#c8c8c8">Intégration outil tiers</span>
+        <span style="background:#1a1a1a;border:1px solid #2a2a2a;border-radius:6px;padding:4px 10px;font-size:11px;color:#c8c8c8">Et bien d'autres…</span>
+      </div>
+      <a href="index.html#section-contact" style="display:inline-flex;align-items:center;gap:10px;background:#84cc16;color:#0a0a0a;font-weight:700;font-size:13px;padding:12px 22px;border-radius:10px;text-decoration:none;transition:background .2s,box-shadow .2s;outline:2px solid rgba(255,255,255,0.85);outline-offset:3px;box-shadow:0 0 12px rgba(255,255,255,0.25),0 0 28px rgba(255,255,255,0.1)" onmouseover="this.style.background='#a3e635';this.style.boxShadow='0 8px 32px rgba(132,204,22,0.35),0 0 16px rgba(255,255,255,0.35)'" onmouseout="this.style.background='#84cc16';this.style.boxShadow='0 0 12px rgba(255,255,255,0.25),0 0 28px rgba(255,255,255,0.1)'">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        Parlez-nous de votre idée
+      </a>
+    </div>
+  </div>
+
+  </div>
+
+</section>
+
+<!-- CTA -->
+<section style="padding:72px 60px;background:#0a0a0a;text-align:center"><h2 style="font-family:'Space Grotesk',sans-serif;color:#e5e5e5;font-size:28px;margin-bottom:12px">Prêt à démarrer votre projet ?</h2><p style="color:#a3a3a3;margin-bottom:28px;font-size:15px">Devis gratuit sous 24h, sans engagement.</p><a href="index.html#section-contact" style="background:#84cc16;color:#0a0a0a;font-weight:700;padding:14px 32px;border-radius:10px;text-decoration:none;font-size:15px">Demander un devis gratuit →</a></section>
+
+<!-- FOOTER LÉGAL -->
+<div style="background:#050505;border-top:1px solid #1a1a1a;padding:28px 60px;position:relative;overflow:hidden">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse 80% 120% at 50% 100%,rgba(132,204,22,0.1) 0%,transparent 65%);pointer-events:none"></div>
+  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:16px">
+    <div style="display:flex;gap:24px;flex-wrap:wrap">
+      <a href="mentions-legales.html" style="font-size:11px;color:#b8b8b8;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#84cc16'" onmouseout="this.style.color='#b8b8b8'">Mentions légales</a>
+      <a href="politique-confidentialite.html" style="font-size:11px;color:#b8b8b8;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#84cc16'" onmouseout="this.style.color='#b8b8b8'">Politique de confidentialité</a>
+      <a href="cgv.html" style="font-size:11px;color:#b8b8b8;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#84cc16'" onmouseout="this.style.color='#b8b8b8'">CGV</a>
+    </div>
+    <div style="font-size:11px;color:#333">© 2026 E.com connect · Tous droits réservés</div>
+  </div>
+  <div style="font-size:10px;color:#2a2a2a;line-height:1.6">
+    E.com connect — Entrepreneur individuel · SIRET 501 061 840 00044 · TVA FR06501061840 · 60 rue François Ier, 75008 Paris
+  </div>
+</div>
+
+<script>
+  // ── Menu hamburger mobile ──
+  const burger = document.getElementById('burger')
+  const mobileMenu = document.getElementById('mobileMenu')
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open')
+    mobileMenu.classList.toggle('open')
+  })
+  function closeMobileMenu(){
+    burger.classList.remove('open')
+    mobileMenu.classList.remove('open')
+  }
+  // Ferme le menu au scroll
+  window.addEventListener('scroll', () => { if(mobileMenu.classList.contains('open')) closeMobileMenu() }, { passive:true })
+
+  // ── Accordéons options ──
+  document.querySelectorAll('.acc-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const item = header.closest('.acc-item')
+      item.classList.toggle('open')
+    })
+  })
+
+  // ── Intersection Observer — animations au scroll ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible')
+        observer.unobserve(entry.target)
+      }
+    })
+  }, { threshold: 0.12 })
+
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+    observer.observe(el)
+  })
+
+  // ── Slide pricing cards ──
+  function triggerPricingAnim() {
+    document.querySelectorAll('#section-tarifs .slide-left, #section-tarifs .slide-right').forEach(el => {
+      el.classList.add('visible')
+      setTimeout(() => {
+        el.classList.remove('slide-left','slide-right')
+        el.style.opacity = '1'
+        el.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)'
+      }, 1100)
+    })
+  }
+
+  // Via scroll
+  const pricingSection = document.getElementById('section-tarifs')
+  if (pricingSection) {
+    const pricingObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          triggerPricingAnim()
+          pricingObserver.disconnect()
+        }
+      })
+    }, { threshold: 0.1 })
+    pricingObserver.observe(pricingSection)
+  }
+
+  // ── Tilt 3D sur les cartes tarifs ──
+  document.querySelectorAll('.pricing-card').forEach(card => {
+    const glare = document.createElement('div')
+    glare.className = 'tilt-glare'
+    card.appendChild(glare)
+
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect()
+      const x = e.clientX - r.left
+      const y = e.clientY - r.top
+      const cx = r.width / 2
+      const cy = r.height / 2
+      const rotY = ((x - cx) / cx) * 18
+      const rotX = -((y - cy) / cy) * 14
+      card.style.transition = 'transform 0.08s ease'
+      card.style.transform = `perspective(600px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.05)`
+      const px = (x / r.width) * 100
+      const py = (y / r.height) * 100
+      glare.style.background = `radial-gradient(circle at ${px}% ${py}%, rgba(255,255,255,0.18) 0%, transparent 65%)`
+    })
+    card.addEventListener('mouseleave', () => {
+      card.style.transition = 'transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94)'
+      card.style.transform = 'perspective(600px) rotateX(0deg) rotateY(0deg) scale(1)'
+    })
+  })
+</script>
+
+<!-- ═══════════════════════════════════════════
+     CHATBOT — Assistant E.com connect
+════════════════════════════════════════════ -->
+<style>
+#ec-bubble{
+  position:fixed;bottom:28px;right:28px;
+  width:58px;height:58px;
+  background:#84cc16;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;z-index:9000;
+  box-shadow:0 4px 28px rgba(132,204,22,0.45);
+  transition:transform .2s,box-shadow .2s;
+}
+#ec-bubble:hover{transform:scale(1.09);box-shadow:0 8px 36px rgba(132,204,22,0.55)}
+#ec-bubble svg{width:26px;height:26px;color:#0a0a0a;pointer-events:none}
+.ec-notif{
+  position:absolute;top:-3px;right:-3px;
+  width:19px;height:19px;background:#ef4444;
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:800;color:#fff;
+  border:2px solid #0a0a0a;
+  animation:ec-ping 2s ease-in-out infinite;
+}
+@keyframes ec-ping{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+
+#ec-window{
+  position:fixed;bottom:100px;right:28px;
+  width:365px;max-height:530px;
+  background:#111;
+  border:1px solid #222;
+  border-radius:22px;
+  box-shadow:0 28px 70px rgba(0,0,0,0.65),0 0 0 1px rgba(132,204,22,0.08);
+  z-index:8999;
+  display:flex;flex-direction:column;overflow:hidden;
+  opacity:0;transform:translateY(18px) scale(0.96);
+  transition:opacity .25s cubic-bezier(.4,0,.2,1),transform .25s cubic-bezier(.4,0,.2,1);
+  pointer-events:none;
+}
+#ec-window.open{opacity:1;transform:translateY(0) scale(1);pointer-events:all}
+
+.ec-header{
+  background:linear-gradient(135deg,#0d1500 0%,#0a0a0a 100%);
+  border-bottom:1px solid #1a1a1a;
+  padding:15px 18px;
+  display:flex;align-items:center;gap:12px;flex-shrink:0;
+}
+.ec-avatar{
+  width:40px;height:40px;background:#84cc16;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;
+}
+.ec-hinfo{flex:1;min-width:0}
+.ec-hname{font-size:13px;font-weight:700;color:#e5e5e5}
+.ec-hstatus{font-size:11px;color:#84cc16;display:flex;align-items:center;gap:5px;margin-top:2px}
+.ec-sdot{width:6px;height:6px;border-radius:50%;background:#84cc16;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.ec-xbtn{
+  width:28px;height:28px;background:#1a1a1a;border:none;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;color:#b8b8b8;font-size:14px;line-height:1;
+  transition:background .15s,color .15s;flex-shrink:0;
+}
+.ec-xbtn:hover{background:#2a2a2a;color:#e5e5e5}
+
+.ec-msgs{
+  flex:1;overflow-y:auto;
+  padding:14px 14px 8px;
+  display:flex;flex-direction:column;gap:8px;
+  scroll-behavior:smooth;
+}
+.ec-msgs::-webkit-scrollbar{width:3px}
+.ec-msgs::-webkit-scrollbar-thumb{background:#2a2a2a;border-radius:2px}
+
+.ec-msg{
+  max-width:88%;padding:10px 13px;
+  border-radius:15px;font-size:12.5px;line-height:1.6;
+}
+.ec-msg.bot{
+  background:#1a1a1a;color:#ccc;
+  border-bottom-left-radius:4px;align-self:flex-start;
+}
+.ec-msg.bot strong{color:#e5e5e5}
+.ec-msg.bot .g{color:#84cc16;font-weight:600}
+.ec-msg.user{
+  background:#84cc16;color:#0a0a0a;font-weight:700;
+  border-bottom-right-radius:4px;align-self:flex-end;
+  font-size:12px;
+}
+
+.ec-typing{
+  align-self:flex-start;background:#1a1a1a;
+  border-radius:15px;border-bottom-left-radius:4px;
+  padding:11px 15px;display:none;align-items:center;gap:4px;
+}
+.ec-typing.show{display:flex}
+.ec-tdot{
+  width:6px;height:6px;border-radius:50%;background:#444;
+  animation:ec-bounce .85s ease-in-out infinite;
+}
+.ec-tdot:nth-child(2){animation-delay:.18s}
+.ec-tdot:nth-child(3){animation-delay:.36s}
+@keyframes ec-bounce{0%,80%,100%{transform:scale(.8);opacity:.4}40%{transform:scale(1.1);opacity:1}}
+
+.ec-qr{
+  padding:6px 14px 10px;
+  display:flex;flex-wrap:wrap;gap:6px;flex-shrink:0;
+}
+.ec-qbtn{
+  background:#1a1a1a;border:1px solid #2a2a2a;border-radius:20px;
+  padding:5px 11px;font-size:11px;color:#d4d4d4;
+  cursor:pointer;transition:all .15s;white-space:nowrap;font-family:'Inter',sans-serif;
+}
+.ec-qbtn:hover{background:rgba(132,204,22,0.1);border-color:rgba(132,204,22,0.4);color:#84cc16}
+
+.ec-irow{
+  border-top:1px solid #1a1a1a;padding:10px 12px;
+  display:flex;gap:8px;align-items:center;flex-shrink:0;
+}
+.ec-inp{
+  flex:1;background:#1a1a1a;border:1px solid #252525;border-radius:20px;
+  padding:9px 15px;font-size:12.5px;color:#e5e5e5;
+  font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;
+}
+.ec-inp:focus{border-color:rgba(132,204,22,0.4)}
+.ec-inp::placeholder{color:#444}
+.ec-sbtn{
+  width:36px;height:36px;background:#84cc16;border:none;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:background .2s,transform .15s;flex-shrink:0;
+}
+.ec-sbtn:hover{background:#a3e635;transform:scale(1.06)}
+.ec-sbtn svg{width:15px;height:15px;color:#0a0a0a}
+
+@media(max-width:480px){
+  #ec-window{width:calc(100vw - 20px);right:10px;bottom:84px;max-height:480px}
+  #ec-bubble{bottom:18px;right:14px}
+}
+</style>
+
+<div id="ec-bubble" onclick="ecToggle()" aria-label="Assistant E.com connect">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+  </svg>
+  <div class="ec-notif" id="ec-notif">1</div>
+</div>
+
+<div id="ec-window" role="dialog" aria-label="Chat assistant">
+  <div class="ec-header">
+    <div class="ec-avatar">🤖</div>
+    <div class="ec-hinfo">
+      <div class="ec-hname">Assistant E.com connect</div>
+      <div class="ec-hstatus"><span class="ec-sdot"></span>En ligne — Réponse instantanée</div>
+    </div>
+    <button class="ec-xbtn" onclick="ecToggle()" aria-label="Fermer">✕</button>
+  </div>
+  <div class="ec-msgs" id="ec-msgs">
+    <div class="ec-typing" id="ec-typing">
+      <div class="ec-tdot"></div><div class="ec-tdot"></div><div class="ec-tdot"></div>
+    </div>
+  </div>
+  <div class="ec-qr" id="ec-qr"></div>
+  <div class="ec-irow">
+    <input class="ec-inp" id="ec-inp" placeholder="Posez votre question…" autocomplete="off"
+      onkeydown="if(event.key==='Enter')ecSend()">
+    <button class="ec-sbtn" onclick="ecSend()" aria-label="Envoyer">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+    </button>
+  </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+/* ── BASE DE CONNAISSANCES ── */
+const KB = [
+  {
+    id:'welcome',
+    keys:['bonjour','salut','hello','bonsoir','bjr','coucou','yo','hey','bj'],
+    text:`Bonjour ! 👋 Je suis l'assistant virtuel d'<strong>E.com connect</strong>.\n\nJe peux répondre à toutes vos questions sur nos services, tarifs, délais et options. Par où souhaitez-vous commencer ?`,
+    r:['📋 Les forfaits & prix','⚙️ Les options disponibles','⏱ Délais de livraison','💳 Le paiement','📞 Nous contacter']
+  },
+  {
+    id:'forfaits',
+    keys:['forfait','offre','formule','prix','tarif','coût','combien','€','euro','service','prestation'],
+    text:`Voici nos <strong>5 forfaits</strong> :\n\n<span class="g">● Landing Page — 349€</span>\nUne page percutante, idéale pour démarrer vite.\n\n<span class="g">● Starter — 649€</span>\n3 à 4 pages, responsive, SSL, accompagnement domaine.\n\n<span class="g">● Pro ✦ — 1 090€</span>\n5 à 7 pages + SEO complet, Analytics, WhatsApp, Maps, galerie, 1 option offerte.\n\n<span class="g">● Refonte Starter — 749€</span>\nVotre site existant entièrement modernisé (audit inclus).\n\n<span class="g">● Refonte Pro ✦ — 1 190€</span>\nTransformation A à Z, design premium (audit inclus).\n\n💳 Tous payables en <strong>2 fois</strong>, devis gratuit sous 24h.`,
+    r:['Détail Landing Page','Détail Starter','Détail Pro','Détail Refontes','Les options à la carte']
+  },
+  {
+    id:'landing',
+    keys:['landing','349','page unique','une page','premiere presence'],
+    text:`<strong>Landing Page — 349€</strong>\n\nParfaite pour une première présence rapide ou promouvoir une offre précise.\n\n✓ 1 page longue et complète\n✓ Design moderne adapté à votre activité\n✓ Formulaire de contact intégré\n✓ Responsive mobile & tablette\n✓ Mise en ligne incluse\n✓ Certificat SSL (HTTPS) inclus\n✓ Code source livré\n\n💳 Paiement en 2 fois : <span class="g">175€ + 174€</span>\n⏱ Livré en <span class="g">3 à 7 jours ouvrés</span>`,
+    r:['Voir le Starter','Les options','Demander un devis gratuit']
+  },
+  {
+    id:'starter',
+    keys:['starter','649','3 pages','4 pages','premiere presence','nouvelle presence'],
+    text:`<strong>Starter — 649€</strong>\n\nIdéal pour lancer votre présence professionnelle en ligne.\n\n✓ 3 à 4 pages (Accueil, Services, À propos, Contact)\n✓ Design moderne sur-mesure\n✓ Formulaire de contact\n✓ Responsive mobile & tablette\n✓ Mise en ligne incluse\n✓ Accompagnement pour votre domaine\n✓ Certificat SSL (HTTPS) inclus\n✓ Code source livré\n\n💳 Paiement en 2 fois : <span class="g">325€ + 324€</span>\n⏱ Livré en <span class="g">5 à 10 jours ouvrés</span>`,
+    r:['Voir le Pro','Les options','Demander un devis gratuit']
+  },
+  {
+    id:'pro',
+    keys:['pro','1099','1 099','premium','complet','whatsapp','maps','galerie','analytics'],
+    text:`<strong>Pro ✦ — 1 099€</strong>\n\nLe site le plus complet pour un impact professionnel maximum.\n\n✓ Tout le Starter inclus\n✓ 5 à 7 pages + animations au scroll\n✓ Pack SEO complet (balises, sitemap, Search Console)\n✓ Google Analytics intégré\n✓ Bouton WhatsApp flottant\n✓ Google Maps intégrée\n✓ FAQ interactive + Galerie lightbox\n✓ Compteurs animés\n✓ <span class="g">1 option à la carte offerte</span>\n✓ Code source livré\n\n💳 Paiement en 2 fois : <span class="g">550€ + 549€</span>\n⏱ Livré en <span class="g">10 à 15 jours ouvrés</span>`,
+    r:["C'est quoi les options ?","Qu'est-ce que le SEO inclus ?",'Demander un devis gratuit']
+  },
+  {
+    id:'refonte',
+    keys:['refonte','moderniser','renover','existant','ancien site','changer site','modifier site','749','1199','1 199'],
+    text:`Vous avez déjà un site ? On le transforme !\n\n<span class="g">● Refonte Starter — 749€</span>\n✓ Audit complet de votre site actuel\n✓ Nouveau design 3-4 pages\n✓ Migration de votre domaine existant\n✓ Récupération de votre contenu\n✓ Responsive + SSL + code livré\n⏱ 10 à 20 jours ouvrés\n\n<span class="g">● Refonte Pro ✦ — 1 199€</span>\n✓ Tout le Refonte Starter +\n✓ 5 à 7 pages + animations\n✓ Pack SEO complet\n✓ Analytics + Maps + WhatsApp\n✓ FAQ + Galerie + 1 option offerte\n⏱ 10 à 20 jours ouvrés\n\n💡 L'audit de votre site actuel est <strong>inclus</strong> dans les deux formules.`,
+    r:['Délais de livraison','Paiement','Demander un devis gratuit']
+  },
+  {
+    id:'options',
+    keys:['option','extra','supplement','complementaire','a la carte','ajouter','personnaliser','fonctionnalite'],
+    text:`Les options s'ajoutent à n'importe quel forfait :\n\n<strong>⚡ Interactivité</strong>\n• QCM / Quiz interactif — <span class="g">90€</span>\n• FAQ interactive — <span class="g">70€</span>\n• Compteurs animés — <span class="g">60€</span>\n• Slider / Carrousel — <span class="g">80€</span>\n\n<strong>💬 Communication</strong>\n• Bouton WhatsApp flottant — <span class="g">35€</span>\n• Chat en direct — <span class="g">50€</span>\n• Prise de RDV Calendly — <span class="g">60€</span>\n• QR Code personnalisé — <span class="g">35€</span>\n\n<strong>🎨 Visuels</strong>\n• Galerie photos lightbox — <span class="g">90€</span>\n• Carte Google Maps — <span class="g">45€</span>\n• Page supplémentaire — <span class="g">65€/page</span>\n• Popup / Message d'accueil — <span class="g">60€</span>\n\n<strong>🔧 Maintenance</strong>\n• Suivi mensuel — <span class="g">40€/mois</span>\n• Modification ponctuelle — <span class="g">50€/h</span>`,
+    r:['Comment choisir mon option ?','Voir les forfaits','Demander un devis']
+  },
+  {
+    id:'delais',
+    keys:['delai','livraison','duree','temps','quand','rapide','combien de temps','jours','semaine','long'],
+    text:`<strong>Délais de livraison :</strong>\n\n⏱ <span class="g">Landing Page</span> — 3 à 7 jours ouvrés\n⏱ <span class="g">Starter</span> — 5 à 10 jours ouvrés\n⏱ <span class="g">Pro</span> — 10 à 15 jours ouvrés\n⏱ <span class="g">Refonte Starter</span> — 10 à 20 jours ouvrés\n⏱ <span class="g">Refonte Pro</span> — 10 à 20 jours ouvrés\n\n📌 Ces délais démarrent après réception :\n→ De l'acompte (50%)\n→ De vos informations (textes, photos, couleurs souhaitées)\n\n💡 Plus vous êtes réactif dans les échanges, plus c'est rapide !`,
+    r:['Comment se passe la commande ?','Paiement','Demander un devis gratuit']
+  },
+  {
+    id:'paiement',
+    keys:['paiement','payer','virement','paypal','acompte','facture','en 2 fois','mensualite'],
+    text:`<strong>Modalités de paiement :</strong>\n\n💳 <span class="g">50% à la commande</span>\n→ Déclenchement immédiat des travaux\n\n💳 <span class="g">50% à la livraison</span>\n→ Une fois votre site validé et en ligne\n\n✓ Virement bancaire\n✓ PayPal\n\n📄 Un devis détaillé vous est envoyé <strong>avant tout engagement</strong>.\n\n🔒 Aucune mauvaise surprise — tout est contractualisé noir sur blanc.`,
+    r:['Délais de livraison','Demander un devis gratuit']
+  },
+  {
+    id:'devis',
+    keys:['devis','contact','commander','commencer','demarrer','projet','gratuit','renseignement','interessé','interesser'],
+    text:`<strong>Demandez votre devis gratuit ! 🚀</strong>\n\nRéponse garantie sous <span class="g">24h</span>, sans aucun engagement.\n\n📧 <strong>contact@e-comconnect.com</strong>\n📱 <strong>06 52 86 36 95</strong> (WhatsApp disponible)\n\nOu remplissez le <strong>formulaire sur la page d'accueil</strong> — c'est la façon la plus rapide de décrire votre projet !`,
+    r:['Comment se passe la commande ?','Les forfaits','Les options']
+  },
+  {
+    id:'fallback',
+    keys:[],
+    text:`Bonne question ! Voici comment je peux vous aider :\n\n• <strong>Forfaits & tarifs</strong> — Landing Page, Starter, Pro, Refontes\n• <strong>Options à la carte</strong> — WhatsApp, Galerie, Maps, Calendly…\n• <strong>Délais de livraison</strong> — rapides et garantis\n• <strong>Paiement</strong> — en 2 fois, sans surprise\n• <strong>SEO & référencement</strong> Google\n\n💬 Et si vous préférez un échange direct : <span class="g">06 52 86 36 95</span> (WhatsApp disponible)`,
+    r:['📋 Les forfaits & prix','⚙️ Les options disponibles','📞 Nous contacter','Demander un devis']
+  }
+]
+
+/* ── ÉTAT ── */
+let isOpen = false
+let hasOpened = false
+
+/* ── TOGGLE ── */
+function ecToggle(){
+  const win = document.getElementById('ec-window')
+  const notif = document.getElementById('ec-notif')
+  isOpen = !isOpen
+  win.classList.toggle('open', isOpen)
+  if(isOpen && !hasOpened){
+    hasOpened = true
+    notif.style.display = 'none'
+    setTimeout(() => ecBot('welcome'), 450)
+  }
+  if(isOpen) setTimeout(() => document.getElementById('ec-inp').focus(), 300)
+}
+
+/* ── AFFICHER MESSAGE BOT ── */
+function ecBot(id){
+  const entry = KB.find(k => k.id === id) || KB.find(k => k.id === 'fallback')
+  const typing = document.getElementById('ec-typing')
+  const msgs = document.getElementById('ec-msgs')
+
+  typing.classList.add('show')
+  msgs.scrollTop = msgs.scrollHeight
+
+  const delay = 800 + Math.random() * 500
+  setTimeout(() => {
+    typing.classList.remove('show')
+    const div = document.createElement('div')
+    div.className = 'ec-msg bot'
+    div.innerHTML = entry.text.replace(/\n/g,'<br>')
+    msgs.insertBefore(div, typing)
+    msgs.scrollTop = msgs.scrollHeight
+    ecSetReplies(entry.r || [])
+  }, delay)
+}
+
+/* ── BOUTONS RÉPONSES RAPIDES ── */
+function ecSetReplies(list){
+  const el = document.getElementById('ec-qr')
+  el.innerHTML = ''
+  list.forEach(label => {
+    const btn = document.createElement('button')
+    btn.className = 'ec-qbtn'
+    btn.textContent = label
+    btn.onclick = () => ecUser(label)
+    el.appendChild(btn)
+  })
+}
+
+/* ── MESSAGE UTILISATEUR ── */
+function ecUser(text){
+  const msgs = document.getElementById('ec-msgs')
+  const typing = document.getElementById('ec-typing')
+  document.getElementById('ec-qr').innerHTML = ''
+  const div = document.createElement('div')
+  div.className = 'ec-msg user'
+  div.textContent = text
+  msgs.insertBefore(div, typing)
+  msgs.scrollTop = msgs.scrollHeight
+  ecMatch(text)
+}
+
+function ecSend(){
+  const inp = document.getElementById('ec-inp')
+  const v = inp.value.trim()
+  if(!v) return
+  inp.value = ''
+  ecUser(v)
+}
+
+/* ── MOTEUR DE CORRESPONDANCE PAR SCORE ── */
+function ecMatch(raw){
+  const t = raw.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[^a-z0-9\s€]/g,' ')
+
+  const rules = [
+    [['landing page','page unique','349'],'landing'],
+    [['site starter','forfait starter','starter 649','649'],'starter'],
+    [['site pro','forfait pro','pro 1090','1 090','1090'],'pro'],
+    [['refonte pro','refonte starter','refonte du site','749','1190','1 190'],'refonte'],
+    [['option','extra','supplement','a la carte','fonctionnalite en plus'],'options'],
+    [['delai','livraison','combien de temps','jours ouvrés'],'delais'],
+    [['paiement','payer','virement','paypal','acompte','en 2 fois'],'paiement'],
+    [['devis','demande de devis','obtenir un devis','je suis interesse','commencer'],'devis'],
+    [['bonjour','salut','hello','bonsoir','bjr','coucou','hey'],'welcome'],
+    [['prix','tarif','forfait','offre','formule','prestation','combien coute','€','euro','budget'],'forfaits'],
+    [['starter'],'starter'],
+    [['pro'],'pro'],
+    [['refonte'],'refonte'],
+    [['landing'],'landing'],
+  ]
+
+  let bestId = null
+  let bestScore = 0
+
+  for(const [kws, id] of rules){
+    let score = 0
+    for(const kw of kws){
+      if(t.includes(kw)) score += kw.length
+    }
+    if(score > bestScore){ bestScore = score; bestId = id }
+  }
+
+  ecBot(bestId || 'fallback')
+}
+
+/* ── INIT : notification après 4s ── */
+setTimeout(() => {
+  if(!hasOpened){
+    document.getElementById('ec-notif').style.display = 'flex'
+  }
+}, 4000)
+
+/* ── EXPOSER FONCTIONS GLOBALES ── */
+window.ecToggle = ecToggle
+window.ecSend = ecSend
+window.ecUser = ecUser
+
+})();
+</script>
+
+</body>
+</html>
