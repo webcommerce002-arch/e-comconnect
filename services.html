@@ -125,10 +125,13 @@
   <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
 </nav>
 <div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" onclick="toggleMenu()">Accueil</a>
   <a href="services.html" onclick="toggleMenu()">Services</a>
   <a href="index.html#methode" onclick="toggleMenu()">Méthode</a>
   <a href="tarifs.html" onclick="toggleMenu()">Tarifs</a>
   <a href="pourquoi-un-site.html" onclick="toggleMenu()">Pourquoi un site ?</a>
+  <a href="index.html#avis" onclick="toggleMenu()">Avis clients</a>
+  <a href="index.html#faq" onclick="toggleMenu()">FAQ</a>
   <a href="index.html#contact" class="mobile-cta" onclick="toggleMenu()">Devis gratuit →</a>
 </div>
 
@@ -415,7 +418,10 @@
 <script>
   const nb = document.getElementById('navbar');
   window.addEventListener('scroll', () => nb.classList.toggle('scrolled', scrollY > 40), { passive: true });
-  function toggleMenu() { document.getElementById('mobile-menu').classList.toggle('open'); }
+  function toggleMenu() {
+    const isOpen = document.getElementById('mobile-menu').classList.toggle('open');
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  }
   const obs = new IntersectionObserver(e => e.forEach(x => {
     if (x.isIntersecting) { x.target.classList.add('visible'); obs.unobserve(x.target); }
   }), { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
