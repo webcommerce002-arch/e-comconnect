@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brief formation — E.Com Connect | Supports pédagogiques sur mesure</title>
+  <meta name="description" content="Décrivez votre projet de formation en quelques minutes. PDF, PowerPoint, quiz, e-learning — on crée tout." />
+  <link rel="icon" href="favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; font-size:16px; overflow-x:hidden; }
+    body { font-family:'Inter',sans-serif; background:#f8f7f4; color:#0d0d0d; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+    h1,h2,h3,h4 { font-family:'Outfit',sans-serif; }
+
+    :root {
+      --bg:#f8f7f4; --bg-alt:#f1f0eb; --bg-dark:#0d0d12;
+      --text:#0d0d0d; --text-muted:#6b7280;
+      --accent:#7c3aed; --accent-2:#6d28d9;
+      --accent-blue:#2563eb;
+      --green:#10b981; --red:#ef4444;
+      --border:rgba(0,0,0,0.08); --border-focus:rgba(124,58,237,0.4);
+      --glass-bg:rgba(255,255,255,0.72); --glass-border:rgba(255,255,255,0.9);
+      --radius:12px; --radius-lg:20px; --transition:0.25s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* ─── NAV ─── */
+    .nav {
+      position:sticky; top:0; z-index:100;
+      background:rgba(248,247,244,0.94);
+      backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);
+      padding:0 40px; height:90px;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .nav-logo img { height:80px; width:auto; display:block; }
+    .nav-back { display:flex; align-items:center; gap:6px; color:var(--accent); font-size:14px; font-weight:600; text-decoration:none; transition:var(--transition); }
+    .nav-back:hover { opacity:0.75; }
+    .nav-cta { background:var(--accent); color:#fff; padding:10px 22px; border-radius:999px; font-size:14px; font-weight:700; text-decoration:none; transition:var(--transition); }
+    .nav-cta:hover { background:var(--accent-2); }
+    @media(max-width:640px){ .nav { padding:0 20px; height:72px; } .nav-logo img { height:56px; } .nav-cta { display:none; } }
+
+    /* ─── HERO ─── */
+    .hero { padding:72px 24px 48px; text-align:center; }
+    .hero-badge { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--accent); background:rgba(124,58,237,0.08); padding:6px 16px; border-radius:999px; margin-bottom:24px; }
+    .hero h1 { font-size:clamp(32px,5vw,58px); font-weight:900; letter-spacing:-1.5px; line-height:1.08; margin-bottom:16px; }
+    .hero h1 span { color:var(--accent); }
+    .hero p { font-size:17px; color:var(--text-muted); max-width:520px; margin:0 auto 32px; line-height:1.65; }
+    .hero-meta { display:flex; align-items:center; justify-content:center; gap:24px; flex-wrap:wrap; font-size:13px; color:var(--text-muted); }
+    .hero-meta-item { display:flex; align-items:center; gap:6px; font-weight:500; }
+    .hero-meta-dot { width:6px; height:6px; border-radius:50%; }
+
+    /* ─── PROGRESS BAR ─── */
+    .progress-wrap { position:sticky; top:90px; z-index:90; background:rgba(248,247,244,0.96); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); padding:0 24px; }
+    .progress-bar { max-width:860px; margin:0 auto; display:flex; align-items:flex-start; gap:0; padding:14px 0; }
+    .prog-step { display:flex; align-items:center; flex:1; }
+    .prog-step:last-child { flex:none; }
+    .prog-step-inner { display:flex; flex-direction:column; align-items:center; gap:4px; }
+    .prog-dot { width:30px; height:30px; border-radius:50%; border:2px solid #d1d5db; background:#fff; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:#9ca3af; flex-shrink:0; transition:var(--transition); cursor:pointer; }
+    .prog-dot.active { border-color:var(--accent); background:var(--accent); color:#fff; }
+    .prog-dot.done { border-color:var(--green); background:var(--green); color:#fff; }
+    .prog-line { flex:1; height:2px; background:#e5e7eb; transition:var(--transition); margin:0 4px; margin-top:-16px; }
+    .prog-line.done { background:var(--green); }
+    .prog-label { font-size:10px; color:#9ca3af; font-weight:600; white-space:nowrap; }
+    .prog-label.active { color:var(--accent); }
+    .prog-label.done { color:var(--green); }
+    @media(max-width:560px){ .prog-label { display:none; } .prog-dot { width:24px; height:24px; font-size:9px; } }
+    @media(max-width:480px){ .progress-wrap { top:72px; } }
+
+    /* ─── MAIN ─── */
+    .main { max-width:860px; margin:0 auto; padding:0 24px 120px; }
+
+    /* ─── STEP SECTION ─── */
+    .form-step { display:none; }
+    .form-step.active { display:block; }
+
+    .step-header { padding:48px 0 32px; }
+    .step-num { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--accent); margin-bottom:10px; }
+    .step-title { font-size:clamp(24px,3.5vw,36px); font-weight:900; letter-spacing:-0.8px; margin-bottom:8px; line-height:1.2; }
+    .step-desc { font-size:15px; color:var(--text-muted); line-height:1.6; }
+    .step-badge { display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:600; padding:3px 10px; border-radius:999px; margin-left:10px; vertical-align:middle; }
+    .step-badge.required { background:rgba(239,68,68,0.08); color:var(--red); }
+    .step-badge.optional { background:rgba(107,114,128,0.08); color:var(--text-muted); }
+
+    /* ─── FORM ELEMENTS ─── */
+    .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    .form-grid.cols-1 { grid-template-columns:1fr; }
+    .form-grid.cols-3 { grid-template-columns:1fr 1fr 1fr; }
+    @media(max-width:640px){ .form-grid, .form-grid.cols-3 { grid-template-columns:1fr; } }
+    .form-group { display:flex; flex-direction:column; gap:7px; }
+    .form-group.full { grid-column:1/-1; }
+
+    label { font-size:13px; font-weight:600; color:var(--text); }
+    label .req { color:var(--red); margin-left:2px; }
+    label .tip { font-size:11px; font-weight:400; color:var(--text-muted); margin-left:6px; }
+
+    input[type=text], input[type=email], input[type=tel], input[type=url], select, textarea {
+      width:100%; padding:12px 16px; border-radius:var(--radius);
+      border:1.5px solid rgba(0,0,0,0.12); background:#fff;
+      font-family:'Inter',sans-serif; font-size:14px; color:var(--text);
+      transition:border-color var(--transition), box-shadow var(--transition);
+      outline:none; resize:none;
+    }
+    input:focus, select:focus, textarea:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(124,58,237,0.1); }
+    input::placeholder, textarea::placeholder { color:#c0c0c0; }
+    select { appearance:none; cursor:pointer; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%236b7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; padding-right:38px; }
+    textarea { min-height:100px; line-height:1.6; }
+    .char-counter { font-size:11px; color:var(--text-muted); text-align:right; }
+
+    /* ─── CARD CHECKBOX ─── */
+    .card-group { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    @media(max-width:480px){ .card-group { grid-template-columns:1fr; } }
+    .card-check { display:none; }
+    .card-label { display:flex; align-items:flex-start; gap:12px; padding:16px; border-radius:var(--radius); border:1.5px solid rgba(0,0,0,0.1); background:#fff; cursor:pointer; transition:all var(--transition); }
+    .card-label:hover { border-color:rgba(124,58,237,0.3); background:rgba(124,58,237,0.02); }
+    .card-check:checked + .card-label { border-color:var(--accent); background:rgba(124,58,237,0.05); }
+    .card-icon { font-size:22px; flex-shrink:0; margin-top:1px; }
+    .card-text { flex:1; }
+    .card-title { font-size:13px; font-weight:700; color:var(--text); margin-bottom:2px; }
+    .card-sub { font-size:12px; color:var(--text-muted); line-height:1.4; }
+    .card-check-mark { width:18px; height:18px; border:2px solid #d1d5db; border-radius:5px; flex-shrink:0; margin-top:2px; transition:var(--transition); display:flex; align-items:center; justify-content:center; }
+    .card-check:checked + .card-label .card-check-mark { background:var(--accent); border-color:var(--accent); }
+    .card-check:checked + .card-label .card-check-mark::after { content:'✓'; font-size:11px; color:#fff; font-weight:700; }
+
+    /* ─── RADIO CARD (profil) ─── */
+    .radio-group { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    @media(max-width:480px){ .radio-group { grid-template-columns:1fr; } }
+    .radio-card { display:none; }
+    .radio-label { display:flex; align-items:flex-start; gap:12px; padding:16px; border-radius:var(--radius); border:1.5px solid rgba(0,0,0,0.1); background:#fff; cursor:pointer; transition:all var(--transition); }
+    .radio-label:hover { border-color:rgba(124,58,237,0.3); background:rgba(124,58,237,0.02); }
+    .radio-card:checked + .radio-label { border-color:var(--accent); background:rgba(124,58,237,0.05); }
+    .radio-dot { width:18px; height:18px; border:2px solid #d1d5db; border-radius:50%; flex-shrink:0; margin-top:2px; transition:var(--transition); display:flex; align-items:center; justify-content:center; }
+    .radio-card:checked + .radio-label .radio-dot { border-color:var(--accent); background:var(--accent); }
+    .radio-card:checked + .radio-label .radio-dot::after { content:''; width:6px; height:6px; border-radius:50%; background:#fff; display:block; }
+
+    /* ─── INFO BOX ─── */
+    .info-box { padding:16px 20px; border-radius:var(--radius); margin-bottom:20px; display:flex; align-items:flex-start; gap:12px; }
+    .info-box.blue { background:rgba(37,99,235,0.06); border:1.5px solid rgba(37,99,235,0.15); }
+    .info-box.purple { background:rgba(124,58,237,0.06); border:1.5px solid rgba(124,58,237,0.15); }
+    .info-box.green { background:rgba(16,185,129,0.06); border:1.5px solid rgba(16,185,129,0.2); }
+    .info-box.amber { background:rgba(245,158,11,0.07); border:1.5px solid rgba(245,158,11,0.2); }
+    .info-icon { font-size:18px; flex-shrink:0; margin-top:1px; }
+    .info-text { font-size:13px; color:var(--text); line-height:1.6; }
+    .info-text strong { font-weight:700; }
+
+    /* ─── SEPARATORS ─── */
+    .form-sep { height:1px; background:var(--border); margin:32px 0; }
+    .form-section-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--text-muted); margin-bottom:16px; }
+
+    /* ─── NAV BUTTONS ─── */
+    .step-nav { display:flex; align-items:center; justify-content:space-between; padding:32px 0 0; gap:12px; }
+    .btn-prev { display:inline-flex; align-items:center; gap:6px; padding:12px 24px; border-radius:999px; font-size:14px; font-weight:700; border:1.5px solid rgba(0,0,0,0.12); background:#fff; color:var(--text); cursor:pointer; transition:var(--transition); font-family:'Inter',sans-serif; }
+    .btn-prev:hover { border-color:#aaa; }
+    .btn-next { display:inline-flex; align-items:center; gap:6px; padding:12px 28px; border-radius:999px; font-size:14px; font-weight:700; border:none; background:var(--accent); color:#fff; cursor:pointer; transition:var(--transition); font-family:'Inter',sans-serif; }
+    .btn-next:hover { background:var(--accent-2); transform:translateX(2px); }
+    .step-counter { font-size:13px; color:var(--text-muted); }
+
+    /* ─── SUBMIT ─── */
+    .submit-section { padding:48px 0 0; }
+    .submit-preview { background:linear-gradient(135deg,#0d0d12 0%,#1a1a3a 100%); border-radius:24px; padding:40px; margin-bottom:28px; position:relative; overflow:hidden; }
+    .submit-preview::before { content:''; position:absolute; top:-60px; right:-60px; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle,rgba(124,58,237,0.28),transparent 70%); }
+    .submit-preview-inner { position:relative; z-index:1; }
+    .submit-preview h2 { font-size:28px; font-weight:900; color:#fff; margin-bottom:10px; letter-spacing:-0.5px; }
+    .submit-preview p { font-size:15px; color:rgba(255,255,255,0.55); margin-bottom:28px; line-height:1.6; }
+    .submit-btns { display:flex; gap:14px; flex-wrap:wrap; }
+    .btn-submit-mail { display:inline-flex; align-items:center; gap:8px; padding:14px 28px; border-radius:999px; font-size:15px; font-weight:700; background:var(--accent); color:#fff; border:none; cursor:pointer; font-family:'Inter',sans-serif; transition:var(--transition); }
+    .btn-submit-mail:hover { background:#6d28d9; transform:translateY(-1px); }
+    .btn-submit-wa { display:inline-flex; align-items:center; gap:8px; padding:14px 28px; border-radius:999px; font-size:15px; font-weight:700; background:#22c55e; color:#fff; border:none; cursor:pointer; font-family:'Inter',sans-serif; transition:var(--transition); }
+    .btn-submit-wa:hover { background:#16a34a; transform:translateY(-1px); }
+    .submit-note { font-size:13px; color:var(--text-muted); line-height:1.6; }
+    .submit-note a { color:var(--accent); text-decoration:none; font-weight:600; }
+
+    /* ─── FOOTER ─── */
+    .footer-simple { background:var(--bg-dark); padding:40px 24px; text-align:center; margin-top:80px; }
+    .footer-simple p { font-size:13px; color:rgba(255,255,255,0.3); }
+    .footer-simple a { color:rgba(255,255,255,0.5); text-decoration:none; }
+    .footer-simple a:hover { color:#fff; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="logo-circuit.png" alt="E.Com Connect" />
+  </a>
+  <a href="index.html" class="nav-back">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Retour au site
+  </a>
+  <a href="tarifs.html" class="nav-cta">Voir les tarifs</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">🎓 Brief formation · ~8 min</div>
+  <h1>Décrivez votre projet<br><span>de formation.</span></h1>
+  <p>Remplissez ce brief une seule fois. Je crée vos supports pédagogiques sur mesure — PDF, PowerPoint, quiz, e-learning.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><div class="hero-meta-dot" style="background:#10b981"></div>Livraison sous 5–7 jours</div>
+    <div class="hero-meta-item"><div class="hero-meta-dot" style="background:#7c3aed"></div>5 étapes · ~8 min</div>
+    <div class="hero-meta-item"><div class="hero-meta-dot" style="background:#f59e0b"></div>Devis gratuit sous 24h</div>
+  </div>
+</div>
+
+<!-- PROGRESS BAR -->
+<div class="progress-wrap">
+  <div class="progress-bar" id="progressBar">
+    <div class="prog-step">
+      <div class="prog-step-inner">
+        <div class="prog-dot active" id="dot-1" onclick="goToStep(1)">1</div>
+        <span class="prog-label active" id="lbl-1">Profil</span>
+      </div>
+      <div class="prog-line" id="line-1"></div>
+    </div>
+    <div class="prog-step">
+      <div class="prog-step-inner">
+        <div class="prog-dot" id="dot-2" onclick="goToStep(2)">2</div>
+        <span class="prog-label" id="lbl-2">Contact</span>
+      </div>
+      <div class="prog-line" id="line-2"></div>
+    </div>
+    <div class="prog-step">
+      <div class="prog-step-inner">
+        <div class="prog-dot" id="dot-3" onclick="goToStep(3)">3</div>
+        <span class="prog-label" id="lbl-3">Formation</span>
+      </div>
+      <div class="prog-line" id="line-3"></div>
+    </div>
+    <div class="prog-step">
+      <div class="prog-step-inner">
+        <div class="prog-dot" id="dot-4" onclick="goToStep(4)">4</div>
+        <span class="prog-label" id="lbl-4">Livrables</span>
+      </div>
+      <div class="prog-line" id="line-4"></div>
+    </div>
+    <div class="prog-step">
+      <div class="prog-step-inner">
+        <div class="prog-dot" id="dot-5" onclick="goToStep(5)">5</div>
+        <span class="prog-label" id="lbl-5">Envoi</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FORM -->
+<div class="main">
+
+  <!-- ═══ STEP 1 — PROFIL ═══ -->
+  <div class="form-step active" id="step-1">
+    <div class="step-header">
+      <div class="step-num">Étape 01 / 05</div>
+      <h2 class="step-title">Votre profil <span class="step-badge required">Obligatoire</span></h2>
+      <p class="step-desc">Qui êtes-vous ? Cela nous aide à adapter le style et le niveau de vos supports pédagogiques.</p>
+    </div>
+
+    <div class="form-section-label">Vous êtes…</div>
+    <div class="radio-group" style="margin-bottom:24px;">
+      <input type="radio" class="radio-card" name="profil" id="p-formateur" value="Formateur indépendant" />
+      <label class="radio-label" for="p-formateur">
+        <div class="radio-dot"></div>
+        <div class="card-text">
+          <div class="card-icon" style="font-size:20px;margin-bottom:4px;">🧑‍🏫</div>
+          <div class="card-title">Formateur indépendant</div>
+          <div class="card-sub">Vous animez vos propres formations</div>
+        </div>
+      </label>
+
+      <input type="radio" class="radio-card" name="profil" id="p-organisme" value="Organisme de formation" />
+      <label class="radio-label" for="p-organisme">
+        <div class="radio-dot"></div>
+        <div class="card-text">
+          <div class="card-icon" style="font-size:20px;margin-bottom:4px;">🏢</div>
+          <div class="card-title">Organisme de formation</div>
+          <div class="card-sub">Structure certifiée Qualiopi ou en cours</div>
+        </div>
+      </label>
+
+      <input type="radio" class="radio-card" name="profil" id="p-entreprise" value="Entreprise (formation interne)" />
+      <label class="radio-label" for="p-entreprise">
+        <div class="radio-dot"></div>
+        <div class="card-text">
+          <div class="card-icon" style="font-size:20px;margin-bottom:4px;">🏭</div>
+          <div class="card-title">Entreprise</div>
+          <div class="card-sub">Formation interne de vos équipes</div>
+        </div>
+      </label>
+
+      <input type="radio" class="radio-card" name="profil" id="p-coach" value="Coach / Consultant" />
+      <label class="radio-label" for="p-coach">
+        <div class="radio-dot"></div>
+        <div class="card-text">
+          <div class="card-icon" style="font-size:20px;margin-bottom:4px;">🎯</div>
+          <div class="card-title">Coach / Consultant</div>
+          <div class="card-sub">Accompagnement individuel ou groupe</div>
+        </div>
+      </label>
+    </div>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="org-name">Nom de votre structure / marque <span class="req">*</span></label>
+        <input type="text" id="org-name" placeholder="Ex : FormaPro, Cabinet Dupont, Mon Auto-Entreprise…" />
+      </div>
+      <div class="form-group">
+        <label for="org-sector">Domaine de formation <span class="req">*</span></label>
+        <input type="text" id="org-sector" placeholder="Ex : Management, Excel, Hygiène alimentaire, RH…" />
+      </div>
+      <div class="form-group full">
+        <label for="org-desc">Décrivez votre activité <span class="tip">En quelques phrases</span></label>
+        <textarea id="org-desc" rows="3" placeholder="Ex : Je suis formatrice en communication professionnelle depuis 8 ans. J'interviens auprès de PME pour améliorer la cohésion d'équipe et la prise de parole en public…"></textarea>
+      </div>
+    </div>
+
+    <div class="step-nav">
+      <span class="step-counter">Étape 1 sur 5</span>
+      <button class="btn-next" onclick="goToStep(2)">Continuer <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 2l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 2 — CONTACT ═══ -->
+  <div class="form-step" id="step-2">
+    <div class="step-header">
+      <div class="step-num">Étape 02 / 05</div>
+      <h2 class="step-title">Vos coordonnées <span class="step-badge required">Obligatoire</span></h2>
+      <p class="step-desc">Pour vous envoyer votre devis et rester en contact tout au long du projet.</p>
+    </div>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="contact-nom">Votre nom complet <span class="req">*</span></label>
+        <input type="text" id="contact-nom" placeholder="Prénom Nom" />
+      </div>
+      <div class="form-group">
+        <label for="contact-phone">Téléphone <span class="req">*</span></label>
+        <input type="tel" id="contact-phone" placeholder="06 XX XX XX XX" />
+      </div>
+      <div class="form-group">
+        <label for="contact-email">Email professionnel <span class="req">*</span></label>
+        <input type="email" id="contact-email" placeholder="vous@votredomaine.fr" />
+      </div>
+      <div class="form-group">
+        <label for="contact-ville">Ville / département</label>
+        <input type="text" id="contact-ville" placeholder="Ex : Lens (62), Paris, Lyon…" />
+      </div>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn-prev" onclick="goToStep(1)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Retour</button>
+      <span class="step-counter">Étape 2 sur 5</span>
+      <button class="btn-next" onclick="goToStep(3)">Continuer <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 2l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 3 — FORMATION ═══ -->
+  <div class="form-step" id="step-3">
+    <div class="step-header">
+      <div class="step-num">Étape 03 / 05</div>
+      <h2 class="step-title">Votre formation <span class="step-badge required">Important</span></h2>
+      <p class="step-desc">Parlez-moi du contenu et du public de votre formation. C'est la base pour créer des supports adaptés.</p>
+    </div>
+
+    <div class="form-grid cols-1">
+      <div class="form-group">
+        <label for="form-titre">Titre de la formation <span class="req">*</span></label>
+        <input type="text" id="form-titre" placeholder="Ex : Maîtriser Excel en 2 jours, Prise de parole en public, Réseaux sociaux pour les pros…" />
+      </div>
+      <div class="form-group">
+        <label for="form-objectif">Objectif principal de la formation <span class="req">*</span></label>
+        <textarea id="form-objectif" rows="3" placeholder="Ex : À la fin de la formation, le stagiaire sera capable de créer des tableaux croisés dynamiques, rédiger des formules complexes et automatiser ses rapports Excel."></textarea>
+      </div>
+      <div class="form-group">
+        <label for="form-plan">Plan / sommaire de la formation <span class="tip">Les grandes parties ou modules</span></label>
+        <textarea id="form-plan" rows="5" placeholder="Ex :&#10;Module 1 — Prise en main d'Excel (bases, interface)&#10;Module 2 — Formules et fonctions essentielles&#10;Module 3 — Tableaux croisés dynamiques&#10;Module 4 — Mise en forme et impression&#10;Module 5 — Exercices pratiques et évaluation"></textarea>
+        <div class="char-counter"><span id="cc-plan">0</span> caractères</div>
+      </div>
+    </div>
+
+    <div class="form-sep"></div>
+    <div class="form-section-label">Public et contexte</div>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="form-public">Public cible <span class="req">*</span></label>
+        <select id="form-public">
+          <option value="">— Choisissez —</option>
+          <option>Salariés en entreprise</option>
+          <option>Demandeurs d'emploi</option>
+          <option>Entrepreneurs / indépendants</option>
+          <option>Étudiants / lycéens</option>
+          <option>Grand public</option>
+          <option>Professionnels de santé</option>
+          <option>Artisans / commerçants</option>
+          <option>Autre</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="form-niveau">Niveau des apprenants</label>
+        <select id="form-niveau">
+          <option value="">— Choisissez —</option>
+          <option>Débutant (zéro connaissance préalable)</option>
+          <option>Intermédiaire (bases acquises)</option>
+          <option>Avancé (pratique régulière)</option>
+          <option>Mixte (groupes hétérogènes)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="form-participants">Nombre de participants typique</label>
+        <select id="form-participants">
+          <option value="">— Indifférent</option>
+          <option>1 personne (individuel)</option>
+          <option>2 à 5 personnes</option>
+          <option>6 à 15 personnes</option>
+          <option>16 à 30 personnes</option>
+          <option>Plus de 30 personnes</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="form-duree">Durée de la formation</label>
+        <select id="form-duree">
+          <option value="">— Non défini</option>
+          <option>Moins d'1 heure (webinaire, atelier)</option>
+          <option>Demi-journée (3h)</option>
+          <option>1 journée (7h)</option>
+          <option>2 journées (14h)</option>
+          <option>3 jours et plus</option>
+          <option>Formation longue (+35h)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="form-modalite">Modalité de formation</label>
+        <select id="form-modalite">
+          <option value="">— Choisissez —</option>
+          <option>Présentiel uniquement</option>
+          <option>Distanciel (visio)</option>
+          <option>Hybride (présentiel + distanciel)</option>
+          <option>E-learning / auto-formation</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="form-contexte">Contexte particulier <span class="tip">Qualiopi, OPCO, CPF…</span></label>
+        <input type="text" id="form-contexte" placeholder="Ex : Financement OPCO Atlas, organisme Qualiopi, intra-entreprise…" />
+      </div>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn-prev" onclick="goToStep(2)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Retour</button>
+      <span class="step-counter">Étape 3 sur 5</span>
+      <button class="btn-next" onclick="goToStep(4)">Continuer <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 2l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 4 — LIVRABLES ═══ -->
+  <div class="form-step" id="step-4">
+    <div class="step-header">
+      <div class="step-num">Étape 04 / 05</div>
+      <h2 class="step-title">Supports souhaités <span class="step-badge required">Important</span></h2>
+      <p class="step-desc">Quels supports devons-nous créer ? Cochez tout ce dont vous avez besoin.</p>
+    </div>
+
+    <div class="info-box purple">
+      <span class="info-icon">💡</span>
+      <div class="info-text"><strong>Pas sûr ?</strong> Cochez ce qui vous semble pertinent — on discutera ensemble de la meilleure combinaison lors du devis.</div>
+    </div>
+
+    <div class="form-section-label">Supports principaux</div>
+    <div class="card-group" style="margin-bottom:24px;">
+      <input type="checkbox" class="card-check" id="liv-pdf" value="Support PDF stagiaire (résumé de cours)" />
+      <label class="card-label" for="liv-pdf">
+        <span class="card-icon">📄</span>
+        <div class="card-text"><div class="card-title">Support PDF stagiaire</div><div class="card-sub">Polycopié / résumé de cours à distribuer</div></div>
+        <div class="card-check-mark"></div>
+      </label>
+
+      <input type="checkbox" class="card-check" id="liv-ppt" value="Présentation PowerPoint / Google Slides animée" />
+      <label class="card-label" for="liv-ppt">
+        <span class="card-icon">📊</span>
+        <div class="card-text"><div class="card-title">Présentation animée</div><div class="card-sub">PowerPoint ou Google Slides professionnel</div></div>
+        <div class="card-check-mark"></div>
+      </label>
+
+      <input type="checkbox" class="card-check" id="liv-quiz" value="Quiz / QCM d'évaluation" />
+      <label class="card-label" for="liv-quiz">
+        <span class="card-icon">✅</span>
+        <div class="card-text"><div class="card-title">Quiz / QCM d'évaluation</div><div class="card-sub">Test de connaissances final ou intermédiaire</div></div>
+        <div class="card-check-mark"></div>
+      </label>
+
+      <input type="checkbox" class="card-check" id="liv-elearning" value="Module e-learning interactif (SCORM/HTML)" />
+      <label class="card-label" for="liv-elearning">
+        <span class="card-icon">💻</span>
+        <div class="card-text"><div class="card-title">Module e-learning interactif</div><div class="card-sub">Compatible LMS, SCORM ou page web</div></div>
+        <div class="card-check-mark"></div>
+      </label>
+
+      <input type="checkbox" class="card-check" id="liv-fiche" value="Fiches mémo / fiches synthèse" />
+      <label class="card-label" for="liv-fiche">
+        <span class="card-icon">🗒️</span>
+        <div class="card-text"><div class="card-title">Fiches mémo / synthèse</div><div class="card-sub">Résumés rapides format A5 ou A4</div></div>
+        <div class="card-check-mark"></div>
+      </label>
+
+      <input type="checkbox" class="card-check" id="liv-guide" value="Guide formateur (guide pédagogique)" />
+      <label class="card-label" for="liv-guide">
+        <span class="card-icon">📘</span>
+        <div class="card-text"><div class="card-title">Guide formateur</div><div class="card-sub">Déroulé pédagogique, timings, consignes</div></div>
+        <div class="card-check-mark"></div>
+      </label>
+
+      <input type="checkbox" class="card-check" id="liv-exos" value="Exercices pratiques / cas pratiques" />
+      <label class="card-label" for="liv-exos">
+        <span class="card-icon">📝</span>
+        <div class="card-text"><div class="card-title">Exercices pratiques</div><div class="card-sub">Cas pratiques, mises en situation, ateliers</div></div>
+        <div class="card-check-mark"></div>
+      </label>
+
+      <input type="checkbox" class="card-check" id="liv-certif" value="Attestation de formation / certificat" />
+      <label class="card-label" for="liv-certif">
+        <span class="card-icon">🏅</span>
+        <div class="card-text"><div class="card-title">Attestation / certificat</div><div class="card-sub">Document officiel remis aux stagiaires</div></div>
+        <div class="card-check-mark"></div>
+      </label>
+    </div>
+
+    <div class="form-sep"></div>
+    <div class="form-section-label">Budget & délais</div>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="budget">Budget envisagé</label>
+        <select id="budget">
+          <option value="">— Pas encore défini</option>
+          <option value="Moins de 300€">Moins de 300€</option>
+          <option value="300€ – 500€">300€ – 500€ (Starter)</option>
+          <option value="500€ – 800€">500€ – 800€</option>
+          <option value="Plus de 800€">Plus de 800€ (Pack complet)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="deadline">Délai souhaité</label>
+        <select id="deadline">
+          <option value="">— Peu importe</option>
+          <option value="Urgent — sous 72h">Urgent — sous 72h</option>
+          <option value="Dans la semaine">Dans la semaine</option>
+          <option value="Dans les 2 semaines">Dans les 2 semaines</option>
+          <option value="Dans le mois">Dans le mois</option>
+          <option value="Pas de rush">Pas de rush</option>
+        </select>
+      </div>
+      <div class="form-group full">
+        <label for="extra">Informations complémentaires <span class="tip">Contexte, contraintes, références de style…</span></label>
+        <textarea id="extra" rows="4" placeholder="Ex : J'ai déjà une charte graphique (logo, couleurs). Je souhaite un style sobre et professionnel. Mes formations sont financées OPCO donc j'ai besoin de documents conformes…"></textarea>
+      </div>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn-prev" onclick="goToStep(3)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Retour</button>
+      <span class="step-counter">Étape 4 sur 5</span>
+      <button class="btn-next" onclick="goToStep(5)">Continuer <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 2l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 5 — ENVOI ═══ -->
+  <div class="form-step" id="step-5">
+    <div class="step-header">
+      <div class="step-num">Étape 05 / 05</div>
+      <h2 class="step-title">Récapitulatif & envoi</h2>
+      <p class="step-desc">Votre brief est prêt. Envoyez-le par email ou WhatsApp — je vous reviens avec un devis sous 24h.</p>
+    </div>
+
+    <div class="info-box green">
+      <span class="info-icon">✅</span>
+      <div class="info-text"><strong>Tout est prêt !</strong> Cliquez sur le bouton de votre choix. Votre brief s'ouvre dans votre application email ou WhatsApp — il ne reste plus qu'à envoyer.</div>
+    </div>
+
+    <!-- SUBMIT -->
+    <div class="submit-section">
+      <div class="submit-preview">
+        <div class="submit-preview-inner">
+          <h2>Prêt à envoyer votre brief ?</h2>
+          <p>Je reviens vers vous sous 24h avec un devis personnalisé et détaillé pour vos supports de formation.</p>
+          <div class="submit-btns">
+            <button class="btn-submit-mail" onclick="submitByEmail()">
+              📧 Envoyer par Email
+            </button>
+            <button class="btn-submit-wa" onclick="submitByWhatsapp()">
+              💬 Envoyer par WhatsApp
+            </button>
+          </div>
+        </div>
+      </div>
+      <p class="submit-note">
+        Aucune donnée n'est stockée sur un serveur tiers. Votre brief s'envoie directement depuis votre appareil.<br>
+        <a href="politique-confidentialite.html">Politique de confidentialité</a> · <a href="mentions-legales.html">Mentions légales</a>
+      </p>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn-prev" onclick="goToStep(4)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Retour</button>
+      <span class="step-counter">Étape 5 sur 5</span>
+      <span></span>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<!-- FOOTER -->
+<footer class="footer-simple">
+  <p>© 2026 e.com connect — Lens (62) &nbsp;·&nbsp; <a href="mentions-legales.html">Mentions légales</a> &nbsp;·&nbsp; <a href="mailto:contact@e-comconnect.com">contact@e-comconnect.com</a> &nbsp;·&nbsp; <a href="tel:0652863695">06 52 86 36 95</a></p>
+</footer>
+
+<script>
+  let currentStep = 1;
+  const totalSteps = 5;
+
+  function goToStep(n) {
+    if (n < 1 || n > totalSteps) return;
+    document.getElementById('step-' + currentStep).classList.remove('active');
+    currentStep = n;
+    document.getElementById('step-' + currentStep).classList.add('active');
+    updateProgress();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function updateProgress() {
+    for (let i = 1; i <= totalSteps; i++) {
+      const dot = document.getElementById('dot-' + i);
+      const lbl = document.getElementById('lbl-' + i);
+      const line = document.getElementById('line-' + i);
+      dot.classList.remove('active', 'done');
+      if (lbl) lbl.classList.remove('active', 'done');
+      if (line) line.classList.remove('done');
+      if (i < currentStep) {
+        dot.classList.add('done');
+        if (lbl) lbl.classList.add('done');
+        if (line) line.classList.add('done');
+      } else if (i === currentStep) {
+        dot.classList.add('active');
+        if (lbl) lbl.classList.add('active');
+      }
+    }
+  }
+
+  // Char counter
+  document.getElementById('form-plan').addEventListener('input', function() {
+    document.getElementById('cc-plan').textContent = this.value.length;
+  });
+
+  // Collect form data
+  function collectData() {
+    const get = id => (document.getElementById(id)?.value || '').trim();
+    const checks = ids => ids.map(id => {
+      const el = document.getElementById(id);
+      return el?.checked ? el.value : null;
+    }).filter(Boolean).join('\n  - ') || 'Aucun';
+    const radioVal = name => document.querySelector(`input[name="${name}"]:checked`)?.value || 'Non précisé';
+
+    return `══════════════════════════════════
+BRIEF FORMATION — E.COM CONNECT
+══════════════════════════════════
+
+▌ 01 — PROFIL
+Type : ${radioVal('profil')}
+Structure / Marque : ${get('org-name')}
+Domaine de formation : ${get('org-sector')}
+Description : ${get('org-desc') || 'Non précisé'}
+
+▌ 02 — CONTACT
+Nom : ${get('contact-nom')}
+Téléphone : ${get('contact-phone')}
+Email : ${get('contact-email')}
+Ville : ${get('contact-ville') || 'Non précisé'}
+
+▌ 03 — FORMATION
+Titre : ${get('form-titre')}
+Objectif : ${get('form-objectif')}
+Plan / Modules :
+${get('form-plan') || 'Non précisé'}
+Public cible : ${get('form-public') || 'Non précisé'}
+Niveau apprenants : ${get('form-niveau') || 'Non précisé'}
+Nombre participants : ${get('form-participants') || 'Non précisé'}
+Durée : ${get('form-duree') || 'Non précisé'}
+Modalité : ${get('form-modalite') || 'Non précisé'}
+Contexte (Qualiopi, OPCO…) : ${get('form-contexte') || 'Aucun'}
+
+▌ 04 — SUPPORTS SOUHAITÉS
+  - ${checks(['liv-pdf','liv-ppt','liv-quiz','liv-elearning','liv-fiche','liv-guide','liv-exos','liv-certif'])}
+
+▌ 05 — BUDGET & DÉLAIS
+Budget : ${get('budget') || 'Non défini'}
+Délai : ${get('deadline') || 'Non défini'}
+Infos complémentaires : ${get('extra') || 'Aucune'}
+
+──────────────────────────────────
+Envoyé depuis checklist-formation.html — e-comconnect.com
+══════════════════════════════════`;
+  }
+
+  function submitByEmail() {
+    const data = collectData();
+    const subject = encodeURIComponent('Brief formation — ' + (document.getElementById('org-name')?.value || 'Nouveau projet'));
+    const body = encodeURIComponent(data);
+    window.location.href = `mailto:contact@e-comconnect.com?subject=${subject}&body=${body}`;
+  }
+
+  function submitByWhatsapp() {
+    const data = collectData();
+    const msg = encodeURIComponent('Bonjour, voici mon brief formation :\n\n' + data);
+    window.open(`https://wa.me/33652863695?text=${msg}`, '_blank');
+  }
+</script>
+
+</body>
+</html>

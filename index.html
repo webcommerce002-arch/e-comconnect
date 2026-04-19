@@ -1306,7 +1306,7 @@
       <li><a href="#faq">FAQ</a></li>
     </ul>
     <div class="nav-cta">
-      <a href="checklist-client.html" class="btn btn-outline">Démarrer mon projet</a>
+      <button class="btn btn-outline" onclick="openProjectModal()">Démarrer mon projet</button>
       <a href="#questionnaire" class="btn btn-primary">Devis gratuit</a>
     </div>
     <div class="hamburger" id="hamburger" onclick="toggleMenu()">
@@ -1323,8 +1323,8 @@
     <a href="pourquoi-avoir-un-site.html" onclick="toggleMenu()">Pourquoi un site ?</a>
     <a href="#avis" onclick="toggleMenu()">Avis clients</a>
     <a href="#faq" onclick="toggleMenu()">FAQ</a>
-    <a href="checklist-client.html" onclick="toggleMenu()">Démarrer mon projet</a>
-    <a href="checklist-client.html" class="btn btn-primary" onclick="toggleMenu()">Démarrer mon projet →</a>
+    <a href="#" onclick="toggleMenu(); openProjectModal(); return false;">Démarrer mon projet</a>
+    <button class="btn btn-primary" onclick="toggleMenu(); openProjectModal()">Démarrer mon projet →</button>
   </div>
 
   <!-- ─── HERO ─── -->
@@ -3336,6 +3336,69 @@
   window.ecSend = ecSend
   window.ecUser = ecUser
   })();
+  </script>
+
+  <!-- ─── MODAL CHOIX PROJET ─── -->
+  <div id="projectModal" style="display:none;position:fixed;inset:0;z-index:9999;align-items:center;justify-content:center;padding:24px;">
+    <!-- Backdrop -->
+    <div onclick="closeProjectModal()" style="position:absolute;inset:0;background:rgba(6,9,20,0.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);"></div>
+    <!-- Card -->
+    <div style="position:relative;z-index:1;background:#f8f7f4;border-radius:28px;padding:48px 40px;max-width:680px;width:100%;box-shadow:0 32px 80px rgba(0,0,0,0.5);">
+      <!-- Close -->
+      <button onclick="closeProjectModal()" style="position:absolute;top:20px;right:20px;width:36px;height:36px;border-radius:50%;border:none;background:rgba(0,0,0,0.07);cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;color:#555;font-family:inherit;">✕</button>
+      <!-- Header -->
+      <div style="text-align:center;margin-bottom:36px;">
+        <div style="display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#2563eb;background:rgba(37,99,235,0.08);padding:5px 14px;border-radius:999px;margin-bottom:16px;">Démarrer mon projet</div>
+        <h2 style="font-family:'Outfit',sans-serif;font-size:clamp(22px,3.5vw,32px);font-weight:900;letter-spacing:-0.8px;color:#0d0d0d;line-height:1.15;margin-bottom:8px;">Quel type de projet<br>souhaitez-vous lancer ?</h2>
+        <p style="font-size:15px;color:#6b7280;line-height:1.5;">Choisissez votre catégorie pour accéder au formulaire adapté.</p>
+      </div>
+      <!-- Choices -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+
+        <!-- Option 1 — Site / Boutique -->
+        <a href="checklist-client.html" style="text-decoration:none;display:block;padding:28px 24px;border-radius:20px;border:2px solid #e5e7eb;background:#fff;transition:all 0.22s cubic-bezier(0.4,0,0.2,1);cursor:pointer;"
+          onmouseover="this.style.borderColor='#2563eb';this.style.transform='translateY(-3px)';this.style.boxShadow='0 12px 32px rgba(37,99,235,0.14)'"
+          onmouseout="this.style.borderColor='#e5e7eb';this.style.transform='';this.style.boxShadow=''">
+          <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#2563eb,#1d4ed8);display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:16px;">🌐</div>
+          <div style="font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:#0d0d0d;margin-bottom:6px;letter-spacing:-0.3px;">Site vitrine<br>/ Boutique en ligne</div>
+          <p style="font-size:13px;color:#6b7280;line-height:1.5;margin-bottom:16px;">Créer ou refaire votre site web professionnel optimisé Google.</p>
+          <div style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:#2563eb;">Démarrer le brief <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 2l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </a>
+
+        <!-- Option 2 — Formation -->
+        <a href="checklist-formation.html" style="text-decoration:none;display:block;padding:28px 24px;border-radius:20px;border:2px solid #e5e7eb;background:#fff;transition:all 0.22s cubic-bezier(0.4,0,0.2,1);cursor:pointer;"
+          onmouseover="this.style.borderColor='#7c3aed';this.style.transform='translateY(-3px)';this.style.boxShadow='0 12px 32px rgba(124,58,237,0.14)'"
+          onmouseout="this.style.borderColor='#e5e7eb';this.style.transform='';this.style.boxShadow=''">
+          <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#7c3aed,#6d28d9);display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:16px;">🎓</div>
+          <div style="font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:#0d0d0d;margin-bottom:6px;letter-spacing:-0.3px;">Projet de<br>formation</div>
+          <p style="font-size:13px;color:#6b7280;line-height:1.5;margin-bottom:16px;">Créer vos supports de formation : PDF, PowerPoint, quiz, e-learning.</p>
+          <div style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:#7c3aed;">Démarrer le brief <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 2l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </a>
+      </div>
+      <p style="text-align:center;margin-top:24px;font-size:13px;color:#9ca3af;">Pas sûr de votre choix ? <a href="tel:0652863695" style="color:#2563eb;font-weight:600;text-decoration:none;">Appelez-nous directement →</a></p>
+    </div>
+  </div>
+
+  <style>
+    #projectModal.open { display:flex !important; }
+    @media(max-width:560px) {
+      #projectModal > div:last-child { padding:32px 24px; border-radius:20px; }
+      #projectModal > div:last-child > div[style*="grid-template-columns"] { grid-template-columns:1fr !important; }
+    }
+  </style>
+
+  <script>
+    function openProjectModal() {
+      const m = document.getElementById('projectModal');
+      m.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeProjectModal() {
+      const m = document.getElementById('projectModal');
+      m.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if(e.key === 'Escape') closeProjectModal(); });
   </script>
 
 </body>
