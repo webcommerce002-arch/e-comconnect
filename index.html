@@ -1137,24 +1137,18 @@
         border-right: 1px solid rgba(255,255,255,0.1) !important;
         border-top: none !important;
       }
-      /* ── TABLE COMPARATIF : scroll horizontal, colonne WP visible ── */
-      .section-why { overflow: visible; touch-action: pan-y; }
+      /* ── TABLE COMPARATIF : 3 colonnes dans l'écran, sans scroll horizontal ── */
+      .section-why { overflow: visible; }
       .comparison-wrap {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: auto;
-        overscroll-behavior-x: contain;
-        scrollbar-width: none;
+        overflow: visible;
         position: relative;
-        touch-action: pan-x;
       }
-      .comparison-wrap::-webkit-scrollbar { display: none; }
-      .comp-table { min-width: 460px; grid-template-columns: 30% 40% 30%; }
-      /* Indicateur swipe */
-      .comparison-wrap::after {
-        content: "← Glisser pour voir WordPress →";
-        display: block; margin-top: 10px; text-align: center;
-        font-size: 11px; color: #6b7280; font-style: italic;
-      }
+      .comp-table { width: 100%; grid-template-columns: 28% 42% 30%; }
+      .comp-th { padding: 14px 10px; font-size: 12px; }
+      .comp-td { padding: 12px 10px; font-size: 12px; }
+      .c-pill { font-size: 11px; padding: 3px 8px; }
+      .c-check, .c-cross { font-size: 14px; }
+      .comp-ecom-hl { display: none; }
 
       /* ── FEATURE IMAGES : centrer sur mobile ── */
       .section-feature .reveal-right img,
