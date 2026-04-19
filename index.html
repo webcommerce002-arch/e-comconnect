@@ -1134,8 +1134,14 @@
       }
       .hero-stat:last-child { border-right: none !important; }
       /* Table comparatif : scrollable sur mobile */
-      .comparison-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-      .comp-table { min-width: 440px; }
+      /* Table : 2 colonnes sur mobile, WordPress masqué */
+      .th-wp, .td-wp { display: none; }
+      .comp-table { grid-template-columns: 42% 58%; }
+      .comparison-wrap::after {
+        content: "✦ 100% meilleures performances vs WordPress";
+        display: block; margin-top: 14px; text-align: center;
+        font-size: 12px; font-weight: 700; color: #2563eb; letter-spacing: 0.3px;
+      }
 
       .why-inner, .feature-layout, .questionnaire-layout, .contact-layout { grid-template-columns: 1fr; gap: 40px; }
       .comparatif-grid { grid-template-columns: 1fr !important; }
@@ -1166,9 +1172,7 @@
     @media (max-width: 480px) {
       .services-grid { grid-template-columns: 1fr !important; }
       .services-sub-grid { grid-template-columns: 1fr !important; }
-      .hero-stats { grid-template-columns: 1fr; }
-      .hero-stat { border-right: none !important; border-top: 1px solid rgba(255,255,255,0.07); }
-      .hero-stat:first-child { border-top: none; }
+      /* hero-stats reste en flex scroll horizontal même sur petit mobile */
       .options-grid { grid-template-columns: 1fr !important; }
     }
 
@@ -2663,21 +2667,24 @@
     });
 
     // ─── STATS AUTO-SCROLL (mobile uniquement) ───
-    if(window.innerWidth <= 768) {
-      const stats = document.querySelector('.hero-stats');
-      if(stats) {
-        const items = stats.querySelectorAll('.hero-stat');
-        let idx = 0;
-        let paused = false;
-        // Pause si l'utilisateur touche la barre
-        stats.addEventListener('touchstart', () => { paused = true; }, { passive: true });
-        setInterval(() => {
-          if(paused) return;
-          idx = (idx + 1) % items.length;
-          stats.scrollTo({ left: items[idx].offsetLeft, behavior: 'smooth' });
-        }, 2000);
+    (function(){
+      if(window.innerWidth > 768) return;
+      var stats = document.querySelector('.hero-stats');
+      if(!stats) return;
+      var paused = false;
+      var pos = 0;
+      stats.addEventListener('touchstart', function(){ paused = true; }, { passive: true });
+      function tick(){
+        if(!paused){
+          pos += 0.6;
+          var max = stats.scrollWidth - stats.clientWidth;
+          if(pos >= max) pos = 0;
+          stats.scrollLeft = pos;
+        }
+        requestAnimationFrame(tick);
       }
-    }
+      setTimeout(function(){ requestAnimationFrame(tick); }, 600);
+    })();
   </script>
 
   <!-- ═══════════════════════════════════════════
