@@ -115,6 +115,7 @@
     <img src="logo-circuit.png" style="height:72px;filter:drop-shadow(0 0 8px rgba(255,255,255,0.7)) drop-shadow(0 0 20px rgba(255,255,255,0.35)) brightness(1.15);" alt="e.com connect" />
   </a>
   <ul class="nav-links">
+    <li><a href="index.html">Accueil</a></li>
     <li><a href="services.html" class="active">Services</a></li>
     <li><a href="index.html#methode">Méthode</a></li>
     <li><a href="tarifs.html">Tarifs</a></li>
@@ -142,7 +143,7 @@
     <h1>Tout ce qu'on peut<br><span class="highlight">faire pour vous.</span></h1>
     <p>Sites web sur-mesure, audit digital complet, supports de formation — une offre pensée pour les professionnels qui veulent aller plus loin.</p>
     <div class="page-hero-actions">
-      <a href="index.html#contact" class="btn btn-primary btn-lg">Demander un devis →</a>
+      <button onclick="openProjectModal()" class="btn btn-primary btn-lg">Démarrer mon projet →</button>
       <a href="tarifs.html" class="btn btn-outline btn-lg">Voir les tarifs</a>
     </div>
   </div>
@@ -167,7 +168,7 @@
           <h2>Votre présence en ligne,<br>construite pour durer.</h2>
           <p>Sites vitrines, landing pages, refontes — chaque projet est conçu sur-mesure, optimisé pour Google et livré clé en main. Aucun template, aucun plugin.</p>
           <div class="hero-cta-row">
-            <button onclick="openModal('web')" class="btn-white"><i class="ph-duotone ph-paper-plane-right"></i> Demander un devis</button>
+            <button href="checklist-client.html" class="btn-white"><i class="ph-duotone ph-paper-plane-right"></i> Demander un devis</button>
             <a href="tarifs.html" class="btn-ghost-white"><i class="ph-duotone ph-tag"></i> Voir les tarifs</a>
           </div>
         </div>
@@ -228,7 +229,7 @@
           <h2>4 livrables.<br>Une journée de formation parfaite.</h2>
           <p>La formatrice présente avec confiance. Les participants travaillent avec leur support. Tout le monde repart avec un book complet et un certificat. Clé en main, livré en 5–7 jours.</p>
           <div class="hero-cta-row">
-            <button onclick="openModal('formation')" class="btn-white"><i class="ph-duotone ph-paper-plane-right"></i> Demander un devis</button>
+            <a href="checklist-formation.html" class="btn-white"><i class="ph-duotone ph-paper-plane-right"></i> Demander un devis</a>
             <a href="tel:0652863695" class="btn-ghost-white"><i class="ph-duotone ph-phone"></i> En parler directement</a>
           </div>
         </div>
@@ -357,7 +358,7 @@
     <h2>Quel service vous correspond ?</h2>
     <p>Devis gratuit sous 24h — on vous guide vers la meilleure solution.</p>
     <div class="cta-strip-actions">
-      <button onclick="openModal('web')" class="btn btn-primary btn-lg">Obtenir mon devis gratuit →</button>
+      <a href="checklist-client.html" class="btn btn-primary btn-lg">Obtenir mon devis gratuit →</a>
       <a href="tarifs.html" class="btn btn-outline btn-lg">Voir les tarifs</a>
     </div>
   </div>
@@ -456,7 +457,16 @@
     document.getElementById('contact-modal').style.display = 'none';
     document.body.style.overflow = '';
   }
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeProjectModal(); } });
+
+  function openProjectModal() {
+    document.getElementById('projectModal').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeProjectModal() {
+    document.getElementById('projectModal').style.display = 'none';
+    document.body.style.overflow = '';
+  }
 
   function submitModal(e) {
     e.preventDefault();
@@ -469,5 +479,44 @@
     window.location.href = 'mailto:contact@e-comconnect.com?subject=Demande de devis – ' + encodeURIComponent(badge) + '&body=' + encodeURIComponent(body);
   }
 </script>
+
+<!-- ─── MODAL CHOIX PROJET ─── -->
+<div id="projectModal" style="display:none;position:fixed;inset:0;z-index:9999;align-items:center;justify-content:center;padding:24px;">
+  <div onclick="closeProjectModal()" style="position:absolute;inset:0;background:rgba(6,9,20,0.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);"></div>
+  <div style="position:relative;z-index:1;background:#f8f7f4;border-radius:28px;padding:48px 40px;max-width:680px;width:100%;box-shadow:0 32px 80px rgba(0,0,0,0.5);">
+    <button onclick="closeProjectModal()" style="position:absolute;top:20px;right:20px;width:36px;height:36px;border-radius:50%;border:none;background:rgba(0,0,0,0.07);cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;color:#555;font-family:inherit;">✕</button>
+    <div style="text-align:center;margin-bottom:36px;">
+      <div style="display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#2563eb;background:rgba(37,99,235,0.08);padding:5px 14px;border-radius:999px;margin-bottom:16px;">Démarrer mon projet</div>
+      <h2 style="font-family:'Outfit',sans-serif;font-size:clamp(22px,3.5vw,32px);font-weight:900;letter-spacing:-0.8px;color:#0d0d0d;line-height:1.15;margin-bottom:8px;">Quel type de projet<br>souhaitez-vous lancer ?</h2>
+      <p style="font-size:15px;color:#6b7280;line-height:1.5;">Choisissez votre catégorie pour accéder au formulaire adapté.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+      <a href="checklist-client.html" style="text-decoration:none;display:block;padding:28px 24px;border-radius:20px;border:2px solid #e5e7eb;background:#fff;transition:all 0.22s cubic-bezier(0.4,0,0.2,1);"
+        onmouseover="this.style.borderColor='#2563eb';this.style.transform='translateY(-3px)';this.style.boxShadow='0 12px 32px rgba(37,99,235,0.14)'"
+        onmouseout="this.style.borderColor='#e5e7eb';this.style.transform='';this.style.boxShadow=''">
+        <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#2563eb,#1d4ed8);display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:16px;">🌐</div>
+        <div style="font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:#0d0d0d;margin-bottom:6px;letter-spacing:-0.3px;">Site vitrine<br>/ Boutique en ligne</div>
+        <p style="font-size:13px;color:#6b7280;line-height:1.5;margin-bottom:16px;">Créer ou refaire votre site web professionnel optimisé Google.</p>
+        <div style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:#2563eb;">Démarrer le brief <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 2l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+      <a href="checklist-formation.html" style="text-decoration:none;display:block;padding:28px 24px;border-radius:20px;border:2px solid #e5e7eb;background:#fff;transition:all 0.22s cubic-bezier(0.4,0,0.2,1);"
+        onmouseover="this.style.borderColor='#7c3aed';this.style.transform='translateY(-3px)';this.style.boxShadow='0 12px 32px rgba(124,58,237,0.14)'"
+        onmouseout="this.style.borderColor='#e5e7eb';this.style.transform='';this.style.boxShadow=''">
+        <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#7c3aed,#6d28d9);display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:16px;">🎓</div>
+        <div style="font-family:'Outfit',sans-serif;font-size:18px;font-weight:800;color:#0d0d0d;margin-bottom:6px;letter-spacing:-0.3px;">Projet de<br>formation</div>
+        <p style="font-size:13px;color:#6b7280;line-height:1.5;margin-bottom:16px;">Créer vos supports de formation : PDF, PowerPoint, quiz, e-learning.</p>
+        <div style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:#7c3aed;">Démarrer le brief <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 2l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </a>
+    </div>
+    <p style="text-align:center;margin-top:24px;font-size:13px;color:#9ca3af;">Pas sûr ? <a href="tel:0652863695" style="color:#2563eb;font-weight:600;text-decoration:none;">Appelez-nous →</a></p>
+  </div>
+</div>
+<style>
+  @media(max-width:560px) {
+    #projectModal > div:last-child { padding:32px 24px; }
+    #projectModal > div:last-child > div[style*="grid-template-columns"] { grid-template-columns:1fr !important; }
+  }
+</style>
+
 </body>
 </html>
