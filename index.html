@@ -1189,6 +1189,7 @@
       .stats-chiffres { grid-template-columns: 1fr !important; }
       .feature-layout.reverse { direction: ltr; }
       /* ── SERVICES : carousel horizontal ── */
+      .section-services { overflow: visible; }
       .services-grid {
         display: flex !important;
         overflow-x: auto;
@@ -1203,6 +1204,12 @@
       .services-grid .service-card {
         flex: 0 0 260px !important;
         scroll-snap-align: start;
+      }
+      /* Supprimer les animations sur les cards du carousel */
+      .services-grid .svc-cascade {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
       }
       .services-sub-grid { grid-template-columns: 1fr 1fr; }
       .testimonials-grid { grid-template-columns: 1fr; }
