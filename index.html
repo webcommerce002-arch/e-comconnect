@@ -1271,6 +1271,51 @@
       .services-grid { grid-template-columns: repeat(2, 1fr); }
       .footer-inner { grid-template-columns: 1fr 1fr; gap: 36px; }
     }
+
+    /* ─── TABLETTE : 769px – 960px ─── */
+    /* Nav → hamburger (comme mobile), contenu → reste en 2 colonnes */
+    @media (min-width: 769px) and (max-width: 960px) {
+      /* Navbar : passe en hamburger */
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .nav-cta .btn { display: none; }
+      .hamburger { display: flex; }
+
+      /* Container : padding réduit */
+      .container { padding: 0 32px; }
+
+      /* Hero */
+      .hero { padding: 110px 32px 80px; }
+      .hero-inner { padding: 0 !important; }
+
+      /* Feature sections : grille 2 colonnes mais gaps réduits */
+      .feature-layout { gap: 32px; }
+      .section-feature .reveal-right img,
+      .section-feature .reveal-left img {
+        max-width: 100%;
+        width: 100%;
+      }
+
+      /* Why / Comparatif */
+      .why-inner { gap: 32px; }
+      .comp-table { width: 100%; }
+
+      /* Trust / Témoignages */
+      .testimonials-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+
+      /* Questionnaire */
+      .questionnaire-layout { gap: 40px; }
+
+      /* Contact */
+      .contact-layout { gap: 32px; }
+
+      /* Footer */
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 28px; }
+
+      /* Overflow protection globale */
+      section, .section-feature, .section-why,
+      .section-trust, .section-services { overflow: hidden; }
+    }
     @media (max-width: 768px) {
       nav { padding: 0 20px; }
       .nav-links { display: none; }
