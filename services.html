@@ -257,100 +257,9 @@
       <a href="tarifs.html#formation" class="btn btn-blue btn-lg">Voir les tarifs →</a>
     </div>
 
-    <!-- ─── MINI FORMULAIRE FORMATION ─── -->
-    <div id="contact-formation" class="reveal" style="margin-top:48px;background:linear-gradient(135deg,#1e1b4b 0%,#312e81 100%);border-radius:24px;padding:48px 40px;max-width:640px;margin-left:auto;margin-right:auto;">
-      <div style="text-align:center;margin-bottom:32px;">
-        <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:999px;padding:6px 16px;margin-bottom:16px;">
-          <i class="ph-duotone ph-graduation-cap" style="color:#a5b4fc;font-size:14px;"></i>
-          <span style="font-size:12px;font-weight:700;color:rgba(255,255,255,0.8);letter-spacing:0.08em;text-transform:uppercase;">Supports de Formation</span>
-        </div>
-        <h3 style="font-family:'Outfit',sans-serif;font-size:clamp(22px,3vw,30px);font-weight:800;color:#fff;margin-bottom:8px;letter-spacing:-0.5px;">Décrivez votre projet</h3>
-        <p style="font-size:14px;color:rgba(255,255,255,0.6);line-height:1.6;">Réponse garantie sous 24h — devis gratuit, sans engagement.</p>
-      </div>
-
-      <form id="form-formation" onsubmit="submitFormation(event)" style="display:flex;flex-direction:column;gap:16px;">
-
-        <!-- Profil -->
-        <div>
-          <label style="display:block;font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);margin-bottom:10px;">Vous êtes *</label>
-          <div style="display:flex;flex-wrap:wrap;gap:10px;">
-            <label style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.15);border-radius:10px;padding:10px 16px;cursor:pointer;font-size:13px;color:#fff;transition:all 0.2s;">
-              <input type="radio" name="profil" value="Formatrice indépendante" required style="accent-color:#818cf8;"> Formatrice indépendante
-            </label>
-            <label style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.15);border-radius:10px;padding:10px 16px;cursor:pointer;font-size:13px;color:#fff;transition:all 0.2s;">
-              <input type="radio" name="profil" value="Coach" style="accent-color:#818cf8;"> Coach
-            </label>
-            <label style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.15);border-radius:10px;padding:10px 16px;cursor:pointer;font-size:13px;color:#fff;transition:all 0.2s;">
-              <input type="radio" name="profil" value="Organisme de formation" style="accent-color:#818cf8;"> Organisme de formation
-            </label>
-          </div>
-        </div>
-
-        <!-- Sujet -->
-        <input type="text" name="sujet" placeholder="Sujet / thème de la formation *" required
-          style="padding:13px 16px;border:1.5px solid rgba(255,255,255,0.15);border-radius:12px;font-size:14px;background:rgba(255,255,255,0.07);color:#fff;outline:none;font-family:inherit;transition:border-color 0.2s;"
-          onfocus="this.style.borderColor='#818cf8'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'"
-        />
-
-        <!-- Livrables -->
-        <div>
-          <label style="display:block;font-size:13px;font-weight:600;color:rgba(255,255,255,0.7);margin-bottom:10px;">Livrables souhaités *</label>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-            <label style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.15);border-radius:10px;padding:10px 14px;cursor:pointer;font-size:13px;color:#fff;">
-              <input type="checkbox" name="livrables" value="Présentation PDF" style="accent-color:#818cf8;"> Présentation PDF
-            </label>
-            <label style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.15);border-radius:10px;padding:10px 14px;cursor:pointer;font-size:13px;color:#fff;">
-              <input type="checkbox" name="livrables" value="Workbook participant" style="accent-color:#818cf8;"> Workbook participant
-            </label>
-            <label style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.15);border-radius:10px;padding:10px 14px;cursor:pointer;font-size:13px;color:#fff;">
-              <input type="checkbox" name="livrables" value="Book de formation" style="accent-color:#818cf8;"> Book de formation
-            </label>
-            <label style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.15);border-radius:10px;padding:10px 14px;cursor:pointer;font-size:13px;color:#fff;">
-              <input type="checkbox" name="livrables" value="Certificat personnalisé" style="accent-color:#818cf8;"> Certificat personnalisé
-            </label>
-          </div>
-        </div>
-
-        <!-- Participants + Date -->
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-          <select name="participants" required
-            style="padding:13px 16px;border:1.5px solid rgba(255,255,255,0.15);border-radius:12px;font-size:14px;background:rgba(255,255,255,0.07);color:#fff;outline:none;font-family:inherit;cursor:pointer;">
-            <option value="" disabled selected style="background:#312e81;">Nb participants *</option>
-            <option value="1-10" style="background:#312e81;color:#fff;">1 – 10</option>
-            <option value="10-20" style="background:#312e81;color:#fff;">10 – 20</option>
-            <option value="20-50" style="background:#312e81;color:#fff;">20 – 50</option>
-            <option value="50+" style="background:#312e81;color:#fff;">50+</option>
-          </select>
-          <input type="text" name="date" placeholder="Date souhaitée"
-            style="padding:13px 16px;border:1.5px solid rgba(255,255,255,0.15);border-radius:12px;font-size:14px;background:rgba(255,255,255,0.07);color:#fff;outline:none;font-family:inherit;transition:border-color 0.2s;"
-            onfocus="this.style.borderColor='#818cf8'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'"
-          />
-        </div>
-
-        <!-- Nom + Téléphone -->
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-          <input type="text" name="nom" placeholder="Votre nom *" required
-            style="padding:13px 16px;border:1.5px solid rgba(255,255,255,0.15);border-radius:12px;font-size:14px;background:rgba(255,255,255,0.07);color:#fff;outline:none;font-family:inherit;transition:border-color 0.2s;"
-            onfocus="this.style.borderColor='#818cf8'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'"
-          />
-          <input type="tel" name="tel" placeholder="Téléphone *" required
-            style="padding:13px 16px;border:1.5px solid rgba(255,255,255,0.15);border-radius:12px;font-size:14px;background:rgba(255,255,255,0.07);color:#fff;outline:none;font-family:inherit;transition:border-color 0.2s;"
-            onfocus="this.style.borderColor='#818cf8'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'"
-          />
-        </div>
-
-        <button type="submit"
-          style="background:linear-gradient(135deg,#4f46e5,#818cf8);color:#fff;font-weight:700;font-size:15px;padding:15px;border-radius:14px;border:none;cursor:pointer;font-family:'Outfit',sans-serif;letter-spacing:-0.2px;transition:opacity 0.2s;box-shadow:0 8px 24px rgba(79,70,229,0.4);"
-          onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
-          <i class="ph-duotone ph-paper-plane-right" style="margin-right:6px;"></i> Envoyer ma demande →
-        </button>
-      </form>
-
-      <div id="form-formation-success" style="display:none;text-align:center;padding:24px 0;">
-        <div style="font-size:48px;margin-bottom:12px;">✅</div>
-        <p style="font-family:'Outfit',sans-serif;font-size:20px;font-weight:800;color:#fff;margin-bottom:8px;">Demande envoyée !</p>
-        <p style="font-size:14px;color:rgba(255,255,255,0.6);">Jonathan vous répond sous 24h pour affiner votre projet.</p>
-      </div>
+    <!-- Formulaire déplacé sur devis-formation.html -->
+    <div style="text-align:center;margin-top:24px;">
+      <a href="devis-formation.html" class="btn btn-blue btn-lg">Décrire mon projet formation →</a>
     </div>
 
   </div>
@@ -549,22 +458,6 @@
   }
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
-  // ─── FORMULAIRE FORMATION DÉDIÉ ───
-  function submitFormation(e) {
-    e.preventDefault();
-    const f = e.target;
-    const profil = f.querySelector('input[name="profil"]:checked')?.value || 'Non précisé';
-    const sujet = f.querySelector('input[name="sujet"]').value;
-    const livrables = [...f.querySelectorAll('input[name="livrables"]:checked')].map(el => el.value).join(', ') || 'Non précisé';
-    const participants = f.querySelector('select[name="participants"]').value;
-    const date = f.querySelector('input[name="date"]').value || 'Non précisé';
-    const nom = f.querySelector('input[name="nom"]').value;
-    const tel = f.querySelector('input[name="tel"]').value;
-    const body = `Profil : ${profil}\nSujet : ${sujet}\nLivrables : ${livrables}\nParticipants : ${participants}\nDate souhaitée : ${date}\nNom : ${nom}\nTéléphone : ${tel}`;
-    window.location.href = 'mailto:contact@e-comconnect.com?subject=Demande supports de formation – ' + encodeURIComponent(nom) + '&body=' + encodeURIComponent(body);
-    f.style.display = 'none';
-    document.getElementById('form-formation-success').style.display = 'block';
-  }
   function submitModal(e) {
     e.preventDefault();
     const nom = document.getElementById('modal-nom').value;

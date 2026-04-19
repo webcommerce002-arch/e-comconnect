@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Devis Supports de Formation — E.Com Connect</title>
+  <meta name="description" content="Décrivez votre projet de formation en 2 minutes. Présentation PDF, workbook, book, certificat — livrés clé en main sous 5 à 7 jours." />
+  <link rel="icon" href="favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/duotone/style.css" />
+
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
+    body { font-family: 'Inter', sans-serif; background: #f8f7f4; color: #0d0d0d; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; }
+
+    :root {
+      --ease-apple: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --indigo: #312e81;
+      --indigo-2: #4f46e5;
+      --indigo-light: #818cf8;
+      --accent: #2563eb;
+      --bg: #f8f7f4;
+      --text: #0d0d0d;
+      --text-muted: #6b7280;
+      --border: rgba(0,0,0,0.08);
+    }
+
+    /* ─── NAVBAR dark ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      height: 90px; display: flex; align-items: center;
+      justify-content: space-between; padding: 0 40px;
+      background: rgba(6,9,20,0.92);
+      backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-logo { display: flex; align-items: center; text-decoration: none; }
+    .nav-logo img { height: 72px; width: auto; filter: drop-shadow(0 0 10px rgba(37,99,235,0.7)) drop-shadow(0 0 28px rgba(37,99,235,0.4)); }
+    .nav-back { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.6); font-size: 14px; font-weight: 500; text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: #fff; }
+    .nav-back i { font-size: 18px; }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-tel { color: rgba(255,255,255,0.55); font-size: 13px; text-decoration: none; display: flex; align-items: center; gap: 6px; }
+    .nav-tel:hover { color: #fff; }
+    @media(max-width: 640px) {
+      nav { padding: 0 20px; height: 72px; }
+      .nav-logo img { height: 56px; }
+      .nav-tel { display: none; }
+    }
+
+    /* ─── LAYOUT SPLIT SCREEN ─── */
+    .split-wrap {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 480px 1fr;
+      padding-top: 90px;
+    }
+
+    /* ─── COLONNE GAUCHE — sticky benefits ─── */
+    .col-left {
+      background: linear-gradient(160deg, #1e1b4b 0%, #312e81 50%, #1e1b4b 100%);
+      position: sticky;
+      top: 90px;
+      height: calc(100vh - 90px);
+      overflow-y: auto;
+      padding: 56px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .col-left::-webkit-scrollbar { display: none; }
+
+    /* Eyebrow */
+    .left-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 999px; padding: 7px 18px;
+      font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.8);
+      letter-spacing: 0.1em; text-transform: uppercase;
+      width: fit-content;
+    }
+    .left-eyebrow i { color: #a5b4fc; font-size: 14px; }
+
+    /* Title */
+    .left-title {
+      font-size: clamp(26px, 2.5vw, 36px);
+      font-weight: 900; color: #fff;
+      letter-spacing: -1px; line-height: 1.15;
+    }
+    .left-title span { color: #a5b4fc; }
+
+    /* Livrables */
+    .livrables-list { display: flex; flex-direction: column; gap: 14px; }
+    .livrable-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 14px; padding: 16px 18px;
+      transition: background 0.2s;
+    }
+    .livrable-item:hover { background: rgba(255,255,255,0.1); }
+    .livrable-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: rgba(129,140,248,0.2); border: 1px solid rgba(129,140,248,0.3);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 20px; color: #a5b4fc;
+    }
+    .livrable-title { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 3px; }
+    .livrable-desc { font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.5; }
+
+    /* Stats row */
+    .left-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .left-stat {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px; padding: 16px;
+      text-align: center;
+    }
+    .left-stat-val { font-family: 'Outfit', sans-serif; font-size: 24px; font-weight: 900; color: #a5b4fc; }
+    .left-stat-label { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 3px; }
+
+    /* Testimonial */
+    .left-testi {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px; padding: 20px;
+    }
+    .left-testi-stars { color: #fbbf24; font-size: 14px; margin-bottom: 10px; letter-spacing: 2px; }
+    .left-testi-text { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.65; font-style: italic; margin-bottom: 14px; }
+    .left-testi-author { display: flex; align-items: center; gap: 10px; }
+    .left-testi-avatar { width: 36px; height: 36px; border-radius: 50%; background: rgba(129,140,248,0.3); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+    .left-testi-name { font-size: 13px; font-weight: 700; color: #fff; }
+    .left-testi-role { font-size: 11px; color: rgba(255,255,255,0.45); }
+
+    /* Guarantee badge */
+    .left-guarantee {
+      display: flex; align-items: center; gap: 12px;
+      background: rgba(16,185,129,0.12);
+      border: 1px solid rgba(16,185,129,0.25);
+      border-radius: 12px; padding: 14px 18px;
+    }
+    .left-guarantee i { color: #34d399; font-size: 22px; flex-shrink: 0; }
+    .left-guarantee-text { font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.5; }
+    .left-guarantee-text strong { color: #fff; }
+
+    /* ─── COLONNE DROITE — formulaire ─── */
+    .col-right {
+      background: #f8f7f4;
+      padding: 56px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .form-header { margin-bottom: 36px; }
+    .form-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(37,99,235,0.07); border: 1px solid rgba(37,99,235,0.15);
+      border-radius: 999px; padding: 6px 16px; margin-bottom: 16px;
+      font-size: 12px; font-weight: 700; color: #2563eb;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .form-title { font-size: clamp(28px, 3vw, 40px); font-weight: 900; letter-spacing: -1px; line-height: 1.1; margin-bottom: 10px; }
+    .form-sub { font-size: 15px; color: #6b7280; line-height: 1.6; }
+
+    /* Form elements */
+    .form-section { margin-bottom: 24px; }
+    .form-label {
+      display: block; font-size: 13px; font-weight: 700;
+      color: #374151; margin-bottom: 12px; letter-spacing: 0.02em;
+    }
+    .form-label span { color: #ef4444; }
+
+    /* Radio profil */
+    .radio-group { display: flex; flex-wrap: wrap; gap: 10px; }
+    .radio-card {
+      display: flex; align-items: center; gap: 8px;
+      background: #fff; border: 1.5px solid rgba(0,0,0,0.1);
+      border-radius: 12px; padding: 12px 18px;
+      cursor: pointer; font-size: 14px; font-weight: 500; color: #374151;
+      transition: all 0.2s; user-select: none;
+    }
+    .radio-card:has(input:checked) {
+      background: rgba(79,70,229,0.06);
+      border-color: #4f46e5; color: #312e81;
+    }
+    .radio-card input { accent-color: #4f46e5; }
+
+    /* Text inputs */
+    .form-input {
+      width: 100%; padding: 14px 18px;
+      border: 1.5px solid rgba(0,0,0,0.1);
+      border-radius: 12px; font-size: 14px; font-family: 'Inter', sans-serif;
+      background: #fff; color: #0d0d0d; outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-input:focus {
+      border-color: #4f46e5;
+      box-shadow: 0 0 0 4px rgba(79,70,229,0.08);
+    }
+    .form-input::placeholder { color: #9ca3af; }
+    select.form-input { cursor: pointer; }
+
+    /* Checkboxes livrables */
+    .checkbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .checkbox-card {
+      display: flex; align-items: center; gap: 10px;
+      background: #fff; border: 1.5px solid rgba(0,0,0,0.1);
+      border-radius: 12px; padding: 14px 16px;
+      cursor: pointer; font-size: 13px; font-weight: 500; color: #374151;
+      transition: all 0.2s; user-select: none;
+    }
+    .checkbox-card:has(input:checked) {
+      background: rgba(79,70,229,0.06);
+      border-color: #4f46e5; color: #312e81;
+    }
+    .checkbox-card input { accent-color: #4f46e5; flex-shrink: 0; }
+    .checkbox-card i { color: #818cf8; font-size: 18px; flex-shrink: 0; }
+
+    /* Row 2 champs */
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    /* Bouton submit */
+    .btn-submit {
+      width: 100%; padding: 16px;
+      background: linear-gradient(135deg, #312e81, #4f46e5);
+      color: #fff; font-family: 'Outfit', sans-serif;
+      font-size: 16px; font-weight: 800; letter-spacing: -0.3px;
+      border: none; border-radius: 14px; cursor: pointer;
+      transition: all 0.2s; display: flex; align-items: center;
+      justify-content: center; gap: 10px;
+      box-shadow: 0 8px 32px rgba(79,70,229,0.35);
+      margin-top: 8px;
+    }
+    .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(79,70,229,0.45); }
+    .btn-submit:active { transform: translateY(0); }
+
+    /* Confidentialité */
+    .form-privacy { text-align: center; font-size: 12px; color: #9ca3af; margin-top: 14px; display: flex; align-items: center; gap: 6px; justify-content: center; }
+    .form-privacy i { font-size: 14px; color: #10b981; }
+
+    /* ─── SUCCESS ─── */
+    .success-wrap {
+      display: none; text-align: center; padding: 48px 24px;
+    }
+    .success-icon { font-size: 64px; margin-bottom: 20px; }
+    .success-title { font-size: 32px; font-weight: 900; color: #0d0d0d; margin-bottom: 12px; letter-spacing: -1px; }
+    .success-sub { font-size: 16px; color: #6b7280; line-height: 1.65; margin-bottom: 32px; }
+    .success-back {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #0d0d0d; color: #fff;
+      padding: 12px 28px; border-radius: 999px;
+      font-size: 14px; font-weight: 700; text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .success-back:hover { opacity: 0.8; }
+
+    /* ─── MOBILE ─── */
+    @media(max-width: 900px) {
+      .split-wrap { grid-template-columns: 1fr; }
+      .col-left {
+        position: static; height: auto;
+        padding: 40px 24px; gap: 24px;
+      }
+      .col-right { padding: 40px 24px; }
+      .checkbox-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .left-stats { grid-template-columns: 1fr 1fr; }
+    }
+    @media(max-width: 480px) {
+      .radio-group { flex-direction: column; }
+      .left-stats { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAVBAR ─── -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="logo-circuit.png" alt="E.Com Connect" />
+  </a>
+  <a href="services.html#formation" class="nav-back">
+    <i class="ph-duotone ph-arrow-left"></i>
+    Retour aux services
+  </a>
+  <div class="nav-right">
+    <a href="tel:0652863695" class="nav-tel">
+      <i class="ph-duotone ph-phone"></i>
+      06 52 86 36 95
+    </a>
+  </div>
+</nav>
+
+<!-- ─── SPLIT SCREEN ─── -->
+<div class="split-wrap">
+
+  <!-- ══ COLONNE GAUCHE ══ -->
+  <div class="col-left">
+
+    <div class="left-eyebrow">
+      <i class="ph-duotone ph-graduation-cap"></i>
+      Supports de Formation
+    </div>
+
+    <div>
+      <h2 class="left-title">Vous formez.<br>On crée <span>tout le reste.</span></h2>
+      <p style="font-size:14px;color:rgba(255,255,255,0.55);line-height:1.7;margin-top:12px;">
+        4 livrables professionnels, livrés clé en main en 5 à 7 jours ouvrés.
+        Vous animez votre journée en toute sérénité.
+      </p>
+    </div>
+
+    <!-- Livrables -->
+    <div class="livrables-list">
+      <div class="livrable-item">
+        <div class="livrable-icon"><i class="ph-duotone ph-projector-screen"></i></div>
+        <div>
+          <div class="livrable-title">Support de présentation</div>
+          <div class="livrable-desc">PDF prêt à l'emploi — écran, impression ou clé USB. Design à votre image.</div>
+        </div>
+      </div>
+      <div class="livrable-item">
+        <div class="livrable-icon"><i class="ph-duotone ph-notebook"></i></div>
+        <div>
+          <div class="livrable-title">Workbook participant</div>
+          <div class="livrable-desc">Cahier interactif — exercices, espaces de notes, activités pour suivre la journée.</div>
+        </div>
+      </div>
+      <div class="livrable-item">
+        <div class="livrable-icon"><i class="ph-duotone ph-books"></i></div>
+        <div>
+          <div class="livrable-title">Book de formation</div>
+          <div class="livrable-desc">Guide complet à emporter — tout le contenu expliqué comme un manuel de référence.</div>
+        </div>
+      </div>
+      <div class="livrable-item">
+        <div class="livrable-icon"><i class="ph-duotone ph-certificate"></i></div>
+        <div>
+          <div class="livrable-title">Certificat personnalisé</div>
+          <div class="livrable-desc">À votre charte graphique, remis à chaque participant en fin de journée.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="left-stats">
+      <div class="left-stat">
+        <div class="left-stat-val">5–7j</div>
+        <div class="left-stat-label">Délai de livraison</div>
+      </div>
+      <div class="left-stat">
+        <div class="left-stat-val">24h</div>
+        <div class="left-stat-label">Réponse garantie</div>
+      </div>
+    </div>
+
+    <!-- Témoignage -->
+    <div class="left-testi">
+      <div class="left-testi-stars">★★★★★</div>
+      <p class="left-testi-text">"Les supports étaient parfaits dès la première version. Mes participants ont adoré le workbook — ils le gardent comme référence. Je recommande sans hésiter."</p>
+      <div class="left-testi-author">
+        <div class="left-testi-avatar">👩‍🏫</div>
+        <div>
+          <div class="left-testi-name">Isabelle M.</div>
+          <div class="left-testi-role">Formatrice RH — Lille</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Garantie -->
+    <div class="left-guarantee">
+      <i class="ph-duotone ph-shield-check"></i>
+      <div class="left-guarantee-text">
+        <strong>Devis gratuit, sans engagement.</strong><br>
+        Réponse sous 24h. Si vous n'êtes pas satisfait de la première version, on retravaille gratuitement.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══ COLONNE DROITE ══ -->
+  <div class="col-right">
+
+    <!-- Formulaire -->
+    <div id="form-wrap">
+      <div class="form-header">
+        <div class="form-eyebrow">
+          <i class="ph-duotone ph-paper-plane-right"></i>
+          Devis gratuit
+        </div>
+        <h1 class="form-title">Décrivez<br>votre projet</h1>
+        <p class="form-sub">2 minutes suffisent. Réponse garantie sous 24h.</p>
+      </div>
+
+      <form id="form-formation" onsubmit="submitFormation(event)">
+
+        <!-- Profil -->
+        <div class="form-section">
+          <label class="form-label">Vous êtes <span>*</span></label>
+          <div class="radio-group">
+            <label class="radio-card">
+              <input type="radio" name="profil" value="Formatrice indépendante" required />
+              Formatrice indépendante
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="profil" value="Coach" />
+              Coach
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="profil" value="Organisme de formation" />
+              Organisme de formation
+            </label>
+          </div>
+        </div>
+
+        <!-- Sujet -->
+        <div class="form-section">
+          <label class="form-label">Sujet de la formation <span>*</span></label>
+          <input type="text" name="sujet" class="form-input" placeholder="Ex : Management d'équipe, Prise de parole, Excel…" required />
+        </div>
+
+        <!-- Livrables -->
+        <div class="form-section">
+          <label class="form-label">Livrables souhaités <span>*</span></label>
+          <div class="checkbox-grid">
+            <label class="checkbox-card">
+              <i class="ph-duotone ph-projector-screen"></i>
+              <input type="checkbox" name="livrables" value="Présentation PDF" />
+              Présentation PDF
+            </label>
+            <label class="checkbox-card">
+              <i class="ph-duotone ph-notebook"></i>
+              <input type="checkbox" name="livrables" value="Workbook participant" />
+              Workbook participant
+            </label>
+            <label class="checkbox-card">
+              <i class="ph-duotone ph-books"></i>
+              <input type="checkbox" name="livrables" value="Book de formation" />
+              Book de formation
+            </label>
+            <label class="checkbox-card">
+              <i class="ph-duotone ph-certificate"></i>
+              <input type="checkbox" name="livrables" value="Certificat personnalisé" />
+              Certificat personnalisé
+            </label>
+          </div>
+        </div>
+
+        <!-- Participants + Date -->
+        <div class="form-section">
+          <div class="form-row">
+            <div>
+              <label class="form-label">Nombre de participants <span>*</span></label>
+              <select name="participants" class="form-input" required>
+                <option value="" disabled selected>Choisir…</option>
+                <option value="1-10">1 – 10 participants</option>
+                <option value="10-20">10 – 20 participants</option>
+                <option value="20-50">20 – 50 participants</option>
+                <option value="50+">50+ participants</option>
+              </select>
+            </div>
+            <div>
+              <label class="form-label">Date souhaitée</label>
+              <input type="text" name="date" class="form-input" placeholder="Ex : Juin 2026" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Nom + Tel -->
+        <div class="form-section">
+          <div class="form-row">
+            <div>
+              <label class="form-label">Votre nom <span>*</span></label>
+              <input type="text" name="nom" class="form-input" placeholder="Prénom Nom" required />
+            </div>
+            <div>
+              <label class="form-label">Téléphone <span>*</span></label>
+              <input type="tel" name="tel" class="form-input" placeholder="06 xx xx xx xx" required />
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit">
+          <i class="ph-duotone ph-paper-plane-right" style="font-size:20px;"></i>
+          Envoyer ma demande
+        </button>
+
+        <p class="form-privacy">
+          <i class="ph-duotone ph-shield-check"></i>
+          Vos données restent confidentielles — aucun spam, jamais.
+        </p>
+
+      </form>
+    </div>
+
+    <!-- ─── SUCCESS ─── -->
+    <div class="success-wrap" id="success-wrap">
+      <div class="success-icon">🎓</div>
+      <h2 class="success-title">Demande envoyée !</h2>
+      <p class="success-sub">Jonathan a reçu votre projet et vous répond sous 24h pour affiner les détails et vous envoyer votre devis.</p>
+      <a href="index.html" class="success-back">
+        <i class="ph-duotone ph-house"></i>
+        Retour à l'accueil
+      </a>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function submitFormation(e) {
+    e.preventDefault();
+    const f = e.target;
+    const profil = f.querySelector('input[name="profil"]:checked')?.value || 'Non précisé';
+    const sujet = f.querySelector('input[name="sujet"]').value;
+    const livrables = [...f.querySelectorAll('input[name="livrables"]:checked')].map(el => el.value).join(', ') || 'Aucun coché';
+    const participants = f.querySelector('select[name="participants"]').value || 'Non précisé';
+    const date = f.querySelector('input[name="date"]').value || 'Non précisé';
+    const nom = f.querySelector('input[name="nom"]').value;
+    const tel = f.querySelector('input[name="tel"]').value;
+
+    const body = [
+      `Profil : ${profil}`,
+      `Sujet de la formation : ${sujet}`,
+      `Livrables souhaités : ${livrables}`,
+      `Nombre de participants : ${participants}`,
+      `Date souhaitée : ${date}`,
+      `Nom : ${nom}`,
+      `Téléphone : ${tel}`,
+    ].join('\n');
+
+    window.location.href =
+      'mailto:contact@e-comconnect.com'
+      + '?subject=' + encodeURIComponent('Devis Formation — ' + nom)
+      + '&body=' + encodeURIComponent(body);
+
+    document.getElementById('form-wrap').style.display = 'none';
+    document.getElementById('success-wrap').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
