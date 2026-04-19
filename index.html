@@ -1116,32 +1116,42 @@
         font-size: clamp(80px, 28vw, 160px) !important;
         letter-spacing: -3px !important;
       }
-      /* Stats : scroll horizontal sur mobile */
+      /* ── STATS : marquee CSS (les items sont dupliqués par JS) ── */
+      .hero-stats-track {
+        overflow: hidden;
+        width: 100%;
+      }
       .hero-stats {
         display: flex !important;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
+        width: max-content !important;
         gap: 0;
-        max-width: 100%;
-        padding-bottom: 4px;
+        animation: statsMarquee 10s linear infinite;
       }
-      .hero-stats::-webkit-scrollbar { display: none; }
+      @keyframes statsMarquee {
+        0%   { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
       .hero-stat {
-        min-width: 130px;
+        min-width: 140px;
         flex: 0 0 auto;
         border-right: 1px solid rgba(255,255,255,0.1) !important;
         border-top: none !important;
       }
-      .hero-stat:last-child { border-right: none !important; }
-      /* Table comparatif : scrollable sur mobile */
-      /* Table : 2 colonnes sur mobile, WordPress masqué */
-      .th-wp, .td-wp { display: none; }
-      .comp-table { grid-template-columns: 42% 58%; }
+      /* ── TABLE COMPARATIF : scroll horizontal, colonne WP visible ── */
+      .section-why { overflow: visible; } /* orbs masqués → pas de débordement */
+      .comparison-wrap {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        position: relative;
+      }
+      .comparison-wrap::-webkit-scrollbar { display: none; }
+      .comp-table { min-width: 460px; grid-template-columns: 30% 40% 30%; }
+      /* Indicateur swipe */
       .comparison-wrap::after {
-        content: "✦ 100% meilleures performances vs WordPress";
-        display: block; margin-top: 14px; text-align: center;
-        font-size: 12px; font-weight: 700; color: #2563eb; letter-spacing: 0.3px;
+        content: "← Glisser pour voir WordPress →";
+        display: block; margin-top: 10px; text-align: center;
+        font-size: 11px; color: #6b7280; font-style: italic;
       }
 
       .why-inner, .feature-layout, .questionnaire-layout, .contact-layout { grid-template-columns: 1fr; gap: 40px; }
@@ -2667,24 +2677,23 @@
       }
     });
 
-    // ─── STATS AUTO-SCROLL (mobile uniquement) ───
+    // ─── STATS MARQUEE MOBILE ───
     (function(){
       if(window.innerWidth > 768) return;
       var stats = document.querySelector('.hero-stats');
       if(!stats) return;
-      var paused = false;
-      var pos = 0;
-      stats.addEventListener('touchstart', function(){ paused = true; }, { passive: true });
-      function tick(){
-        if(!paused){
-          pos += 0.6;
-          var max = stats.scrollWidth - stats.clientWidth;
-          if(pos >= max) pos = 0;
-          stats.scrollLeft = pos;
-        }
-        requestAnimationFrame(tick);
-      }
-      setTimeout(function(){ requestAnimationFrame(tick); }, 600);
+      // Dupliquer les items pour le loop sans couture
+      var items = Array.from(stats.querySelectorAll('.hero-stat'));
+      items.forEach(function(item){
+        var clone = item.cloneNode(true);
+        clone.setAttribute('aria-hidden','true');
+        stats.appendChild(clone);
+      });
+      // Envelopper dans un track overflow:hidden
+      var track = document.createElement('div');
+      track.className = 'hero-stats-track';
+      stats.parentNode.insertBefore(track, stats);
+      track.appendChild(stats);
     })();
   </script>
 
