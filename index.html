@@ -50,6 +50,10 @@
       { "@type": "City", "name": "Lens" },
       { "@type": "City", "name": "Béthune" },
       { "@type": "City", "name": "Arras" },
+      { "@type": "City", "name": "Douai" },
+      { "@type": "City", "name": "Liévin" },
+      { "@type": "City", "name": "Hénin-Beaumont" },
+      { "@type": "AdministrativeArea", "name": "Hauts-de-France" },
       { "@type": "AdministrativeArea", "name": "Nord-Pas-de-Calais" }
     ],
     "openingHoursSpecification": {
@@ -70,6 +74,83 @@
     }
   }
   </script>
+
+  <!-- WebSite + FAQPage Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "E.Com Connect",
+    "url": "https://e-comconnect.com",
+    "description": "Agence web à Lens (62) — création de sites vitrines en code pur, sans WordPress.",
+    "inLanguage": "fr-FR",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://e-comconnect.com/?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Combien de temps pour livrer mon site ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Starter : 7 à 10 jours. Pack Pro : 2 à 3 semaines. Refonte : 3 semaines. Les délais varient selon vos retours et la disponibilité des contenus (textes, photos)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Pourquoi pas WordPress ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "WordPress représente 43% du web et 90% des sites hackés. Il ralentit votre site avec des dizaines de plugins. En code pur, votre site est plus rapide, plus sécurisé, et mieux référencé — sans dépendances."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Est-ce que je peux modifier mon site moi-même ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Les modifications basiques (textes, horaires, prix) sont simples à faire. Pour les modifications structurelles, je les effectue pour vous — souvent incluses ou facturées au temps passé selon le type de changement."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Qu'est-ce qui est inclus dans le prix ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Le design, le code, la mise en ligne, la configuration DNS, le certificat HTTPS, le formulaire de contact, et le SEO de base. L'hébergement (Vercel) est gratuit pour les sites vitrines standard."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Vous intervenez dans quelle zone géographique ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Partout en France — je travaille 100% en ligne. Basé à Lens (62), je suis disponible pour des rendez-vous visio sur tout le territoire."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Comment se passe le paiement ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "50% à la commande, 50% à la livraison. Virement bancaire ou carte bleue. Facture fournie. TVA non applicable (art. 293B CGI)."
+        }
+      }
+    ]
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
