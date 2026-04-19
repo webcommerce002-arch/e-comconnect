@@ -2661,6 +2661,23 @@
         alert('Erreur réseau. Vérifiez votre connexion.');
       }
     });
+
+    // ─── STATS AUTO-SCROLL (mobile uniquement) ───
+    if(window.innerWidth <= 768) {
+      const stats = document.querySelector('.hero-stats');
+      if(stats) {
+        const items = stats.querySelectorAll('.hero-stat');
+        let idx = 0;
+        let paused = false;
+        // Pause si l'utilisateur touche la barre
+        stats.addEventListener('touchstart', () => { paused = true; }, { passive: true });
+        setInterval(() => {
+          if(paused) return;
+          idx = (idx + 1) % items.length;
+          stats.scrollTo({ left: items[idx].offsetLeft, behavior: 'smooth' });
+        }, 2000);
+      }
+    }
   </script>
 
   <!-- ═══════════════════════════════════════════
