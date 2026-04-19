@@ -1138,12 +1138,14 @@
         border-top: none !important;
       }
       /* ── TABLE COMPARATIF : scroll horizontal, colonne WP visible ── */
-      .section-why { overflow: visible; } /* orbs masqués → pas de débordement */
+      .section-why { overflow: visible; touch-action: pan-y; }
       .comparison-wrap {
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
+        -webkit-overflow-scrolling: auto;
+        overscroll-behavior-x: contain;
         scrollbar-width: none;
         position: relative;
+        touch-action: pan-x;
       }
       .comparison-wrap::-webkit-scrollbar { display: none; }
       .comp-table { min-width: 460px; grid-template-columns: 30% 40% 30%; }
@@ -1152,6 +1154,34 @@
         content: "← Glisser pour voir WordPress →";
         display: block; margin-top: 10px; text-align: center;
         font-size: 11px; color: #6b7280; font-style: italic;
+      }
+
+      /* ── FEATURE IMAGES : centrer sur mobile ── */
+      .section-feature .reveal-right img,
+      .section-feature .reveal-left img {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+
+      /* ── CHIFFRES CLÉS (81%, 75%, ×3) : scroll horizontal ── */
+      .chiffres-grid {
+        display: flex !important;
+        overflow-x: auto !important;
+        gap: 14px !important;
+        max-width: none !important;
+        margin: 0 -20px 48px !important;
+        padding: 4px 20px 14px !important;
+        scroll-snap-type: x mandatory;
+        overscroll-behavior-x: contain;
+        scrollbar-width: none;
+      }
+      .chiffres-grid::-webkit-scrollbar { display: none; }
+      .chiffres-grid > div {
+        min-width: 200px !important;
+        flex: 0 0 200px !important;
+        scroll-snap-align: start;
       }
 
       .why-inner, .feature-layout, .questionnaire-layout, .contact-layout { grid-template-columns: 1fr; gap: 40px; }
@@ -1391,7 +1421,7 @@
       </div>
 
       <!-- Chiffres clés -->
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:900px;margin:0 auto 48px;">
+      <div class="chiffres-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:900px;margin:0 auto 48px;">
         <div class="glass reveal" style="border-radius:16px;padding:32px 28px;text-align:center;">
           <div style="font-family:'Outfit',sans-serif;font-size:48px;font-weight:900;letter-spacing:-2px;color:var(--accent);line-height:1;margin-bottom:10px;">81%</div>
           <div style="font-size:14px;color:var(--text-muted);line-height:1.5;">des consommateurs recherchent une entreprise sur internet <strong style="color:var(--text);">avant</strong> de se déplacer</div>
