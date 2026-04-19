@@ -13,12 +13,13 @@
   <style>
     /* ─── RESET ─── */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; font-size: 16px; }
+    html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
     body {
       font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
       overflow-x: hidden;
+      max-width: 100vw;
       -webkit-font-smoothing: antialiased;
     }
     h1, h2, h3, h4, .logo-text, .hero-title, .section-title, .cta-title,
@@ -1103,6 +1104,8 @@
       .hamburger { display: flex; }
 
       .hero { padding: 100px 20px 80px; }
+      .hero-inner { padding: 0 20px !important; }
+      .orb { display: none; } /* supprime orbs sur mobile — évite débordement */
       .hero-title { letter-spacing: -1px; }
       .hero-watermark {
         left: 10% !important;
