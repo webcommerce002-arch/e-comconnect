@@ -166,6 +166,24 @@
     .footer-note { text-align:center; padding:60px 40px; font-size:14px; color:var(--text-muted); }
     .footer-note a { color:var(--accent); font-weight:600; text-decoration:none; }
 
+    /* ─── LOGOS FLOTTANTS ─── */
+    .page-hero { position:relative; overflow:hidden; }
+    .pricing-bg-wrap { position:relative; overflow:hidden; }
+    @keyframes floatA {
+      0%,100% { transform: translateY(0) rotate(-6deg) scale(1); }
+      33%      { transform: translateY(-28px) rotate(4deg) scale(1.04); }
+      66%      { transform: translateY(14px) rotate(-2deg) scale(0.97); }
+    }
+    @keyframes floatB {
+      0%,100% { transform: translateX(0) rotate(8deg) scale(1); }
+      50%      { transform: translateX(-22px) rotate(-5deg) scale(1.06); }
+    }
+    @keyframes floatC {
+      0%,100% { transform: translateX(0) translateY(0) rotate(3deg); }
+      40%      { transform: translateX(20px) translateY(-18px) rotate(-4deg); }
+      70%      { transform: translateX(-10px) translateY(10px) rotate(6deg); }
+    }
+
     /* ─── RESPONSIVE ─── */
     @media (max-width:900px) {
       .pricing-main { grid-template-columns:1fr; }
@@ -193,6 +211,12 @@
 
   <!-- ─── HERO ─── -->
   <div class="page-hero">
+    <!-- Logos flottants fond -->
+    <img src="logo-circuit.png" alt="" role="presentation" style="position:absolute;width:260px;top:-20px;left:-60px;opacity:0.055;filter:drop-shadow(0 0 40px #2563eb) drop-shadow(0 0 80px rgba(37,99,235,0.5));animation:floatA 14s ease-in-out infinite;pointer-events:none;">
+    <img src="logo-circuit.png" alt="" role="presentation" style="position:absolute;width:180px;top:10%;right:-30px;opacity:0.045;filter:drop-shadow(0 0 35px #2563eb) drop-shadow(0 0 60px rgba(37,99,235,0.4));animation:floatB 18s ease-in-out infinite 2s;pointer-events:none;">
+    <img src="logo-circuit.png" alt="" role="presentation" style="position:absolute;width:140px;bottom:0;left:32%;opacity:0.04;filter:drop-shadow(0 0 30px #2563eb);animation:floatC 22s ease-in-out infinite 5s;pointer-events:none;">
+    <img src="logo-circuit.png" alt="" role="presentation" style="position:absolute;width:200px;top:30%;right:18%;opacity:0.035;filter:drop-shadow(0 0 45px #4f8fff);animation:floatA 20s ease-in-out infinite 8s;pointer-events:none;">
+    <img src="logo-circuit.png" alt="" role="presentation" style="position:absolute;width:120px;bottom:5%;left:12%;opacity:0.04;filter:drop-shadow(0 0 25px #2563eb);animation:floatB 16s ease-in-out infinite 4s;pointer-events:none;">
     <div class="page-eyebrow">💰 Tarifs</div>
     <h1 class="page-title">Des formules claires,<br>sans surprise.</h1>
     <p class="page-subtitle">Tout est inclus. Pas de frais cachés, pas d'abonnement obligatoire.</p>
@@ -200,7 +224,11 @@
   </div>
 
   <!-- ─── GRILLE PRINCIPALE ─── -->
-  <section style="padding:0 0 20px;">
+  <section style="padding:0 0 20px;position:relative;overflow:hidden;">
+    <!-- Logos flottants fond section -->
+    <img src="logo-circuit.png" alt="" role="presentation" style="position:absolute;width:300px;top:5%;right:-80px;opacity:0.04;filter:drop-shadow(0 0 40px #2563eb) drop-shadow(0 0 70px rgba(37,99,235,0.4));animation:floatC 24s ease-in-out infinite 1s;pointer-events:none;">
+    <img src="logo-circuit.png" alt="" role="presentation" style="position:absolute;width:220px;top:50%;left:-60px;opacity:0.04;filter:drop-shadow(0 0 35px #2563eb);animation:floatA 19s ease-in-out infinite 6s;pointer-events:none;">
+    <img src="logo-circuit.png" alt="" role="presentation" style="position:absolute;width:170px;bottom:10%;right:10%;opacity:0.035;filter:drop-shadow(0 0 30px #4f8fff);animation:floatB 21s ease-in-out infinite 3s;pointer-events:none;">
     <div class="container">
       <div class="section-label">Nouveau site</div>
       <div class="pricing-main">
