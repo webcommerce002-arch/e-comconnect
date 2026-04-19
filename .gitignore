@@ -1,1 +1,18 @@
 .vercel
+.DS_Store
+
+# Vidéos lourdes non utilisées
+*.mp4
+
+# Fichiers internes / backups
+CLAUDE.md
+SEO-LOCAL-SOP.md
+index-v2.html
+e-comconnect.html
+pourquoi-un-site.html
+
+# Fichiers inutilisés / assets bruts
+logo.png
+logo-new.png
+"Logo E.com connect - Circuits Lumineux.jpg"
+Capture*

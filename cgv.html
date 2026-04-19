@@ -1,110 +1,192 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Conditions Générales de Vente — E.com connect</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#f0f0f0;line-height:1.7}
-  .topbar{position:sticky;top:0;background:rgba(10,10,10,0.95);backdrop-filter:blur(20px);border-bottom:1px solid #1a1a1a;padding:0 60px;height:52px;display:flex;align-items:center;justify-content:space-between;z-index:100}
-  .topbar a{font-size:13px;color:#737373;text-decoration:none}
-  .topbar a:hover{color:#84cc16}
-  .topbar .logo{font-size:14px;font-weight:700;color:#e5e5e5}
-  .topbar .logo span{color:#84cc16}
-  .container{max-width:800px;margin:0 auto;padding:60px 40px}
-  h1{font-size:32px;font-weight:800;color:#e5e5e5;letter-spacing:-1px;margin-bottom:8px}
-  .date{font-size:12px;color:#525252;margin-bottom:40px}
-  h2{font-size:11px;font-weight:700;color:#84cc16;margin:32px 0 12px;text-transform:uppercase;letter-spacing:.05em}
-  p{font-size:13px;color:#a3a3a3;margin-bottom:12px}
-  ul{padding-left:20px;margin-bottom:12px}
-  ul li{font-size:13px;color:#a3a3a3;margin-bottom:4px}
-  strong{color:#e5e5e5}
-  .card{background:#111;border:1px solid #1f1f1f;border-radius:12px;padding:20px 24px;margin-bottom:16px}
-  .article-num{font-size:10px;color:#525252;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
-  footer-legal{display:block;margin-top:60px;padding-top:20px;border-top:1px solid #1a1a1a;font-size:11px;color:#333;text-align:center}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CGV — Conditions Générales de Vente | E.Com Connect</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="favicon.png" />
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    .legal-body { max-width:760px; margin:0 auto; }
+    .legal-section { margin-bottom:48px; padding-bottom:48px; border-bottom:1px solid #e5e5e5; }
+    .legal-section:last-child { border-bottom:none; }
+    .legal-section h2 { font-size:22px; font-weight:800; color:#0a0a0a; margin-bottom:16px; letter-spacing:-0.5px; }
+    .legal-section h3 { font-size:17px; font-weight:700; color:#222; margin:20px 0 8px; }
+    .legal-section p, .legal-section li { font-size:15px; color:#444; line-height:1.8; margin-bottom:10px; }
+    .legal-section ul, .legal-section ol { padding-left:20px; }
+    .legal-section strong { color:#222; font-weight:600; }
+    .pricing-table { width:100%; border-collapse:collapse; margin:20px 0; }
+    .pricing-table th, .pricing-table td { padding:12px 16px; text-align:left; border-bottom:1px solid #e5e5e5; font-size:14px; }
+    .pricing-table th { font-weight:700; font-size:12px; text-transform:uppercase; letter-spacing:1px; color:#999; background:#f9f9f9; }
+    .price-highlight { font-weight:800; color:#e8532a; }
+  </style>
 </head>
 <body>
 
-<div class="topbar">
-  <div class="logo">E<span>.com</span> connect</div>
-  <a href="Ecomm-Connect-Presentation.html">← Retour au site</a>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">E</div>
+    <span class="nav-logo-text">e.com connect</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="tarifs.html">Tarifs</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <div class="nav-cta"><a href="index.html#contact" class="btn btn-blue">Devis gratuit →</a></div>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" onclick="toggleMenu()">Accueil</a>
+  <a href="tarifs.html" onclick="toggleMenu()">Tarifs</a>
+  <a href="index.html#contact" class="mobile-cta" onclick="toggleMenu()">Devis gratuit →</a>
 </div>
 
-<div class="container">
-  <h1>Conditions Générales de Vente</h1>
-  <div class="date">En vigueur au 1er janvier 2026 — E.com connect · Jonathan Besdinier · SIRET 501 061 840 00044</div>
-
-  <h2>Article 1 — Objet</h2>
-  <p>Les présentes Conditions Générales de Vente (CGV) régissent les relations contractuelles entre <strong>Jonathan Besdinier</strong>, entrepreneur individuel exerçant sous le nom commercial <strong>E.com connect</strong> (ci-après "le Prestataire"), et tout client professionnel ou particulier (ci-après "le Client") souhaitant bénéficier de ses services de création de sites web.</p>
-
-  <h2>Article 2 — Services proposés</h2>
-  <p>Le Prestataire propose les services suivants :</p>
-  <ul>
-    <li>Création de sites vitrines (Starter, Pro)</li>
-    <li>Refonte de sites existants (Refonte Starter, Refonte Pro)</li>
-    <li>Optimisation SEO (Pack SEO)</li>
-    <li>Options et fonctionnalités à la carte</li>
-    <li>Maintenance et modifications après livraison</li>
-  </ul>
-
-  <h2>Article 3 — Devis et commande</h2>
-  <p>Toute prestation fait l'objet d'un <strong>devis gratuit et sans engagement</strong> envoyé par email. Le devis est valable <strong>30 jours</strong> à compter de sa date d'émission.</p>
-  <p>La commande est confirmée par le retour du devis signé et le versement de l'acompte. Aucun travail ne commence avant réception de ces deux éléments.</p>
-
-  <h2>Article 4 — Tarifs et paiement</h2>
-  <p>Les tarifs sont exprimés en euros TTC. Le Prestataire bénéficie de la franchise en base de TVA (article 293B du CGI) — <strong>TVA non applicable</strong>.</p>
-  <div class="card">
-    <p style="margin-bottom:8px"><strong>Modalités de paiement :</strong></p>
-    <ul style="margin:0">
-      <li><strong>50% à la commande</strong> (acompte) — déclenchement des travaux</li>
-      <li><strong>50% à la livraison</strong> — après validation finale du Client</li>
-    </ul>
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-breadcrumb"><a href="index.html">Accueil</a> <span>›</span> <span>CGV</span></div>
+    <h1>Conditions Générales<br><span class="highlight">de Vente</span></h1>
+    <p>Les présentes CGV régissent les relations entre e.com connect et ses clients. Applicables à toute commande de prestation.</p>
   </div>
-  <p>Paiement accepté par virement bancaire ou PayPal. Tout retard de paiement entraîne des pénalités de retard au taux légal en vigueur.</p>
+</section>
 
-  <h2>Article 5 — Délais de livraison</h2>
-  <p>Les délais indicatifs sont :</p>
-  <ul>
-    <li>Site Starter : <strong>5 à 10 jours ouvrés</strong></li>
-    <li>Site Pro : <strong>10 à 15 jours ouvrés</strong></li>
-    <li>Refonte : <strong>10 à 20 jours ouvrés</strong></li>
-  </ul>
-  <p>Ces délais courent à compter de la réception de l'acompte ET de tous les éléments nécessaires (textes, photos, informations). Tout retard de fourniture des éléments par le Client suspend les délais.</p>
+<section class="section-light">
+  <div class="container">
+    <div class="legal-body">
 
-  <h2>Article 6 — Obligations du client</h2>
-  <p>Le Client s'engage à :</p>
-  <ul>
-    <li>Fournir les informations et éléments nécessaires dans les délais convenus</li>
-    <li>Valider ou formuler ses retours dans un délai de <strong>5 jours ouvrés</strong> après chaque étape</li>
-    <li>S'assurer que les contenus fournis ne violent aucun droit de propriété intellectuelle tiers</li>
-  </ul>
+      <div class="legal-section reveal">
+        <h2>Article 1 — Identification du prestataire</h2>
+        <p><strong>Dénomination :</strong> e.com connect</p>
+        <p><strong>Responsable :</strong> Jonathan Besdinier</p>
+        <p><strong>Statut :</strong> Auto-entrepreneur / Entreprise individuelle</p>
+        <p><strong>Adresse :</strong> Lens, Pas-de-Calais (62), France</p>
+        <p><strong>Email :</strong> contact@e-comconnect.com</p>
+        <p><strong>Téléphone :</strong> 06 52 86 36 95</p>
+        <p><strong>TVA :</strong> Non applicable, art. 293B du CGI</p>
+      </div>
 
-  <h2>Article 7 — Révisions et modifications</h2>
-  <p>Chaque forfait inclut <strong>2 allers-retours de corrections</strong> après livraison de la maquette et du site. Au-delà, toute modification est facturée au tarif horaire en vigueur (<strong>50€/h</strong>).</p>
+      <div class="legal-section reveal">
+        <h2>Article 2 — Objet</h2>
+        <p>Les présentes CGV s'appliquent à toutes les prestations de services fournies par e.com connect :</p>
+        <ul>
+          <li>Création de sites vitrines en code HTML/CSS/JS pur</li>
+          <li>Refonte de sites existants</li>
+          <li>Optimisation SEO (référencement naturel)</li>
+          <li>Maintenance et mises à jour de sites web</li>
+          <li>Prestations complémentaires (options à la carte)</li>
+        </ul>
+      </div>
 
-  <h2>Article 8 — Propriété intellectuelle</h2>
-  <p>Le transfert de propriété du site au Client est effectif après <strong>règlement intégral</strong> de la facture. Avant ce règlement, le Prestataire conserve tous les droits sur les créations réalisées.</p>
-  <p>Le Prestataire se réserve le droit de mentionner le site réalisé dans son portfolio, sauf demande contraire explicite du Client.</p>
+      <div class="legal-section reveal">
+        <h2>Article 3 — Tarifs</h2>
+        <table class="pricing-table">
+          <thead><tr><th>Formule</th><th>Prix TTC</th><th>Délai livraison</th></tr></thead>
+          <tbody>
+            <tr><td>Landing Page (Starter)</td><td class="price-highlight">349€</td><td>3–7 jours ouvrés</td></tr>
+            <tr><td>Site Vitrine Pro</td><td class="price-highlight">1 099€</td><td>10–15 jours ouvrés</td></tr>
+            <tr><td>Refonte Pro</td><td class="price-highlight">1 199€</td><td>10–20 jours ouvrés</td></tr>
+            <tr><td>Pack SEO</td><td class="price-highlight">190€</td><td>5–10 jours ouvrés</td></tr>
+            <tr><td>Maintenance mensuelle</td><td class="price-highlight">40€/mois</td><td>—</td></tr>
+            <tr><td>Intervention ponctuelle</td><td class="price-highlight">50€/heure</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
 
-  <h2>Article 9 — Droit de rétractation</h2>
-  <p>Conformément à l'article L221-28 du Code de la consommation, le droit de rétractation <strong>ne s'applique pas</strong> aux prestations de services pleinement exécutées avant la fin du délai de rétractation, avec accord préalable du consommateur. Le Client en est informé lors de la signature du devis.</p>
+      <div class="legal-section reveal">
+        <h2>Article 4 — Modalités de commande</h2>
+        <h3>4.1 Processus</h3>
+        <p>Toute prestation fait l'objet d'un devis gratuit transmis par email sous 24h. La commande est confirmée par retour du devis signé ET versement de l'acompte.</p>
+        <h3>4.2 Contenu fourni par le client</h3>
+        <p>Le client s'engage à fournir dans les délais convenus : textes, logos, photos, accès nécessaires. Tout retard peut entraîner un décalage équivalent du délai de livraison.</p>
+      </div>
 
-  <h2>Article 10 — Responsabilité</h2>
-  <p>Le Prestataire s'engage à apporter tout le soin nécessaire à la réalisation des prestations. Sa responsabilité est limitée au montant des sommes effectivement perçues au titre de la prestation concernée.</p>
-  <p>Le Prestataire n'est pas responsable des pannes d'hébergement, des modifications apportées par le Client après livraison, ni des évolutions des algorithmes des moteurs de recherche.</p>
+      <div class="legal-section reveal">
+        <h2>Article 5 — Paiement</h2>
+        <h3>5.1 Modalités</h3>
+        <ul>
+          <li><strong>Acompte :</strong> 50% du montant total à la confirmation de commande</li>
+          <li><strong>Solde :</strong> 50% à la livraison (mise en ligne ou remise des fichiers)</li>
+        </ul>
+        <h3>5.2 Moyens acceptés</h3>
+        <p>Virement bancaire (IBAN fourni sur facture) ou PayPal. Facture officielle émise pour chaque versement.</p>
+        <h3>5.3 Retard de paiement</h3>
+        <p>En cas de retard, des pénalités au taux légal en vigueur s'appliquent, ainsi qu'une indemnité forfaitaire de 40€ pour frais de recouvrement (art. L441-10 du Code de commerce).</p>
+      </div>
 
-  <h2>Article 11 — Résiliation</h2>
-  <p>En cas de résiliation à l'initiative du Client après démarrage des travaux, l'acompte versé reste acquis au Prestataire. Si les travaux sont avancés de plus de 50%, une facturation complémentaire pourra être émise au prorata.</p>
+      <div class="legal-section reveal">
+        <h2>Article 6 — Délais de livraison</h2>
+        <p>Les délais indiqués dans le devis sont des estimations en jours ouvrés, décomptés à partir de la réception de l'ensemble des éléments (contenu, accès, acompte). e.com connect s'engage à respecter ces délais sauf cas de force majeure ou retard du client.</p>
+      </div>
 
-  <h2>Article 12 — Litiges</h2>
-  <p>En cas de litige, une solution amiable sera recherchée en priorité. À défaut, les tribunaux compétents du ressort de Paris seront seuls compétents.</p>
-  <p>Conformément aux articles L611-1 et suivants du Code de la consommation, le Client consommateur peut recourir à la médiation. Médiateur compétent : <strong>Médiation de la consommation</strong> (www.economie.gouv.fr).</p>
+      <div class="legal-section reveal">
+        <h2>Article 7 — Propriété intellectuelle</h2>
+        <p>Jusqu'au paiement intégral, e.com connect reste propriétaire des travaux réalisés. Le transfert des droits d'exploitation intervient au paiement complet du solde.</p>
+        <p>Le client autorise e.com connect à mentionner la réalisation dans son portfolio, sauf opposition écrite dans les 30 jours suivant la livraison.</p>
+      </div>
 
-  <footer-legal>© 2026 E.com connect — Jonathan Besdinier · Entrepreneur individuel · SIRET 501 061 840 00044 · TVA non applicable, article 293B du CGI</footer-legal>
+      <div class="legal-section reveal">
+        <h2>Article 8 — Garantie</h2>
+        <p>Une période de retouches de <strong>7 jours</strong> suivant la livraison permet de signaler toute non-conformité par rapport au cahier des charges. Au-delà, les modifications sont facturées. Les défauts techniques constatés dans le mois suivant la livraison sont corrigés sans frais.</p>
+      </div>
+
+      <div class="legal-section reveal">
+        <h2>Article 9 — Responsabilité</h2>
+        <p>La responsabilité de e.com connect est limitée au montant de la prestation facturée. Le client est seul responsable du contenu publié sur son site et garantit disposer de tous les droits sur les éléments fournis.</p>
+      </div>
+
+      <div class="legal-section reveal">
+        <h2>Article 10 — Résiliation</h2>
+        <p>En cas de résiliation après démarrage des travaux, l'acompte reste acquis. Si les travaux dépassent 50% de réalisation, le solde intégral est dû.</p>
+      </div>
+
+      <div class="legal-section reveal">
+        <h2>Article 11 — Droit applicable</h2>
+        <p>Les présentes CGV sont soumises au droit français. Les tribunaux compétents de Lens (62) seront seuls habilités en cas de litige non résolu à l'amiable.</p>
+        <p><strong>Date d'entrée en vigueur :</strong> Janvier 2026</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="container cta-strip-inner">
+    <h2>Prêt à démarrer votre projet ?</h2>
+    <p>Devis gratuit sous 24h — paiement sécurisé en 2 fois</p>
+    <div class="cta-strip-actions">
+      <a href="index.html#contact" class="btn btn-primary btn-lg">Demander un devis →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-brand-logo"><div class="nav-logo-icon">E</div><span class="nav-logo-text">e.com connect</span></div><p class="footer-tagline">Sites vitrines en code pur — rapides, sécurisés, visibles sur Google.</p></div>
+      <div><div class="footer-col-title">Pages</div><ul class="footer-links"><li><a href="index.html">Accueil</a></li><li><a href="tarifs.html">Tarifs</a></li><li><a href="pourquoi-un-site.html">Pourquoi un site ?</a></li></ul></div>
+      <div><div class="footer-col-title">Formules</div><ul class="footer-links"><li><a href="tarifs.html">Starter — 349€</a></li><li><a href="tarifs.html">Pro — 1 099€</a></li><li><a href="tarifs.html">Refonte — 1 199€</a></li></ul></div>
+      <div><div class="footer-col-title">Contact</div><ul class="footer-links"><li><a href="tel:0652863695">06 52 86 36 95</a></li><li><a href="mailto:contact@e-comconnect.com">contact@e-comconnect.com</a></li></ul></div>
+      <div><div class="footer-col-title">Légal</div><ul class="footer-links"><li><a href="mentions-legales.html">Mentions légales</a></li><li><a href="cgv.html">CGV</a></li><li><a href="politique-confidentialite.html">Confidentialité</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copyright">© 2026 e.com connect — Lens (62). TVA non applicable — art. 293B CGI.</div>
+      <div class="footer-socials"><a href="#" class="footer-social">📸</a><a href="mailto:contact@e-comconnect.com" class="footer-social">✉️</a><a href="tel:0652863695" class="footer-social">📞</a></div>
+    </div>
+  </div>
+</footer>
+
+<div class="floating-actions">
+  <a href="https://wa.me/33652863695" class="float-btn float-wa" target="_blank">💬</a>
+  <a href="mailto:contact@e-comconnect.com" class="float-btn float-mail">✉️</a>
 </div>
 
+<script>
+  const nb=document.getElementById('navbar');
+  window.addEventListener('scroll',()=>nb.classList.toggle('scrolled',scrollY>40),{passive:true});
+  function toggleMenu(){document.getElementById('mobile-menu').classList.toggle('open');}
+  const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target)}}),{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
 </body>
 </html>

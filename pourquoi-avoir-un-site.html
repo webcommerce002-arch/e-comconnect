@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pourquoi votre business a besoin d'un site web en 2026 — E.Com Connect</title>
+  <meta name="description" content="Facebook ne suffit plus. Découvrez pourquoi chaque professionnel doit avoir son propre site vitrine en 2026 pour être visible sur Google et développer son activité." />
+  <link rel="icon" href="favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Inter',sans-serif; background:#f8f7f4; color:#0d0d0d; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+    h1,h2,h3,h4 { font-family:'Outfit',sans-serif; }
+
+    :root {
+      --bg:#f8f7f4; --bg-alt:#f1f0eb; --bg-dark:#0d0d12;
+      --text:#0d0d0d; --text-muted:#6b7280;
+      --accent:#2563eb; --accent-2:#1d4ed8;
+      --green:#10b981; --red:#ef4444;
+      --border:rgba(0,0,0,0.08);
+      --glass-bg:rgba(255,255,255,0.68); --glass-border:rgba(255,255,255,0.85);
+      --shadow-glass:0 8px 32px rgba(0,0,0,0.06),0 2px 8px rgba(0,0,0,0.03),inset 0 1px 0 rgba(255,255,255,0.9);
+      --shadow-blue:0 4px 20px rgba(37,99,235,0.28);
+      --radius:12px; --radius-lg:20px; --transition:0.25s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position:sticky; top:0; z-index:100;
+      background:rgba(248,247,244,0.92);
+      backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);
+      padding:0 40px; height:110px;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .nav-logo { text-decoration:none; display:flex; align-items:center; }
+    .nav-logo img { height:100px; width:auto; display:block; }
+    .nav-links { display:flex; align-items:center; gap:28px; list-style:none; }
+    .nav-links a { font-size:14px; font-weight:500; color:var(--text-muted); text-decoration:none; transition:color var(--transition); }
+    .nav-links a:hover, .nav-links a.active { color:var(--accent); }
+    .nav-cta { display:flex; align-items:center; gap:10px; }
+    .btn-back { font-size:14px; font-weight:600; color:var(--text-muted); text-decoration:none; transition:color var(--transition); }
+    .btn-back:hover { color:var(--text); }
+    .btn-primary { background:var(--accent); color:#fff; padding:11px 22px; border-radius:999px; font-size:14px; font-weight:700; text-decoration:none; transition:all var(--transition); }
+    .btn-primary:hover { background:var(--accent-2); }
+
+    /* ─── ORBS ─── */
+    .orb { position:absolute; border-radius:50%; pointer-events:none; filter:blur(80px); }
+    .orb-blue { background:radial-gradient(circle, rgba(37,99,235,0.18) 0%, transparent 70%); }
+
+    /* ─── HERO ─── */
+    .page-hero {
+      position:relative; overflow:hidden;
+      padding:100px 40px 80px; text-align:center;
+      background:var(--bg);
+    }
+    .hero-eyebrow {
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:2px;
+      color:var(--accent); background:rgba(37,99,235,0.07);
+      padding:6px 14px; border-radius:999px; margin-bottom:24px;
+    }
+    .hero-title {
+      font-size:clamp(36px,6vw,72px); font-weight:900; line-height:1.05;
+      letter-spacing:-2px; text-transform:uppercase; margin-bottom:24px;
+      max-width:900px; margin-left:auto; margin-right:auto;
+    }
+    .hero-title .blue { color:var(--accent); }
+    .hero-sub { font-size:18px; color:var(--text-muted); max-width:620px; margin:0 auto 16px; line-height:1.7; }
+    .hero-accroche {
+      font-size:16px; font-weight:600; color:var(--text);
+      background:rgba(37,99,235,0.06); border:1px solid rgba(37,99,235,0.15);
+      display:inline-block; padding:12px 24px; border-radius:var(--radius); margin-bottom:40px;
+    }
+    .hero-actions { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
+    .btn-hero-primary { background:var(--accent); color:#fff; padding:15px 32px; border-radius:999px; font-size:15px; font-weight:700; text-decoration:none; box-shadow:var(--shadow-blue); transition:all var(--transition); }
+    .btn-hero-primary:hover { background:var(--accent-2); transform:translateY(-2px); }
+    .btn-hero-outline { background:transparent; color:var(--text); border:2px solid rgba(0,0,0,0.15); padding:13px 28px; border-radius:999px; font-size:15px; font-weight:600; text-decoration:none; transition:all var(--transition); }
+    .btn-hero-outline:hover { border-color:var(--text); }
+
+    /* ─── STATS BAND ─── */
+    .stats-band {
+      background:var(--bg-dark); padding:48px 40px;
+      display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    }
+    .stat-item { text-align:center; padding:20px 24px; }
+    .stat-val { font-family:'Outfit',sans-serif; font-size:52px; font-weight:900; color:var(--accent); letter-spacing:-2px; line-height:1; }
+    .stat-label { font-size:13px; color:rgba(255,255,255,0.5); margin-top:8px; line-height:1.5; }
+    .stat-source { font-size:11px; color:rgba(255,255,255,0.25); margin-top:4px; }
+
+    /* ─── CONTAINER ─── */
+    .container { max-width:1000px; margin:0 auto; padding:0 40px; }
+
+    /* ─── SECTION ─── */
+    .section { padding:90px 0; }
+    .section-alt { background:var(--bg-alt); }
+    .section-dark { background:var(--bg-dark); color:#fff; }
+    .section-eyebrow {
+      display:inline-flex; align-items:center; gap:8px;
+      font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:2.5px;
+      color:var(--accent); margin-bottom:16px;
+    }
+    .section-eyebrow::before { content:''; width:24px; height:2px; background:var(--accent); }
+    .section-title { font-size:clamp(28px,4vw,44px); font-weight:900; line-height:1.1; letter-spacing:-1px; margin-bottom:20px; }
+    .section-desc { font-size:17px; color:var(--text-muted); line-height:1.7; max-width:680px; }
+
+    /* ─── PROBLÈME CARDS ─── */
+    .problem-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:48px; }
+    .problem-card {
+      background:var(--glass-bg); border:1px solid var(--glass-border);
+      backdrop-filter:blur(12px); border-radius:var(--radius-lg);
+      padding:32px 28px; box-shadow:var(--shadow-glass);
+    }
+    .problem-icon { font-size:32px; margin-bottom:16px; }
+    .problem-title { font-family:'Outfit',sans-serif; font-size:18px; font-weight:800; margin-bottom:12px; }
+    .problem-text { font-size:14px; color:var(--text-muted); line-height:1.7; }
+
+    /* ─── 6 RAISONS ─── */
+    .reasons-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; margin-top:48px; }
+    .reason-card {
+      background:var(--glass-bg); border:1px solid var(--glass-border);
+      backdrop-filter:blur(12px); border-radius:var(--radius-lg);
+      padding:28px; box-shadow:var(--shadow-glass);
+      display:flex; gap:18px; align-items:flex-start;
+    }
+    .reason-num {
+      font-family:'Outfit',sans-serif; font-size:36px; font-weight:900;
+      color:rgba(37,99,235,0.15); line-height:1; flex-shrink:0; margin-top:-4px;
+    }
+    .reason-title { font-family:'Outfit',sans-serif; font-size:17px; font-weight:800; margin-bottom:8px; }
+    .reason-text { font-size:14px; color:var(--text-muted); line-height:1.7; }
+
+    /* ─── SITUATIONS ─── */
+    .situations { display:flex; flex-direction:column; gap:20px; margin-top:48px; }
+    .situation-card {
+      background:var(--glass-bg); border:1px solid var(--glass-border);
+      backdrop-filter:blur(12px); border-radius:var(--radius-lg);
+      padding:28px 32px; box-shadow:var(--shadow-glass);
+      display:flex; gap:20px; align-items:flex-start;
+    }
+    .situation-emoji { font-size:28px; flex-shrink:0; margin-top:2px; }
+    .situation-title { font-family:'Outfit',sans-serif; font-size:17px; font-weight:800; margin-bottom:8px; }
+    .situation-text { font-size:15px; color:var(--text-muted); line-height:1.7; }
+
+    /* ─── COMPARATIF ─── */
+    .comparatif { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:48px; }
+    .comp-col { border-radius:var(--radius-lg); padding:32px 28px; }
+    .comp-col.bad { background:#fef2f2; border:2px solid #fecaca; }
+    .comp-col.good { background:#f0fdf4; border:2px solid #86efac; }
+    .comp-header { display:flex; align-items:center; gap:10px; margin-bottom:24px; }
+    .comp-badge { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; padding:4px 12px; border-radius:999px; }
+    .comp-col.bad .comp-badge { background:#fee2e2; color:#dc2626; }
+    .comp-col.good .comp-badge { background:#dcfce7; color:#16a34a; }
+    .comp-item { display:flex; align-items:flex-start; gap:10px; font-size:14px; line-height:1.6; margin-bottom:14px; }
+    .comp-col.bad .comp-item { color:#7f1d1d; }
+    .comp-col.good .comp-item { color:#14532d; }
+    .comp-icon { font-size:16px; flex-shrink:0; margin-top:1px; }
+
+    /* ─── TÉMOIGNAGE ─── */
+    .testimonial-wrap {
+      max-width:740px; margin:48px auto 0;
+      background:var(--glass-bg); border:1px solid var(--glass-border);
+      backdrop-filter:blur(12px); border-radius:var(--radius-lg);
+      padding:40px 44px; box-shadow:var(--shadow-glass);
+      position:relative;
+    }
+    .testimonial-quote { font-size:80px; font-family:'Outfit',sans-serif; font-weight:900; color:rgba(37,99,235,0.1); position:absolute; top:16px; left:28px; line-height:1; }
+    .testimonial-text { font-size:17px; color:var(--text); line-height:1.8; font-style:italic; margin-bottom:24px; position:relative; z-index:1; }
+    .testimonial-author { display:flex; align-items:center; gap:14px; }
+    .testimonial-avatar { width:48px; height:48px; border-radius:50%; background:var(--accent); display:flex; align-items:center; justify-content:center; font-family:'Outfit',sans-serif; font-size:18px; font-weight:800; color:#fff; }
+    .testimonial-name { font-weight:700; font-size:15px; }
+    .testimonial-role { font-size:13px; color:var(--text-muted); }
+
+    /* ─── CTA FINAL ─── */
+    .cta-final {
+      background:var(--bg-dark); color:#fff;
+      padding:100px 40px; text-align:center; position:relative; overflow:hidden;
+    }
+    .cta-wm {
+      position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+      font-family:'Outfit',sans-serif; font-size:clamp(80px,16vw,200px); font-weight:900;
+      color:rgba(255,255,255,0.03); pointer-events:none; white-space:nowrap; letter-spacing:-4px;
+    }
+    .cta-title { font-size:clamp(28px,4vw,48px); font-weight:900; line-height:1.1; margin-bottom:20px; position:relative; z-index:1; }
+    .cta-sub { font-size:17px; color:rgba(255,255,255,0.5); max-width:600px; margin:0 auto 40px; line-height:1.7; position:relative; z-index:1; }
+    .btn-cta { background:var(--accent); color:#fff; padding:18px 40px; border-radius:999px; font-size:16px; font-weight:700; text-decoration:none; box-shadow:var(--shadow-blue); transition:all var(--transition); display:inline-block; position:relative; z-index:1; }
+    .btn-cta:hover { background:var(--accent-2); transform:translateY(-3px); }
+
+    /* ─── FOOTER MINI ─── */
+    .footer-mini { text-align:center; padding:32px; font-size:13px; color:var(--text-muted); border-top:1px solid var(--border); }
+    .footer-mini a { color:var(--accent); font-weight:600; text-decoration:none; }
+
+    /* ─── REVEAL ─── */
+    .reveal { opacity:0; transform:translateY(20px); transition:opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity:1; transform:none; }
+
+    /* ─── RESPONSIVE ─── */
+    @media(max-width:860px) {
+      .problem-grid { grid-template-columns:1fr; }
+      .reasons-grid { grid-template-columns:1fr; }
+      .comparatif { grid-template-columns:1fr; }
+      .stats-band { grid-template-columns:1fr; }
+      nav { padding:0 20px; height:90px; }
+      .nav-logo img { height:80px; }
+      .nav-links { display:none; }
+      .container { padding:0 20px; }
+      .page-hero { padding:70px 20px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ─── NAV ─── -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="logo-circuit.png" alt="E.Com Connect" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#methode">Méthode</a></li>
+      <li><a href="tarifs.html">Tarifs</a></li>
+      <li><a href="pourquoi-avoir-un-site.html" class="active">Pourquoi un site ?</a></li>
+      <li><a href="index.html#avis">Avis</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="index.html" class="btn-back">← Retour</a>
+      <a href="index.html#questionnaire" class="btn-primary">Devis gratuit →</a>
+    </div>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section class="page-hero">
+    <div class="orb orb-blue" style="width:600px;height:400px;top:-100px;left:50%;transform:translateX(-50%);opacity:0.5;"></div>
+    <div class="hero-eyebrow">💡 Guide professionnel 2026</div>
+    <h1 class="hero-title">
+      Votre business<br>existe-t-il vraiment<br><span class="blue">sur internet ?</span>
+    </h1>
+    <p class="hero-sub">Facebook peut disparaître demain. Google, lui, est là pour de bon. Votre site web, c'est votre adresse sur internet — personne ne peut vous la retirer.</p>
+    <div class="hero-accroche">
+      Chaque jour sans site, c'est des clients qui cherchent quelqu'un comme vous… et qui trouvent votre concurrent.
+    </div>
+    <div class="hero-actions">
+      <a href="index.html#questionnaire" class="btn-hero-primary">Je veux mon site — parlons-en →</a>
+      <a href="tarifs.html" class="btn-hero-outline">Voir les formules</a>
+    </div>
+  </section>
+
+  <!-- ─── STATS BAND ─── -->
+  <div class="stats-band">
+    <div class="stat-item reveal">
+      <div class="stat-val">97%</div>
+      <div class="stat-label">des consommateurs cherchent une entreprise en ligne avant d'acheter</div>
+      <div class="stat-source">BrightLocal, 2023</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-val">75%</div>
+      <div class="stat-label">des gens jugent la crédibilité d'une entreprise sur son site web</div>
+      <div class="stat-source">Stanford Web Credibility Research</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-val">×4</div>
+      <div class="stat-label">plus de conversions avec un site qu'avec les réseaux sociaux seuls</div>
+      <div class="stat-source">WordStream Benchmark, 2024</div>
+    </div>
+  </div>
+
+  <!-- ─── SECTION 1 — LE PROBLÈME ─── -->
+  <section class="section">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-eyebrow">Le problème</div>
+        <h2 class="section-title">Facebook et Instagram<br>ne vous appartiennent pas.</h2>
+        <p class="section-desc">Vous avez travaillé dur pour construire votre audience sur les réseaux. Mais ce que personne ne vous dit, c'est que tout ça ne vous appartient pas vraiment.</p>
+      </div>
+      <div class="problem-grid">
+        <div class="problem-card reveal">
+          <div class="problem-icon">⚠️</div>
+          <div class="problem-title">Du jour au lendemain, tout peut disparaître</div>
+          <div class="problem-text">Facebook a déjà réduit à néant la portée des pages professionnelles en 2018. Des milliers de commerces qui vivaient grâce à leur page ont vu leur visibilité s'effondrer — sans prévenir, sans recours. Vous êtes locataire, pas propriétaire.</div>
+        </div>
+        <div class="problem-card reveal">
+          <div class="problem-icon">🎲</div>
+          <div class="problem-title">Vous jouez selon les règles de quelqu'un d'autre</div>
+          <div class="problem-text">Sur Instagram, c'est l'algorithme qui décide si vos clients vous voient. Vous pouvez poster tous les jours, être régulier — si l'algo change d'humeur, votre visibilité s'effondre. Vous n'avez aucun levier, aucun contrôle.</div>
+        </div>
+        <div class="problem-card reveal">
+          <div class="problem-icon">🔍</div>
+          <div class="problem-title">Vos clients cherchent sur Google, pas sur Facebook</div>
+          <div class="problem-text">Quand quelqu'un a besoin d'un électricien à 22h, d'un coiffeur pour samedi ou d'un garage en urgence, il tape sur Google. Pas sur Instagram. Si vous n'y êtes pas, vous n'existez pas pour lui.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SECTION 2 — 6 RAISONS ─── -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-eyebrow">Les 6 raisons</div>
+        <h2 class="section-title">Pourquoi un site change<br>tout pour votre activité.</h2>
+        <p class="section-desc">Pas de jargon, pas de promesses vides. Voici ce qu'un site vitrine fait concrètement pour vous.</p>
+      </div>
+      <div class="reasons-grid">
+        <div class="reason-card reveal">
+          <div class="reason-num">01</div>
+          <div>
+            <div class="reason-title">Google vous envoie des clients — gratuitement</div>
+            <div class="reason-text">Un site bien fait remonte dans les résultats quand quelqu'un cherche votre métier dans votre ville. Ces visiteurs ne vous coûtent rien. Ils cherchaient exactement ce que vous proposez, et ils tombent sur vous.</div>
+          </div>
+        </div>
+        <div class="reason-card reveal">
+          <div class="reason-num">02</div>
+          <div>
+            <div class="reason-title">Un site inspire confiance immédiatement</div>
+            <div class="reason-text">Avant d'appeler, les gens vérifient. Ils cherchent votre nom en ligne. Si rien ne remonte — ou pire, un vieux site daté — ils passent au suivant. Un site propre, c'est votre poignée de main avant même qu'ils vous contactent.</div>
+          </div>
+        </div>
+        <div class="reason-card reveal">
+          <div class="reason-num">03</div>
+          <div>
+            <div class="reason-title">Votre vitrine est ouverte 24h/24, 7j/7</div>
+            <div class="reason-text">Même quand vous dormez, votre site travaille. Un client décide à minuit qu'il a besoin de vous demain — il lit vos services, voit vos réalisations, prend votre numéro. Le lendemain il vous appelle déjà convaincu.</div>
+          </div>
+        </div>
+        <div class="reason-card reveal">
+          <div class="reason-num">04</div>
+          <div>
+            <div class="reason-title">C'est le seul endroit qui vous appartient vraiment</div>
+            <div class="reason-text">Votre nom de domaine, vos textes, vos photos — personne ne peut vous les supprimer. Aucune mise à jour d'algorithme, aucune politique de réseau social ne peut vous toucher. C'est votre patrimoine numérique.</div>
+          </div>
+        </div>
+        <div class="reason-card reveal">
+          <div class="reason-num">05</div>
+          <div>
+            <div class="reason-title">Vendez et informez sans lever le petit doigt</div>
+            <div class="reason-text">Formulaire de contact, demande de devis, prise de rendez-vous — votre site gère tout ça à votre place. Pendant que vous travaillez, vos prochains clients remplissent déjà leur demande.</div>
+          </div>
+        </div>
+        <div class="reason-card reveal">
+          <div class="reason-num">06</div>
+          <div>
+            <div class="reason-title">L'image professionnelle que vous méritez</div>
+            <div class="reason-text">Vos réalisations, vos avis clients, votre histoire — tout ça mérite d'être mis en valeur correctement. Un site bien conçu raconte qui vous êtes et pourquoi choisir vous plutôt qu'un autre.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SECTION 3 — SITUATIONS CONCRÈTES ─── -->
+  <section class="section">
+    <div class="container">
+      <div class="reveal">
+        <div class="section-eyebrow">Ce que vous perdez</div>
+        <h2 class="section-title">Chaque jour sans site,<br>voici ce qui se passe.</h2>
+        <p class="section-desc">Ces situations se produisent en ce moment même, dans votre ville, dans votre secteur.</p>
+      </div>
+      <div class="situations">
+        <div class="situation-card reveal">
+          <div class="situation-emoji">🚿</div>
+          <div>
+            <div class="situation-title">Le plombier introuvable à 23h</div>
+            <div class="situation-text">Une canalisation vient de lâcher chez Madame Bertrand. Elle tape "plombier [votre ville]" en panique. Trois noms apparaissent avec des sites clairs, des avis, un numéro d'urgence. Le vôtre n'y est pas. Elle appelle le premier qu'elle trouve. Ce client-là, vous ne le reverrez jamais.</div>
+          </div>
+        </div>
+        <div class="situation-card reveal">
+          <div class="situation-emoji">⚡</div>
+          <div>
+            <div class="situation-title">Le devis de 8 000 € qui ne viendra jamais</div>
+            <div class="situation-text">Un entrepreneur cherche un électricien pour rénover ses bureaux. Il compare trois artisans qui ont des sites avec des réalisations, des certifications, des témoignages clients. Il ne prend même pas la peine de chercher plus loin. Vous auriez pu décrocher ce chantier.</div>
+          </div>
+        </div>
+        <div class="situation-card reveal">
+          <div class="situation-emoji">✂️</div>
+          <div>
+            <div class="situation-title">La cliente fidèle qui va chez le voisin</div>
+            <div class="situation-text">Une jeune femme déménage dans votre quartier. Elle cherche un salon sur Google Maps, regarde les photos, les horaires, les avis. Le salon d'en face a tout ça. Vous avez une page Facebook mise à jour il y a six mois. Elle choisit le salon d'en face — et y retourne chaque mois depuis.</div>
+          </div>
+        </div>
+        <div class="situation-card reveal">
+          <div class="situation-emoji">🍽️</div>
+          <div>
+            <div class="situation-title">Le restaurant oublié le vendredi soir</div>
+            <div class="situation-text">Un groupe de collègues cherche où dîner. Ils comparent les restaurants sur Google : menus en ligne, photos des plats, réservation directe. Votre restaurant a la meilleure cuisine du quartier — mais pas de site. Ils choisissent ailleurs. Pas parce que vous êtes moins bons. Parce que vous êtes invisibles.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SECTION 4 — COMPARATIF ─── -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="reveal" style="text-align:center;margin-bottom:48px;">
+        <div class="section-eyebrow" style="justify-content:center;">Comparatif</div>
+        <h2 class="section-title">La différence en un coup d'œil.</h2>
+      </div>
+      <div class="comparatif reveal">
+        <div class="comp-col bad">
+          <div class="comp-header">
+            <span style="font-size:24px;">😟</span>
+            <span class="comp-badge">Facebook seulement</span>
+          </div>
+          <div class="comp-item"><span class="comp-icon">✕</span>Visible uniquement si l'algorithme le veut</div>
+          <div class="comp-item"><span class="comp-icon">✕</span>Vos clients appartiennent à Facebook</div>
+          <div class="comp-item"><span class="comp-icon">✕</span>Aucun référencement local possible</div>
+          <div class="comp-item"><span class="comp-icon">✕</span>Image amateur, peu rassurante</div>
+          <div class="comp-item"><span class="comp-icon">✕</span>Zéro contrôle sur votre contenu</div>
+          <div class="comp-item"><span class="comp-icon">✕</span>Pas de prise de rendez-vous en ligne</div>
+        </div>
+        <div class="comp-col good">
+          <div class="comp-header">
+            <span style="font-size:24px;">🚀</span>
+            <span class="comp-badge">Avec votre site E.Com Connect</span>
+          </div>
+          <div class="comp-item"><span class="comp-icon">✓</span>Visible sur Google 24h/24, tous les jours</div>
+          <div class="comp-item"><span class="comp-icon">✓</span>Votre audience vous appartient vraiment</div>
+          <div class="comp-item"><span class="comp-icon">✓</span>Vos clients du quartier vous trouvent en premier</div>
+          <div class="comp-item"><span class="comp-icon">✓</span>Image professionnelle qui inspire confiance</div>
+          <div class="comp-item"><span class="comp-icon">✓</span>Vous modifiez, mettez à jour quand vous voulez</div>
+          <div class="comp-item"><span class="comp-icon">✓</span>Formulaires, réservations, contacts automatisés</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SECTION 5 — TÉMOIGNAGE ─── -->
+  <section class="section">
+    <div class="container" style="text-align:center;">
+      <div class="reveal">
+        <div class="section-eyebrow" style="justify-content:center;">Témoignage</div>
+        <h2 class="section-title">Ils ont franchi le pas.<br>Voici ce qu'ils disent.</h2>
+      </div>
+      <div class="testimonial-wrap reveal">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">Honnêtement, je pensais que c'était pour les grandes entreprises, pas pour moi. J'avais ma page Facebook, quelques avis Google, le bouche-à-oreille — ça marchait. Mais depuis que j'ai mon site, c'est différent. J'ai des demandes de devis qui arrivent la nuit, le week-end, quand je suis sur un chantier. La semaine dernière, un client m'a dit qu'il m'avait choisi parce que mon site "faisait sérieux". J'aurais dû le faire il y a cinq ans. Maintenant je refuse des chantiers — c'est le meilleur problème que j'aie jamais eu.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">K</div>
+          <div>
+            <div class="testimonial-name">Karim B.</div>
+            <div class="testimonial-role">Plombier-chauffagiste · Lyon · Client E.Com Connect</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stat supplémentaire -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;" class="reveal">
+        <div style="background:var(--glass-bg);border:1px solid var(--glass-border);backdrop-filter:blur(12px);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-glass);text-align:center;">
+          <div style="font-family:'Outfit',sans-serif;font-size:44px;font-weight:900;color:var(--accent);line-height:1;margin-bottom:10px;">37%</div>
+          <div style="font-size:14px;color:var(--text-muted);line-height:1.5;">des TPE/PME françaises n'ont toujours <strong style="color:var(--text);">pas de site web</strong> en 2024</div>
+          <div style="font-size:11px;color:#9ca3af;margin-top:6px;">FEVAD / Bpifrance, 2024</div>
+        </div>
+        <div style="background:var(--glass-bg);border:1px solid var(--glass-border);backdrop-filter:blur(12px);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-glass);text-align:center;">
+          <div style="font-family:'Outfit',sans-serif;font-size:44px;font-weight:900;color:var(--accent);line-height:1;margin-bottom:10px;">76%</div>
+          <div style="font-size:14px;color:var(--text-muted);line-height:1.5;">des recherches locales aboutissent à <strong style="color:var(--text);">une visite en 24h</strong></div>
+          <div style="font-size:11px;color:#9ca3af;margin-top:6px;">Google Think with Google, 2023</div>
+        </div>
+        <div style="background:var(--glass-bg);border:1px solid var(--glass-border);backdrop-filter:blur(12px);border-radius:var(--radius-lg);padding:28px;box-shadow:var(--shadow-glass);text-align:center;">
+          <div style="font-family:'Outfit',sans-serif;font-size:44px;font-weight:900;color:var(--accent);line-height:1;margin-bottom:10px;">84%</div>
+          <div style="font-size:14px;color:var(--text-muted);line-height:1.5;">des consommateurs trouvent une entreprise <strong style="color:var(--text);">sans site moins sérieuse</strong></div>
+          <div style="font-size:11px;color:#9ca3af;margin-top:6px;">Verisign, 2023</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA FINAL ─── -->
+  <section class="cta-final">
+    <div class="cta-wm">E-COM CONNECT</div>
+    <div class="reveal">
+      <h2 class="cta-title">Vos concurrents ont déjà leur site.<br>Vos futurs clients cherchent déjà sur Google.</h2>
+      <p class="cta-sub">La question n'est plus "est-ce que j'en ai besoin ?" — c'est "combien de temps encore je peux me permettre de ne pas en avoir ?"</p>
+      <a href="index.html#questionnaire" class="btn-cta">Je veux mon site — parlons-en maintenant →</a>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER MINI ─── -->
+  <div class="footer-mini">
+    <a href="index.html">← Retour à l'accueil</a>
+    &nbsp;·&nbsp;
+    <a href="tarifs.html">Voir les tarifs</a>
+    &nbsp;·&nbsp;
+    © 2026 E.Com Connect
+  </div>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.1 });
+    reveals.forEach(r => observer.observe(r));
+  </script>
+</body>
+</html>

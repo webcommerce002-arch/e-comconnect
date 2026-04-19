@@ -1,1399 +1,915 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Infos client — E.com Connect</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brief client — E.Com Connect | Créez votre site vitrine</title>
+  <meta name="description" content="Remplissez votre brief en 10 minutes. Toutes les infos dont j'ai besoin pour créer votre site vitrine sur mesure." />
+  <link rel="icon" href="favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; font-size:16px; }
+    body { font-family:'Inter',sans-serif; background:#f8f7f4; color:#0d0d0d; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+    h1,h2,h3,h4 { font-family:'Outfit',sans-serif; }
 
-  *{margin:0;padding:0;box-sizing:border-box}
+    :root {
+      --bg:#f8f7f4; --bg-alt:#f1f0eb; --bg-dark:#0d0d12;
+      --text:#0d0d0d; --text-muted:#6b7280;
+      --accent:#2563eb; --accent-2:#1d4ed8;
+      --green:#10b981; --red:#ef4444;
+      --border:rgba(0,0,0,0.08); --border-focus:rgba(37,99,235,0.4);
+      --glass-bg:rgba(255,255,255,0.72); --glass-border:rgba(255,255,255,0.9);
+      --radius:12px; --radius-lg:20px; --transition:0.25s cubic-bezier(0.4,0,0.2,1);
+    }
 
-  body{
-    font-family:'Inter',system-ui,sans-serif;
-    background:#0a0a0a;
-    color:#f0f0f0;
-    line-height:1.6;
-    overflow-x:hidden;
-  }
+    /* ─── NAV ─── */
+    .nav {
+      position:sticky; top:0; z-index:100;
+      background:rgba(248,247,244,0.94);
+      backdrop-filter:blur(20px);
+      border-bottom:1px solid var(--border);
+      padding:0 40px; height:90px;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .nav-logo img { height:80px; width:auto; display:block; }
+    .nav-back { display:flex; align-items:center; gap:6px; color:var(--accent); font-size:14px; font-weight:600; text-decoration:none; transition:var(--transition); }
+    .nav-back:hover { opacity:0.75; }
+    .nav-cta { background:var(--accent); color:#fff; padding:10px 22px; border-radius:999px; font-size:14px; font-weight:700; text-decoration:none; transition:var(--transition); }
+    .nav-cta:hover { background:var(--accent-2); }
+    @media(max-width:640px){ .nav { padding:0 20px; height:72px; } .nav-logo img { height:56px; } .nav-cta { display:none; } }
 
-  /* TOPNAV */
-  .topnav{
-    position:sticky;
-    top:0;
-    z-index:100;
-    background:rgba(10,10,10,0.95);
-    backdrop-filter:blur(20px);
-    border-bottom:1px solid #1a1a1a;
-    padding:0 60px;
-    display:flex;
-    align-items:center;
-    gap:32px;
-    height:52px;
-  }
-  .topnav-logo{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    text-decoration:none;
-    margin-right:8px;
-  }
-  .topnav-logo-icon{
-    width:28px;height:28px;
-    background:#84cc16;
-    border-radius:6px;
-    display:flex;align-items:center;justify-content:center;
-  }
-  .topnav-logo-icon svg{stroke:#0a0a0a;fill:none}
-  .topnav-logo-name{font-size:14px;font-weight:700;color:#e5e5e5}
-  .topnav-logo-name span{color:#84cc16}
-  .topnav a{font-size:13px;font-weight:500;color:#737373;text-decoration:none;transition:color .2s}
-  .topnav a:hover{color:#e5e5e5}
-  .topnav a.active{color:#84cc16;font-weight:700}
-  .topnav-sep{flex:1}
-  .topnav-back{
-    color:#84cc16 !important;
-    border:1px solid rgba(132,204,22,0.3);
-    border-radius:20px;
-    padding:4px 14px;
-    font-size:12px !important;
-  }
-  .topnav-back:hover{background:rgba(132,204,22,0.08) !important}
+    /* ─── HERO ─── */
+    .hero { padding:72px 24px 48px; text-align:center; }
+    .hero-badge { display:inline-flex; align-items:center; gap:8px; font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--accent); background:rgba(37,99,235,0.07); padding:6px 16px; border-radius:999px; margin-bottom:24px; }
+    .hero h1 { font-size:clamp(32px,5vw,58px); font-weight:900; letter-spacing:-1.5px; line-height:1.08; margin-bottom:16px; }
+    .hero h1 span { color:var(--accent); }
+    .hero p { font-size:17px; color:var(--text-muted); max-width:520px; margin:0 auto 32px; line-height:1.65; }
+    .hero-meta { display:flex; align-items:center; justify-content:center; gap:24px; flex-wrap:wrap; font-size:13px; color:var(--text-muted); }
+    .hero-meta-item { display:flex; align-items:center; gap:6px; font-weight:500; }
+    .hero-meta-dot { width:6px; height:6px; border-radius:50%; }
 
-  /* HERO */
-  .page-hero{
-    padding:64px 60px 48px;
-    background:radial-gradient(ellipse 70% 50% at 60% 0%, rgba(132,204,22,0.1) 0%, transparent 70%), #0a0a0a;
-    border-bottom:1px solid #1a1a1a;
-  }
-  .page-hero-label{
-    font-size:11px;
-    color:#84cc16;
-    font-weight:700;
-    letter-spacing:.1em;
-    text-transform:uppercase;
-    margin-bottom:12px;
-  }
-  .page-hero h1{
-    font-size:clamp(32px,4vw,52px);
-    font-weight:900;
-    letter-spacing:-2px;
-    color:#e5e5e5;
-    margin-bottom:16px;
-    line-height:1.1;
-  }
-  .page-hero h1 span{color:#84cc16}
-  .page-hero-sub{
-    font-size:15px;
-    color:#737373;
-    max-width:600px;
-    line-height:1.7;
-  }
-  .page-hero-meta{
-    display:flex;
-    gap:24px;
-    margin-top:28px;
-    flex-wrap:wrap;
-  }
-  .meta-pill{
-    display:flex;
-    align-items:center;
-    gap:6px;
-    font-size:12px;
-    color:#a3a3a3;
-    background:#111;
-    border:1px solid #1f1f1f;
-    padding:6px 14px;
-    border-radius:20px;
-  }
-  .meta-pill .dot{width:6px;height:6px;border-radius:50%;background:#84cc16}
+    /* ─── PROGRESS BAR ─── */
+    .progress-wrap { position:sticky; top:90px; z-index:90; background:rgba(248,247,244,0.96); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); padding:0 24px; }
+    .progress-bar { max-width:860px; margin:0 auto; display:flex; align-items:flex-start; gap:0; padding:14px 0; }
+    .prog-step { display:flex; align-items:center; flex:1; }
+    .prog-step:last-child { flex:none; }
+    .prog-step-inner { display:flex; flex-direction:column; align-items:center; gap:4px; }
+    .prog-dot { width:30px; height:30px; border-radius:50%; border:2px solid #d1d5db; background:#fff; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:#9ca3af; flex-shrink:0; transition:var(--transition); cursor:pointer; }
+    .prog-dot.active { border-color:var(--accent); background:var(--accent); color:#fff; }
+    .prog-dot.done { border-color:var(--green); background:var(--green); color:#fff; }
+    .prog-line { flex:1; height:2px; background:#e5e7eb; transition:var(--transition); margin:0 4px; margin-top:-16px; }
+    .prog-line.done { background:var(--green); }
+    .prog-label { font-size:10px; color:#9ca3af; font-weight:600; white-space:nowrap; }
+    .prog-label.active { color:var(--accent); }
+    .prog-label.done { color:var(--green); }
+    @media(max-width:560px){ .prog-label { display:none; } .prog-dot { width:24px; height:24px; font-size:9px; } }
+    @media(max-width:480px){ .progress-wrap { top:72px; } }
 
-  /* LAYOUT */
-  .page-content{
-    max-width:1100px;
-    margin:0 auto;
-    padding:56px 60px;
-  }
+    /* ─── MAIN ─── */
+    .main { max-width:860px; margin:0 auto; padding:0 24px 120px; }
 
-  /* SECTION */
-  .info-section{
-    margin-bottom:56px;
-  }
-  .section-header{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    margin-bottom:24px;
-    padding-bottom:16px;
-    border-bottom:1px solid #1a1a1a;
-  }
-  .section-icon{
-    width:40px;height:40px;
-    background:rgba(132,204,22,0.1);
-    border:1px solid rgba(132,204,22,0.2);
-    border-radius:10px;
-    display:flex;align-items:center;justify-content:center;
-    flex-shrink:0;
-    color:#84cc16;
-    font-size:18px;
-  }
-  .section-num{
-    font-size:11px;
-    color:#84cc16;
-    font-weight:700;
-    letter-spacing:.1em;
-    text-transform:uppercase;
-    margin-bottom:2px;
-  }
-  .section-title{
-    font-size:18px;
-    font-weight:800;
-    color:#e5e5e5;
-  }
-  .section-desc{
-    font-size:13px;
-    color:#525252;
-    margin-top:2px;
-  }
+    /* ─── STEP SECTION ─── */
+    .form-step { display:none; }
+    .form-step.active { display:block; }
 
-  /* CARDS GRID */
-  .cards-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
-    gap:14px;
-  }
-  .info-card{
-    background:#111;
-    border:1px solid #1f1f1f;
-    border-radius:12px;
-    padding:20px;
-    transition:border-color .2s;
-    position:relative;
-  }
-  .info-card:hover{border-color:rgba(132,204,22,0.25)}
-  .info-card.required::before{
-    content:'Obligatoire';
-    position:absolute;
-    top:14px;right:14px;
-    font-size:9px;
-    font-weight:700;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    color:#84cc16;
-    background:rgba(132,204,22,0.1);
-    padding:2px 8px;
-    border-radius:10px;
-  }
-  .info-card.optional::before{
-    content:'Optionnel';
-    position:absolute;
-    top:14px;right:14px;
-    font-size:9px;
-    font-weight:700;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    color:#525252;
-    background:#1a1a1a;
-    padding:2px 8px;
-    border-radius:10px;
-  }
-  .card-label{
-    font-size:13px;
-    font-weight:700;
-    color:#e5e5e5;
-    margin-bottom:6px;
-    padding-right:70px;
-  }
-  .card-desc{
-    font-size:12px;
-    color:#737373;
-    line-height:1.6;
-  }
-  .card-examples{
-    margin-top:10px;
-    padding-top:10px;
-    border-top:1px solid #1a1a1a;
-  }
-  .card-examples-label{
-    font-size:10px;
-    color:#525252;
-    font-weight:600;
-    text-transform:uppercase;
-    letter-spacing:.06em;
-    margin-bottom:5px;
-  }
-  .card-example{
-    font-size:11px;
-    color:#737373;
-    display:flex;
-    align-items:flex-start;
-    gap:6px;
-    margin-bottom:3px;
-  }
-  .card-example::before{content:'→';color:#84cc16;flex-shrink:0}
+    .step-header { padding:48px 0 32px; }
+    .step-num { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--accent); margin-bottom:10px; }
+    .step-title { font-size:clamp(24px,3.5vw,36px); font-weight:900; letter-spacing:-0.8px; margin-bottom:8px; line-height:1.2; }
+    .step-desc { font-size:15px; color:var(--text-muted); line-height:1.6; }
+    .step-badge { display:inline-flex; align-items:center; gap:6px; font-size:11px; font-weight:600; padding:3px 10px; border-radius:999px; margin-left:10px; vertical-align:middle; }
+    .step-badge.required { background:rgba(239,68,68,0.08); color:var(--red); }
+    .step-badge.optional { background:rgba(107,114,128,0.08); color:var(--text-muted); }
 
-  /* TIPS */
-  .tip-box{
-    background:rgba(132,204,22,0.05);
-    border:1px solid rgba(132,204,22,0.15);
-    border-radius:12px;
-    padding:18px 22px;
-    margin-top:16px;
-    display:flex;
-    gap:12px;
-    align-items:flex-start;
-  }
-  .tip-icon{font-size:16px;flex-shrink:0;margin-top:1px}
-  .tip-text{font-size:13px;color:#a3a3a3;line-height:1.6}
-  .tip-text strong{color:#84cc16}
+    /* ─── FORM ELEMENTS ─── */
+    .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    .form-grid.cols-1 { grid-template-columns:1fr; }
+    .form-grid.cols-3 { grid-template-columns:1fr 1fr 1fr; }
+    @media(max-width:640px){ .form-grid, .form-grid.cols-3 { grid-template-columns:1fr; } }
+    .form-group { display:flex; flex-direction:column; gap:7px; }
+    .form-group.full { grid-column:1/-1; }
 
-  /* TIMELINE */
-  .timeline{
-    display:flex;
-    flex-direction:column;
-    gap:0;
-  }
-  .timeline-item{
-    display:flex;
-    gap:20px;
-    position:relative;
-  }
-  .timeline-item:not(:last-child)::after{
-    content:'';
-    position:absolute;
-    left:19px;
-    top:40px;
-    bottom:0;
-    width:1px;
-    background:#1f1f1f;
-  }
-  .timeline-dot{
-    width:40px;height:40px;
-    background:#111;
-    border:1px solid #1f1f1f;
-    border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-    flex-shrink:0;
-    font-size:13px;
-    font-weight:800;
-    color:#84cc16;
-    position:relative;
-    z-index:1;
-  }
-  .timeline-body{
-    padding-bottom:28px;
-    flex:1;
-  }
-  .timeline-title{
-    font-size:14px;
-    font-weight:700;
-    color:#e5e5e5;
-    margin-bottom:4px;
-    padding-top:10px;
-  }
-  .timeline-text{
-    font-size:12px;
-    color:#737373;
-    line-height:1.6;
-  }
+    label { font-size:13px; font-weight:600; color:var(--text); }
+    label .req { color:var(--red); margin-left:2px; }
+    label .tip { font-size:11px; font-weight:400; color:var(--text-muted); margin-left:6px; }
 
-  /* FORMAT TABLE */
-  .format-table{
-    background:#111;
-    border:1px solid #1f1f1f;
-    border-radius:12px;
-    overflow:hidden;
-  }
-  .format-row{
-    display:grid;
-    grid-template-columns:200px 1fr 120px;
-    gap:0;
-    border-bottom:1px solid #1a1a1a;
-    align-items:center;
-  }
-  .format-row:last-child{border-bottom:none}
-  .format-row.header{background:#161616}
-  .format-cell{
-    padding:12px 16px;
-    font-size:12px;
-    color:#737373;
-    border-right:1px solid #1a1a1a;
-  }
-  .format-cell:last-child{border-right:none}
-  .format-row.header .format-cell{
-    font-size:10px;
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing:.08em;
-    color:#525252;
-  }
-  .format-cell strong{color:#e5e5e5;font-weight:600}
-  .badge-ok{
-    display:inline-block;
-    background:rgba(132,204,22,0.1);
-    color:#84cc16;
-    font-size:10px;font-weight:700;
-    padding:2px 8px;border-radius:10px;
-  }
-  .badge-warn{
-    display:inline-block;
-    background:rgba(245,158,11,0.1);
-    color:#f59e0b;
-    font-size:10px;font-weight:700;
-    padding:2px 8px;border-radius:10px;
-  }
-  .badge-no{
-    display:inline-block;
-    background:rgba(239,68,68,0.1);
-    color:#f87171;
-    font-size:10px;font-weight:700;
-    padding:2px 8px;border-radius:10px;
-  }
+    input[type=text], input[type=email], input[type=tel], input[type=url], select, textarea {
+      width:100%; padding:12px 16px; border-radius:var(--radius);
+      border:1.5px solid rgba(0,0,0,0.12); background:#fff;
+      font-family:'Inter',sans-serif; font-size:14px; color:var(--text);
+      transition:border-color var(--transition), box-shadow var(--transition);
+      outline:none; resize:none;
+    }
+    input:focus, select:focus, textarea:focus { border-color:var(--accent); box-shadow:0 0 0 3px rgba(37,99,235,0.1); }
+    input::placeholder, textarea::placeholder { color:#c0c0c0; }
+    select { appearance:none; cursor:pointer; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' stroke='%236b7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; padding-right:38px; }
+    textarea { min-height:100px; line-height:1.6; }
+    .char-counter { font-size:11px; color:var(--text-muted); text-align:right; }
 
-  /* FAQ */
-  .faq-item{
-    background:#111;
-    border:1px solid #1f1f1f;
-    border-radius:12px;
-    overflow:hidden;
-    transition:border-color .2s;
-  }
-  .faq-item:hover{border-color:rgba(132,204,22,0.2)}
-  .faq-question{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:18px 22px;
-    cursor:pointer;
-    user-select:none;
-    gap:16px;
-  }
-  .faq-question-text{
-    font-size:14px;
-    font-weight:600;
-    color:#e5e5e5;
-  }
-  .faq-icon{
-    width:24px;height:24px;
-    border-radius:50%;
-    background:#1a1a1a;
-    border:1px solid #2a2a2a;
-    display:flex;align-items:center;justify-content:center;
-    flex-shrink:0;
-    color:#737373;
-    font-size:16px;
-    transition:all .3s;
-    line-height:1;
-  }
-  .faq-item.open .faq-icon{
-    background:rgba(132,204,22,0.1);
-    border-color:rgba(132,204,22,0.3);
-    color:#84cc16;
-    transform:rotate(45deg);
-  }
-  .faq-answer{
-    max-height:0;
-    overflow:hidden;
-    transition:max-height .35s cubic-bezier(.4,0,.2,1);
-  }
-  .faq-answer-inner{
-    padding:0 22px 18px;
-    font-size:13px;
-    color:#737373;
-    line-height:1.7;
-    border-top:1px solid #1a1a1a;
-    padding-top:14px;
-  }
-  .faq-answer-inner strong{color:#a3a3a3}
-  .faq-answer-inner .green{color:#84cc16;font-weight:600}
+    /* ─── CARD CHECKBOX ─── */
+    .card-group { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    @media(max-width:480px){ .card-group { grid-template-columns:1fr; } }
+    .card-check { display:none; }
+    .card-label { display:flex; align-items:flex-start; gap:12px; padding:16px; border-radius:var(--radius); border:1.5px solid rgba(0,0,0,0.1); background:#fff; cursor:pointer; transition:all var(--transition); }
+    .card-label:hover { border-color:rgba(37,99,235,0.3); background:rgba(37,99,235,0.02); }
+    .card-check:checked + .card-label { border-color:var(--accent); background:rgba(37,99,235,0.05); }
+    .card-icon { font-size:22px; flex-shrink:0; margin-top:1px; }
+    .card-text { flex:1; }
+    .card-title { font-size:13px; font-weight:700; color:var(--text); margin-bottom:2px; }
+    .card-sub { font-size:12px; color:var(--text-muted); line-height:1.4; }
+    .card-check-mark { width:18px; height:18px; border:2px solid #d1d5db; border-radius:5px; flex-shrink:0; margin-top:2px; transition:var(--transition); display:flex; align-items:center; justify-content:center; }
+    .card-check:checked + .card-label .card-check-mark { background:var(--accent); border-color:var(--accent); }
+    .card-check:checked + .card-label .card-check-mark::after { content:'✓'; font-size:11px; color:#fff; font-weight:700; }
 
-  /* CTA FINAL */
-  .cta-box{
-    background:#111;
-    border:1px solid rgba(132,204,22,0.2);
-    border-radius:16px;
-    padding:40px;
-    text-align:center;
-    position:relative;
-    overflow:hidden;
-    margin-top:16px;
-  }
-  .cta-box::before{
-    content:'';
-    position:absolute;
-    top:0;left:0;right:0;height:2px;
-    background:linear-gradient(90deg,transparent,#84cc16,transparent);
-  }
-  .cta-box h2{
-    font-size:24px;font-weight:800;color:#e5e5e5;
-    letter-spacing:-0.5px;margin-bottom:10px;
-  }
-  .cta-box p{font-size:14px;color:#737373;margin-bottom:24px}
-  .cta-btn{
-    display:inline-flex;align-items:center;gap:8px;
-    background:#84cc16;color:#0a0a0a;
-    font-size:14px;font-weight:700;
-    padding:12px 28px;border-radius:8px;
-    text-decoration:none;
-    transition:background .2s,transform .2s;
-  }
-  .cta-btn:hover{background:#a3e635;transform:translateY(-1px)}
+    /* ─── TONE SELECTOR ─── */
+    .tone-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
+    @media(max-width:600px){ .tone-grid { grid-template-columns:repeat(2,1fr); } }
+    .tone-radio { display:none; }
+    .tone-label { display:flex; flex-direction:column; align-items:center; gap:8px; padding:18px 10px; border-radius:var(--radius); border:1.5px solid rgba(0,0,0,0.1); background:#fff; cursor:pointer; transition:all var(--transition); text-align:center; }
+    .tone-label:hover { border-color:rgba(37,99,235,0.3); }
+    .tone-radio:checked + .tone-label { border-color:var(--accent); background:rgba(37,99,235,0.05); }
+    .tone-emoji { font-size:28px; }
+    .tone-name { font-size:12px; font-weight:700; color:var(--text); }
+    .tone-desc { font-size:11px; color:var(--text-muted); line-height:1.3; }
 
-  /* SCROLL REVEAL */
-  .reveal{
-    opacity:0;
-    transform:translateY(30px);
-    transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1);
-  }
-  .reveal.visible{opacity:1;transform:translateY(0)}
+    /* ─── INFO BOX ─── */
+    .info-box { padding:16px 20px; border-radius:var(--radius); margin-bottom:20px; display:flex; align-items:flex-start; gap:12px; }
+    .info-box.blue { background:rgba(37,99,235,0.06); border:1.5px solid rgba(37,99,235,0.15); }
+    .info-box.green { background:rgba(16,185,129,0.06); border:1.5px solid rgba(16,185,129,0.2); }
+    .info-box.amber { background:rgba(245,158,11,0.07); border:1.5px solid rgba(245,158,11,0.2); }
+    .info-icon { font-size:18px; flex-shrink:0; margin-top:1px; }
+    .info-text { font-size:13px; color:var(--text); line-height:1.6; }
+    .info-text strong { font-weight:700; }
 
-  @media(min-width:769px){
-    .page-content{zoom:1.1}
-  }
+    /* ─── PHOTOS SECTION ─── */
+    .send-options { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:24px 0; }
+    @media(max-width:560px){ .send-options { grid-template-columns:1fr; } }
+    .send-card { padding:24px; border-radius:var(--radius-lg); border:1.5px solid; text-align:center; }
+    .send-card.wa { border-color:rgba(34,197,94,0.3); background:rgba(34,197,94,0.04); }
+    .send-card.mail { border-color:rgba(37,99,235,0.2); background:rgba(37,99,235,0.04); }
+    .send-card-icon { font-size:32px; margin-bottom:10px; }
+    .send-card-title { font-family:'Outfit',sans-serif; font-size:16px; font-weight:800; margin-bottom:6px; }
+    .send-card-desc { font-size:13px; color:var(--text-muted); line-height:1.5; margin-bottom:16px; }
+    .send-card a { display:inline-flex; align-items:center; gap:6px; padding:9px 18px; border-radius:999px; font-size:13px; font-weight:700; text-decoration:none; transition:var(--transition); }
+    .send-card.wa a { background:#22c55e; color:#fff; }
+    .send-card.wa a:hover { background:#16a34a; }
+    .send-card.mail a { background:var(--accent); color:#fff; }
+    .send-card.mail a:hover { background:var(--accent-2); }
 
-  @media(max-width:768px){
-    .topnav{padding:0 20px;gap:20px}
-    .page-hero,.page-content{padding-left:24px;padding-right:24px}
-    .cards-grid{grid-template-columns:1fr}
-    .format-row{grid-template-columns:140px 1fr 90px}
-  }
-</style>
+    /* ─── SEPARATORS ─── */
+    .form-sep { height:1px; background:var(--border); margin:32px 0; }
+    .form-section-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:2px; color:var(--text-muted); margin-bottom:16px; }
+
+    /* ─── NAV BUTTONS ─── */
+    .step-nav { display:flex; align-items:center; justify-content:space-between; padding:32px 0 0; gap:12px; }
+    .btn-prev { display:inline-flex; align-items:center; gap:6px; padding:12px 24px; border-radius:999px; font-size:14px; font-weight:700; border:1.5px solid rgba(0,0,0,0.12); background:#fff; color:var(--text); cursor:pointer; transition:var(--transition); font-family:'Inter',sans-serif; }
+    .btn-prev:hover { border-color:#aaa; }
+    .btn-next { display:inline-flex; align-items:center; gap:6px; padding:12px 28px; border-radius:999px; font-size:14px; font-weight:700; border:none; background:var(--accent); color:#fff; cursor:pointer; transition:var(--transition); font-family:'Inter',sans-serif; }
+    .btn-next:hover { background:var(--accent-2); transform:translateX(2px); }
+    .step-counter { font-size:13px; color:var(--text-muted); }
+
+    /* ─── SUBMIT ─── */
+    .submit-section { padding:48px 0 0; }
+    .submit-preview { background:linear-gradient(135deg,#0d0d12 0%,#1a1f3a 100%); border-radius:24px; padding:40px; margin-bottom:28px; position:relative; overflow:hidden; }
+    .submit-preview::before { content:''; position:absolute; top:-60px; right:-60px; width:200px; height:200px; border-radius:50%; background:radial-gradient(circle,rgba(37,99,235,0.25),transparent 70%); }
+    .submit-preview-inner { position:relative; z-index:1; }
+    .submit-preview h2 { font-size:28px; font-weight:900; color:#fff; margin-bottom:10px; letter-spacing:-0.5px; }
+    .submit-preview p { font-size:15px; color:rgba(255,255,255,0.55); margin-bottom:28px; line-height:1.6; }
+    .submit-btns { display:flex; gap:14px; flex-wrap:wrap; }
+    .btn-submit-mail { display:inline-flex; align-items:center; gap:8px; padding:14px 28px; border-radius:999px; font-size:15px; font-weight:700; background:var(--accent); color:#fff; border:none; cursor:pointer; font-family:'Inter',sans-serif; transition:var(--transition); }
+    .btn-submit-mail:hover { background:#1d4ed8; transform:translateY(-1px); }
+    .btn-submit-wa { display:inline-flex; align-items:center; gap:8px; padding:14px 28px; border-radius:999px; font-size:15px; font-weight:700; background:#22c55e; color:#fff; border:none; cursor:pointer; font-family:'Inter',sans-serif; transition:var(--transition); }
+    .btn-submit-wa:hover { background:#16a34a; transform:translateY(-1px); }
+    .submit-note { font-size:13px; color:var(--text-muted); line-height:1.6; }
+    .submit-note a { color:var(--accent); text-decoration:none; font-weight:600; }
+
+    /* ─── FOOTER ─── */
+    .footer-simple { background:var(--bg-dark); padding:40px 24px; text-align:center; margin-top:80px; }
+    .footer-simple p { font-size:13px; color:rgba(255,255,255,0.3); }
+    .footer-simple a { color:rgba(255,255,255,0.5); text-decoration:none; }
+    .footer-simple a:hover { color:#fff; }
+  </style>
 </head>
 <body>
 
-<!-- TOPNAV -->
-<nav class="topnav">
-  <a href="Ecomm-Connect-Presentation.html" class="topnav-logo">
-    <img src="logo-ecomconnect.png" alt="E.com connect" style="height:36px;width:auto;object-fit:contain">
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="logo-circuit.png" alt="E.Com Connect" />
   </a>
-  <a href="Ecomm-Connect-Presentation.html">Accueil</a>
-  <a href="Ecomm-Connect-Presentation.html#section-services">Prestations</a>
-  <a href="tarifs.html">Tarifs</a>
-  <a href="tarifs.html#section-options">Options</a>
-  <a href="checklist-client.html" class="active">Infos client</a>
-  <div class="topnav-sep"></div>
-  <a href="mailto:contact@e-comconnect.com" class="topnav-back">Devis gratuit →</a>
+  <a href="index.html" class="nav-back">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Retour au site
+  </a>
+  <a href="tarifs.html" class="nav-cta">Voir les tarifs</a>
 </nav>
 
 <!-- HERO -->
-<div class="page-hero">
-  <div class="page-hero-label">Guide client</div>
-  <h1>Ce dont j'ai besoin<br><span>pour créer votre site</span></h1>
-  <p class="page-hero-sub">Avant de démarrer votre projet, voici toutes les informations à me transmettre. Plus vous êtes précis, plus vite je livre — et mieux c'est.</p>
-  <div class="page-hero-meta">
-    <div class="meta-pill"><span class="dot"></span>Envoi par email ou WhatsApp</div>
-    <div class="meta-pill"><span class="dot"></span>Pas besoin d'être technique</div>
-    <div class="meta-pill"><span class="dot"></span>Je vous guide si besoin</div>
+<div class="hero">
+  <div class="hero-badge">📋 Brief client · ~10 min</div>
+  <h1>Donnez-moi tout ce qu'il faut<br><span>pour créer votre site.</span></h1>
+  <p>Remplissez ce formulaire une seule fois. Je m'occupe du design, du code et de la mise en ligne.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item"><div class="hero-meta-dot" style="background:#10b981"></div>Réponse sous 24h</div>
+    <div class="hero-meta-item"><div class="hero-meta-dot" style="background:#2563eb"></div>6 étapes · ~10 min</div>
+    <div class="hero-meta-item"><div class="hero-meta-dot" style="background:#f59e0b"></div>Photos par WhatsApp ou Email</div>
   </div>
 </div>
 
-<div class="page-content">
-
-  <!-- 1. IDENTITÉ -->
-  <div class="info-section reveal">
-    <div class="section-header">
-      <div class="section-icon">🏢</div>
-      <div>
-        <div class="section-num">01 — Obligatoire</div>
-        <div class="section-title">Identité de votre entreprise</div>
-        <div class="section-desc">Les infos de base pour construire votre site sur des bases solides.</div>
+<!-- PROGRESS BAR -->
+<div class="progress-wrap">
+  <div class="progress-bar" id="progressBar">
+    <div class="prog-step">
+      <div class="prog-step-inner">
+        <div class="prog-dot active" id="dot-1" onclick="goToStep(1)">1</div>
+        <span class="prog-label active" id="lbl-1">Identité</span>
       </div>
+      <div class="prog-line" id="line-1"></div>
     </div>
-    <div class="cards-grid">
-      <div class="info-card required">
-        <div class="card-label">Nom de l'entreprise</div>
-        <div class="card-desc">Le nom exact tel qu'il apparaîtra sur le site. Vérifiez l'orthographe et les majuscules.</div>
-        <div class="card-examples">
-          <div class="card-examples-label">Exemples</div>
-          <div class="card-example">Garage Dupont & Fils</div>
-          <div class="card-example">Cabinet Médical du Centre</div>
-        </div>
+    <div class="prog-step">
+      <div class="prog-step-inner">
+        <div class="prog-dot" id="dot-2" onclick="goToStep(2)">2</div>
+        <span class="prog-label" id="lbl-2">Contact</span>
       </div>
-      <div class="info-card required">
-        <div class="card-label">Slogan / accroche</div>
-        <div class="card-desc">Une phrase courte qui résume ce que vous faites. Si vous n'en avez pas, je peux en proposer une.</div>
-        <div class="card-examples">
-          <div class="card-examples-label">Exemples</div>
-          <div class="card-example">Votre santé, notre priorité</div>
-          <div class="card-example">Carrosserie rapide, prix honnête</div>
-        </div>
-      </div>
-      <div class="info-card required">
-        <div class="card-label">Secteur d'activité</div>
-        <div class="card-desc">Ce que vous faites concrètement. Soyez précis : "plombier chauffagiste" plutôt que "artisan".</div>
-      </div>
-      <div class="info-card required">
-        <div class="card-label">Zone géographique</div>
-        <div class="card-desc">Ville(s) ou département(s) où vous travaillez. Important pour le référencement local Google.</div>
-        <div class="card-examples">
-          <div class="card-examples-label">Exemples</div>
-          <div class="card-example">Lens et agglomération (62)</div>
-          <div class="card-example">Toute la France (en ligne)</div>
-        </div>
-      </div>
-      <div class="info-card optional">
-        <div class="card-label">Logo</div>
-        <div class="card-desc">En PNG fond transparent ou SVG. Si vous n'en avez pas, je peux en créer un simple inclus dans votre forfait.</div>
-      </div>
-      <div class="info-card optional">
-        <div class="card-label">Couleurs de marque</div>
-        <div class="card-desc">Vos couleurs officielles si vous en avez. Code HEX, Pantone, ou simplement "bleu marine + doré".</div>
-      </div>
+      <div class="prog-line" id="line-2"></div>
     </div>
-    <div class="tip-box">
-      <span class="tip-icon">💡</span>
-      <div class="tip-text">Pas de logo ? Pas de problème. <strong>Je crée un logotype simple inclus</strong> dans votre forfait si vous démarrez de zéro.</div>
+    <div class="prog-step">
+      <div class="prog-step-inner">
+        <div class="prog-dot" id="dot-3" onclick="goToStep(3)">3</div>
+        <span class="prog-label" id="lbl-3">Contenu</span>
+      </div>
+      <div class="prog-line" id="line-3"></div>
     </div>
-  </div>
-
-  <!-- 2. COORDONNÉES -->
-  <div class="info-section reveal">
-    <div class="section-header">
-      <div class="section-icon">📍</div>
-      <div>
-        <div class="section-num">02 — Obligatoire</div>
-        <div class="section-title">Coordonnées & contact</div>
-        <div class="section-desc">Pour que vos visiteurs puissent vous joindre facilement.</div>
+    <div class="prog-step">
+      <div class="prog-step-inner">
+        <div class="prog-dot" id="dot-4" onclick="goToStep(4)">4</div>
+        <span class="prog-label" id="lbl-4">Photos</span>
       </div>
+      <div class="prog-line" id="line-4"></div>
     </div>
-    <div class="cards-grid">
-      <div class="info-card required">
-        <div class="card-label">Adresse complète</div>
-        <div class="card-desc">Numéro, rue, code postal, ville. Sera utilisée pour Google Maps et la page Contact.</div>
+    <div class="prog-step">
+      <div class="prog-step-inner">
+        <div class="prog-dot" id="dot-5" onclick="goToStep(5)">5</div>
+        <span class="prog-label" id="lbl-5">Technique</span>
       </div>
-      <div class="info-card required">
-        <div class="card-label">Numéro de téléphone</div>
-        <div class="card-desc">Le numéro principal sur lequel vos clients peuvent vous appeler. Format : 06 XX XX XX XX.</div>
-      </div>
-      <div class="info-card required">
-        <div class="card-label">Adresse email</div>
-        <div class="card-desc">L'email que vous souhaitez afficher et où recevrez les messages du formulaire de contact.</div>
-      </div>
-      <div class="info-card optional">
-        <div class="card-label">Horaires d'ouverture</div>
-        <div class="card-desc">Jours et heures d'ouverture. Affiché sur la page Contact et dans votre fiche Google.</div>
-        <div class="card-examples">
-          <div class="card-examples-label">Exemple</div>
-          <div class="card-example">Lun–Ven 8h–18h, Sam 9h–12h</div>
-        </div>
-      </div>
-      <div class="info-card optional">
-        <div class="card-label">Réseaux sociaux</div>
-        <div class="card-desc">Liens vers vos pages Facebook, Instagram, LinkedIn... Je les intègre dans le footer et la page Contact.</div>
-      </div>
-      <div class="info-card optional">
-        <div class="card-label">Numéro WhatsApp</div>
-        <div class="card-desc">Si vous souhaitez le bouton WhatsApp flottant (option payante), précisez le numéro dédié.</div>
+      <div class="prog-line" id="line-5"></div>
+    </div>
+    <div class="prog-step">
+      <div class="prog-step-inner">
+        <div class="prog-dot" id="dot-6" onclick="goToStep(6)">6</div>
+        <span class="prog-label" id="lbl-6">Design</span>
       </div>
     </div>
   </div>
-
-  <!-- 3. CONTENU TEXTE -->
-  <div class="info-section reveal">
-    <div class="section-header">
-      <div class="section-icon">✍️</div>
-      <div>
-        <div class="section-num">03 — Important</div>
-        <div class="section-title">Contenu texte</div>
-        <div class="section-desc">Ce que vous voulez dire à vos visiteurs. Je peux vous aider à le rédiger si nécessaire.</div>
-      </div>
-    </div>
-    <div class="cards-grid">
-      <div class="info-card required">
-        <div class="card-label">Présentation de l'activité</div>
-        <div class="card-desc">Quelques lignes sur qui vous êtes, ce que vous faites, depuis combien de temps, ce qui vous distingue.</div>
-      </div>
-      <div class="info-card required">
-        <div class="card-label">Vos services / prestations</div>
-        <div class="card-desc">Liste de tout ce que vous proposez avec une courte description pour chaque. Un service = 2 à 5 lignes.</div>
-        <div class="card-examples">
-          <div class="card-examples-label">Exemple</div>
-          <div class="card-example">Vidange moteur — Changement pneus — Climatisation</div>
-        </div>
-      </div>
-      <div class="info-card optional">
-        <div class="card-label">Tarifs à afficher</div>
-        <div class="card-desc">Si vous souhaitez afficher vos prix publiquement. Sinon, formulaire de contact uniquement.</div>
-      </div>
-      <div class="info-card optional">
-        <div class="card-label">Témoignages clients</div>
-        <div class="card-desc">2 à 5 avis clients que vous souhaitez mettre en avant. Prénom, ville, et le texte de l'avis.</div>
-      </div>
-      <div class="info-card optional">
-        <div class="card-label">Mentions légales</div>
-        <div class="card-desc">SIRET, forme juridique (auto-entrepreneur, SARL...), nom du responsable. Obligatoire légalement sur tout site.</div>
-      </div>
-      <div class="info-card optional">
-        <div class="card-label">Questions fréquentes (FAQ)</div>
-        <div class="card-desc">Les questions que vos clients posent souvent avec les réponses. 5 à 10 questions idéalement.</div>
-      </div>
-    </div>
-    <div class="tip-box">
-      <span class="tip-icon">✍️</span>
-      <div class="tip-text">Pas le temps de rédiger ? <strong>Je prends en charge la rédaction</strong> à partir de vos notes ou d'un appel de 20 minutes. Inclus dans le forfait Pro, en option sur Starter.</div>
-    </div>
-  </div>
-
-  <!-- 4. PHOTOS & VISUELS -->
-  <div class="info-section reveal">
-    <div class="section-header">
-      <div class="section-icon">📸</div>
-      <div>
-        <div class="section-num">04 — Recommandé</div>
-        <div class="section-title">Photos & visuels</div>
-        <div class="section-desc">Les photos personnelles font toujours meilleure impression que les images génériques.</div>
-      </div>
-    </div>
-    <div class="cards-grid">
-      <div class="info-card optional">
-        <div class="card-label">Photo de vous / l'équipe</div>
-        <div class="card-desc">Une photo pro ou naturelle de vous ou de vos collaborateurs. Renforce la confiance et l'authenticité.</div>
-      </div>
-      <div class="info-card optional">
-        <div class="card-label">Photos de vos réalisations</div>
-        <div class="card-desc">Photos de chantiers, produits, plats, véhicules... Tout ce qui montre votre travail concrètement.</div>
-      </div>
-      <div class="info-card optional">
-        <div class="card-label">Photo de votre local / vitrine</div>
-        <div class="card-desc">L'extérieur ou l'intérieur de votre établissement si vous recevez des clients.</div>
-      </div>
-      <div class="info-card optional">
-        <div class="card-label">Vidéo de présentation</div>
-        <div class="card-desc">Une courte vidéo (30s à 2 min) si vous en avez une. Je l'intègre en hero ou en section dédiée.</div>
-      </div>
-    </div>
-
-    <!-- FORMAT TABLE -->
-    <div style="margin-top:20px">
-      <div style="font-size:12px;font-weight:600;color:#525252;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px">Formats acceptés</div>
-      <div class="format-table">
-        <div class="format-row header">
-          <div class="format-cell">Format</div>
-          <div class="format-cell">Usage recommandé</div>
-          <div class="format-cell">Compatibilité</div>
-        </div>
-        <div class="format-row">
-          <div class="format-cell"><strong>JPG / JPEG</strong></div>
-          <div class="format-cell">Photos, réalisations, équipe</div>
-          <div class="format-cell"><span class="badge-ok">✓ Parfait</span></div>
-        </div>
-        <div class="format-row">
-          <div class="format-cell"><strong>PNG</strong></div>
-          <div class="format-cell">Logo, icônes (fond transparent)</div>
-          <div class="format-cell"><span class="badge-ok">✓ Parfait</span></div>
-        </div>
-        <div class="format-row">
-          <div class="format-cell"><strong>WebP</strong></div>
-          <div class="format-cell">Images optimisées web</div>
-          <div class="format-cell"><span class="badge-ok">✓ Parfait</span></div>
-        </div>
-        <div class="format-row">
-          <div class="format-cell"><strong>SVG</strong></div>
-          <div class="format-cell">Logo vectoriel</div>
-          <div class="format-cell"><span class="badge-ok">✓ Idéal</span></div>
-        </div>
-        <div class="format-row">
-          <div class="format-cell"><strong>HEIC (iPhone)</strong></div>
-          <div class="format-cell">Photos iPhone brutes</div>
-          <div class="format-cell"><span class="badge-warn">⚠ Converti</span></div>
-        </div>
-        <div class="format-row">
-          <div class="format-cell"><strong>PDF</strong></div>
-          <div class="format-cell">Documents à télécharger</div>
-          <div class="format-cell"><span class="badge-ok">✓ OK</span></div>
-        </div>
-        <div class="format-row">
-          <div class="format-cell"><strong>BMP / TIFF</strong></div>
-          <div class="format-cell">—</div>
-          <div class="format-cell"><span class="badge-no">✗ Éviter</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="tip-box">
-      <span class="tip-icon">📸</span>
-      <div class="tip-text">Pas de photos ? <strong>J'intègre des visuels libres de droits</strong> cohérents avec votre secteur. Et si vous avez un iPhone, vos photos suffisent — je les optimise pour le web.</div>
-    </div>
-  </div>
-
-  <!-- 5. TECHNIQUE -->
-  <div class="info-section reveal">
-    <div class="section-header">
-      <div class="section-icon">⚙️</div>
-      <div>
-        <div class="section-num">05 — Si vous en avez déjà</div>
-        <div class="section-title">Éléments techniques existants</div>
-        <div class="section-desc">Ce que vous possédez éventuellement déjà. Je gère tout si vous n'avez rien.</div>
-      </div>
-    </div>
-    <div class="cards-grid">
-      <div class="info-card optional">
-        <div class="card-label">Nom de domaine</div>
-        <div class="card-desc">Votre adresse web (ex: monentreprise.fr). Précisez où il est enregistré (OVH, Ionos, Namecheap...) et donnez-moi accès.</div>
-      </div>
-      <div class="info-card optional">
-        <div class="card-label">Hébergement actuel</div>
-        <div class="card-desc">Si vous avez déjà un hébergeur. Pour les nouveaux sites, j'utilise Netlify (gratuit et rapide).</div>
-      </div>
-      <div class="info-card optional">
-        <div class="card-label">Ancien site à reprendre</div>
-        <div class="card-desc">Si vous avez un site existant à refondre, l'URL suffit. Je l'analyse et récupère ce qui est utile.</div>
-      </div>
-      <div class="info-card optional">
-        <div class="card-label">Email professionnel</div>
-        <div class="card-desc">Si vous voulez une adresse en @votre-domaine.fr. Je vous guide pour la création si besoin.</div>
-      </div>
-    </div>
-    <div class="tip-box">
-      <span class="tip-icon">⚙️</span>
-      <div class="tip-text">Vous n'avez <strong>rien de tout ça ? C'est normal</strong> pour un premier site. Je m'occupe du domaine, de l'hébergement et de la mise en ligne — tout compris.</div>
-    </div>
-  </div>
-
-  <!-- 6. PRÉFÉRENCES DESIGN -->
-  <div class="info-section reveal">
-    <div class="section-header">
-      <div class="section-icon">🎨</div>
-      <div>
-        <div class="section-num">06 — Utile</div>
-        <div class="section-title">Préférences design</div>
-        <div class="section-desc">Pour que le résultat vous ressemble. Aucune compétence graphique requise.</div>
-      </div>
-    </div>
-    <div class="cards-grid">
-      <div class="info-card optional">
-        <div class="card-label">Sites que vous aimez</div>
-        <div class="card-desc">2 ou 3 URLs de sites dont vous aimez le style. Pas forcément dans votre secteur — juste ce qui vous plaît visuellement.</div>
-      </div>
-      <div class="info-card optional">
-        <div class="card-label">Ambiance souhaitée</div>
-        <div class="card-desc">Décrivez l'impression que vous voulez donner à vos visiteurs.</div>
-        <div class="card-examples">
-          <div class="card-examples-label">Exemples</div>
-          <div class="card-example">Professionnel et sobre</div>
-          <div class="card-example">Chaleureux et local</div>
-          <div class="card-example">Moderne et technologique</div>
-          <div class="card-example">Luxe et haut de gamme</div>
-        </div>
-      </div>
-      <div class="info-card optional">
-        <div class="card-label">Ce que vous ne voulez pas</div>
-        <div class="card-desc">Des couleurs, styles ou éléments à éviter absolument. Aussi utile que ce que vous aimez.</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PROCESSUS DE LIVRAISON -->
-  <div class="info-section reveal">
-    <div class="section-header">
-      <div class="section-icon">🚀</div>
-      <div>
-        <div class="section-num">Après envoi</div>
-        <div class="section-title">Comment ça se passe ensuite</div>
-        <div class="section-desc">Une fois que vous m'avez transmis tout ça, voici les étapes.</div>
-      </div>
-    </div>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-dot">1</div>
-        <div class="timeline-body">
-          <div class="timeline-title">Appel de lancement (30 min)</div>
-          <div class="timeline-text">On fait le point ensemble sur votre projet, vos objectifs et vos préférences. Je réponds à toutes vos questions avant de démarrer.</div>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot">2</div>
-        <div class="timeline-body">
-          <div class="timeline-title">Maquette de la page d'accueil</div>
-          <div class="timeline-text">Je vous envoie une première version visuelle de votre page principale pour validation avant de coder le reste.</div>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot">3</div>
-        <div class="timeline-body">
-          <div class="timeline-title">Développement complet</div>
-          <div class="timeline-text">Je code l'ensemble du site — rapide, responsive, optimisé. Vous avez accès à une URL de prévisualisation en temps réel.</div>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot">4</div>
-        <div class="timeline-body">
-          <div class="timeline-title">Retours & ajustements</div>
-          <div class="timeline-text">Vous avez 2 allers-retours de corrections inclus. On affine jusqu'à ce que le site vous convienne parfaitement.</div>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot">5</div>
-        <div class="timeline-body">
-          <div class="timeline-title">Mise en ligne</div>
-          <div class="timeline-text">Je connecte votre domaine, configure le HTTPS et mets le site en ligne. Vous recevez un guide de prise en main.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- FAQ -->
-  <div class="info-section reveal">
-    <div class="section-header">
-      <div class="section-icon">❓</div>
-      <div>
-        <div class="section-num">Questions fréquentes</div>
-        <div class="section-title">Ce que mes clients demandent toujours</div>
-        <div class="section-desc">Les réponses aux questions les plus courantes avant de se lancer.</div>
-      </div>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:10px">
-
-      <div class="faq-item">
-        <div class="faq-question">
-          <span class="faq-question-text">Je n'ai pas de logo ni de contenu prêt — est-ce que je peux quand même commander un site ?</span>
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">Oui, sans problème. <strong>La majorité de mes clients partent de zéro.</strong> Je crée un logotype simple inclus dans votre forfait, je rédige les textes à partir d'un court échange, et j'intègre des visuels libres de droits si vous n'avez pas de photos. Vous n'avez pas besoin d'être prêt à 100% pour démarrer.</div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question">
-          <span class="faq-question-text">Combien de temps pour livrer mon site ?</span>
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">En général <span class="green">5 à 10 jours ouvrés</span> pour un site Starter, <span class="green">10 à 15 jours</span> pour un site Pro — une fois que j'ai tous les éléments en main. Le délai dépend surtout de la rapidité à laquelle vous me transmettez les informations et validez les étapes.</div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question">
-          <span class="faq-question-text">Est-ce que je pourrai modifier le site moi-même après livraison ?</span>
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">Le site est en code pur (HTML/CSS/JS), pas sur WordPress. <strong>Vous ne pourrez pas le modifier vous-même sans notions techniques.</strong> En revanche, pour toute modification de contenu (texte, photo, tarif...), je le fais rapidement — souvent sous 24h. Vous pouvez aussi opter pour la <span class="green">maintenance mensuelle à 40€/mois</span> pour un suivi régulier.</div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question">
-          <span class="faq-question-text">Pourquoi pas WordPress ? Tout le monde utilise ça.</span>
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">WordPress est pratique mais lourd : plugins, mises à jour, failles de sécurité, hébergement payant, lenteur... Un site en code pur est <span class="green">3 fois plus rapide</span>, zéro maintenance obligatoire, hébergé gratuitement sur Netlify et bien plus sécurisé. Google privilégie les sites rapides dans ses résultats — c'est un avantage SEO direct pour vous.</div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question">
-          <span class="faq-question-text">L'hébergement est vraiment gratuit ? Il n'y a pas de frais cachés ?</span>
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">L'hébergement via Netlify est <span class="green">100% gratuit</span> pour les sites vitrines. Le seul coût récurrent est votre <strong>nom de domaine</strong> (votre-site.fr), environ <strong>10 à 15€/an</strong> selon l'extension. C'est tout. Pas d'abonnement hébergeur, pas de frais mensuels cachés.</div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question">
-          <span class="faq-question-text">Mon site sera-t-il visible sur Google ?</span>
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">Tous mes sites incluent les bases du référencement : balises title et meta, sitemap XML, structure sémantique, Google Search Console. <strong>Pour un référencement local renforcé</strong> (apparaître sur "plombier Lens" par exemple), le <span class="green">Pack SEO à 190€</span> ajoute la fiche Google Business Profile, les mots-clés ciblés et un rapport de positionnement.</div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question">
-          <span class="faq-question-text">Est-ce que le site s'affiche bien sur mobile ?</span>
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">Oui, <span class="green">tous mes sites sont responsive</span> — ils s'adaptent automatiquement aux smartphones, tablettes et ordinateurs. En 2026, plus de 60% des visites viennent du mobile. Je teste chaque site sur plusieurs tailles d'écran avant livraison.</div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question">
-          <span class="faq-question-text">Comment se passe le paiement ?</span>
-          <span class="faq-icon">+</span>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-answer-inner"><strong>50% à la commande</strong> pour démarrer le projet, <strong>50% à la livraison</strong> une fois le site validé. Paiement par virement bancaire ou PayPal. Un devis détaillé vous est envoyé avant tout engagement.</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- CTA FINAL -->
-  <div class="reveal">
-    <div class="cta-box">
-      <h2>Prêt à démarrer ?</h2>
-      <p>Envoyez-moi ce que vous avez par email ou WhatsApp — je vous recontacte sous 24h.</p>
-      <a href="mailto:contact@e-comconnect.com" class="cta-btn">
-        Envoyer mes infos →
-      </a>
-    </div>
-  </div>
-
 </div>
+
+<!-- FORM -->
+<div class="main">
+
+  <!-- ═══ STEP 1 — IDENTITÉ ═══ -->
+  <div class="form-step active" id="step-1">
+    <div class="step-header">
+      <div class="step-num">Étape 01 / 06</div>
+      <h2 class="step-title">Votre entreprise <span class="step-badge required">Obligatoire</span></h2>
+      <p class="step-desc">Les informations de base sur votre activité. C'est la fondation de votre site.</p>
+    </div>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="company">Nom de l'entreprise / marque <span class="req">*</span></label>
+        <input type="text" id="company" placeholder="Ex : Boulangerie Martin, Plombier Dupont…" />
+      </div>
+      <div class="form-group">
+        <label for="sector">Secteur d'activité <span class="req">*</span></label>
+        <input type="text" id="sector" placeholder="Ex : Plomberie, Restaurant, Coach sportif…" />
+      </div>
+      <div class="form-group full">
+        <label for="zone">Zone géographique de service <span class="req">*</span></label>
+        <input type="text" id="zone" placeholder="Ex : Lens et 30 km alentours, Nord-Pas-de-Calais, France entière…" />
+      </div>
+      <div class="form-group full">
+        <label for="tagline">Accroche / slogan <span class="tip">(si vous en avez un)</span></label>
+        <input type="text" id="tagline" placeholder="Ex : « L'artisan qui respecte vos délais », « Du fait-maison, avec amour »…" />
+      </div>
+    </div>
+
+    <div class="form-sep"></div>
+    <div class="form-section-label">Logo & Couleurs</div>
+
+    <div class="info-box blue">
+      <span class="info-icon">💡</span>
+      <div class="info-text"><strong>Pas de logo ?</strong> Pas de problème — je peux créer une identité visuelle simple. Pour le logo (PNG/SVG), envoyez-le par WhatsApp ou email après avoir soumis ce brief.</div>
+    </div>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="logo-status">Situation logo</label>
+        <select id="logo-status">
+          <option value="">— Choisissez —</option>
+          <option value="j'ai un logo PNG/SVG prêt">J'ai un logo (PNG ou SVG)</option>
+          <option value="j'ai un logo mais pas en bonne qualité">J'ai un logo mais en mauvaise qualité</option>
+          <option value="je n'ai pas de logo — à créer">Je n'ai pas de logo, à créer</option>
+          <option value="juste le nom en texte, pas de logo">Juste le nom en texte</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="colors">Couleurs préférées <span class="tip">(codes hex ou noms)</span></label>
+        <input type="text" id="colors" placeholder="Ex : Bleu marine #1e3a5f, blanc, doré…" />
+      </div>
+    </div>
+
+    <div class="step-nav">
+      <span class="step-counter">Étape 1 sur 6</span>
+      <button class="btn-next" onclick="goToStep(2)">Continuer <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 2l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 2 — CONTACT ═══ -->
+  <div class="form-step" id="step-2">
+    <div class="step-header">
+      <div class="step-num">Étape 02 / 06</div>
+      <h2 class="step-title">Vos coordonnées <span class="step-badge required">Obligatoire</span></h2>
+      <p class="step-desc">Ces infos apparaîtront sur votre site pour que vos clients puissent vous contacter.</p>
+    </div>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="phone">Téléphone principal <span class="req">*</span></label>
+        <input type="tel" id="phone" placeholder="06 52 86 36 95" />
+      </div>
+      <div class="form-group">
+        <label for="email-contact">Email professionnel <span class="req">*</span></label>
+        <input type="email" id="email-contact" placeholder="contact@monentreprise.fr" />
+      </div>
+      <div class="form-group full">
+        <label for="address">Adresse physique <span class="tip">(si vous recevez du public)</span></label>
+        <input type="text" id="address" placeholder="Ex : 12 rue de la Paix, 62300 Lens" />
+      </div>
+      <div class="form-group">
+        <label for="whatsapp">WhatsApp <span class="tip">(si différent du tél principal)</span></label>
+        <input type="tel" id="whatsapp" placeholder="06 …" />
+      </div>
+      <div class="form-group">
+        <label for="hours">Horaires d'ouverture</label>
+        <input type="text" id="hours" placeholder="Ex : Lun–Ven 8h–18h, Sam 9h–12h" />
+      </div>
+    </div>
+
+    <div class="form-sep"></div>
+    <div class="form-section-label">Réseaux sociaux</div>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="instagram">Instagram</label>
+        <input type="url" id="instagram" placeholder="https://instagram.com/votre-compte" />
+      </div>
+      <div class="form-group">
+        <label for="facebook">Facebook</label>
+        <input type="url" id="facebook" placeholder="https://facebook.com/votre-page" />
+      </div>
+      <div class="form-group">
+        <label for="tiktok">TikTok</label>
+        <input type="url" id="tiktok" placeholder="https://tiktok.com/@votre-compte" />
+      </div>
+      <div class="form-group">
+        <label for="linkedin">LinkedIn</label>
+        <input type="url" id="linkedin" placeholder="https://linkedin.com/in/vous" />
+      </div>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn-prev" onclick="goToStep(1)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Retour</button>
+      <span class="step-counter">Étape 2 sur 6</span>
+      <button class="btn-next" onclick="goToStep(3)">Continuer <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 2l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 3 — CONTENU ═══ -->
+  <div class="form-step" id="step-3">
+    <div class="step-header">
+      <div class="step-num">Étape 03 / 06</div>
+      <h2 class="step-title">Votre contenu <span class="step-badge required">Important</span></h2>
+      <p class="step-desc">Ce que vous faites, ce que vous proposez. Plus vous donnez de détails, meilleur sera votre site.</p>
+    </div>
+
+    <div class="info-box green">
+      <span class="info-icon">✍️</span>
+      <div class="info-text"><strong>Pas le temps d'écrire ?</strong> Quelques mots-clés suffisent. La rédaction est incluse dans la formule Pro, ou disponible en option à la carte.</div>
+    </div>
+
+    <div class="form-grid cols-1">
+      <div class="form-group">
+        <label for="activity">Décrivez votre activité <span class="req">*</span> <span class="tip">En quelques phrases, comme à un ami</span></label>
+        <textarea id="activity" rows="4" placeholder="Ex : Je suis plombier depuis 12 ans à Lens. J'interviens pour les particuliers et professionnels — installations sanitaires, dépannages urgents, rénovations de salle de bain. Disponible 7j/7…"></textarea>
+        <div class="char-counter"><span id="cc-activity">0</span> / 1000</div>
+      </div>
+      <div class="form-group">
+        <label for="services">Liste de vos services / prestations <span class="req">*</span></label>
+        <textarea id="services" rows="5" placeholder="Ex :&#10;- Installation sanitaire complète&#10;- Dépannage urgence 24h/24&#10;- Rénovation salle de bain&#10;- Chauffe-eau, ballon thermodynamique&#10;- Débouchage canalisation…"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="pricing">Grille tarifaire <span class="tip">(si vous souhaitez l'afficher — sinon laissez vide)</span></label>
+        <textarea id="pricing" rows="4" placeholder="Ex :&#10;- Dépannage urgence : à partir de 80€&#10;- Pose robinetterie : 60€&#10;- Devis gratuit sur place…"></textarea>
+      </div>
+    </div>
+
+    <div class="form-sep"></div>
+    <div class="form-section-label">Avis clients & FAQ</div>
+
+    <div class="form-grid cols-1">
+      <div class="form-group">
+        <label for="testimonials">Témoignages clients <span class="tip">(2 à 5 avis — copiez-collez depuis Google ou Facebook)</span></label>
+        <textarea id="testimonials" rows="5" placeholder="Ex :&#10;« Super réactif, intervention en moins d'une heure. Vraiment professionnel. » — Sophie M., Lens&#10;&#10;« Travail soigné et tarif honnête. Je recommande sans hésiter ! » — Marc D., Béthune"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="faq">Questions fréquentes <span class="tip">(Ce que vos clients vous demandent souvent)</span></label>
+        <textarea id="faq" rows="5" placeholder="Ex :&#10;Q : Intervenez-vous le week-end ?&#10;R : Oui, 7j/7 pour les urgences.&#10;&#10;Q : Faites-vous des devis gratuits ?&#10;R : Oui, déplacement et devis offerts."></textarea>
+      </div>
+    </div>
+
+    <div class="form-sep"></div>
+    <div class="form-section-label">Informations légales</div>
+
+    <div class="form-grid cols-3">
+      <div class="form-group">
+        <label for="siret">N° SIRET</label>
+        <input type="text" id="siret" placeholder="12345678901234" />
+      </div>
+      <div class="form-group">
+        <label for="legal-form">Forme juridique</label>
+        <select id="legal-form">
+          <option value="">— Choisissez —</option>
+          <option>Auto-entrepreneur</option>
+          <option>SARL</option>
+          <option>EURL</option>
+          <option>SAS / SASU</option>
+          <option>EI</option>
+          <option>Autre</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="tva">N° TVA <span class="tip">(si applicable)</span></label>
+        <input type="text" id="tva" placeholder="FR12345678901" />
+      </div>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn-prev" onclick="goToStep(2)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Retour</button>
+      <span class="step-counter">Étape 3 sur 6</span>
+      <button class="btn-next" onclick="goToStep(4)">Continuer <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 2l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 4 — PHOTOS ═══ -->
+  <div class="form-step" id="step-4">
+    <div class="step-header">
+      <div class="step-num">Étape 04 / 06</div>
+      <h2 class="step-title">Photos & Visuels <span class="step-badge optional">Recommandé</span></h2>
+      <p class="step-desc">Les photos personnalisent votre site et rassurent vos clients. Envoyez-les directement via WhatsApp ou email.</p>
+    </div>
+
+    <div class="info-box amber">
+      <span class="info-icon">📸</span>
+      <div class="info-text"><strong>Pas de photos ?</strong> Je peux utiliser des photos libres de droits professionnelles adaptées à votre secteur — inclus dans toutes les formules.</div>
+    </div>
+
+    <div class="send-options">
+      <div class="send-card wa">
+        <div class="send-card-icon">💬</div>
+        <div class="send-card-title">Envoyer par WhatsApp</div>
+        <div class="send-card-desc">Envoyez vos photos, logo et visuels directement en message. Mentionnez votre nom d'entreprise.</div>
+        <a href="https://wa.me/33652863695?text=Bonjour%2C%20je%20vous%20envoie%20mes%20photos%20pour%20mon%20site%20vitrine." target="_blank">
+          💬 Ouvrir WhatsApp
+        </a>
+      </div>
+      <div class="send-card mail">
+        <div class="send-card-icon">📧</div>
+        <div class="send-card-title">Envoyer par Email</div>
+        <div class="send-card-desc">Envoyez vos fichiers en pièce jointe. Formats : JPG, PNG, SVG, WebP, MP4, PDF.</div>
+        <a href="mailto:contact@e-comconnect.com?subject=Photos pour mon site vitrine&body=Bonjour,%0A%0AVoici mes photos pour le site.%0AMon entreprise : ...">
+          📧 Ouvrir l'email
+        </a>
+      </div>
+    </div>
+
+    <div class="form-sep"></div>
+    <div class="form-section-label">Dites-moi ce que vous prévoyez d'envoyer</div>
+
+    <div class="card-group">
+      <input type="checkbox" class="card-check" id="ph-team" value="Photo équipe / portrait personnel" />
+      <label class="card-label" for="ph-team">
+        <span class="card-icon">🤝</span>
+        <div class="card-text"><div class="card-title">Photo équipe / portrait</div><div class="card-sub">Votre visage ou votre équipe — humanise votre site</div></div>
+        <div class="card-check-mark"></div>
+      </label>
+
+      <input type="checkbox" class="card-check" id="ph-work" value="Photos réalisations / portfolio" />
+      <label class="card-label" for="ph-work">
+        <span class="card-icon">🔨</span>
+        <div class="card-text"><div class="card-title">Photos réalisations</div><div class="card-sub">Avant/après, chantiers, plats, projets…</div></div>
+        <div class="card-check-mark"></div>
+      </label>
+
+      <input type="checkbox" class="card-check" id="ph-place" value="Photo devanture / local" />
+      <label class="card-label" for="ph-place">
+        <span class="card-icon">🏪</span>
+        <div class="card-text"><div class="card-title">Photo devanture / local</div><div class="card-sub">Votre boutique, bureau, véhicule…</div></div>
+        <div class="card-check-mark"></div>
+      </label>
+
+      <input type="checkbox" class="card-check" id="ph-logo" value="Logo (PNG transparent ou SVG)" />
+      <label class="card-label" for="ph-logo">
+        <span class="card-icon">🎨</span>
+        <div class="card-text"><div class="card-title">Logo</div><div class="card-sub">PNG fond transparent ou SVG de préférence</div></div>
+        <div class="card-check-mark"></div>
+      </label>
+
+      <input type="checkbox" class="card-check" id="ph-video" value="Vidéo de présentation" />
+      <label class="card-label" for="ph-video">
+        <span class="card-icon">🎬</span>
+        <div class="card-text"><div class="card-title">Vidéo de présentation</div><div class="card-sub">30 sec à 2 min, MP4 ou MOV</div></div>
+        <div class="card-check-mark"></div>
+      </label>
+
+      <input type="checkbox" class="card-check" id="ph-none" value="Aucune photo — utiliser des photos libres de droits" />
+      <label class="card-label" for="ph-none">
+        <span class="card-icon">🖼️</span>
+        <div class="card-text"><div class="card-title">Pas de photos</div><div class="card-sub">Utiliser des photos libres de droits professionnelles</div></div>
+        <div class="card-check-mark"></div>
+      </label>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn-prev" onclick="goToStep(3)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Retour</button>
+      <span class="step-counter">Étape 4 sur 6</span>
+      <button class="btn-next" onclick="goToStep(5)">Continuer <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 2l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 5 — TECHNIQUE ═══ -->
+  <div class="form-step" id="step-5">
+    <div class="step-header">
+      <div class="step-num">Étape 05 / 06</div>
+      <h2 class="step-title">Technique <span class="step-badge optional">Optionnel</span></h2>
+      <p class="step-desc">Si vous avez déjà un nom de domaine ou un site existant, indiquez-le ici.</p>
+    </div>
+
+    <div class="info-box blue">
+      <span class="info-icon">🌐</span>
+      <div class="info-text"><strong>Pas de nom de domaine ?</strong> Je m'occupe de tout — achat, hébergement, mise en ligne. C'est inclus ou proposé à la livraison.</div>
+    </div>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="domain">Nom de domaine existant</label>
+        <input type="text" id="domain" placeholder="Ex : monentreprise.fr (ou « à créer »)" />
+      </div>
+      <div class="form-group">
+        <label for="old-site">Site actuel <span class="tip">(si refonte)</span></label>
+        <input type="url" id="old-site" placeholder="https://www.ancien-site.fr" />
+      </div>
+      <div class="form-group full">
+        <label for="pro-email">Email professionnel souhaité</label>
+        <input type="email" id="pro-email" placeholder="contact@votre-domaine.fr — je peux vous aider à le configurer" />
+      </div>
+      <div class="form-group full">
+        <label for="site-type">Formule qui vous intéresse</label>
+        <select id="site-type">
+          <option value="">— Je ne sais pas encore / à discuter</option>
+          <option value="Landing Page (399€) — 1 page tout-en-un">Landing Page 399€ — 1 page tout-en-un</option>
+          <option value="Starter (649€) — 3-4 pages">Starter 649€ — 3-4 pages</option>
+          <option value="Pro (1099€) — 5-7 pages + SEO complet">Pro 1099€ — 5-7 pages + SEO complet</option>
+          <option value="Refonte Starter (749€)">Refonte — Starter 749€</option>
+          <option value="Refonte Pro (1199€)">Refonte — Pro 1199€</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-sep"></div>
+    <div class="form-section-label">Options souhaitées</div>
+
+    <div class="card-group">
+      <input type="checkbox" class="card-check" id="opt-seo" value="Pack SEO de base (190€)" />
+      <label class="card-label" for="opt-seo">
+        <span class="card-icon">🔍</span>
+        <div class="card-text"><div class="card-title">Pack SEO de base — 190€</div><div class="card-sub">Google local, balises, sitemap, mots-clés</div></div>
+        <div class="card-check-mark"></div>
+      </label>
+
+      <input type="checkbox" class="card-check" id="opt-whatsapp" value="Bouton WhatsApp flottant (35€)" />
+      <label class="card-label" for="opt-whatsapp">
+        <span class="card-icon">💬</span>
+        <div class="card-text"><div class="card-title">Bouton WhatsApp — 35€</div><div class="card-sub">Visible sur toutes les pages</div></div>
+        <div class="card-check-mark"></div>
+      </label>
+
+      <input type="checkbox" class="card-check" id="opt-maps" value="Carte Google Maps (45€)" />
+      <label class="card-label" for="opt-maps">
+        <span class="card-icon">📍</span>
+        <div class="card-text"><div class="card-title">Carte Google Maps — 45€</div><div class="card-sub">Localisation sur la page Contact</div></div>
+        <div class="card-check-mark"></div>
+      </label>
+
+      <input type="checkbox" class="card-check" id="opt-rdv" value="Prise de RDV Calendly (60€)" />
+      <label class="card-label" for="opt-rdv">
+        <span class="card-icon">📅</span>
+        <div class="card-text"><div class="card-title">Prise de RDV en ligne — 60€</div><div class="card-sub">Calendly intégré, réservation autonome</div></div>
+        <div class="card-check-mark"></div>
+      </label>
+
+      <input type="checkbox" class="card-check" id="opt-avis" value="Widget Avis Google (70€)" />
+      <label class="card-label" for="opt-avis">
+        <span class="card-icon">⭐</span>
+        <div class="card-text"><div class="card-title">Widget Avis Google — 70€</div><div class="card-sub">Avis affichés en temps réel</div></div>
+        <div class="card-check-mark"></div>
+      </label>
+
+      <input type="checkbox" class="card-check" id="opt-admin" value="Panel admin (150€)" />
+      <label class="card-label" for="opt-admin">
+        <span class="card-icon">⚙️</span>
+        <div class="card-text"><div class="card-title">Panel admin — 150€</div><div class="card-sub">Modifiez votre contenu vous-même</div></div>
+        <div class="card-check-mark"></div>
+      </label>
+    </div>
+
+    <div class="form-group" style="margin-top:16px;">
+      <label for="opt-custom">Autre chose que vous souhaitez sur votre site ? <span class="tip">Décrivez librement — le prix sera indiqué dans votre devis</span></label>
+      <textarea id="opt-custom" rows="3" placeholder="Ex : un chatbot, une boutique en ligne, une galerie vidéo, un système de réservation spécifique, une page événement…"></textarea>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn-prev" onclick="goToStep(4)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Retour</button>
+      <span class="step-counter">Étape 5 sur 6</span>
+      <button class="btn-next" onclick="goToStep(6)">Continuer <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 2l5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+  </div>
+
+  <!-- ═══ STEP 6 — DESIGN ═══ -->
+  <div class="form-step" id="step-6">
+    <div class="step-header">
+      <div class="step-num">Étape 06 / 06</div>
+      <h2 class="step-title">Préférences design <span class="step-badge optional">Très utile</span></h2>
+      <p class="step-desc">Aidez-moi à comprendre l'ambiance souhaitée. Plus vous êtes précis, plus le résultat sera juste.</p>
+    </div>
+
+    <div class="form-section-label">Atmosphère souhaitée</div>
+    <div class="tone-grid">
+      <input type="radio" class="tone-radio" name="tone" id="tone-pro" value="Professionnel & sérieux" />
+      <label class="tone-label" for="tone-pro">
+        <div class="tone-emoji">💼</div>
+        <div class="tone-name">Professionnel</div>
+        <div class="tone-desc">Sobre, inspire confiance</div>
+      </label>
+      <input type="radio" class="tone-radio" name="tone" id="tone-warm" value="Chaleureux & humain" />
+      <label class="tone-label" for="tone-warm">
+        <div class="tone-emoji">🤗</div>
+        <div class="tone-name">Chaleureux</div>
+        <div class="tone-desc">Proche, accessible</div>
+      </label>
+      <input type="radio" class="tone-radio" name="tone" id="tone-modern" value="Moderne & dynamique" />
+      <label class="tone-label" for="tone-modern">
+        <div class="tone-emoji">⚡</div>
+        <div class="tone-name">Moderne</div>
+        <div class="tone-desc">Épuré, tendance</div>
+      </label>
+      <input type="radio" class="tone-radio" name="tone" id="tone-luxe" value="Luxe & premium" />
+      <label class="tone-label" for="tone-luxe">
+        <div class="tone-emoji">✨</div>
+        <div class="tone-name">Luxe</div>
+        <div class="tone-desc">Élégant, haut de gamme</div>
+      </label>
+    </div>
+
+    <div class="form-sep"></div>
+
+    <div class="form-grid cols-1">
+      <div class="form-group">
+        <label for="ref-sites">Sites de référence <span class="tip">(2-3 URLs de sites qui vous plaisent)</span></label>
+        <textarea id="ref-sites" rows="3" placeholder="Ex :&#10;https://exemple1.fr — j'aime la mise en page&#10;https://exemple2.com — les couleurs me plaisent"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="avoid">Ce que vous ne voulez surtout pas</label>
+        <textarea id="avoid" rows="3" placeholder="Ex : pas de fond noir, éviter le rose, pas trop de texte, pas d'animations agressives…"></textarea>
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="priority">Votre priorité numéro 1 pour ce site</label>
+        <select id="priority">
+          <option value="">— Choisissez —</option>
+          <option value="Être trouvé sur Google (SEO local)">Être trouvé sur Google</option>
+          <option value="Obtenir des appels téléphoniques">Obtenir des appels</option>
+          <option value="Recevoir des formulaires / devis remplis">Recevoir des devis remplis</option>
+          <option value="Paraître professionnel face à mes concurrents">Paraître professionnel</option>
+          <option value="Présenter mon portfolio / réalisations">Présenter mes réalisations</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="deadline">Délai souhaité</label>
+        <select id="deadline">
+          <option value="">— Peu importe</option>
+          <option value="Urgent — le plus tôt possible">Urgent</option>
+          <option value="Dans les 2 semaines">Dans les 2 semaines</option>
+          <option value="Dans le mois">Dans le mois</option>
+          <option value="Pas de rush">Pas de rush</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="budget">Budget envisagé</label>
+        <select id="budget">
+          <option value="">— Pas encore défini</option>
+          <option value="Moins de 500€">Moins de 500€</option>
+          <option value="500€ – 800€">500€ – 800€</option>
+          <option value="800€ – 1200€">800€ – 1 200€</option>
+          <option value="Plus de 1200€">Plus de 1 200€</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="how-found">Comment avez-vous connu e.com connect ?</label>
+        <select id="how-found">
+          <option value="">— Choisissez —</option>
+          <option value="Bouche à oreille / recommandation">Bouche à oreille</option>
+          <option value="Google">Google</option>
+          <option value="Réseaux sociaux">Réseaux sociaux</option>
+          <option value="Prospection directe">Prospection directe</option>
+          <option value="Autre">Autre</option>
+        </select>
+      </div>
+      <div class="form-group full">
+        <label for="extra">Infos complémentaires <span class="tip">(tout ce que je dois savoir)</span></label>
+        <textarea id="extra" rows="4" placeholder="Contexte particulier, contraintes, questions, idées, ce qui n'entre pas dans les cases ci-dessus…"></textarea>
+      </div>
+    </div>
+
+    <!-- SUBMIT -->
+    <div class="submit-section">
+      <div class="submit-preview">
+        <div class="submit-preview-inner">
+          <h2>Prêt à envoyer votre brief ?</h2>
+          <p>Cliquez sur le bouton de votre choix. Votre brief complet s'ouvre dans votre application email ou WhatsApp — il ne reste plus qu'à envoyer. Je reviens vers vous sous 24h.</p>
+          <div class="submit-btns">
+            <button class="btn-submit-mail" onclick="submitByEmail()">
+              📧 Envoyer par Email
+            </button>
+            <button class="btn-submit-wa" onclick="submitByWhatsapp()">
+              💬 Envoyer par WhatsApp
+            </button>
+          </div>
+        </div>
+      </div>
+      <p class="submit-note">
+        Aucune donnée n'est stockée sur un serveur tiers. Votre brief s'envoie directement depuis votre appareil.<br>
+        <a href="politique-confidentialite.html">Politique de confidentialité</a> · <a href="mentions-legales.html">Mentions légales</a>
+      </p>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn-prev" onclick="goToStep(5)"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Retour</button>
+      <span class="step-counter">Étape 6 sur 6</span>
+      <span></span>
+    </div>
+  </div>
+
+</div><!-- /main -->
 
 <!-- FOOTER -->
-<footer style="padding:36px 60px 24px;border-top:1px solid #1a1a1a;margin-top:40px">
-  <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:20px">
-    <div style="font-size:13px;font-weight:700;color:#e5e5e5">E<span style="color:#84cc16">.com</span> connect</div>
-    <div style="display:flex;gap:24px;flex-wrap:wrap">
-      <a href="mentions-legales.html" style="font-size:11px;color:#525252;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#84cc16'" onmouseout="this.style.color='#525252'">Mentions légales</a>
-      <a href="politique-confidentialite.html" style="font-size:11px;color:#525252;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#84cc16'" onmouseout="this.style.color='#525252'">Politique de confidentialité</a>
-      <a href="cgv.html" style="font-size:11px;color:#525252;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#84cc16'" onmouseout="this.style.color='#525252'">CGV</a>
-    </div>
-    <div style="font-size:11px;color:#333">© 2026 E.com connect · Tous droits réservés</div>
-  </div>
-  <div style="font-size:10px;color:#2a2a2a;line-height:1.6;border-top:1px solid #1a1a1a;padding-top:16px">
-    E.com connect — Entrepreneur individuel · SIRET 501 061 840 00044 · TVA FR06501061840 · 60 rue François Ier, 75008 Paris
-  </div>
+<footer class="footer-simple">
+  <p>© 2026 e.com connect — Lens (62) &nbsp;·&nbsp; <a href="mentions-legales.html">Mentions légales</a> &nbsp;·&nbsp; <a href="mailto:contact@e-comconnect.com">contact@e-comconnect.com</a> &nbsp;·&nbsp; <a href="tel:0652863695">06 52 86 36 95</a></p>
 </footer>
 
 <script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible')
-        observer.unobserve(entry.target)
-      }
-    })
-  }, { threshold: 0.08 })
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el))
+  let currentStep = 1;
+  const totalSteps = 6;
 
-  // FAQ accordéon
-  document.querySelectorAll('.faq-question').forEach(q => {
-    q.addEventListener('click', () => {
-      const item = q.closest('.faq-item')
-      const answer = item.querySelector('.faq-answer')
-      const isOpen = item.classList.contains('open')
-
-      // Ferme tous
-      document.querySelectorAll('.faq-item').forEach(i => {
-        i.classList.remove('open')
-        i.querySelector('.faq-answer').style.maxHeight = '0'
-      })
-
-      // Ouvre celui cliqué si était fermé
-      if (!isOpen) {
-        item.classList.add('open')
-        answer.style.maxHeight = answer.scrollHeight + 'px'
-      }
-    })
-  })
-</script>
-
-<!-- ═══════════════════════════════════════════
-     CHATBOT — Assistant E.com connect
-════════════════════════════════════════════ -->
-<style>
-#ec-bubble{
-  position:fixed;bottom:28px;right:28px;
-  width:58px;height:58px;
-  background:#84cc16;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;z-index:9000;
-  box-shadow:0 4px 28px rgba(132,204,22,0.45);
-  transition:transform .2s,box-shadow .2s;
-}
-#ec-bubble:hover{transform:scale(1.09);box-shadow:0 8px 36px rgba(132,204,22,0.55)}
-#ec-bubble svg{width:26px;height:26px;color:#0a0a0a;pointer-events:none}
-.ec-notif{
-  position:absolute;top:-3px;right:-3px;
-  width:19px;height:19px;background:#ef4444;
-  border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-size:10px;font-weight:800;color:#fff;
-  border:2px solid #0a0a0a;
-  animation:ec-ping 2s ease-in-out infinite;
-}
-@keyframes ec-ping{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
-
-#ec-window{
-  position:fixed;bottom:100px;right:28px;
-  width:365px;max-height:530px;
-  background:#111;
-  border:1px solid #222;
-  border-radius:22px;
-  box-shadow:0 28px 70px rgba(0,0,0,0.65),0 0 0 1px rgba(132,204,22,0.08);
-  z-index:8999;
-  display:flex;flex-direction:column;overflow:hidden;
-  opacity:0;transform:translateY(18px) scale(0.96);
-  transition:opacity .25s cubic-bezier(.4,0,.2,1),transform .25s cubic-bezier(.4,0,.2,1);
-  pointer-events:none;
-}
-#ec-window.open{opacity:1;transform:translateY(0) scale(1);pointer-events:all}
-
-.ec-header{
-  background:linear-gradient(135deg,#0d1500 0%,#0a0a0a 100%);
-  border-bottom:1px solid #1a1a1a;
-  padding:15px 18px;
-  display:flex;align-items:center;gap:12px;flex-shrink:0;
-}
-.ec-avatar{
-  width:40px;height:40px;background:#84cc16;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:20px;flex-shrink:0;
-}
-.ec-hinfo{flex:1;min-width:0}
-.ec-hname{font-size:13px;font-weight:700;color:#e5e5e5}
-.ec-hstatus{font-size:11px;color:#84cc16;display:flex;align-items:center;gap:5px;margin-top:2px}
-.ec-sdot{width:6px;height:6px;border-radius:50%;background:#84cc16;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-.ec-xbtn{
-  width:28px;height:28px;background:#1a1a1a;border:none;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;color:#b8b8b8;font-size:14px;line-height:1;
-  transition:background .15s,color .15s;flex-shrink:0;
-}
-.ec-xbtn:hover{background:#2a2a2a;color:#e5e5e5}
-
-.ec-msgs{
-  flex:1;overflow-y:auto;
-  padding:14px 14px 8px;
-  display:flex;flex-direction:column;gap:8px;
-  scroll-behavior:smooth;
-}
-.ec-msgs::-webkit-scrollbar{width:3px}
-.ec-msgs::-webkit-scrollbar-thumb{background:#2a2a2a;border-radius:2px}
-
-.ec-msg{
-  max-width:88%;padding:10px 13px;
-  border-radius:15px;font-size:12.5px;line-height:1.6;
-}
-.ec-msg.bot{
-  background:#1a1a1a;color:#ccc;
-  border-bottom-left-radius:4px;align-self:flex-start;
-}
-.ec-msg.bot strong{color:#e5e5e5}
-.ec-msg.bot .g{color:#84cc16;font-weight:600}
-.ec-msg.user{
-  background:#84cc16;color:#0a0a0a;font-weight:700;
-  border-bottom-right-radius:4px;align-self:flex-end;
-  font-size:12px;
-}
-
-.ec-typing{
-  align-self:flex-start;background:#1a1a1a;
-  border-radius:15px;border-bottom-left-radius:4px;
-  padding:11px 15px;display:none;align-items:center;gap:4px;
-}
-.ec-typing.show{display:flex}
-.ec-tdot{
-  width:6px;height:6px;border-radius:50%;background:#444;
-  animation:ec-bounce .85s ease-in-out infinite;
-}
-.ec-tdot:nth-child(2){animation-delay:.18s}
-.ec-tdot:nth-child(3){animation-delay:.36s}
-@keyframes ec-bounce{0%,80%,100%{transform:scale(.8);opacity:.4}40%{transform:scale(1.1);opacity:1}}
-
-.ec-qr{
-  padding:6px 14px 10px;
-  display:flex;flex-wrap:wrap;gap:6px;flex-shrink:0;
-}
-.ec-qbtn{
-  background:#1a1a1a;border:1px solid #2a2a2a;border-radius:20px;
-  padding:5px 11px;font-size:11px;color:#d4d4d4;
-  cursor:pointer;transition:all .15s;white-space:nowrap;font-family:'Inter',sans-serif;
-}
-.ec-qbtn:hover{background:rgba(132,204,22,0.1);border-color:rgba(132,204,22,0.4);color:#84cc16}
-
-.ec-irow{
-  border-top:1px solid #1a1a1a;padding:10px 12px;
-  display:flex;gap:8px;align-items:center;flex-shrink:0;
-}
-.ec-inp{
-  flex:1;background:#1a1a1a;border:1px solid #252525;border-radius:20px;
-  padding:9px 15px;font-size:12.5px;color:#e5e5e5;
-  font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;
-}
-.ec-inp:focus{border-color:rgba(132,204,22,0.4)}
-.ec-inp::placeholder{color:#444}
-.ec-sbtn{
-  width:36px;height:36px;background:#84cc16;border:none;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;transition:background .2s,transform .15s;flex-shrink:0;
-}
-.ec-sbtn:hover{background:#a3e635;transform:scale(1.06)}
-.ec-sbtn svg{width:15px;height:15px;color:#0a0a0a}
-
-@media(max-width:480px){
-  #ec-window{width:calc(100vw - 20px);right:10px;bottom:84px;max-height:480px}
-  #ec-bubble{bottom:18px;right:14px}
-}
-</style>
-
-<div id="ec-bubble" onclick="ecToggle()" aria-label="Assistant E.com connect">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-  </svg>
-  <div class="ec-notif" id="ec-notif">1</div>
-</div>
-
-<div id="ec-window" role="dialog" aria-label="Chat assistant">
-  <div class="ec-header">
-    <div class="ec-avatar">🤖</div>
-    <div class="ec-hinfo">
-      <div class="ec-hname">Assistant E.com connect</div>
-      <div class="ec-hstatus"><span class="ec-sdot"></span>En ligne — Réponse instantanée</div>
-    </div>
-    <button class="ec-xbtn" onclick="ecToggle()" aria-label="Fermer">✕</button>
-  </div>
-  <div class="ec-msgs" id="ec-msgs">
-    <div class="ec-typing" id="ec-typing">
-      <div class="ec-tdot"></div><div class="ec-tdot"></div><div class="ec-tdot"></div>
-    </div>
-  </div>
-  <div class="ec-qr" id="ec-qr"></div>
-  <div class="ec-irow">
-    <input class="ec-inp" id="ec-inp" placeholder="Posez votre question…" autocomplete="off"
-      onkeydown="if(event.key==='Enter')ecSend()">
-    <button class="ec-sbtn" onclick="ecSend()" aria-label="Envoyer">
-      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-    </button>
-  </div>
-</div>
-
-<script>
-(function(){
-'use strict';
-
-/* ── BASE DE CONNAISSANCES ── */
-const KB = [
-  {
-    id:'welcome',
-    keys:['bonjour','salut','hello','bonsoir','bjr','coucou','yo','hey','bj'],
-    text:`Bonjour ! 👋 Je suis l'assistant virtuel d'<strong>E.com connect</strong>.\n\nJe peux répondre à toutes vos questions sur nos services, tarifs, délais et options. Par où souhaitez-vous commencer ?`,
-    r:['📋 Les forfaits & prix','⚙️ Les options disponibles','⏱ Délais de livraison','💳 Le paiement','📞 Nous contacter']
-  },
-  {
-    id:'forfaits',
-    keys:['forfait','offre','formule','prix','tarif','coût','combien','€','euro','service','prestation'],
-    text:`Voici nos <strong>5 forfaits</strong> :\n\n<span class="g">● Landing Page — 349€</span>\nUne page percutante, idéale pour démarrer vite.\n\n<span class="g">● Starter — 649€</span>\n3 à 4 pages, responsive, SSL, accompagnement domaine.\n\n<span class="g">● Pro ✦ — 1 090€</span>\n5 à 7 pages + SEO complet, Analytics, WhatsApp, Maps, galerie, 1 option offerte.\n\n<span class="g">● Refonte Starter — 749€</span>\nVotre site existant entièrement modernisé (audit inclus).\n\n<span class="g">● Refonte Pro ✦ — 1 190€</span>\nTransformation A à Z, design premium (audit inclus).\n\n💳 Tous payables en <strong>2 fois</strong>, devis gratuit sous 24h.`,
-    r:['Détail Landing Page','Détail Starter','Détail Pro','Détail Refontes','Les options à la carte']
-  },
-  {
-    id:'landing',
-    keys:['landing','349','page unique','une page','premiere presence'],
-    text:`<strong>Landing Page — 349€</strong>\n\nParfaite pour une première présence rapide ou promouvoir une offre précise.\n\n✓ 1 page longue et complète\n✓ Design moderne adapté à votre activité\n✓ Formulaire de contact intégré\n✓ Responsive mobile & tablette\n✓ Mise en ligne incluse\n✓ Certificat SSL (HTTPS) inclus\n✓ Code source livré\n\n💳 Paiement en 2 fois : <span class="g">175€ + 174€</span>\n⏱ Livré en <span class="g">3 à 7 jours ouvrés</span>`,
-    r:['Voir le Starter','Les options','Demander un devis gratuit']
-  },
-  {
-    id:'starter',
-    keys:['starter','649','3 pages','4 pages','premiere presence','nouvelle presence'],
-    text:`<strong>Starter — 649€</strong>\n\nIdéal pour lancer votre présence professionnelle en ligne.\n\n✓ 3 à 4 pages (Accueil, Services, À propos, Contact)\n✓ Design moderne sur-mesure\n✓ Formulaire de contact\n✓ Responsive mobile & tablette\n✓ Mise en ligne incluse\n✓ Accompagnement pour votre domaine\n✓ Certificat SSL (HTTPS) inclus\n✓ Code source livré\n\n💳 Paiement en 2 fois : <span class="g">325€ + 324€</span>\n⏱ Livré en <span class="g">5 à 10 jours ouvrés</span>`,
-    r:['Voir le Pro','Les options','Demander un devis gratuit']
-  },
-  {
-    id:'pro',
-    keys:['pro','1099','1 099','premium','complet','whatsapp','maps','galerie','analytics'],
-    text:`<strong>Pro ✦ — 1 099€</strong>\n\nLe site le plus complet pour un impact professionnel maximum.\n\n✓ Tout le Starter inclus\n✓ 5 à 7 pages + animations au scroll\n✓ Pack SEO complet (balises, sitemap, Search Console)\n✓ Google Analytics intégré\n✓ Bouton WhatsApp flottant\n✓ Google Maps intégrée\n✓ FAQ interactive + Galerie lightbox\n✓ Compteurs animés\n✓ <span class="g">1 option à la carte offerte</span>\n✓ Code source livré\n\n💳 Paiement en 2 fois : <span class="g">550€ + 549€</span>\n⏱ Livré en <span class="g">10 à 15 jours ouvrés</span>`,
-    r:["C'est quoi les options ?","Qu'est-ce que le SEO inclus ?",'Demander un devis gratuit']
-  },
-  {
-    id:'refonte',
-    keys:['refonte','moderniser','renover','existant','ancien site','changer site','modifier site','749','1199','1 199'],
-    text:`Vous avez déjà un site ? On le transforme !\n\n<span class="g">● Refonte Starter — 749€</span>\n✓ Audit complet de votre site actuel\n✓ Nouveau design 3-4 pages\n✓ Migration de votre domaine existant\n✓ Récupération de votre contenu\n✓ Responsive + SSL + code livré\n⏱ 10 à 20 jours ouvrés\n\n<span class="g">● Refonte Pro ✦ — 1 199€</span>\n✓ Tout le Refonte Starter +\n✓ 5 à 7 pages + animations\n✓ Pack SEO complet\n✓ Analytics + Maps + WhatsApp\n✓ FAQ + Galerie + 1 option offerte\n⏱ 10 à 20 jours ouvrés\n\n💡 L'audit de votre site actuel est <strong>inclus</strong> dans les deux formules.`,
-    r:['Délais de livraison','Paiement','Demander un devis gratuit']
-  },
-  {
-    id:'options',
-    keys:['option','extra','supplement','complementaire','a la carte','ajouter','personnaliser','fonctionnalite'],
-    text:`Les options s'ajoutent à n'importe quel forfait :\n\n<strong>⚡ Interactivité</strong>\n• QCM / Quiz interactif — <span class="g">90€</span>\n• FAQ interactive — <span class="g">70€</span>\n• Compteurs animés — <span class="g">60€</span>\n• Slider / Carrousel — <span class="g">80€</span>\n\n<strong>💬 Communication</strong>\n• Bouton WhatsApp flottant — <span class="g">35€</span>\n• Chat en direct — <span class="g">50€</span>\n• Prise de RDV Calendly — <span class="g">60€</span>\n• QR Code personnalisé — <span class="g">35€</span>\n\n<strong>🎨 Visuels</strong>\n• Galerie photos lightbox — <span class="g">90€</span>\n• Carte Google Maps — <span class="g">45€</span>\n• Page supplémentaire — <span class="g">65€/page</span>\n• Popup / Message d'accueil — <span class="g">60€</span>\n\n<strong>🔧 Maintenance</strong>\n• Suivi mensuel — <span class="g">40€/mois</span>\n• Modification ponctuelle — <span class="g">50€/h</span>`,
-    r:['Comment choisir mon option ?','Voir les forfaits','Demander un devis']
-  },
-  {
-    id:'delais',
-    keys:['delai','livraison','duree','temps','quand','rapide','combien de temps','jours','semaine','long'],
-    text:`<strong>Délais de livraison :</strong>\n\n⏱ <span class="g">Landing Page</span> — 3 à 7 jours ouvrés\n⏱ <span class="g">Starter</span> — 5 à 10 jours ouvrés\n⏱ <span class="g">Pro</span> — 10 à 15 jours ouvrés\n⏱ <span class="g">Refonte Starter</span> — 10 à 20 jours ouvrés\n⏱ <span class="g">Refonte Pro</span> — 10 à 20 jours ouvrés\n\n📌 Ces délais démarrent après réception :\n→ De l'acompte (50%)\n→ De vos informations (textes, photos, couleurs souhaitées)\n\n💡 Plus vous êtes réactif dans les échanges, plus c'est rapide !`,
-    r:['Comment se passe la commande ?','Paiement','Demander un devis gratuit']
-  },
-  {
-    id:'paiement',
-    keys:['paiement','payer','virement','paypal','acompte','facture','en 2 fois','mensualite'],
-    text:`<strong>Modalités de paiement :</strong>\n\n💳 <span class="g">50% à la commande</span>\n→ Déclenchement immédiat des travaux\n\n💳 <span class="g">50% à la livraison</span>\n→ Une fois votre site validé et en ligne\n\n✓ Virement bancaire\n✓ PayPal\n\n📄 Un devis détaillé vous est envoyé <strong>avant tout engagement</strong>.\n\n🔒 Aucune mauvaise surprise — tout est contractualisé noir sur blanc.`,
-    r:['Délais de livraison','Demander un devis gratuit']
-  },
-  {
-    id:'seo',
-    keys:['seo','referencement','google','search','visible','rank','mots cles','positionnement','apparaitre','trouver'],
-    text:`<strong>Référencement Google :</strong>\n\n📌 <strong>Inclus dans TOUS les forfaits :</strong>\n✓ Balises title & meta description optimisées\n✓ Sitemap XML\n✓ Google Search Console configurée\n✓ Structure HTML propre (H1/H2/H3)\n✓ Images optimisées (poids + alt text)\n\n🚀 <strong>Pack SEO — 190€</strong> (recommandé pour apparaître localement) :\n✓ Fiche Google Business Profile\n✓ Mots-clés locaux ciblés (ex: "électricien Lens")\n✓ Données structurées (Rich Snippets)\n✓ Rapport de positionnement\n✓ Optimisation vitesse avancée\n\n💡 Le Pack SEO est <strong>inclus dans le forfait Pro</strong>.`,
-    r:["Différence SEO de base et SEO avancé ?",'Voir le forfait Pro','Demander un devis']
-  },
-  {
-    id:'devis',
-    keys:['devis','contact','commander','commencer','demarrer','projet','gratuit','renseignement','interessé','interesser'],
-    text:`<strong>Demandez votre devis gratuit ! 🚀</strong>\n\nRéponse garantie sous <span class="g">24h</span>, sans aucun engagement.\n\n📧 <strong>contact@e-comconnect.com</strong>\n📱 <strong>06 52 86 36 95</strong> (WhatsApp disponible)\n\nOu remplissez le <strong>formulaire sur la page d'accueil</strong> — c'est la façon la plus rapide de décrire votre projet !`,
-    r:['Comment se passe la commande ?','Les forfaits','Les options']
-  },
-  {
-    id:'contact',
-    keys:['telephone','appel','joindre','whatsapp','email','mail','numero','jonathan','appeler'],
-    text:`<strong>Contactez E.com connect :</strong>\n\n📱 <strong>06 52 86 36 95</strong>\n💬 WhatsApp disponible\n📧 <strong>contact@e-comconnect.com</strong>\n📍 Lens, Pas-de-Calais (62) — prestations 100% à distance\n\n🕐 Disponible du lundi au samedi\n⚡ Réponse garantie sous <span class="g">24h</span>`,
-    r:['Demander un devis','Les forfaits']
-  },
-  {
-    id:'logo',
-    keys:['logo','contenu','texte','photo','pas pret','rien','zero','partir de zero','aucun contenu','sans contenu'],
-    text:`Pas de panique ! 😊\n\n<strong>La majorité de mes clients partent de zéro.</strong>\n\nVoici ce qui est pris en charge si vous n'avez rien :\n✓ <span class="g">Logotype simple</span> créé pour vous (inclus dans le forfait)\n✓ <span class="g">Textes rédigés</span> à partir d'un court échange (questionnaire envoyé)\n✓ <span class="g">Visuels libres de droits</span> intégrés si vous n'avez pas de photos\n✓ Conseils sur les couleurs, le style et le positionnement\n\n💡 On s'adapte à votre situation — c'est notre rôle !`,
-    r:['Comment se passe la commande ?','Demander un devis']
-  },
-  {
-    id:'process',
-    keys:['comment','commande','fonctionne','etape','processus','se passe','deroule','methode','procedure'],
-    text:`<strong>Notre méthode en 5 étapes :</strong>\n\n<span class="g">1. Devis gratuit</span>\nOn échange sur votre projet, je vous envoie un devis sous 24h.\n\n<span class="g">2. Brief + acompte</span>\nUn questionnaire rapide + 50% pour démarrer les travaux.\n\n<span class="g">3. Maquette</span>\nJe vous présente le design avant de tout coder. Vous validez.\n\n<span class="g">4. Développement</span>\nJe code votre site en HTML/CSS/JS pur — rapide et optimisé.\n\n<span class="g">5. Livraison & mise en ligne</span>\nValidation finale → 50% restant → votre site est en ligne.\nCode source livré avec instructions.`,
-    r:['Délais de livraison','Paiement','Demander un devis']
-  },
-  {
-    id:'fallback',
-    keys:[],
-    text:`Bonne question ! Voici comment je peux vous aider :\n\n• <strong>Forfaits & tarifs</strong> — Landing Page, Starter, Pro, Refontes\n• <strong>Options à la carte</strong> — WhatsApp, Galerie, Maps, Calendly…\n• <strong>Délais de livraison</strong> — rapides et garantis\n• <strong>Paiement</strong> — en 2 fois, sans surprise\n• <strong>SEO & référencement</strong> Google\n• <strong>Coûts annuels</strong> — transparents et compétitifs\n• <strong>Pourquoi E.com connect</strong> vs WordPress / Wix\n\n💬 Et si vous préférez un échange direct : <span class="g">06 52 86 36 95</span> (WhatsApp disponible)`,
-    r:['📋 Les forfaits & prix','⚙️ Les options disponibles','📞 Nous contacter','Demander un devis']
+  function goToStep(n) {
+    if (n < 1 || n > totalSteps) return;
+    document.getElementById('step-' + currentStep).classList.remove('active');
+    currentStep = n;
+    document.getElementById('step-' + currentStep).classList.add('active');
+    updateProgress();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
-]
 
-/* ── ÉTAT ── */
-let isOpen = false
-let hasOpened = false
-
-/* ── TOGGLE ── */
-function ecToggle(){
-  const win = document.getElementById('ec-window')
-  const notif = document.getElementById('ec-notif')
-  isOpen = !isOpen
-  win.classList.toggle('open', isOpen)
-  if(isOpen && !hasOpened){
-    hasOpened = true
-    notif.style.display = 'none'
-    setTimeout(() => ecBot('welcome'), 450)
-  }
-  if(isOpen) setTimeout(() => document.getElementById('ec-inp').focus(), 300)
-}
-
-/* ── AFFICHER MESSAGE BOT ── */
-function ecBot(id){
-  const entry = KB.find(k => k.id === id) || KB.find(k => k.id === 'fallback')
-  const typing = document.getElementById('ec-typing')
-  const msgs = document.getElementById('ec-msgs')
-
-  typing.classList.add('show')
-  msgs.scrollTop = msgs.scrollHeight
-
-  const delay = 800 + Math.random() * 500
-  setTimeout(() => {
-    typing.classList.remove('show')
-    const div = document.createElement('div')
-    div.className = 'ec-msg bot'
-    div.innerHTML = entry.text.replace(/\n/g,'<br>')
-    msgs.insertBefore(div, typing)
-    msgs.scrollTop = msgs.scrollHeight
-    ecSetReplies(entry.r || [])
-  }, delay)
-}
-
-/* ── BOUTONS RÉPONSES RAPIDES ── */
-function ecSetReplies(list){
-  const el = document.getElementById('ec-qr')
-  el.innerHTML = ''
-  list.forEach(label => {
-    const btn = document.createElement('button')
-    btn.className = 'ec-qbtn'
-    btn.textContent = label
-    btn.onclick = () => ecUser(label)
-    el.appendChild(btn)
-  })
-}
-
-/* ── MESSAGE UTILISATEUR ── */
-function ecUser(text){
-  const msgs = document.getElementById('ec-msgs')
-  const typing = document.getElementById('ec-typing')
-  document.getElementById('ec-qr').innerHTML = ''
-  const div = document.createElement('div')
-  div.className = 'ec-msg user'
-  div.textContent = text
-  msgs.insertBefore(div, typing)
-  msgs.scrollTop = msgs.scrollHeight
-  ecMatch(text)
-}
-
-function ecSend(){
-  const inp = document.getElementById('ec-inp')
-  const v = inp.value.trim()
-  if(!v) return
-  inp.value = ''
-  ecUser(v)
-}
-
-/* ── MOTEUR DE CORRESPONDANCE PAR SCORE ── */
-function ecMatch(raw){
-  const t = raw.toLowerCase()
-    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
-    .replace(/[^a-z0-9\s€]/g,' ')
-
-  const rules = [
-    [['combien de temps','delai de livraison','livraison','delai','duree','semaines','jours ouvrés','jours ouvres'],'delais'],
-    [['landing page','page unique','349'],'landing'],
-    [['site starter','forfait starter','offre starter','starter 649','649'],'starter'],
-    [['site pro','forfait pro','offre pro','pro 1090','1 090','1090'],'pro'],
-    [['refonte pro','refonte starter','refonte du site','moderniser mon site','refaire mon site','1190','1 190','749'],'refonte'],
-    [['garantie','satisfait','remboursement','pas content','risque','confiance'],'process'],
-    [['boutique','e-commerce','ecommerce','vendre en ligne','shop','shopify','panier','paiement en ligne'],'forfaits'],
-    [['difference entre','starter ou pro','landing ou starter','quelle difference','lequel choisir','starter vs','landing vs','pro vs','comment choisir mon forfait'],'forfaits'],
-    [['option','extra','supplement','a la carte','fonctionnalite en plus','ajouter une fonction'],'options'],
-    [['quelle option','choisir option','conseil option','recommande','pour mon activite','laquelle choisir'],'options'],
-    [['mise en ligne','mettre en ligne','publier le site','hebergement','cout annuel','abonnement annuel','vercel','par an'],'devis'],
-    [['domaine','nom de domaine','.fr','.com','url','adresse web'],'devis'],
-    [['wordpress','wix','squarespace','jimdo','pourquoi pas wordpress'],'seo'],
-    [['referencement','seo','google','apparaitre sur google','visible sur google','mots cles'],'seo'],
-    [['securite','ssl','https','piratage','hacker','cadenas'],'seo'],
-    [['mobile','smartphone','tablette','responsive','iphone','android'],'forfaits'],
-    [['paiement','payer','virement','paypal','acompte','en 2 fois','deux fois'],'paiement'],
-    [['pas de logo','sans logo','pas de contenu','sans contenu','pas de photo','partir de zero','rien de pret'],'logo'],
-    [['code source','fichiers du site','je recois quoi'],'forfaits'],
-    [['comment ca se passe','comment fonctionne','etapes','processus','demarche','comment commander'],'process'],
-    [['telephone','numero','joindre jonathan','parler a quelquun','appeler','whatsapp de jonathan'],'contact'],
-    [['devis','demande de devis','obtenir un devis','je suis interesse','je veux commander','commencer mon projet'],'devis'],
-    [['bonjour','salut','hello','bonsoir','bjr','coucou','hey'],'welcome'],
-    [['prix','tarif','forfait','offre','formule','prestation','coute','combien coute','€','euro','budget'],'forfaits'],
-    [['starter'],'starter'],
-    [['pro'],'pro'],
-    [['refonte'],'refonte'],
-    [['landing'],'landing'],
-  ]
-
-  let bestId = null
-  let bestScore = 0
-
-  for(const [kws, id] of rules){
-    let score = 0
-    for(const kw of kws){
-      if(t.includes(kw)) score += kw.length
+  function updateProgress() {
+    for (let i = 1; i <= totalSteps; i++) {
+      const dot = document.getElementById('dot-' + i);
+      const lbl = document.getElementById('lbl-' + i);
+      const line = document.getElementById('line-' + i);
+      dot.classList.remove('active', 'done');
+      if (lbl) lbl.classList.remove('active', 'done');
+      if (line) line.classList.remove('done');
+      if (i < currentStep) {
+        dot.classList.add('done');
+        if (lbl) lbl.classList.add('done');
+        if (line) line.classList.add('done');
+      } else if (i === currentStep) {
+        dot.classList.add('active');
+        if (lbl) lbl.classList.add('active');
+      }
     }
-    if(score > bestScore){ bestScore = score; bestId = id }
   }
 
-  ecBot(bestId || 'fallback')
-}
+  // Char counter
+  document.getElementById('activity').addEventListener('input', function() {
+    document.getElementById('cc-activity').textContent = this.value.length;
+  });
 
-/* ── INIT : notification après 4s ── */
-setTimeout(() => {
-  if(!hasOpened){
-    document.getElementById('ec-notif').style.display = 'flex'
+  // Collect form data
+  function collectData() {
+    const get = id => (document.getElementById(id)?.value || '').trim();
+    const checks = ids => ids.map(id => {
+      const el = document.getElementById(id);
+      return el?.checked ? el.value : null;
+    }).filter(Boolean).join(', ') || 'Aucun';
+    const radioVal = name => document.querySelector(`input[name="${name}"]:checked`)?.value || 'Non précisé';
+
+    return `══════════════════════════════════
+BRIEF CLIENT — E.COM CONNECT
+══════════════════════════════════
+
+▌ 01 — IDENTITÉ
+Entreprise : ${get('company')}
+Secteur : ${get('sector')}
+Zone géographique : ${get('zone')}
+Slogan : ${get('tagline') || 'Aucun'}
+Logo : ${get('logo-status') || 'Non précisé'}
+Couleurs : ${get('colors') || 'Non précisé'}
+
+▌ 02 — CONTACT
+Téléphone : ${get('phone')}
+Email : ${get('email-contact')}
+Adresse : ${get('address') || 'Non précisé'}
+WhatsApp : ${get('whatsapp') || 'Même que téléphone'}
+Horaires : ${get('hours') || 'Non précisé'}
+Instagram : ${get('instagram') || 'Aucun'}
+Facebook : ${get('facebook') || 'Aucun'}
+TikTok : ${get('tiktok') || 'Aucun'}
+LinkedIn : ${get('linkedin') || 'Aucun'}
+
+▌ 03 — CONTENU
+Activité :
+${get('activity')}
+
+Services :
+${get('services')}
+
+Tarifs :
+${get('pricing') || 'Devis sur demande'}
+
+Témoignages :
+${get('testimonials') || 'À ajouter ultérieurement'}
+
+FAQ :
+${get('faq') || 'À définir'}
+
+SIRET : ${get('siret') || 'Non fourni'}
+Forme juridique : ${get('legal-form') || 'Non précisé'}
+N° TVA : ${get('tva') || 'Non fourni'}
+
+▌ 04 — PHOTOS
+Envois prévus : ${checks(['ph-team','ph-work','ph-place','ph-logo','ph-video','ph-none'])}
+
+▌ 05 — TECHNIQUE
+Domaine : ${get('domain') || 'À créer'}
+Ancien site : ${get('old-site') || 'Aucun'}
+Email pro souhaité : ${get('pro-email') || 'Non précisé'}
+Formule : ${get('site-type') || 'À discuter'}
+Options : ${checks(['opt-seo','opt-whatsapp','opt-maps','opt-rdv','opt-avis','opt-admin'])}
+Autres options souhaitées : ${get('opt-custom') || 'Aucune'}
+
+▌ 06 — DESIGN
+Atmosphère : ${radioVal('tone')}
+Sites référence :
+${get('ref-sites') || 'Aucun'}
+À éviter : ${get('avoid') || 'Rien de particulier'}
+Priorité : ${get('priority') || 'Non précisé'}
+Délai : ${get('deadline') || 'Flexible'}
+Budget : ${get('budget') || 'À discuter'}
+Comment connu : ${get('how-found') || 'Non précisé'}
+Infos complémentaires :
+${get('extra') || 'Aucune'}
+
+══════════════════════════════════`.trim();
   }
-}, 4000)
 
-/* ── EXPOSER FONCTIONS GLOBALES ── */
-window.ecToggle = ecToggle
-window.ecSend = ecSend
-window.ecUser = ecUser
+  function submitByEmail() {
+    const data = collectData();
+    const company = (document.getElementById('company')?.value || 'Nouveau client').trim();
+    const subject = encodeURIComponent(`Brief site vitrine — ${company}`);
+    const body = encodeURIComponent(data);
+    window.location.href = `mailto:contact@e-comconnect.com?subject=${subject}&body=${body}`;
+  }
 
-})();
+  function submitByWhatsapp() {
+    const data = collectData();
+    const text = encodeURIComponent(data);
+    window.open(`https://wa.me/33652863695?text=${text}`, '_blank');
+  }
 </script>
+
 </body>
 </html>

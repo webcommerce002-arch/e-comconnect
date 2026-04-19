@@ -1,86 +1,223 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Politique de confidentialité — E.com connect</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#f0f0f0;line-height:1.7}
-  .topbar{position:sticky;top:0;background:rgba(10,10,10,0.95);backdrop-filter:blur(20px);border-bottom:1px solid #1a1a1a;padding:0 60px;height:52px;display:flex;align-items:center;justify-content:space-between;z-index:100}
-  .topbar a{font-size:13px;color:#737373;text-decoration:none}
-  .topbar a:hover{color:#84cc16}
-  .topbar .logo{font-size:14px;font-weight:700;color:#e5e5e5}
-  .topbar .logo span{color:#84cc16}
-  .container{max-width:800px;margin:0 auto;padding:60px 40px}
-  h1{font-size:32px;font-weight:800;color:#e5e5e5;letter-spacing:-1px;margin-bottom:8px}
-  .date{font-size:12px;color:#525252;margin-bottom:40px}
-  h2{font-size:11px;font-weight:700;color:#84cc16;margin:32px 0 12px;text-transform:uppercase;letter-spacing:.05em}
-  p{font-size:13px;color:#a3a3a3;margin-bottom:12px}
-  ul{padding-left:20px;margin-bottom:12px}
-  ul li{font-size:13px;color:#a3a3a3;margin-bottom:4px}
-  .card{background:#111;border:1px solid #1f1f1f;border-radius:12px;padding:20px 24px;margin-bottom:16px}
-  footer-legal{display:block;margin-top:60px;padding-top:20px;border-top:1px solid #1a1a1a;font-size:11px;color:#333;text-align:center}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Politique de confidentialité — E.Com Connect</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="favicon.png" />
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    .legal-body { max-width:760px; margin:0 auto; }
+    .legal-section { margin-bottom:48px; padding-bottom:48px; border-bottom:1px solid #e5e5e5; }
+    .legal-section:last-child { border-bottom:none; }
+    .legal-section h2 { font-size:22px; font-weight:800; color:#0a0a0a; margin-bottom:16px; letter-spacing:-0.5px; }
+    .legal-section h3 { font-size:17px; font-weight:700; color:#222; margin:20px 0 8px; }
+    .legal-section p, .legal-section li { font-size:15px; color:#444; line-height:1.8; margin-bottom:10px; }
+    .legal-section ul { padding-left:20px; }
+    .legal-section strong { color:#222; font-weight:600; }
+    .rights-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:24px 0; }
+    .right-card { background:#f7f7f7; border:1px solid #e5e5e5; border-radius:12px; padding:20px; }
+    .right-icon { font-size:24px; margin-bottom:8px; }
+    .right-title { font-size:14px; font-weight:700; color:#0a0a0a; margin-bottom:4px; }
+    .right-desc { font-size:13px; color:#666; line-height:1.5; }
+    @media(max-width:600px){ .rights-grid { grid-template-columns:1fr; } }
+  </style>
 </head>
 <body>
 
-<div class="topbar">
-  <div class="logo">E<span>.com</span> connect</div>
-  <a href="Ecomm-Connect-Presentation.html">← Retour au site</a>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">E</div>
+    <span class="nav-logo-text">e.com connect</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="tarifs.html">Tarifs</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <div class="nav-cta"><a href="index.html#contact" class="btn btn-blue">Devis gratuit →</a></div>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" onclick="toggleMenu()">Accueil</a>
+  <a href="tarifs.html" onclick="toggleMenu()">Tarifs</a>
+  <a href="index.html#contact" class="mobile-cta" onclick="toggleMenu()">Devis gratuit →</a>
 </div>
 
-<div class="container">
-  <h1>Politique de confidentialité</h1>
-  <div class="date">Dernière mise à jour : mars 2026 — Conformément au RGPD (Règlement UE 2016/679)</div>
-
-  <h2>Responsable du traitement</h2>
-  <div class="card">
-    <p style="margin:0">Jonathan Besdinier — E.com connect<br>60 rue François Ier, 75008 Paris<br>contact@e-comconnect.com</p>
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-breadcrumb"><a href="index.html">Accueil</a> <span>›</span> <span>Confidentialité</span></div>
+    <h1>Politique de<br><span class="highlight">confidentialité</span></h1>
+    <p>Conformément au RGPD (Règlement UE 2016/679) et à la loi Informatique et Libertés du 6 janvier 1978 modifiée.</p>
   </div>
+</section>
 
-  <h2>Données collectées</h2>
-  <p>Dans le cadre de l'utilisation de ce site, les données suivantes peuvent être collectées :</p>
-  <ul>
-    <li>Données de contact via le formulaire (nom, email, message)</li>
-    <li>Données de navigation (adresse IP, navigateur, pages visitées) à des fins statistiques anonymisées</li>
-  </ul>
-  <p>Aucune donnée sensible (bancaire, santé, etc.) n'est collectée sur ce site.</p>
+<section class="section-light">
+  <div class="container">
+    <div class="legal-body">
 
-  <h2>Finalités du traitement</h2>
-  <ul>
-    <li>Répondre aux demandes de devis et de contact</li>
-    <li>Améliorer l'expérience de navigation</li>
-    <li>Respecter les obligations légales</li>
-  </ul>
+      <div class="legal-section reveal">
+        <h2>1. Responsable du traitement</h2>
+        <p><strong>Responsable :</strong> Jonathan Besdinier — e.com connect</p>
+        <p><strong>Adresse :</strong> Lens, Pas-de-Calais (62), France</p>
+        <p><strong>Email :</strong> contact@e-comconnect.com</p>
+        <p><strong>Téléphone :</strong> 06 52 86 36 95</p>
+      </div>
 
-  <h2>Base légale</h2>
-  <p>Le traitement des données est fondé sur votre consentement (formulaire de contact) et sur l'intérêt légitime d'E.com connect (amélioration du service).</p>
+      <div class="legal-section reveal">
+        <h2>2. Données collectées</h2>
+        <h3>2.1 Via le formulaire de contact</h3>
+        <ul>
+          <li>Prénom et nom</li>
+          <li>Adresse email</li>
+          <li>Numéro de téléphone (optionnel)</li>
+          <li>Contenu du message / description du projet</li>
+          <li>Formule souhaitée</li>
+        </ul>
+        <h3>2.2 Via Google Analytics</h3>
+        <ul>
+          <li>Données de navigation (pages visitées, durée)</li>
+          <li>Type d'appareil et navigateur</li>
+          <li>Pays/ville de connexion (anonymisé)</li>
+          <li>Source du trafic</li>
+        </ul>
+        <p>Ces données sont collectées de manière anonymisée et agrégée. Aucune donnée personnelle identifiable n'est transmise à Google Analytics.</p>
+        <h3>2.3 Via les cookies techniques</h3>
+        <p>Des cookies techniques strictement nécessaires au fonctionnement du site peuvent être déposés. Aucun cookie publicitaire n'est utilisé.</p>
+      </div>
 
-  <h2>Durée de conservation</h2>
-  <p>Les données de contact sont conservées pendant <strong style="color:#e5e5e5">3 ans</strong> à compter du dernier contact. Les données de navigation anonymisées sont conservées <strong style="color:#e5e5e5">13 mois maximum</strong>.</p>
+      <div class="legal-section reveal">
+        <h2>3. Finalités du traitement</h2>
+        <ul>
+          <li><strong>Formulaire de contact :</strong> Répondre à votre demande de devis, vous contacter pour discuter de votre projet, envoyer votre devis</li>
+          <li><strong>Google Analytics :</strong> Analyser l'audience du site pour améliorer le contenu et l'expérience utilisateur</li>
+          <li><strong>Facturation :</strong> Établir et conserver les factures conformément aux obligations légales (10 ans)</li>
+        </ul>
+      </div>
 
-  <h2>Vos droits</h2>
-  <p>Conformément au RGPD, vous disposez des droits suivants :</p>
-  <ul>
-    <li><strong style="color:#e5e5e5">Droit d'accès</strong> — obtenir une copie de vos données</li>
-    <li><strong style="color:#e5e5e5">Droit de rectification</strong> — corriger des données inexactes</li>
-    <li><strong style="color:#e5e5e5">Droit à l'effacement</strong> — demander la suppression de vos données</li>
-    <li><strong style="color:#e5e5e5">Droit d'opposition</strong> — s'opposer à un traitement</li>
-    <li><strong style="color:#e5e5e5">Droit à la portabilité</strong> — recevoir vos données dans un format lisible</li>
-  </ul>
-  <p>Pour exercer ces droits, contactez-nous à : <strong style="color:#84cc16">contact@e-comconnect.com</strong></p>
-  <p>Vous pouvez également introduire une réclamation auprès de la <strong style="color:#e5e5e5">CNIL</strong> (www.cnil.fr).</p>
+      <div class="legal-section reveal">
+        <h2>4. Base légale du traitement</h2>
+        <ul>
+          <li><strong>Exécution d'un contrat :</strong> Pour les données nécessaires à la réalisation des prestations commandées</li>
+          <li><strong>Intérêt légitime :</strong> Pour l'analyse d'audience anonymisée (Google Analytics)</li>
+          <li><strong>Consentement :</strong> Pour toute communication marketing (non pratiqué actuellement)</li>
+          <li><strong>Obligation légale :</strong> Conservation des documents comptables</li>
+        </ul>
+      </div>
 
-  <h2>Cookies</h2>
-  <p>Ce site n'utilise pas de cookies publicitaires ou de traçage tiers. Des cookies techniques strictement nécessaires au fonctionnement du site peuvent être déposés sans consentement préalable.</p>
+      <div class="legal-section reveal">
+        <h2>5. Durée de conservation</h2>
+        <ul>
+          <li><strong>Données de contact (formulaire) :</strong> 3 ans à compter du dernier contact</li>
+          <li><strong>Données clients (contrat, facturation) :</strong> 10 ans (obligation légale comptable)</li>
+          <li><strong>Données analytiques :</strong> 26 mois maximum (paramètre Google Analytics)</li>
+          <li><strong>Cookies techniques :</strong> Session ou maximum 13 mois</li>
+        </ul>
+      </div>
 
-  <h2>Transfert de données</h2>
-  <p>Les données peuvent être hébergées sur les serveurs de Netlify, Inc. (États-Unis). Ce transfert est encadré par les clauses contractuelles types de la Commission européenne.</p>
+      <div class="legal-section reveal">
+        <h2>6. Vos droits</h2>
+        <div class="rights-grid">
+          <div class="right-card">
+            <div class="right-icon">👁️</div>
+            <div class="right-title">Droit d'accès</div>
+            <div class="right-desc">Obtenir une copie de vos données personnelles détenues par e.com connect</div>
+          </div>
+          <div class="right-card">
+            <div class="right-icon">✏️</div>
+            <div class="right-title">Droit de rectification</div>
+            <div class="right-desc">Corriger des données inexactes ou incomplètes vous concernant</div>
+          </div>
+          <div class="right-card">
+            <div class="right-icon">🗑️</div>
+            <div class="right-title">Droit à l'effacement</div>
+            <div class="right-desc">Demander la suppression de vos données (droit à l'oubli)</div>
+          </div>
+          <div class="right-card">
+            <div class="right-icon">⏸️</div>
+            <div class="right-title">Droit à la limitation</div>
+            <div class="right-desc">Limiter le traitement de vos données dans certaines situations</div>
+          </div>
+          <div class="right-card">
+            <div class="right-icon">📦</div>
+            <div class="right-title">Droit à la portabilité</div>
+            <div class="right-desc">Recevoir vos données dans un format structuré et lisible</div>
+          </div>
+          <div class="right-card">
+            <div class="right-icon">🚫</div>
+            <div class="right-title">Droit d'opposition</div>
+            <div class="right-desc">Vous opposer au traitement de vos données pour motif légitime</div>
+          </div>
+        </div>
+        <p>Pour exercer ces droits, contactez-nous à : <strong>contact@e-comconnect.com</strong> — Réponse sous 30 jours maximum.</p>
+        <p>En cas de réponse insatisfaisante, vous pouvez introduire une réclamation auprès de la <strong>CNIL</strong> : <a href="https://www.cnil.fr" target="_blank" rel="noopener" style="color:#e8532a;font-weight:600;">cnil.fr</a></p>
+      </div>
 
-  <footer-legal>© 2026 E.com connect — Jonathan Besdinier · SIRET 501 061 840 00044</footer-legal>
+      <div class="legal-section reveal">
+        <h2>7. Partage des données</h2>
+        <p>Vos données ne sont jamais vendues à des tiers. Elles peuvent être partagées uniquement avec :</p>
+        <ul>
+          <li><strong>Web3Forms :</strong> Service de traitement des formulaires de contact (serveurs en UE)</li>
+          <li><strong>Google Analytics :</strong> Service d'analyse d'audience avec IP anonymisée</li>
+          <li><strong>Vercel :</strong> Hébergeur du site (logs serveur techniques uniquement)</li>
+        </ul>
+        <p>Ces prestataires sont contractuellement tenus de respecter la confidentialité de vos données et de les traiter uniquement pour les finalités convenues.</p>
+      </div>
+
+      <div class="legal-section reveal">
+        <h2>8. Sécurité</h2>
+        <p>e.com connect met en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données : connexion HTTPS (SSL), accès restreint aux données, hébergement sécurisé Vercel.</p>
+        <p>En cas de violation de données susceptible d'engendrer un risque pour vos droits et libertés, vous serez notifié dans les 72h conformément à l'art. 33 du RGPD.</p>
+      </div>
+
+      <div class="legal-section reveal">
+        <h2>9. Modifications</h2>
+        <p>Cette politique peut être mise à jour pour refléter des changements dans nos pratiques ou dans la réglementation. La date de dernière mise à jour est indiquée ci-dessous. En cas de modification substantielle, vous en serez informé par email si vous êtes client.</p>
+        <p><strong>Dernière mise à jour :</strong> Janvier 2026</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="container cta-strip-inner">
+    <h2>Des questions sur vos données ?</h2>
+    <p>Contactez-nous directement — nous répondons sous 24h</p>
+    <div class="cta-strip-actions">
+      <a href="mailto:contact@e-comconnect.com" class="btn btn-primary btn-lg">✉️ contact@e-comconnect.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-brand-logo"><div class="nav-logo-icon">E</div><span class="nav-logo-text">e.com connect</span></div><p class="footer-tagline">Sites vitrines en code pur — rapides, sécurisés, visibles sur Google.</p></div>
+      <div><div class="footer-col-title">Pages</div><ul class="footer-links"><li><a href="index.html">Accueil</a></li><li><a href="tarifs.html">Tarifs</a></li><li><a href="pourquoi-un-site.html">Pourquoi un site ?</a></li></ul></div>
+      <div><div class="footer-col-title">Formules</div><ul class="footer-links"><li><a href="tarifs.html">Starter — 349€</a></li><li><a href="tarifs.html">Pro — 1 099€</a></li><li><a href="tarifs.html">Refonte — 1 199€</a></li></ul></div>
+      <div><div class="footer-col-title">Contact</div><ul class="footer-links"><li><a href="tel:0652863695">06 52 86 36 95</a></li><li><a href="mailto:contact@e-comconnect.com">contact@e-comconnect.com</a></li></ul></div>
+      <div><div class="footer-col-title">Légal</div><ul class="footer-links"><li><a href="mentions-legales.html">Mentions légales</a></li><li><a href="cgv.html">CGV</a></li><li><a href="politique-confidentialite.html">Confidentialité</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copyright">© 2026 e.com connect — Lens (62). TVA non applicable — art. 293B CGI.</div>
+      <div class="footer-socials"><a href="#" class="footer-social">📸</a><a href="mailto:contact@e-comconnect.com" class="footer-social">✉️</a><a href="tel:0652863695" class="footer-social">📞</a></div>
+    </div>
+  </div>
+</footer>
+
+<div class="floating-actions">
+  <a href="https://wa.me/33652863695" class="float-btn float-wa" target="_blank">💬</a>
+  <a href="mailto:contact@e-comconnect.com" class="float-btn float-mail">✉️</a>
 </div>
 
+<script>
+  const nb=document.getElementById('navbar');
+  window.addEventListener('scroll',()=>nb.classList.toggle('scrolled',scrollY>40),{passive:true});
+  function toggleMenu(){document.getElementById('mobile-menu').classList.toggle('open');}
+  const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target)}}),{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
 </body>
 </html>

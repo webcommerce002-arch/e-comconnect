@@ -1,80 +1,154 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mentions légales — E.com connect</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#f0f0f0;line-height:1.7}
-  .topbar{position:sticky;top:0;background:rgba(10,10,10,0.95);backdrop-filter:blur(20px);border-bottom:1px solid #1a1a1a;padding:0 60px;height:52px;display:flex;align-items:center;justify-content:space-between;z-index:100}
-  .topbar a{font-size:13px;color:#737373;text-decoration:none}
-  .topbar a:hover{color:#84cc16}
-  .topbar .logo{font-size:14px;font-weight:700;color:#e5e5e5}
-  .topbar .logo span{color:#84cc16}
-  .container{max-width:800px;margin:0 auto;padding:60px 40px}
-  h1{font-size:32px;font-weight:800;color:#e5e5e5;letter-spacing:-1px;margin-bottom:8px}
-  .date{font-size:12px;color:#525252;margin-bottom:40px}
-  h2{font-size:16px;font-weight:700;color:#84cc16;margin:32px 0 12px;text-transform:uppercase;letter-spacing:.05em;font-size:11px}
-  p{font-size:13px;color:#a3a3a3;margin-bottom:12px}
-  .card{background:#111;border:1px solid #1f1f1f;border-radius:12px;padding:20px 24px;margin-bottom:8px}
-  .row{display:flex;gap:12px;margin-bottom:6px;font-size:13px}
-  .lbl{color:#525252;min-width:180px;flex-shrink:0}
-  .val{color:#d4d4d4}
-  footer-legal{display:block;margin-top:60px;padding-top:20px;border-top:1px solid #1a1a1a;font-size:11px;color:#333;text-align:center}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mentions légales — E.Com Connect</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="favicon.png" />
+  <link rel="stylesheet" href="shared.css" />
+  <style>
+    .legal-body { max-width:760px; margin:0 auto; }
+    .legal-section { margin-bottom:48px; padding-bottom:48px; border-bottom:1px solid #e5e5e5; }
+    .legal-section:last-child { border-bottom:none; }
+    .legal-section h2 { font-size:22px; font-weight:800; color:#0a0a0a; margin-bottom:16px; letter-spacing:-0.5px; }
+    .legal-section p, .legal-section li { font-size:15px; color:#444; line-height:1.8; margin-bottom:10px; }
+    .legal-section ul { padding-left:20px; }
+    .legal-section strong { color:#222; font-weight:600; }
+    .legal-tag { display:inline-flex; align-items:center; gap:6px; background:#f7f7f7; border:1px solid #e5e5e5; border-radius:8px; padding:8px 14px; font-size:13px; color:#555; margin-bottom:12px; }
+  </style>
 </head>
 <body>
 
-<div class="topbar">
-  <div class="logo">E<span>.com</span> connect</div>
-  <a href="Ecomm-Connect-Presentation.html">← Retour au site</a>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">E</div>
+    <span class="nav-logo-text">e.com connect</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="tarifs.html">Tarifs</a></li>
+    <li><a href="pourquoi-un-site.html">Pourquoi un site ?</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <div class="nav-cta"><a href="index.html#contact" class="btn btn-blue">Devis gratuit →</a></div>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" onclick="toggleMenu()">Accueil</a>
+  <a href="tarifs.html" onclick="toggleMenu()">Tarifs</a>
+  <a href="index.html#contact" class="mobile-cta" onclick="toggleMenu()">Devis gratuit →</a>
 </div>
 
-<div class="container">
-  <h1>Mentions légales</h1>
-  <div class="date">Conformément à la loi n°2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique (LCEN)</div>
-
-  <h2>Éditeur du site</h2>
-  <div class="card">
-    <div class="row"><span class="lbl">Nom et prénom</span><span class="val">Jonathan Besdinier</span></div>
-    <div class="row"><span class="lbl">Forme juridique</span><span class="val">Entrepreneur individuel</span></div>
-    <div class="row"><span class="lbl">Nom commercial</span><span class="val">E.com connect</span></div>
-    <div class="row"><span class="lbl">SIREN</span><span class="val">501 061 840</span></div>
-    <div class="row"><span class="lbl">SIRET (siège social)</span><span class="val">501 061 840 00044</span></div>
-    <div class="row"><span class="lbl">Numéro de TVA</span><span class="val">FR06501061840</span></div>
-    <div class="row"><span class="lbl">Adresse</span><span class="val">60 rue François Ier, 75008 Paris</span></div>
-    <div class="row"><span class="lbl">Email</span><span class="val">contact@e-comconnect.com</span></div>
-    <div class="row"><span class="lbl">Activité (code NAF)</span><span class="val">Vente à distance sur catalogue spécialisé — 4791B</span></div>
-    <div class="row"><span class="lbl">Date de création</span><span class="val">18 décembre 2024</span></div>
+<!-- HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-breadcrumb"><a href="index.html">Accueil</a> <span>›</span> <span>Mentions légales</span></div>
+    <h1>Mentions <span class="highlight">légales</span></h1>
+    <p>Conformément aux articles 6-III et 19 de la Loi n° 2004-575 du 21 juin 2004 pour la Confiance dans l'économie numérique.</p>
   </div>
+</section>
 
-  <h2>Directeur de la publication</h2>
-  <div class="card">
-    <div class="row"><span class="lbl">Responsable</span><span class="val">Jonathan Besdinier</span></div>
-    <div class="row"><span class="lbl">Contact</span><span class="val">contact@e-comconnect.com</span></div>
+<section class="section-light">
+  <div class="container">
+    <div class="legal-body">
+
+      <div class="legal-section reveal">
+        <h2>1. Éditeur du site</h2>
+        <div class="legal-tag">🏢 Informations sur l'éditeur</div>
+        <p><strong>Nom commercial :</strong> e.com connect</p>
+        <p><strong>Responsable de la publication :</strong> Jonathan Besdinier</p>
+        <p><strong>Statut :</strong> Auto-entrepreneur (Entreprise individuelle)</p>
+        <p><strong>Adresse :</strong> Lens, Pas-de-Calais (62), France</p>
+        <p><strong>Téléphone :</strong> 06 52 86 36 95</p>
+        <p><strong>Email :</strong> contact@e-comconnect.com</p>
+        <p><strong>TVA :</strong> Non applicable — art. 293B du CGI</p>
+        <p><strong>SIRET :</strong> Disponible sur demande</p>
+      </div>
+
+      <div class="legal-section reveal">
+        <h2>2. Hébergement</h2>
+        <div class="legal-tag">🖥️ Hébergeur</div>
+        <p><strong>Hébergeur :</strong> Vercel Inc.</p>
+        <p><strong>Adresse :</strong> 340 Pine Street, Suite 701, San Francisco, CA 94104, États-Unis</p>
+        <p><strong>Site web :</strong> vercel.com</p>
+        <p>Le site est déployé via la plateforme Vercel avec un CDN mondial, garantissant des temps de chargement optimaux et une disponibilité de 99,99%.</p>
+      </div>
+
+      <div class="legal-section reveal">
+        <h2>3. Propriété intellectuelle</h2>
+        <p>L'ensemble du contenu de ce site (textes, images, graphismes, logo, icônes, sons, logiciels…) est la propriété exclusive de e.com connect, à l'exception des marques, logos ou contenus appartenant à d'autres sociétés partenaires ou auteurs.</p>
+        <p>Toute reproduction, distribution, modification, adaptation, retransmission ou publication, même partielle, de ces différents éléments est <strong>strictement interdite sans l'accord écrit préalable</strong> de e.com connect.</p>
+        <p>Cette représentation ou reproduction, par quelque procédé que ce soit, constitue une contrefaçon sanctionnée par les articles L.335-2 et suivants du Code de la propriété intellectuelle.</p>
+      </div>
+
+      <div class="legal-section reveal">
+        <h2>4. Liens hypertextes et cookies</h2>
+        <p>Le site e-comconnect.com contient des liens hypertextes vers d'autres sites. e.com connect n'a pas la possibilité de vérifier le contenu des sites ainsi visités et n'assumera en conséquence aucune responsabilité de ce fait.</p>
+        <p>La navigation sur le site e-comconnect.com est susceptible de provoquer l'installation de cookie(s) sur l'ordinateur de l'utilisateur. Un cookie est un fichier de petite taille, qui ne permet pas l'identification de l'utilisateur, mais qui enregistre des informations relatives à la navigation d'un ordinateur sur un site.</p>
+        <p>Les données ainsi obtenues visent à faciliter la navigation ultérieure sur le site, et ont également vocation à permettre diverses mesures de fréquentation (Google Analytics). Le refus d'installation d'un cookie peut entraîner l'impossibilité d'accéder à certains services.</p>
+      </div>
+
+      <div class="legal-section reveal">
+        <h2>5. Protection des données personnelles</h2>
+        <p>Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi n° 78-17 du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés, vous disposez d'un droit d'accès, de rectification, de suppression et de portabilité des données vous concernant.</p>
+        <p>Pour exercer ces droits, contactez-nous à : <strong>contact@e-comconnect.com</strong></p>
+        <p>Pour plus d'informations, consultez notre <a href="politique-confidentialite.html" style="color:#e8532a;font-weight:600;">Politique de confidentialité</a>.</p>
+      </div>
+
+      <div class="legal-section reveal">
+        <h2>6. Limitation de responsabilité</h2>
+        <p>e.com connect ne pourra être tenu responsable des dommages directs et indirects causés au matériel de l'utilisateur, lors de l'accès au site e-comconnect.com, et résultant soit de l'utilisation d'un matériel ne répondant pas aux spécifications indiquées, soit de l'apparition d'un bug ou d'une incompatibilité.</p>
+        <p>e.com connect ne pourra également être tenu responsable des dommages indirects (tels par exemple qu'une perte de marché ou perte d'une chance) consécutifs à l'utilisation du site e-comconnect.com.</p>
+      </div>
+
+      <div class="legal-section reveal">
+        <h2>7. Droit applicable et juridiction</h2>
+        <p>Tout litige en relation avec l'utilisation du site e-comconnect.com est soumis au droit français. En dehors des cas où la loi ne le permet pas, il est fait attribution exclusive de juridiction aux tribunaux compétents de Lens (62).</p>
+        <p><strong>Date de dernière mise à jour :</strong> Janvier 2026</p>
+      </div>
+
+    </div>
   </div>
+</section>
 
-  <h2>Hébergeur</h2>
-  <div class="card">
-    <div class="row"><span class="lbl">Société</span><span class="val">Vercel Inc.</span></div>
-    <div class="row"><span class="lbl">Adresse</span><span class="val">340 Pine Street, Suite 701, San Francisco, CA 94104, USA</span></div>
-    <div class="row"><span class="lbl">Site web</span><span class="val">www.vercel.com</span></div>
+<section class="cta-strip">
+  <div class="container cta-strip-inner">
+    <h2>Un projet en tête ?</h2>
+    <p>Devis gratuit sous 24h — sans engagement</p>
+    <div class="cta-strip-actions">
+      <a href="index.html#contact" class="btn btn-primary btn-lg">Demander un devis →</a>
+    </div>
   </div>
+</section>
 
-  <h2>Propriété intellectuelle</h2>
-  <p>L'ensemble des éléments composant ce site (textes, images, graphismes, logo, icônes, sons, logiciels...) est la propriété exclusive de Jonathan Besdinier / E.com connect, à l'exception des éléments tiers identifiés comme tels.</p>
-  <p>Toute reproduction, représentation, modification, publication ou adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite sans l'autorisation écrite préalable de Jonathan Besdinier.</p>
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-brand-logo"><div class="nav-logo-icon">E</div><span class="nav-logo-text">e.com connect</span></div><p class="footer-tagline">Sites vitrines en code pur — rapides, sécurisés, visibles sur Google.</p></div>
+      <div><div class="footer-col-title">Pages</div><ul class="footer-links"><li><a href="index.html">Accueil</a></li><li><a href="tarifs.html">Tarifs</a></li><li><a href="pourquoi-un-site.html">Pourquoi un site ?</a></li></ul></div>
+      <div><div class="footer-col-title">Formules</div><ul class="footer-links"><li><a href="tarifs.html">Starter — 349€</a></li><li><a href="tarifs.html">Pro — 1 099€</a></li><li><a href="tarifs.html">Refonte — 1 199€</a></li></ul></div>
+      <div><div class="footer-col-title">Contact</div><ul class="footer-links"><li><a href="tel:0652863695">06 52 86 36 95</a></li><li><a href="mailto:contact@e-comconnect.com">contact@e-comconnect.com</a></li></ul></div>
+      <div><div class="footer-col-title">Légal</div><ul class="footer-links"><li><a href="mentions-legales.html">Mentions légales</a></li><li><a href="cgv.html">CGV</a></li><li><a href="politique-confidentialite.html">Confidentialité</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copyright">© 2026 e.com connect — Lens (62). TVA non applicable — art. 293B CGI.</div>
+      <div class="footer-socials"><a href="#" class="footer-social">📸</a><a href="mailto:contact@e-comconnect.com" class="footer-social">✉️</a><a href="tel:0652863695" class="footer-social">📞</a></div>
+    </div>
+  </div>
+</footer>
 
-  <h2>Limitation de responsabilité</h2>
-  <p>Jonathan Besdinier / E.com connect ne pourra être tenu responsable des dommages directs ou indirects causés au matériel de l'utilisateur lors de l'accès au site, résultant de l'utilisation d'un matériel ne répondant pas aux spécifications, ou de l'apparition d'un bug ou d'une incompatibilité.</p>
-
-  <h2>Cookies</h2>
-  <p>Ce site n'utilise pas de cookies à des fins publicitaires ou de traçage. Des cookies techniques peuvent être utilisés pour le bon fonctionnement du site.</p>
-
-  <footer-legal>© 2026 E.com connect — Jonathan Besdinier · Entrepreneur individuel · SIRET 501 061 840 00044</footer-legal>
+<div class="floating-actions">
+  <a href="https://wa.me/33652863695" class="float-btn float-wa" target="_blank">💬</a>
+  <a href="mailto:contact@e-comconnect.com" class="float-btn float-mail">✉️</a>
 </div>
 
+<script>
+  const nb=document.getElementById('navbar');
+  window.addEventListener('scroll',()=>nb.classList.toggle('scrolled',scrollY>40),{passive:true});
+  function toggleMenu(){document.getElementById('mobile-menu').classList.toggle('open');}
+  const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target)}}),{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
 </body>
 </html>
