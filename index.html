@@ -1206,13 +1206,48 @@
         transition: none !important;
       }
       .services-sub-grid { grid-template-columns: 1fr 1fr; }
-      .testimonials-grid { grid-template-columns: 1fr; }
+      /* ── STATS : barre horizontale sur mobile ── */
+      .trust-numbers {
+        display: flex !important;
+        justify-content: space-around;
+        gap: 0 !important;
+        max-width: 100% !important;
+        margin-bottom: 40px !important;
+        background: var(--bg-white);
+        border-radius: 16px;
+        padding: 20px 12px;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+      }
+      .trust-num { flex: 1; border-right: 1px solid var(--border); padding: 0 8px; }
+      .trust-num:last-child { border-right: none; }
+      .trust-num-val { font-size: 28px !important; letter-spacing: -1px !important; }
+      .trust-num-label { font-size: 11px !important; }
+
+      /* ── TÉMOIGNAGES : carousel horizontal ── */
+      .testimonials-grid {
+        display: flex !important;
+        overflow-x: auto;
+        gap: 14px !important;
+        max-width: none !important;
+        margin: 0 -20px !important;
+        padding: 4px 20px 16px !important;
+        scroll-snap-type: x mandatory;
+        overscroll-behavior-x: contain;
+        scrollbar-width: none;
+      }
+      .testimonials-grid::-webkit-scrollbar { display: none; }
+      .testimonials-grid .t-card {
+        flex: 0 0 82% !important;
+        scroll-snap-align: start;
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
       .pricing-grid { grid-template-columns: 1fr; max-width: 380px; }
       .options-grid { grid-template-columns: 1fr 1fr; }
       .quest-options { grid-template-columns: 1fr; }
       .quest-options.cols-3 { grid-template-columns: 1fr 1fr; }
       .quest-row { grid-template-columns: 1fr; }
-      .trust-numbers { grid-template-columns: 1fr; gap: 24px; }
       .footer-inner { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; text-align: center; }
       .section-pad { padding: 70px 0; }
@@ -1645,7 +1680,11 @@
   <!-- ─── SERVICES GRID ─── -->
   <section class="section-services" id="nos-services">
     <div class="orb orb-blue" style="width:600px;height:300px;top:0;left:50%;transform:translateX(-50%);opacity:0.5;"></div>
-    <div class="container">
+    <!-- Watermark fond -->
+    <div aria-hidden="true" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:0;overflow:hidden;">
+      <div style="font-family:'Outfit',sans-serif;font-size:clamp(80px,14vw,200px);font-weight:900;letter-spacing:-4px;color:rgba(0,0,0,0.032);text-transform:uppercase;white-space:nowrap;line-height:1;text-align:center;user-select:none;">E.com<br>Connect</div>
+    </div>
+    <div class="container" style="position:relative;z-index:1;">
       <div class="services-header">
         <div class="section-eyebrow reveal" style="justify-content:center;">
           <span class="eyebrow-line"></span>
