@@ -1115,11 +1115,27 @@
         font-size: clamp(80px, 28vw, 160px) !important;
         letter-spacing: -3px !important;
       }
-      .hero-stats { grid-template-columns: repeat(2, 1fr); max-width: 100%; }
-      .hero-stat { border-right: 1px solid rgba(255,255,255,0.07); }
-      .hero-stat:nth-child(2) { border-right: none; }
-      .hero-stat:nth-child(3) { border-top: 1px solid rgba(255,255,255,0.07); }
-      .hero-stat:last-child { border-right: none; border-top: 1px solid rgba(255,255,255,0.07); }
+      /* Stats : scroll horizontal sur mobile */
+      .hero-stats {
+        display: flex !important;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        gap: 0;
+        max-width: 100%;
+        padding-bottom: 4px;
+      }
+      .hero-stats::-webkit-scrollbar { display: none; }
+      .hero-stat {
+        min-width: 130px;
+        flex: 0 0 auto;
+        border-right: 1px solid rgba(255,255,255,0.1) !important;
+        border-top: none !important;
+      }
+      .hero-stat:last-child { border-right: none !important; }
+      /* Table comparatif : scrollable sur mobile */
+      .comparison-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .comp-table { min-width: 440px; }
 
       .why-inner, .feature-layout, .questionnaire-layout, .contact-layout { grid-template-columns: 1fr; gap: 40px; }
       .comparatif-grid { grid-template-columns: 1fr !important; }
@@ -1383,74 +1399,6 @@
         <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
           <a href="#questionnaire" class="btn btn-primary btn-lg">Créer mon site maintenant →</a>
           <a href="pourquoi-un-site.html" class="btn btn-outline btn-lg">Vos clients vous cherchent — êtes-vous visible ?</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── WHY PURE CODE ─── -->
-  <section class="section-why" id="services">
-    <div class="orb orb-blue" style="width:500px;height:500px;right:-100px;top:0;opacity:0.6;"></div>
-    <div class="container">
-      <div class="why-inner">
-        <div class="reveal-left">
-          <div class="section-eyebrow reveal">
-            <span class="eyebrow-line"></span>
-            Notre approche
-          </div>
-          <h2 class="section-title reveal">Pourquoi le<br>code pur ?</h2>
-          <p class="section-desc reveal">
-            Nous croyons fermement en la supériorité du code natif pour des performances optimales,
-            une sécurité renforcée et une évolutivité sans limites, loin des contraintes des
-            plateformes CMS traditionnelles.
-          </p>
-          <div class="why-actions reveal">
-            <a href="#questionnaire" class="btn btn-primary">Découvrir l'offre</a>
-            <a href="pourquoi-un-site.html" class="btn btn-outline">En savoir plus</a>
-          </div>
-        </div>
-        <div class="reveal-right">
-          <div class="comparison-wrap">
-            <div class="comp-ecom-hl"></div>
-            <div class="comp-table">
-
-              <!-- HEADER -->
-              <div class="comp-th th-crit">Critère</div>
-              <div class="comp-th th-ecom">E.com Connect</div>
-              <div class="comp-th th-wp">WordPress</div>
-
-              <!-- ROW 1 -->
-              <div class="comp-td td-crit">Vitesse de<br>chargement</div>
-              <div class="comp-td td-ecom"><span class="c-check">✓</span><span class="c-pill">x3 plus rapide</span></div>
-              <div class="comp-td td-wp"><span class="c-cross">×</span><span>Lent (plugins)</span></div>
-
-              <!-- ROW 2 -->
-              <div class="comp-td td-crit">Performance<br>Google</div>
-              <div class="comp-td td-ecom"><span class="c-check">✓</span><span class="c-pill">95–100/100</span></div>
-              <div class="comp-td td-wp"><span class="c-cross">×</span><span class="c-muted">60–75/100</span></div>
-
-              <!-- ROW 3 -->
-              <div class="comp-td td-crit">Sécurité</div>
-              <div class="comp-td td-ecom"><span class="c-check">✓</span><span>Code pur,<br>aucune faille</span></div>
-              <div class="comp-td td-wp"><span class="c-cross">×</span><span>Vulnérabilités<br>fréquentes</span></div>
-
-              <!-- ROW 4 -->
-              <div class="comp-td td-crit">Maintenance</div>
-              <div class="comp-td td-ecom"><span class="c-check">✓</span><span>Aucune mise à<br>jour requise</span></div>
-              <div class="comp-td td-wp"><span class="c-cross">×</span><span>Mises à jour<br>constantes</span></div>
-
-              <!-- ROW 5 -->
-              <div class="comp-td td-crit">Coût long terme</div>
-              <div class="comp-td td-ecom"><span class="c-check">✓</span><span>Fixe et prévisible</span></div>
-              <div class="comp-td td-wp"><span class="c-cross">×</span><span>Plugins payants<br>récurrents</span></div>
-
-              <!-- ROW 6 — last -->
-              <div class="comp-td td-crit last">Propriété du code</div>
-              <div class="comp-td td-ecom last"><span class="c-check">✓</span><span>100% à vous</span></div>
-              <div class="comp-td td-wp last"><span class="c-cross">×</span><span>Dépendance<br>externe</span></div>
-
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -1775,6 +1723,74 @@
           <div class="tl-sep"></div>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── WHY PURE CODE ─── -->
+  <section class="section-why" id="services">
+    <div class="orb orb-blue" style="width:500px;height:500px;right:-100px;top:0;opacity:0.6;"></div>
+    <div class="container">
+      <div class="why-inner">
+        <div class="reveal-left">
+          <div class="section-eyebrow reveal">
+            <span class="eyebrow-line"></span>
+            Notre approche
+          </div>
+          <h2 class="section-title reveal">Pourquoi le<br>code pur ?</h2>
+          <p class="section-desc reveal">
+            Nous croyons fermement en la supériorité du code natif pour des performances optimales,
+            une sécurité renforcée et une évolutivité sans limites, loin des contraintes des
+            plateformes CMS traditionnelles.
+          </p>
+          <div class="why-actions reveal">
+            <a href="#questionnaire" class="btn btn-primary">Découvrir l'offre</a>
+            <a href="pourquoi-un-site.html" class="btn btn-outline">En savoir plus</a>
+          </div>
+        </div>
+        <div class="reveal-right">
+          <div class="comparison-wrap">
+            <div class="comp-ecom-hl"></div>
+            <div class="comp-table">
+
+              <!-- HEADER -->
+              <div class="comp-th th-crit">Critère</div>
+              <div class="comp-th th-ecom">E.com Connect</div>
+              <div class="comp-th th-wp">WordPress</div>
+
+              <!-- ROW 1 -->
+              <div class="comp-td td-crit">Vitesse de<br>chargement</div>
+              <div class="comp-td td-ecom"><span class="c-check">✓</span><span class="c-pill">x3 plus rapide</span></div>
+              <div class="comp-td td-wp"><span class="c-cross">×</span><span>Lent (plugins)</span></div>
+
+              <!-- ROW 2 -->
+              <div class="comp-td td-crit">Performance<br>Google</div>
+              <div class="comp-td td-ecom"><span class="c-check">✓</span><span class="c-pill">95–100/100</span></div>
+              <div class="comp-td td-wp"><span class="c-cross">×</span><span class="c-muted">60–75/100</span></div>
+
+              <!-- ROW 3 -->
+              <div class="comp-td td-crit">Sécurité</div>
+              <div class="comp-td td-ecom"><span class="c-check">✓</span><span>Code pur,<br>aucune faille</span></div>
+              <div class="comp-td td-wp"><span class="c-cross">×</span><span>Vulnérabilités<br>fréquentes</span></div>
+
+              <!-- ROW 4 -->
+              <div class="comp-td td-crit">Maintenance</div>
+              <div class="comp-td td-ecom"><span class="c-check">✓</span><span>Aucune mise à<br>jour requise</span></div>
+              <div class="comp-td td-wp"><span class="c-cross">×</span><span>Mises à jour<br>constantes</span></div>
+
+              <!-- ROW 5 -->
+              <div class="comp-td td-crit">Coût long terme</div>
+              <div class="comp-td td-ecom"><span class="c-check">✓</span><span>Fixe et prévisible</span></div>
+              <div class="comp-td td-wp"><span class="c-cross">×</span><span>Plugins payants<br>récurrents</span></div>
+
+              <!-- ROW 6 — last -->
+              <div class="comp-td td-crit last">Propriété du code</div>
+              <div class="comp-td td-ecom last"><span class="c-check">✓</span><span>100% à vous</span></div>
+              <div class="comp-td td-wp last"><span class="c-cross">×</span><span>Dépendance<br>externe</span></div>
+
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
