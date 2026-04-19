@@ -1188,7 +1188,22 @@
       .comparatif-grid { grid-template-columns: 1fr !important; }
       .stats-chiffres { grid-template-columns: 1fr !important; }
       .feature-layout.reverse { direction: ltr; }
-      .services-grid { grid-template-columns: 1fr 1fr; }
+      /* ── SERVICES : carousel horizontal ── */
+      .services-grid {
+        display: flex !important;
+        overflow-x: auto;
+        gap: 14px !important;
+        margin: 0 -20px 40px !important;
+        padding: 4px 20px 16px !important;
+        scroll-snap-type: x mandatory;
+        overscroll-behavior-x: contain;
+        scrollbar-width: none;
+      }
+      .services-grid::-webkit-scrollbar { display: none; }
+      .services-grid .service-card {
+        flex: 0 0 260px !important;
+        scroll-snap-align: start;
+      }
       .services-sub-grid { grid-template-columns: 1fr 1fr; }
       .testimonials-grid { grid-template-columns: 1fr; }
       .pricing-grid { grid-template-columns: 1fr; max-width: 380px; }
@@ -1211,7 +1226,7 @@
       .deux-chemins-grid { grid-template-columns: 1fr !important; }
     }
     @media (max-width: 480px) {
-      .services-grid { grid-template-columns: 1fr !important; }
+      /* services-grid reste carousel (flex défini en 768px) */
       .services-sub-grid { grid-template-columns: 1fr !important; }
       /* hero-stats reste en flex scroll horizontal même sur petit mobile */
       .options-grid { grid-template-columns: 1fr !important; }
